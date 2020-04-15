@@ -1,0 +1,9 @@
+{
+    "id_token": "asdhaskdjhaksdh1212",
+    "token_type": "bearer",
+    "access_token": "asdhkasjndkasn1o2j312i",
+    "refresh_token": "aksjdnaskdjn000-12312-asdasd",
+    "refresh_expires_in": 31622398,
+    "scope": "openid profile email phone",
+    "expires_in": 1798
+}

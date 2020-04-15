@@ -1,0 +1,60 @@
+FASTLANE_HIDE_CHANGELOG = true
+FASTLANE_SKIP_UPDATE_CHECK = true
+
+default_platform(:ios)
+
+
+platform :ios do
+  before_all do
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+  end
+
+ desc "Danger PR Validation"
+  lane :DangerPRValidation do
+    danger(
+      danger_id: "PR_VALIDATION",
+      dangerfile: "./DangerfilePRMetaValidation"
+     )
+ end
+
+ desc "Danger publish test results"
+  lane :DangerPostCI do
+    danger(
+      danger_id: "POST_CI",
+     )
+ end
+
+  desc "Description of what the lane does"
+  lane :unit_tests_integration_tests do
+	scan(
+	    workspace: "KarhooSDK.xcworkspace",
+	    scheme: "KarhooSDK",
+	    code_coverage: true,
+	    clean: true,
+	    slack_message: "Unit/Integration Tests for *Karhoo iOS SDK*",
+	    output_types: "junit",
+      output_files: "NetworkSDKTests.xml"
+    )
+  end
+
+  error do |lane, exception|
+     slack(
+       message: exception.message,
+       success: false
+     )
+  end
+
+  desc "Xcov Report"
+  lane :XcovReport do
+    xcov(
+      workspace: "KarhooSDK.xcworkspace",
+      scheme: "KarhooSDK",
+      output_directory: "fastlane/test_output",
+      ignore_file_path: "./*view.swift",
+      slack_url: "https://hooks.slack.com/services/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",
+      slack_channel: "sdktestscoverage",
+      slack_message: "KarhooSDK test coverage report:"
+    )
+  end
+
+end

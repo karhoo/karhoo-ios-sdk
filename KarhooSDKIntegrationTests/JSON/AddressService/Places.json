@@ -1,0 +1,14 @@
+{
+  "locations": [
+    {
+      "place_id": "ChIJ3QD47p1xdkgRytPI0DjT6SU",
+      "display_address": "Terminal 5, Longford, Hounslow, UK",
+      "type": "AIRPORT"
+    },
+    {
+        "place_id": "12356344f35gergedr",
+        "display_address": "Johns house",
+        "type": "NOT_SET_DETAILS_TYPE"
+    }
+  ]
+}

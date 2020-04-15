@@ -1,0 +1,26 @@
+{
+   "sub":"zzzz-zzwww123-asda-xxx6",
+   "upstream":{
+      "sub":"123123123-43434-1231-88"
+   },
+   "primary_organisation_id":"12312312-adas-aasxas-adasd12312-3",
+   "last_name":"TestName",
+   "given_name":"TestLasName",
+   "client_id":"mobile-testClient",
+   "organisations":[
+      {
+         "id":"12312-asdasd_ASDASD-asd",
+         "name":"DefaultOrgForTestUsers",
+         "roles":[
+            "ROLE_1",
+            "ROLE_2"
+         ]
+      }
+   ],
+   "user_id":"23123210ADAS-ZZZZAA-Axx-1",
+   "scope":"test scope",
+   "phone_number":"+15005550006",
+   "family_name":"Family",
+   "first_name":"Fist_Name",
+   "email":"email@karhoo.com"
+}

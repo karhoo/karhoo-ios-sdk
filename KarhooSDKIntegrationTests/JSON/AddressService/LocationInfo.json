@@ -1,0 +1,28 @@
+{
+    "position": {"latitude": 51.5166744, "longitude": -0.1769328},
+    "place_id": "123",
+    "poi_type": "REGULATED",
+    "address": {
+        "display_address": "Paddington Station",
+        "line_1": "",
+        "line_2": "",
+        "building_number": "",
+        "street_name": "Praed St",
+        "city": "London",
+        "postal_code": "W2 1HQ",
+        "region": "Greater London",
+        "country_code": "UK"
+    },
+    "time_zone": "UK",
+    "details": {
+        "iata": "iata",
+        "terminal": "terminal",
+        "type": "NOT_SET_DETAILS_TYPE",
+    },
+    "meeting_point": {
+        "position": {"latitude": 51.5062894, "longitude": -0.0859324},
+        "instructions": "I am near by",
+        "type": "CURB_SIDE",
+    },
+    "instructions": "Waiting"
+}
