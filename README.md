@@ -1,6 +1,6 @@
 # Karhoo-iOS-SDK
 
-![](https://github.com/karhoo/Karhoo-iOS-SDK/workflows/CI-Development/badge.svg)
+![](https://github.com/karhoo/Karhoo-iOS-SDK/workflows/Develop%20Branch%20CI/badge.svg)
 
 KarhooSDK is a framework for integrating with the KarhooAPI: https://developer.karhoo.com
 
