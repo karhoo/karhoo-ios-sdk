@@ -1,0 +1,12 @@
+{
+    "position": {
+        "latitude": 1,
+        "longitude": -1
+    },
+    "direction": {
+        "kph": 30,
+        "heading": 180
+    },
+    "origin_eta": 5,
+    "destination_eta": 10
+}

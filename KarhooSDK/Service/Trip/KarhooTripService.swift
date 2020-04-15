@@ -1,0 +1,60 @@
+//
+//  KarhooTripService.swift
+//  KarhooSDK
+//
+//  
+//  Copyright © 2020 Karhoo. All rights reserved.
+//
+
+import Foundation
+
+final class KarhooTripService: TripService {
+    private let bookingInteractor: BookingInteractor
+    private let cancelTripInteractor: CancelTripInteractor
+    private let tripSearchInteractor: TripSearchInteractor
+    private let analytics: AnalyticsService
+    private let tripPollFactory: PollCallFactory
+    private let tripStatusPollFactory: PollCallFactory
+
+    init(bookingInteractor: BookingInteractor = KarhooBookingInteractor(),
+         cancelTripInteractor: CancelTripInteractor = KarhooCancelTripInteractor(),
+         tripSearchInteractor: TripSearchInteractor = KarhooTripSearchInteractor(),
+         analytics: AnalyticsService = KarhooAnalyticsService(),
+         tripPollFactory: PollCallFactory = KarhooPollCallFactory(),
+         tripStatusPollFactory: PollCallFactory = KarhooPollCallFactory()) {
+
+        self.bookingInteractor = bookingInteractor
+        self.cancelTripInteractor = cancelTripInteractor
+        self.analytics = analytics
+        self.tripSearchInteractor = tripSearchInteractor
+        self.tripPollFactory = tripPollFactory
+        self.tripStatusPollFactory = tripStatusPollFactory
+    }
+
+    func book(tripBooking: TripBooking) -> Call<TripInfo> {
+        bookingInteractor.set(tripBooking: tripBooking)
+        return Call(executable: bookingInteractor)
+    }
+
+    func cancel(tripCancellation: TripCancellation) -> Call<KarhooVoid> {
+        cancelTripInteractor.set(tripCancellation: tripCancellation)
+        return Call(executable: cancelTripInteractor)
+    }
+
+    func search(tripSearch: TripSearch) -> Call<[TripInfo]> {
+        tripSearchInteractor.set(tripSearch: tripSearch)
+        return Call(executable: tripSearchInteractor)
+    }
+
+    func trackTrip(tripId: String) -> PollCall<TripInfo> {
+        let interactor = KarhooTripUpdateInteractor(tripId: tripId)
+        return tripPollFactory.shared(identifier: tripId,
+                                      executable: interactor)
+    }
+
+    func status(tripId: String) -> PollCall<TripState> {
+        let interactor = KarhooTripStatusInteractor(tripId: tripId)
+        return tripStatusPollFactory.shared(identifier: tripId,
+                                            executable: interactor)
+    }
+}

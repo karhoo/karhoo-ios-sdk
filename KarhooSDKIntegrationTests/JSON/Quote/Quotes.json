@@ -1,0 +1,31 @@
+{
+  "id": "4129e51a-bc10-11e8-a821-0a580a0414db",
+  "quote_items": [{
+    "availability_id": "NTIxMjNiZDktY2M5OC00YjhkLWE5OGEtMTIyNDQ2ZDY5ZTc5O3NhbG9vbg==",
+    "category_name": "Saloon",
+    "pick_up_type": "MEET_AND_GREET",
+    "currency_code": "GBP",
+    "fleet_id": "someFleetId",
+    "fleet_name": "someFleetName",
+    "high_price": 779,
+    "low_price": 778,
+    "phone_number": "+123",
+    "qta_high_minutes": 2,
+    "qta_low_minutes": 1,
+    "quote_id": "someQuoteId",
+    "quote_type": "ESTIMATED",
+    "supplier_logo_url": "someLogoUrl",
+    "terms_conditions_url": "someTermsUrl",
+    "vehicle_attributes": {
+      "child_seat": false,
+      "electric": false,
+      "hybrid": false,
+      "luggage_capacity": 2,
+      "passenger_capacity": 4
+    },
+    "vehicle_class": "saloon",
+    "source": "MARKET"
+  }],
+  "status": "COMPLETED",
+  "validity": 221
+}

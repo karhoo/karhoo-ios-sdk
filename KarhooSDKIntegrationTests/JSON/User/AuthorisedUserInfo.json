@@ -1,0 +1,18 @@
+{
+  "user_id": "some_userId",
+  "email": "some@email.com",
+  "first_name": "Some",
+  "last_name": "SomeSome",
+  "phone_number": "12345678910",
+  "locale": "string",
+  "primary_organisation_id": "string",
+  "organisations": [
+    {
+      "id": "a1013897-132a-456c-9be2-636979095ad9",
+      "name": "string",
+      "roles": [
+        "TRIP_ADMIN"
+      ]
+    }
+  ]
+}
