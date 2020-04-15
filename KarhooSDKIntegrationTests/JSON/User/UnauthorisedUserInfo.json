@@ -1,0 +1,18 @@
+{
+  "user_id": "string",
+  "email": "string",
+  "first_name": "string",
+  "last_name": "string",
+  "phone_number": "string",
+  "locale": "string",
+  "primary_organisation_id": "string",
+  "organisations": [
+    {
+      "id": "string",
+      "name": "string",
+      "roles": [
+        "string"
+      ]
+    }
+  ]
+}

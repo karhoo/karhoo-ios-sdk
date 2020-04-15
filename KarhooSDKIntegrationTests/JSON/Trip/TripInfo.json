@@ -1,0 +1,130 @@
+{
+  "id": "b6a5f9dc-9066-4252-9013-be85dfa563bc",
+  "passengers": {
+    "additional_passengers": 0,
+    "passenger_details": [
+      {
+        "first_name": "John",
+        "last_name": "Smith",
+        "email": "john.smith@karhoo.com",
+        "phone_number": "+4412345678"
+      }
+    ],
+    "luggage": {
+      "total": 0
+    }
+  },
+  "status": "REQUESTED",
+  "origin": {
+    "display_address": "2 Eastborne Terrace",
+    "position": {
+      "latitude": 51.5086692,
+      "longitude": -0.1375291
+    },
+    "place_id": "EhpCcm93bmVsbCBTdCwgU2hlZmZpZWxkLCBVSw",
+    "poi_type": "NOT_SET_POI_TYPE",
+    "timezone": "london/europe"
+  },
+  "destination": {
+    "display_address": "2 Eastborne Terrace",
+    "position": {
+      "latitude": 51.5086692,
+      "longitude": -0.1375291
+    },
+    "place_id": "EhpCcm93bmVsbCBTdCwgU2hlZmZpZWxkLCBVSw",
+    "poi_type": "NOT_SET_POI_TYPE",
+    "timezone": "london/europe"
+  },
+  "date_scheduled": "2018-04-21T12:35:00Z",
+  "quote": {
+    "type": "FIXED",
+    "total": 3550,
+    "currency": "GBP",
+    "gratuity_percent": 15,
+    "breakdown": [
+      {
+        "value": 1030,
+        "name": "Basic amount",
+        "description": "Basic amount before any taxes or extras"
+      }
+    ],
+    "vehicle_class": "Saloon",
+    "qta_high_minutes": 8,
+    "qta_low_minutes": 5,
+    "vehicle_attributes": {
+      "passenger_capacity": 3,
+      "luggage_capacity": 2,
+      "hybrid": false,
+      "electric": true,
+      "child_seat": true
+    }
+  },
+  "fare": {
+    "total": 3550,
+    "currency": "GBP",
+    "gratuity_percent": 15,
+    "breakdown": [
+      {
+        "value": 1030,
+        "name": "Basic amount",
+        "description": "Basic amount before any taxes or extras"
+      }
+    ]
+  },
+  "external_trip_id": "string",
+  "display_trip_id": "A5TH-R27D",
+  "fleet_info": {
+    "fleet_id": "some fleet id",
+    "name": "some fleet name",
+    "logo_url": "some logo url",
+    "description": "some description",
+    "phone_number": "some phone number",
+    "terms_conditions_url": "some terms and conditions",
+    "email": "dispatch-co@karhoo.com"
+  },
+  "vehicle": {
+    "vehicle_class": "MPV",
+    "description": "Renault Scenic (Black)",
+    "vehicle_license_plate": "123 XYZ",
+    "driver": {
+      "first_name": "Michael",
+      "last_name": "Higgins",
+      "phone_number": "+441111111111",
+      "photo_url": "https://karhoo.com/drivers/mydriver.png",
+      "license_number": "ZXZ151YTY"
+    },
+    "attributes": {
+      "passenger_capacity": 3,
+      "luggage_capacity": 2,
+      "hybrid": false,
+      "electric": true,
+      "child_seat": true
+    }
+  },
+  "partner_trip_id": "9975d6f2-75e0-463a-85f8-d6b17d2b0143",
+  "comments": "They are waiting by the green door at Fake Street 2a",
+  "flight_number": "BA1326",
+  "date_booked": "string",
+  "meeting_point": {
+    "position": {
+      "latitude": 51.5086692,
+      "longitude": -0.1375291
+    },
+    "type": "MEET_AND_GREET",
+    "instructions": "string",
+    "note": "string"
+  },
+  "agent": {
+    "user_id": "string",
+    "user_name": "string",
+    "organisation_id": "string",
+    "organisation_name": "string"
+  },
+  "cost_center_reference": "EMEA-sales",
+  "cancelled_by": {
+    "first_name": "string",
+    "last_name": "string",
+    "id": "string",
+    "email": "string"
+  }
+} 

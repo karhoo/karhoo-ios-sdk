@@ -1,0 +1,45 @@
+{
+  "state": "PENDING",
+  "expected_final_time": "2016-04-16T16:06:05Z",
+  "expected_in": "360",
+  "breakdown": {
+    "base": {
+      "tax_percentage": 0,
+      "discount_percentage": 0,
+      "commission_percentage": 0,
+      "tax_amount": 0,
+      "list_price": 0,
+      "net_price": 0
+    },
+    "commission": {
+      "tax_percentage": 0,
+      "discount_percentage": 0,
+      "commission_percentage": 0,
+      "tax_amount": 0,
+      "list_price": 0,
+      "net_price": 0
+    },
+    "extras": [
+      {
+        "tax_percentage": 0,
+        "discount_percentage": 0,
+        "commission_percentage": 0,
+        "tax_amount": 0,
+        "list_price": 0,
+        "net_price": 0
+      }
+    ],
+    "expenses": [
+      {
+        "tax_percentage": 0,
+        "discount_percentage": 0,
+        "commission_percentage": 0,
+        "tax_amount": 0,
+        "list_price": 0,
+        "net_price": 0
+      }
+    ],
+    "total": 0,
+    "currency": "EUR"
+  }
+}
