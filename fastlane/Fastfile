@@ -6,7 +6,6 @@ default_platform(:ios)
 
 platform :ios do
   before_all do
-    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
   end
 
  desc "Danger PR Validation"
@@ -51,7 +50,6 @@ platform :ios do
       scheme: "KarhooSDK",
       output_directory: "fastlane/test_output",
       ignore_file_path: "./*view.swift",
-      slack_url: "https://hooks.slack.com/services/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",
       slack_channel: "sdktestscoverage",
       slack_message: "KarhooSDK test coverage report:"
     )
