@@ -18,8 +18,8 @@ jobs:
       - name: Run Unit Tests
         run:
           xcodebuild -workspace 'KarhooSDK.xcworkspace' -scheme 'KarhooSDK' -destination 'platform=iOS Simulator,name=iPhone 11' test | xcpretty --test --color
-      - name: Fastlane Xcov report
-        run: fastlane ios XcovReport
+#      - name: Fastlane Xcov report
+#        run: fastlane ios XcovReport
 
   Build_Project:
     runs-on: macos-latest
