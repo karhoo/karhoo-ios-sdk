@@ -32,7 +32,7 @@ final class KarhooCancelTripInteractor: CancelTripInteractor {
         let payload = CancelTripRequestPayload(reason: tripCancellation.cancelReason)
 
         requestSender.request(payload: payload,
-                              endpoint: .cancelTrip(identifier: tripCancellation.tripId),
+                              endpoint: endpoint(identifier: tripCancellation.tripId),
                               callback: { result in
                                 guard result.successValue(orErrorCallback: callback) != nil,
                                     let resultValue = KarhooVoid() as? T else { return }
@@ -44,5 +44,13 @@ final class KarhooCancelTripInteractor: CancelTripInteractor {
 
     func cancel() {
         requestSender.cancelNetworkRequest()
+    }
+
+    private func endpoint(identifier: String) -> APIEndpoint {
+        if Karhoo.configuration.authenticationMethod().isGuest() {
+            return .cancelTripFollowCode(followCode: identifier)
+        }
+
+        return .cancelTrip(identifier: identifier)
     }
 }
