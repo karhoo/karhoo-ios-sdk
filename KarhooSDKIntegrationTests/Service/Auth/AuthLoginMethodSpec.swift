@@ -38,7 +38,7 @@ final class AuthLoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 0.5)
     }
     
     /**
@@ -110,7 +110,7 @@ final class AuthLoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 0.5)
     }
     
     /**

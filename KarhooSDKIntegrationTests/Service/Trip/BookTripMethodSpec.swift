@@ -138,6 +138,7 @@ final class BookTripMethodSpec: XCTestCase {
             return
         }
         XCTAssertEqual("b6a5f9dc-9066-4252-9013-be85dfa563bc", trip.tripId)
+        XCTAssertEqual("1234", trip.followCode)
         XCTAssertEqual(.requested, trip.state)
         XCTAssertEqual("EhpCcm93bmVsbCBTdCwgU2hlZmZpZWxkLCBVSw", trip.origin.placeId)
         XCTAssertEqual("EhpCcm93bmVsbCBTdCwgU2hlZmZpZWxkLCBVSw", trip.destination!.placeId)

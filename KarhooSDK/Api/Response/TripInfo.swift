@@ -11,6 +11,7 @@ import Foundation
 public struct TripInfo: KarhooCodableModel {
 
     public let tripId: String
+    public let followCode: String
     public let displayId: String
     public let state: TripState
     public let vehicle: Vehicle
@@ -29,6 +30,7 @@ public struct TripInfo: KarhooCodableModel {
 
     public init(tripId: String = "",
                 displayId: String = "",
+                followCode: String = "",
                 origin: TripLocationDetails = TripLocationDetails(),
                 destination: TripLocationDetails? = nil,
                 dateScheduled: Date? = nil,
@@ -41,6 +43,7 @@ public struct TripInfo: KarhooCodableModel {
                 fare: TripFare = TripFare()) {
         self.tripId = tripId
         self.displayId = displayId
+        self.followCode = followCode
         self.state = state
         self.vehicle = vehicle
         self.tripQuote = quote
@@ -57,6 +60,7 @@ public struct TripInfo: KarhooCodableModel {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         self.tripId = (try? container.decode(String.self, forKey: .tripId)) ?? ""
+        self.followCode = (try? container.decode(String.self, forKey: .followCode)) ?? ""
         self.displayId = (try? container.decode(String.self, forKey: .displayId)) ?? ""
         self.origin = (try? container.decode(TripLocationDetails.self, forKey: .origin)) ?? TripLocationDetails()
         self.destination = (try? container.decode(TripLocationDetails.self,
@@ -82,6 +86,7 @@ public struct TripInfo: KarhooCodableModel {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         try container.encode(tripId, forKey: .tripId)
+        try container.encode(followCode, forKey: .followCode)
         try container.encode(displayId, forKey: .displayId)
         try container.encode(dateScheduled, forKey: .dateScheduled)
         try container.encode(origin, forKey: .origin)
@@ -98,6 +103,7 @@ public struct TripInfo: KarhooCodableModel {
     enum CodingKeys: String, CodingKey {
         case tripId = "id"
         case displayId = "display_trip_id"
+        case followCode = "follow_code"
         case state = "status"
         case origin
         case destination = "destination"
