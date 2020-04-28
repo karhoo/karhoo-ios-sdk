@@ -134,6 +134,6 @@ final class TripStatusMethodSpec: XCTestCase {
             }
         }
         pollCall.observable(pollTime: 0.1).subscribe(observer: observer)
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 2)
     }
 }
