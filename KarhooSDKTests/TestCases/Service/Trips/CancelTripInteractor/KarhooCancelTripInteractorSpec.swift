@@ -57,7 +57,7 @@ final class KarhooCancelTripInteractorSpec: XCTestCase {
 
         mockCancelTripRequestSender.triggerSuccess(response: KarhooVoid().encode()!)
 
-        XCTAssertTrue(mockAnalyticsService.tripCancellationAttemptedCalled)
+        XCTAssertEqual(.tripCancellationAttempted, mockAnalyticsService.eventSent)
         XCTAssertTrue(capturedCallback!.isSuccess())
     }
 
@@ -74,7 +74,7 @@ final class KarhooCancelTripInteractorSpec: XCTestCase {
 
         mockCancelTripRequestSender.triggerFail(error: expectedError)
 
-        XCTAssertTrue(mockAnalyticsService.tripCancellationAttemptedCalled)
+        XCTAssertEqual(.tripCancellationAttempted, mockAnalyticsService.eventSent)
         XCTAssertFalse(capturedCallback!.isSuccess())
         XCTAssert(expectedError.equals(capturedCallback!.errorValue()))
     }
