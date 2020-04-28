@@ -21,11 +21,18 @@ final class KarhooTripUpdateInteractor: TripUpdateInteractor {
 
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
         requestSender.requestAndDecode(payload: nil,
-                                       endpoint: .trackTrip(identifier: tripId),
+                                       endpoint: endpoint(),
                                        callback: callback)
     }
 
     func cancel() {
         requestSender.cancelNetworkRequest()
+    }
+
+    private func endpoint() -> APIEndpoint {
+        if Karhoo.configuration.authenticationMethod().isGuest() {
+            return .trackTripFollowCode(followCode: tripId)
+        }
+        return .trackTrip(identifier: tripId)
     }
 }

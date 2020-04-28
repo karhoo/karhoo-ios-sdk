@@ -93,7 +93,6 @@
 		09928D2B20EFAABA00B9F462 /* KarhooQuoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09928D2020EFAABA00B9F462 /* KarhooQuoteInteractor.swift */; };
 		09928D2C20EFAABA00B9F462 /* QuoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09928D2120EFAABA00B9F462 /* QuoteInteractor.swift */; };
 		09928D3720EFAAEE00B9F462 /* KarhooQuoteServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09928D3220EFAAEE00B9F462 /* KarhooQuoteServiceSpec.swift */; };
-		09928D3820EFAAEE00B9F462 /* KarhooQuoteInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09928D3420EFAAEE00B9F462 /* KarhooQuoteInteractorSpec.swift */; };
 		09928D4520EFAB1300B9F462 /* MockQuoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09928D4120EFAB1300B9F462 /* MockQuoteInteractor.swift */; };
 		09928D4720EFAB3000B9F462 /* QuoteSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09928D4620EFAB3000B9F462 /* QuoteSearch.swift */; };
 		09928D4920EFAB9300B9F462 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09928D4820EFAB9300B9F462 /* Quotes.swift */; };
@@ -285,7 +284,6 @@
 		43F939A31F3C85A300914E18 /* JsonHttpRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9399A1F3C85A300914E18 /* JsonHttpRequestBuilder.swift */; };
 		43F939A41F3C85A300914E18 /* KarhooEnvironmentDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9399B1F3C85A300914E18 /* KarhooEnvironmentDetails.swift */; };
 		43F939A51F3C85A300914E18 /* URLSessionSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9399C1F3C85A300914E18 /* URLSessionSender.swift */; };
-		43F939B51F3CD33200914E18 /* JsonHttpClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F939B01F3CD33200914E18 /* JsonHttpClientSpec.swift */; };
 		43F939B61F3CD33200914E18 /* JsonHttpRequestBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F939B11F3CD33200914E18 /* JsonHttpRequestBuilderSpec.swift */; };
 		5C076FFF20F23B5F00A35537 /* CategoryQuoteMapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C076FFE20F23B5F00A35537 /* CategoryQuoteMapperSpec.swift */; };
 		5C08DFB120E5A8D7002203CB /* MockContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C08DFB020E5A8D7002203CB /* MockContext.swift */; };
@@ -306,6 +304,8 @@
 		5C2856E220E3B184009B9464 /* KarhooReverseGeocodeProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2856DD20E3B183009B9464 /* KarhooReverseGeocodeProviderSpec.swift */; };
 		5C2856F220E3B1DD009B9464 /* LocationInfoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2856F120E3B1DC009B9464 /* LocationInfoMock.swift */; };
 		5C2E265024282B0400B1FF0C /* KarhooAddPaymentDetailsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090E0164223FAB6E005D1CB7 /* KarhooAddPaymentDetailsSpec.swift */; };
+		5C3C66D8245718BE00C736E9 /* JsonHttpClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F939B01F3CD33200914E18 /* JsonHttpClientSpec.swift */; };
+		5C3C66DA24571A5600C736E9 /* KarhooQuoteInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3C66D924571A5600C736E9 /* KarhooQuoteInteractorSpec.swift */; };
 		5C5BE90D2411A513005DD14E /* AuthenticationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5BE90C2411A513005DD14E /* AuthenticationMethod.swift */; };
 		5C75D6572080E4E60065133B /* KarhooCodableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C75D6562080E4E60065133B /* KarhooCodableModel.swift */; };
 		5C75D65D208CC84E0065133B /* LocationDetailsAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C75D65C208CC84E0065133B /* LocationDetailsAddress.swift */; };
@@ -508,7 +508,6 @@
 		09928D2020EFAABA00B9F462 /* KarhooQuoteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooQuoteInteractor.swift; sourceTree = "<group>"; };
 		09928D2120EFAABA00B9F462 /* QuoteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteInteractor.swift; sourceTree = "<group>"; };
 		09928D3220EFAAEE00B9F462 /* KarhooQuoteServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooQuoteServiceSpec.swift; sourceTree = "<group>"; };
-		09928D3420EFAAEE00B9F462 /* KarhooQuoteInteractorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooQuoteInteractorSpec.swift; sourceTree = "<group>"; };
 		09928D4120EFAB1300B9F462 /* MockQuoteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockQuoteInteractor.swift; sourceTree = "<group>"; };
 		09928D4620EFAB3000B9F462 /* QuoteSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteSearch.swift; sourceTree = "<group>"; };
 		09928D4820EFAB9300B9F462 /* Quotes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
@@ -726,6 +725,7 @@
 		5C2856CC20E3B127009B9464 /* ReverseGeocodeInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseGeocodeInteractor.swift; sourceTree = "<group>"; };
 		5C2856DD20E3B183009B9464 /* KarhooReverseGeocodeProviderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooReverseGeocodeProviderSpec.swift; sourceTree = "<group>"; };
 		5C2856F120E3B1DC009B9464 /* LocationInfoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInfoMock.swift; sourceTree = "<group>"; };
+		5C3C66D924571A5600C736E9 /* KarhooQuoteInteractorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooQuoteInteractorSpec.swift; sourceTree = "<group>"; };
 		5C5BE90C2411A513005DD14E /* AuthenticationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMethod.swift; sourceTree = "<group>"; };
 		5C75D6562080E4E60065133B /* KarhooCodableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooCodableModel.swift; sourceTree = "<group>"; };
 		5C75D65C208CC84E0065133B /* LocationDetailsAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsAddress.swift; sourceTree = "<group>"; };
@@ -1169,7 +1169,7 @@
 		09928D3320EFAAEE00B9F462 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				09928D3420EFAAEE00B9F462 /* KarhooQuoteInteractorSpec.swift */,
+				5C3C66D924571A5600C736E9 /* KarhooQuoteInteractorSpec.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -3034,15 +3034,15 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KarhooSDKIntegrationTests/Pods-KarhooSDKIntegrationTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3341,11 +3341,11 @@
 				5C2856E220E3B184009B9464 /* KarhooReverseGeocodeProviderSpec.swift in Sources */,
 				4032BD1423FC5B2300C2409B /* KarhooAuthLoginInteractorSpec.swift in Sources */,
 				43588C661EBB675100D03765 /* TestUtil.swift in Sources */,
+				5C3C66DA24571A5600C736E9 /* KarhooQuoteInteractorSpec.swift in Sources */,
 				31A1AD631F39E1E200BFE24B /* MockHttpClient.swift in Sources */,
 				0970BA7E211464C40015A170 /* MockExecutable.swift in Sources */,
 				31005DA71FCEE699006D2A7D /* RequestTesting.swift in Sources */,
 				43584E931EE5993700B4DFAB /* KarhooTripServiceSpec.swift in Sources */,
-				09928D3820EFAAEE00B9F462 /* KarhooQuoteInteractorSpec.swift in Sources */,
 				31904CDA200380A400BA7402 /* MockAccessTokenProvider.swift in Sources */,
 				4371C5BE1EB0E8070059429D /* KarhooAddressServiceSpec.swift in Sources */,
 				317610EE1FD84CD200D2DB75 /* KarhooNetworkDateFormatterSpec.swift in Sources */,
@@ -3391,10 +3391,10 @@
 				09F79E47223AAA6600D5B0B8 /* MockGetNonceInteractor.swift in Sources */,
 				31904CD82003800000BA7402 /* TokenRefreshingHttpClientSpec.swift in Sources */,
 				43584E9F1EE6A3D400B4DFAB /* MockUserDefaults.swift in Sources */,
-				43F939B51F3CD33200914E18 /* JsonHttpClientSpec.swift in Sources */,
 				310D44AE1FA1F8890038BFDA /* TimestampFormatterSpec.swift in Sources */,
 				095A03CD2333B3F8007D805E /* KarhooUIConfigInteractorSpec.swift in Sources */,
 				2742197A13ACCCDBAE32D13A /* HeaderProviderSpec.swift in Sources */,
+				5C3C66D8245718BE00C736E9 /* JsonHttpClientSpec.swift in Sources */,
 				09F79E3F2239723200D5B0B8 /* KarhooGetNonceInteractorSpec.swift in Sources */,
 				5C2E265024282B0400B1FF0C /* KarhooAddPaymentDetailsSpec.swift in Sources */,
 				5C08DFB420E5A92A002203CB /* MockAnalyticsProvider.swift in Sources */,

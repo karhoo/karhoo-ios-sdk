@@ -26,4 +26,8 @@ public enum AuthenticationMethod {
         default: return nil
         }
     }
+
+    public func isGuest() -> Bool {
+        return guestSettings != nil
+    }
 }

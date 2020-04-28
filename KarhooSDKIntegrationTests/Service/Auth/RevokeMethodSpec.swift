@@ -16,6 +16,7 @@ final class AuthRevokeMethodSpec: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         authenticate()
         authService = Karhoo.getAuthService()
 
@@ -23,16 +24,16 @@ final class AuthRevokeMethodSpec: XCTestCase {
     }
 
     private func authenticate() {
-        NetworkStub.successResponse(jsonFile: "AuthToken.json", path: "/v1/auth/token")
-        NetworkStub.successResponse(jsonFile: "AuthorisedUserInfo.json", path: "/v1/directory/users/me")
+        NetworkStub.successResponse(jsonFile: "AuthToken.json", path: "/karhoo/anonymous/token-exchange")
+        NetworkStub.successResponse(jsonFile: "AuthorisedUserInfo.json", path: "/oauth/v2/userinfo")
 
         let expectation = self.expectation(description: "calls the callback with success")
 
-        Karhoo.getUserService().login(userLogin: UserLogin(username: "mock",
-                                                           password: "mock")).execute(callback: { _ in
-                                                            expectation.fulfill()
-                                                           })
-        waitForExpectations(timeout: 1)
+        Karhoo.getAuthService().login(token: "123").execute(callback: { _ in
+            expectation.fulfill()
+        })
+
+        waitForExpectations(timeout: 2)
     }
 
     /**

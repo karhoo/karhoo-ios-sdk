@@ -19,7 +19,8 @@ final class LoginMethodSpec: XCTestCase {
 
     override func setUp() {
         super.setUp()
-
+        MockSDKConfig.authenticationMethod = .karhooUser
+        
         userService = Karhoo.getUserService()
         tearDown()
         
@@ -124,7 +125,7 @@ final class LoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 0.5)
     }
 
     /**

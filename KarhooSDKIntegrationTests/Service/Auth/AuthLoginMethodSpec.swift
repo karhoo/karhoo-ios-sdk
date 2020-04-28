@@ -17,8 +17,8 @@ final class AuthLoginMethodSpec: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         authService = Karhoo.getAuthService()
-        
         call = authService.login(token: "aasdasdadqdqwd")
     }
     
@@ -38,7 +38,7 @@ final class AuthLoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 0.5)
     }
     
     /**
@@ -68,7 +68,7 @@ final class AuthLoginMethodSpec: XCTestCase {
         
         let expectation = self.expectation(description: "Calls callback with expected result")
         call.execute(callback: { result in
-            XCTAssertFalse(result.isSuccess())
+            XCTAssertNil(result.successValue()?.userId)
             expectation.fulfill()
         })
 
@@ -102,7 +102,7 @@ final class AuthLoginMethodSpec: XCTestCase {
       */
     func testUserLoginAuthTokenInvalid() {
         NetworkStub.successResponse(jsonFile: "AuthExchangeToken.json", path: exchangeTokenPath)
-        NetworkStub.responseWithInvalidData(path: exchangeTokenPath, statusCode: 200)
+        NetworkStub.responseWithInvalidData(path: exchangeTokenPath, statusCode: 401)
         
         let expectation = self.expectation(description: "Calls callback with expected result")
         call.execute(callback: { result in
@@ -110,7 +110,7 @@ final class AuthLoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 0.5)
     }
     
     /**
