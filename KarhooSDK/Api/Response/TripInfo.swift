@@ -11,7 +11,7 @@ import Foundation
 public struct TripInfo: KarhooCodableModel {
 
     public let tripId: String
-    public let followCode: String
+    public var followCode: String
     public let displayId: String
     public let state: TripState
     public let vehicle: Vehicle

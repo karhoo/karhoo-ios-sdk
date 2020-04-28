@@ -21,19 +21,11 @@ final class KarhooDriverTrackingInteractor: KarhooExecutable {
 
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
         requestSender.requestAndDecode(payload: nil,
-                                       endpoint: endpoint(),
+                                       endpoint: .trackDriver(identifier: tripId),
                                        callback: callback)
     }
 
     func cancel() {
         requestSender.cancelNetworkRequest()
-    }
-
-    private func endpoint() -> APIEndpoint {
-        if Karhoo.configuration.authenticationMethod().isGuest() {
-            return .trackDriverFollowCode(followCode: tripId)
-        }
-
-        return .trackDriver(identifier: tripId)
     }
 }

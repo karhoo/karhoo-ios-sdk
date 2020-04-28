@@ -9,12 +9,10 @@ enum APIEndpoint {
     case cancelTrip(identifier: String)
     case cancelTripFollowCode(followCode: String)
     case trackDriver(identifier: String)
-    case trackDriverFollowCode(followCode: String)
     case trackTrip(identifier: String)
     case trackTripFollowCode(followCode: String)
     case tripSearch
     case tripStatus(identifier: String)
-    case tripStatusFollowCode(followCode: String)
     case getFareDetails(identifier: String)
     case locationInfo
     case placeSearch
@@ -61,8 +59,6 @@ enum APIEndpoint {
             return "/bookings/follow/\(followCode)/cancel"
         case .trackDriver(let identifier):
             return "/bookings/\(identifier)/track"
-        case .trackDriverFollowCode(let followCode):
-            return "/bookings/follow/\(followCode)/track"
         case .trackTrip(let identifier):
             return "/bookings/\(identifier)"
         case .trackTripFollowCode(let followCode):
@@ -71,8 +67,6 @@ enum APIEndpoint {
             return "/bookings/search"
         case .tripStatus(let identifier):
             return "/bookings/\(identifier)/status"
-        case .tripStatusFollowCode(let followCode):
-            return "bookings/\(followCode)/"
         case .getFareDetails(let identifier):
             return "/fares/trip/\(identifier)"
         case .locationInfo:
@@ -123,12 +117,10 @@ enum APIEndpoint {
         case .cancelTrip: return .post
         case .cancelTripFollowCode: return .post
         case .trackDriver: return .get
-        case .trackDriverFollowCode: return .get
         case .trackTrip: return .get
         case .trackTripFollowCode: return .get
         case .tripSearch: return .post
         case .tripStatus: return .get
-        case .tripStatusFollowCode: return .get
         case .getFareDetails: return .get
         case .locationInfo: return .post
         case .placeSearch: return .post

@@ -10,19 +10,16 @@
 
 class MockSDKConfig: KarhooSDKConfiguration {
 
-    let authMethod: AuthenticationMethod
-    static let tokenExchangeSettings = TokenExchangeSettings(clientId: "mock-client", scope: "1234")
-
-    init(authMethod: AuthenticationMethod = .karhooUser) {
-        self.authMethod = authMethod
-    }
+    static var tokenExchangeSettings = TokenExchangeSettings(clientId: "mock-client", scope: "1234")
+    static var guestSettings = GuestSettings(identifier: "mock-identifier",
+                                             referer: "mock-referer", organisationId: "mock-organisationId")
+    static var authenticationMethod: AuthenticationMethod = .karhooUser
 
     func environment() -> KarhooEnvironment {
         return .sandbox
     }
 
     func authenticationMethod() -> AuthenticationMethod {
-        return authMethod
+        return Self.authenticationMethod
     }
-
 }

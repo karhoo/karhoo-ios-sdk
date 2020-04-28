@@ -28,10 +28,10 @@ final class AuthRevokeMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "calls the callback with success")
 
-        Karhoo.getUserService().login(userLogin: UserLogin(username: "mock",
-                                                           password: "mock")).execute(callback: { _ in
-                                                            expectation.fulfill()
-                                                           })
+        Karhoo.getAuthService().login(token: "123").execute(callback: { _ in
+            expectation.fulfill()
+        })
+
         waitForExpectations(timeout: 1)
     }
 

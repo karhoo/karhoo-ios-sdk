@@ -17,7 +17,7 @@ final class KarhooTripStatusInteractor: TripStatusInteractor {
 
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
         requestSender.requestAndDecode(payload: nil,
-                                       endpoint: endpoint(),
+                                       endpoint: .tripStatus(identifier: tripId),
                                        callback: { (result: Result<TripStatus>) in
                                         guard let status = result.successValue(orErrorCallback: callback),
                                             let resultValue = status.status as? T else { return }
@@ -28,12 +28,5 @@ final class KarhooTripStatusInteractor: TripStatusInteractor {
 
     func cancel() {
         requestSender.cancelNetworkRequest()
-    }
-
-    private func endpoint() -> APIEndpoint {
-        if Karhoo.configuration.authenticationMethod().isGuest() {
-            return .tripStatusFollowCode(followCode: tripId)
-        }
-        return .tripStatus(identifier: tripId)
     }
 }

@@ -84,3 +84,4 @@ final class KarhooRequestSenderSpec: XCTestCase {
 struct MockPayload: KarhooCodableModel {
     var value: String
 }
+
