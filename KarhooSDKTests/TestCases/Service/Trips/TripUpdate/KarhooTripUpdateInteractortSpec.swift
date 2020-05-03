@@ -78,11 +78,18 @@ class KarhooTripUpdateInteractortSpec: XCTestCase {
     /**
      * When: Tracking as a guest
      * Then: Track with follow code endpoint
+     * And: Follow code is populated
      */
     func testGuestTripUpdateUsesFollowCode() {
         MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
-        testObject.execute(callback: { (_: Result<TripInfo>) in })
+        testObject.execute(callback: { (result: Result<TripInfo>) in
+            XCTAssertEqual("TRIP_ID", result.successValue()?.followCode)
+        })
+
         mockTripUpdateRequest.assertRequestSendAndDecoded(endpoint: .trackTripFollowCode(followCode: tripId),
                                                           method: .get)
+
+        let mockResponse = TripInfoMock().set(tripId: "123").build()
+        mockTripUpdateRequest.triggerSuccessWithDecoded(value: mockResponse)
     }
 }
