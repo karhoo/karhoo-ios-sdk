@@ -22,7 +22,7 @@ class KarhooTripUpdateInteractortSpec: XCTestCase {
         super.setUp()
         MockSDKConfig.authenticationMethod = .karhooUser
         mockTripUpdateRequest = MockRequestSender()
-        testObject = KarhooTripUpdateInteractor(tripId: tripId,
+        testObject = KarhooTripUpdateInteractor(identifier: tripId,
                                                 requestSender: mockTripUpdateRequest)
     }
 

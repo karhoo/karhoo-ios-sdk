@@ -46,9 +46,9 @@ final class KarhooTripService: TripService {
         return Call(executable: tripSearchInteractor)
     }
 
-    func trackTrip(tripId: String) -> PollCall<TripInfo> {
-        let interactor = KarhooTripUpdateInteractor(tripId: tripId)
-        return tripPollFactory.shared(identifier: tripId,
+    func trackTrip(identifier: String) -> PollCall<TripInfo> {
+        let interactor = KarhooTripUpdateInteractor(identifier: identifier)
+        return tripPollFactory.shared(identifier: identifier,
                                       executable: interactor)
     }
 

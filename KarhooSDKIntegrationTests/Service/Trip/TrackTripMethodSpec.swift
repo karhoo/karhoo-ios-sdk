@@ -22,7 +22,7 @@ final class TrackTripMethodSpec: XCTestCase {
 
         tripService = Karhoo.getTripService()
 
-        pollCall = tripService.trackTrip(tripId: "123")
+        pollCall = tripService.trackTrip(identifier: "123")
     }
 
     /**

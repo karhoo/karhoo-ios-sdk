@@ -13,9 +13,9 @@ final class KarhooTripUpdateInteractor: TripUpdateInteractor {
     private let identifier: String
     private let requestSender: RequestSender
 
-    init(tripId: String,
+    init(identifier: String,
          requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
-        self.identifier = tripId
+        self.identifier = identifier
         self.requestSender = requestSender
     }
 

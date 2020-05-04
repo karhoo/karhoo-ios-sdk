@@ -15,7 +15,7 @@ public protocol TripService {
 
     func search(tripSearch: TripSearch) -> Call<[TripInfo]>
 
-    func trackTrip(tripId: String) -> PollCall<TripInfo>
+    func trackTrip(identifier: String) -> PollCall<TripInfo>
 
     func status(tripId: String) -> PollCall<TripState>
 }
