@@ -148,7 +148,7 @@ final class KarhooTripServiceSpec: XCTestCase {
      */
     func testTrackTrip() {
         let expectedTripId = "12345"
-        _ = testObject.trackTrip(tripId: expectedTripId)
+        _ = testObject.trackTrip(identifier: expectedTripId)
 
         XCTAssertNotNil(mocktripPollFactory.executableSet)
         XCTAssertEqual(expectedTripId, mocktripPollFactory.identifierSet)

@@ -14,7 +14,6 @@ def sdkPods
 end
 
 target 'KarhooSDK' do
-    inhibit_all_warnings!
     sdkPods
 end
 
@@ -23,9 +22,11 @@ target 'Client' do
 end
 
 target 'KarhooSDKTests' do
+  sdkPods
 end
 
 target 'KarhooSDKIntegrationTests' do
+    sdkPods
     pod 'OHHTTPStubs/Swift', '8.0.0'
 end
 

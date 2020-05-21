@@ -16,13 +16,17 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        Karhoo.set(configuration: MockSDKConfig())
-
+        MockSDKConfig.authenticationMethod = .karhooUser
         mockUserDataStore = MockUserDataStore()
         mockRequestSender = MockRefreshTokenRequest()
 
         testObject = KarhooRefreshTokenInteractor(dataStore: mockUserDataStore,
                                           refreshTokenRequest: mockRequestSender)
+    }
+
+    override class func tearDown() {
+        super.tearDown()
+        MockSDKConfig.authenticationMethod = .karhooUser
     }
 
     /**
@@ -46,7 +50,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
       * Then: Request should fire with expected path / method
       */
     func testAuthRefreshRequest() {
-        Karhoo.set(configuration: MockSDKConfig(authMethod: .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)))
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
 
@@ -63,9 +67,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
      * Then: Token refresh required should be false
      */
     func testGuestAuthenticationMode() {
-        let settings = GuestSettings(identifier: "123", referer: "ref", organisationId: "")
-        Karhoo.set(configuration: MockSDKConfig(authMethod: .guest(settings: settings)))
-
+        MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
         testObject.refreshToken(completion: { _ in})
 
         XCTAssertFalse(testObject.tokenNeedsRefreshing())
@@ -236,7 +238,6 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
      *    And:  Callback should return userAlreadyLoggedOut error
      */
     func testRefreshTokenErrorUserJustLoggedOut() {
-
         let user = UserInfoMock().set(userId: "some").build()
         mockUserDataStore.userToReturn = user
 

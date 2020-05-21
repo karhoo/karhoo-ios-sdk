@@ -74,9 +74,7 @@ final class JsonHttpClientSpec: XCTestCase {
      *  Then: Base url should be set
      */
     func testAuthServiceBaseURL() {
-        let tokenAuthMethod = AuthenticationMethod.tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
-        Karhoo.set(configuration: MockSDKConfig(authMethod: tokenAuthMethod))
-        
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         let authEndpoints: [APIEndpoint] = [.authRevoke, .authRefresh, .authUserInfo, .authTokenExchange]
 
         authEndpoints.forEach { endpoint in
@@ -95,15 +93,14 @@ final class JsonHttpClientSpec: XCTestCase {
      *  And: API key should be set
      */
     func testAnonymousAuthBaseURLAndAuthorisationHeaders() {
-        let settings = GuestSettings(identifier: "123", referer: "ref", organisationId: "")
-        Karhoo.set(configuration: MockSDKConfig(authMethod: .guest(settings: settings)))
+        MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
         sendToEndpoint(endpoint: .locationInfo)
 
         let url = mockURLSessionSender.lastRequest?.url?.host
         let httpHeaders = mockURLSessionSender.lastRequest?.allHTTPHeaderFields
 
-        XCTAssertEqual(httpHeaders?[HeaderConstants.identifier], "123")
-        XCTAssertEqual(httpHeaders?["Referer"], "ref")
+        XCTAssertEqual(httpHeaders?[HeaderConstants.identifier], MockSDKConfig.guestSettings.identifier)
+        XCTAssertEqual(httpHeaders?["Referer"], MockSDKConfig.guestSettings.referer)
         XCTAssertEqual("public-api.sandbox.karhoo.com", url)
     }
 
@@ -115,7 +112,7 @@ final class JsonHttpClientSpec: XCTestCase {
      *   And:   Request interceptor headers should be added
      */
     func testAuthorisationRequest() {
-        Karhoo.set(configuration: MockSDKConfig(authMethod: .karhooUser))
+        MockSDKConfig.authenticationMethod = .karhooUser
         sendSampleRequest(method: .post)
         let httpHeaders = mockURLSessionSender.lastRequest?.allHTTPHeaderFields
 

@@ -41,7 +41,8 @@ class KarhooBookingInteractorSpec: XCTestCase {
     func testRequestFormatNoPaymentNonce() {
         let tripBooking = TripBooking(quoteId: "some",
                                       passengers: passengers,
-                                      flightNumber: "312")
+                                      flightNumber: "312",
+                                      comments: "comment")
 
         testObject.set(tripBooking: tripBooking)
         testObject.execute(callback: { (_:Result<TripInfo>) in })
@@ -58,7 +59,8 @@ class KarhooBookingInteractorSpec: XCTestCase {
     func testRequestFormatWithPaymentNonce() {
         var tripBooking = TripBooking(quoteId: "some",
                                       passengers: passengers,
-                                      flightNumber: "312")
+                                      flightNumber: "312",
+                                      comments: "comment")
 
         tripBooking.paymentNonce = "some_nonce"
 

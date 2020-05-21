@@ -22,7 +22,7 @@ final class KarhoooAuthRevokeInteractor: KarhooExecutable {
     }
 
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
-        guard let user = userDataStore.getCurrentUser() else {
+        guard userDataStore.getCurrentUser() != nil else {
             callback(Result.failure(error: nil))
             return
         }

@@ -20,8 +20,9 @@ class KarhooTripUpdateInteractortSpec: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        MockSDKConfig.authenticationMethod = .karhooUser
         mockTripUpdateRequest = MockRequestSender()
-        testObject = KarhooTripUpdateInteractor(tripId: tripId,
+        testObject = KarhooTripUpdateInteractor(identifier: tripId,
                                                 requestSender: mockTripUpdateRequest)
     }
 
@@ -69,9 +70,26 @@ class KarhooTripUpdateInteractortSpec: XCTestCase {
      * When: Canceling a request
      * Then: Cancel network was called
      */
-
     func testCancelNetworkRequest() {
         testObject.cancel()
         XCTAssert(mockTripUpdateRequest.cancelNetworkRequestCalled)
+    }
+
+    /**
+     * When: Tracking as a guest
+     * Then: Track with follow code endpoint
+     * And: Follow code is populated
+     */
+    func testGuestTripUpdateUsesFollowCode() {
+        MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
+        testObject.execute(callback: { (result: Result<TripInfo>) in
+            XCTAssertEqual("TRIP_ID", result.successValue()?.followCode)
+        })
+
+        mockTripUpdateRequest.assertRequestSendAndDecoded(endpoint: .trackTripFollowCode(followCode: tripId),
+                                                          method: .get)
+
+        let mockResponse = TripInfoMock().set(tripId: "123").build()
+        mockTripUpdateRequest.triggerSuccessWithDecoded(value: mockResponse)
     }
 }
