@@ -183,6 +183,8 @@ final class BookTripMethodSpec: XCTestCase {
         XCTAssertEqual("Saloon", tripQuote.vehicleClass)
         XCTAssertEqual(5, tripQuote.qtaLowMinutes)
         XCTAssertEqual(8, tripQuote.qtaHighMinutes)
+        XCTAssertEqual(20, tripQuote.highPrice)
+        XCTAssertEqual(10, tripQuote.lowPrice)
 
         let vehicleAttributes = VehicleAttributes(childSeat: true, electric: true,
                                                   hybrid: false, luggageCapacity: 2,

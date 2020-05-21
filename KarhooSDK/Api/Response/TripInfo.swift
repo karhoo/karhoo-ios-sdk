@@ -20,7 +20,6 @@ public struct TripInfo: KarhooCodableModel {
     public let flightNumber: String
     public let origin: TripLocationDetails
     public let destination: TripLocationDetails?
-    // TODO: Switch to new Fare Service
     public let fare: TripFare
     /* The time of pick up in UTC. Use origin.timeZoneIdentifier
        to localise the pick up time for the user. */
