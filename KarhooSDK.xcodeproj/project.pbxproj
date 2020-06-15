@@ -10,7 +10,6 @@
 		0900D34920D2B17B0082D1E8 /* RefreshTokenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0900D34820D2B17B0082D1E8 /* RefreshTokenInteractor.swift */; };
 		0900D34B20D2B1920082D1E8 /* RefreshTokenError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0900D34A20D2B1920082D1E8 /* RefreshTokenError.swift */; };
 		090670E820A4787600CAFA86 /* KarhooPaymentSDKTokenInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A3313412237721C4C7B5 /* KarhooPaymentSDKTokenInteractorSpec.swift */; };
-		0907B98A20D7B794008915B1 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0907B98920D7B794008915B1 /* Reachability.framework */; };
 		0907B98C20D7B901008915B1 /* CancelTripInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0907B98B20D7B901008915B1 /* CancelTripInteractor.swift */; };
 		0907B98F20D7B964008915B1 /* KarhooCancelTripInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0907B98E20D7B964008915B1 /* KarhooCancelTripInteractor.swift */; };
 		0907B99220D7B98A008915B1 /* KarhooCancelTripInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0907B99120D7B98A008915B1 /* KarhooCancelTripInteractorSpec.swift */; };
@@ -168,6 +167,8 @@
 		237E0C64234788F000798AA0 /* KarhooFareServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0C63234788F000798AA0 /* KarhooFareServiceSpec.swift */; };
 		237E0C672347897B00798AA0 /* MockFareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0C662347897B00798AA0 /* MockFareInteractor.swift */; };
 		237E0C692347931D00798AA0 /* KarhooFareInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0C682347931D00798AA0 /* KarhooFareInteractorSpec.swift */; };
+		23ED1A1A24979C7500AD3269 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23ED1A1924979C7500AD3269 /* Reachability.framework */; };
+		23ED1A1B24979C7500AD3269 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 23ED1A1924979C7500AD3269 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		274211D129AC87080586E523 /* DriverTrackingInfoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27421D16D44DEC18A835BDB0 /* DriverTrackingInfoMock.swift */; };
 		2742125CDD868E90FDAED0B4 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27421AB287B1A33F00AC4119 /* UserInfo.swift */; };
 		274212DB927ADC241604D704 /* UserDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27421A91EE9BE3C99E54F313 /* UserDataStore.swift */; };
@@ -421,6 +422,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		23ED1A1C24979C7500AD3269 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				23ED1A1B24979C7500AD3269 /* Reachability.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0900D34820D2B17B0082D1E8 /* RefreshTokenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenInteractor.swift; sourceTree = "<group>"; };
 		0900D34A20D2B1920082D1E8 /* RefreshTokenError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenError.swift; sourceTree = "<group>"; };
@@ -585,6 +600,7 @@
 		237E0C63234788F000798AA0 /* KarhooFareServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooFareServiceSpec.swift; sourceTree = "<group>"; };
 		237E0C662347897B00798AA0 /* MockFareInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFareInteractor.swift; sourceTree = "<group>"; };
 		237E0C682347931D00798AA0 /* KarhooFareInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooFareInteractorSpec.swift; sourceTree = "<group>"; };
+		23ED1A1924979C7500AD3269 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		2742100A1C88263575619D5D /* KarhooHeaderProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooHeaderProvider.swift; sourceTree = "<group>"; };
 		2742119D00DE30C9E3590055 /* HeaderProviderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderProviderSpec.swift; sourceTree = "<group>"; };
 		2742136485E56D7E2AEF11AB /* CredentialParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialParser.swift; sourceTree = "<group>"; };
@@ -855,8 +871,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0907B98A20D7B794008915B1 /* Reachability.framework in Frameworks */,
 				8AF5210BF925EC94C12D5D34 /* Pods_KarhooSDK.framework in Frameworks */,
+				23ED1A1A24979C7500AD3269 /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1542,6 +1558,7 @@
 			isa = PBXGroup;
 			children = (
 				0907B98920D7B794008915B1 /* Reachability.framework */,
+				23ED1A1924979C7500AD3269 /* Reachability.framework */,
 				CE2A6E7031AD7206EDBD999A /* Pods_KarhooSDK.framework */,
 				D3843568322BB0FCF9D45FE9 /* Pods_KarhooSDKIntegrationTests.framework */,
 				DE6485A8A424D85E5FF8A2BB /* Pods_KarhooSDKTests.framework */,
@@ -2743,6 +2760,7 @@
 				4387A63E1E3BAF6D0024FD55 /* Headers */,
 				4387A63F1E3BAF6D0024FD55 /* Resources */,
 				431301B31E5B20EF00059E51 /* Run Script: Swift lint */,
+				23ED1A1C24979C7500AD3269 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3699,7 +3717,10 @@
 				DYLIB_CURRENT_VERSION = 12;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3737,7 +3758,10 @@
 				DYLIB_CURRENT_VERSION = 12;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
