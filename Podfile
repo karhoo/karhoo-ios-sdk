@@ -10,7 +10,6 @@ use_frameworks!
 def sdkPods
     pod 'SwiftLint'
     pod 'KeychainSwift', '12.0.0'
-    pod 'ReachabilitySwift', '5.0.0'
 end
 
 target 'KarhooSDK' do
