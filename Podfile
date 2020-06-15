@@ -7,25 +7,7 @@
 platform :ios, '10.0'
 use_frameworks!
 
-def sdkPods
-    pod 'SwiftLint'
-    pod 'KeychainSwift', '12.0.0'
-end
-
-target 'KarhooSDK' do
-    sdkPods
-end
-
-target 'Client' do
-  sdkPods
-end
-
-target 'KarhooSDKTests' do
-  sdkPods
-end
-
 target 'KarhooSDKIntegrationTests' do
-    sdkPods
     pod 'OHHTTPStubs/Swift', '8.0.0'
 end
 

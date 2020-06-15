@@ -1,1 +1,2 @@
 github "ashleymills/Reachability.swift" "v5.0.0"
+github "evgenyneu/keychain-swift" "12.0.0"
