@@ -1,4 +1,6 @@
 PODS:
+  - OHHTTPStubs (8.0.0):
+    - OHHTTPStubs/Default (= 8.0.0)
   - OHHTTPStubs/Core (8.0.0)
   - OHHTTPStubs/Default (8.0.0):
     - OHHTTPStubs/Core
@@ -10,19 +12,17 @@ PODS:
   - OHHTTPStubs/NSURLSession (8.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (8.0.0)
-  - OHHTTPStubs/Swift (8.0.0):
-    - OHHTTPStubs/Default
 
 DEPENDENCIES:
-  - OHHTTPStubs/Swift (= 8.0.0)
+  - OHHTTPStubs (from `../..`)
 
-SPEC REPOS:
-  trunk:
-    - OHHTTPStubs
+EXTERNAL SOURCES:
+  OHHTTPStubs:
+    :path: "../.."
 
 SPEC CHECKSUMS:
   OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
 
-PODFILE CHECKSUM: b89f87c61ac02625072dafb84acebcaf26683616
+PODFILE CHECKSUM: 9a67077a86911aa4a252748903da3d5ea5d5d922
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.6.1

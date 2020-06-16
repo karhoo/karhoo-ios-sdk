@@ -167,6 +167,10 @@
 		237E0C64234788F000798AA0 /* KarhooFareServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0C63234788F000798AA0 /* KarhooFareServiceSpec.swift */; };
 		237E0C672347897B00798AA0 /* MockFareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0C662347897B00798AA0 /* MockFareInteractor.swift */; };
 		237E0C692347931D00798AA0 /* KarhooFareInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0C682347931D00798AA0 /* KarhooFareInteractorSpec.swift */; };
+		239E3FC22498CC40005AB7F0 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239E3FC12498CC40005AB7F0 /* OHHTTPStubs.framework */; };
+		239E3FC32498CC40005AB7F0 /* OHHTTPStubs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 239E3FC12498CC40005AB7F0 /* OHHTTPStubs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		239E3FC52498CC4F005AB7F0 /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239E3FC42498CC4F005AB7F0 /* KeychainSwift.framework */; };
+		239E3FC62498CC4F005AB7F0 /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 239E3FC42498CC4F005AB7F0 /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		23ED1A1A24979C7500AD3269 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23ED1A1924979C7500AD3269 /* Reachability.framework */; };
 		23ED1A1B24979C7500AD3269 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 23ED1A1924979C7500AD3269 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		274211D129AC87080586E523 /* DriverTrackingInfoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27421D16D44DEC18A835BDB0 /* DriverTrackingInfoMock.swift */; };
@@ -312,7 +316,6 @@
 		5C870D2920CDBC9C0039A2BF /* LoginRequestPayloadMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C870D2820CDBC9C0039A2BF /* LoginRequestPayloadMock.swift */; };
 		5CA2CE422343510E000AEC1E /* OrganisationMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2CE412343510E000AEC1E /* OrganisationMock.swift */; };
 		5CA2CE45234368B7000AEC1E /* UISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2CE44234368B7000AEC1E /* UISettings.swift */; };
-		B2B1738EC35E4790DEAAA7EC /* Pods_KarhooSDKIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3843568322BB0FCF9D45FE9 /* Pods_KarhooSDKIntegrationTests.framework */; };
 		BAA0A0478693DADB025AE19A /* KarhooPasswordResetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0AAD70E6AE0FF8C70BEC1 /* KarhooPasswordResetInteractor.swift */; };
 		BAA0A0D9B4689C44C4517E85 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0AAC1104384B3CDE0FED2 /* Places.swift */; };
 		BAA0A113CE860049AD045890 /* KarhooTripStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A7C9A052655223E880D3 /* KarhooTripStatusInteractor.swift */; };
@@ -426,7 +429,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				239E3FC62498CC4F005AB7F0 /* KeychainSwift.framework in Embed Frameworks */,
 				23ED1A1B24979C7500AD3269 /* Reachability.framework in Embed Frameworks */,
+				239E3FC32498CC40005AB7F0 /* OHHTTPStubs.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,6 +600,8 @@
 		237E0C63234788F000798AA0 /* KarhooFareServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooFareServiceSpec.swift; sourceTree = "<group>"; };
 		237E0C662347897B00798AA0 /* MockFareInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFareInteractor.swift; sourceTree = "<group>"; };
 		237E0C682347931D00798AA0 /* KarhooFareInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooFareInteractorSpec.swift; sourceTree = "<group>"; };
+		239E3FC12498CC40005AB7F0 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = "<group>"; };
+		239E3FC42498CC4F005AB7F0 /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
 		23ED1A1924979C7500AD3269 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		2742100A1C88263575619D5D /* KarhooHeaderProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooHeaderProvider.swift; sourceTree = "<group>"; };
 		2742119D00DE30C9E3590055 /* HeaderProviderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderProviderSpec.swift; sourceTree = "<group>"; };
@@ -716,7 +723,6 @@
 		43F9399C1F3C85A300914E18 /* URLSessionSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionSender.swift; sourceTree = "<group>"; };
 		43F939B01F3CD33200914E18 /* JsonHttpClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonHttpClientSpec.swift; sourceTree = "<group>"; };
 		43F939B11F3CD33200914E18 /* JsonHttpRequestBuilderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonHttpRequestBuilderSpec.swift; sourceTree = "<group>"; };
-		5616C6061BCA5EB676D5A133 /* Pods-KarhooSDKIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KarhooSDKIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-KarhooSDKIntegrationTests/Pods-KarhooSDKIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C076FFE20F23B5F00A35537 /* CategoryQuoteMapperSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryQuoteMapperSpec.swift; sourceTree = "<group>"; };
 		5C08DFB020E5A8D7002203CB /* MockContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContext.swift; sourceTree = "<group>"; };
 		5C08DFB320E5A92A002203CB /* MockAnalyticsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalyticsProvider.swift; sourceTree = "<group>"; };
@@ -742,7 +748,6 @@
 		5C870D2820CDBC9C0039A2BF /* LoginRequestPayloadMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestPayloadMock.swift; sourceTree = "<group>"; };
 		5CA2CE412343510E000AEC1E /* OrganisationMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisationMock.swift; sourceTree = "<group>"; };
 		5CA2CE44234368B7000AEC1E /* UISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISettings.swift; sourceTree = "<group>"; };
-		8604EAC56835802F4E0F0F56 /* Pods-KarhooSDKIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KarhooSDKIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-KarhooSDKIntegrationTests/Pods-KarhooSDKIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		BAA0A0172A18CDF485FF7519 /* KarhooPaymentSDKTokenInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooPaymentSDKTokenInteractor.swift; sourceTree = "<group>"; };
 		BAA0A069D5D958868761AAF7 /* Passengers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Passengers.swift; sourceTree = "<group>"; };
 		BAA0A0EB15002AB0D857748A /* AddPaymentMethodInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentMethodInteractor.swift; sourceTree = "<group>"; };
@@ -788,7 +793,6 @@
 		BAA0AEEDE0D01BA897FB6ECA /* FleetInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleetInfo.swift; sourceTree = "<group>"; };
 		BAA0AF4654D1B9211454EEBD /* TripStatusInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripStatusInteractor.swift; sourceTree = "<group>"; };
 		BAA0AFBC32DB1629C3BB1D01 /* KarhooBookingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooBookingInteractor.swift; sourceTree = "<group>"; };
-		D3843568322BB0FCF9D45FE9 /* Pods_KarhooSDKIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KarhooSDKIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC0BF05A20E39D2D0004DF61 /* MockTripUpdateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTripUpdateInteractor.swift; sourceTree = "<group>"; };
 		FC0BF09B20E3CB4F0004DF61 /* MockRefreshTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRefreshTokenRequest.swift; sourceTree = "<group>"; };
 		FC1202442146A4F000161081 /* Empty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Empty.json; sourceTree = "<group>"; };
@@ -850,7 +854,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				09B204B121412C3200063632 /* KarhooSDK.framework in Frameworks */,
-				B2B1738EC35E4790DEAAA7EC /* Pods_KarhooSDKIntegrationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,7 +861,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				239E3FC52498CC4F005AB7F0 /* KeychainSwift.framework in Frameworks */,
 				23ED1A1A24979C7500AD3269 /* Reachability.framework in Frameworks */,
+				239E3FC22498CC40005AB7F0 /* OHHTTPStubs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1542,9 +1547,10 @@
 		18DBF3907EAF3E4DE145B9C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				239E3FC42498CC4F005AB7F0 /* KeychainSwift.framework */,
+				239E3FC12498CC40005AB7F0 /* OHHTTPStubs.framework */,
 				0907B98920D7B794008915B1 /* Reachability.framework */,
 				23ED1A1924979C7500AD3269 /* Reachability.framework */,
-				D3843568322BB0FCF9D45FE9 /* Pods_KarhooSDKIntegrationTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2331,8 +2337,6 @@
 		AC7DB22BA038B454399F81BE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5616C6061BCA5EB676D5A133 /* Pods-KarhooSDKIntegrationTests.debug.xcconfig */,
-				8604EAC56835802F4E0F0F56 /* Pods-KarhooSDKIntegrationTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2708,11 +2712,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09B204B621412C3200063632 /* Build configuration list for PBXNativeTarget "KarhooSDKIntegrationTests" */;
 			buildPhases = (
-				06BC11CA2D549EF713263C56 /* [CP] Check Pods Manifest.lock */,
 				09B204A821412C3100063632 /* Sources */,
 				09B204A921412C3100063632 /* Frameworks */,
 				09B204AA21412C3100063632 /* Resources */,
-				EA73028E782494613EF1B9E2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2871,49 +2873,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		06BC11CA2D549EF713263C56 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KarhooSDKIntegrationTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EA73028E782494613EF1B9E2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KarhooSDKIntegrationTests/Pods-KarhooSDKIntegrationTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KarhooSDKIntegrationTests/Pods-KarhooSDKIntegrationTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		09A9B2872405901900823FB0 /* Sources */ = {
@@ -3380,7 +3339,6 @@
 		};
 		09B204B421412C3200063632 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5616C6061BCA5EB676D5A133 /* Pods-KarhooSDKIntegrationTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3404,7 +3362,6 @@
 		};
 		09B204B521412C3200063632 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8604EAC56835802F4E0F0F56 /* Pods-KarhooSDKIntegrationTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
