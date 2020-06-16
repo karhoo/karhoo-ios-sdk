@@ -2705,7 +2705,7 @@
 				09B204A821412C3100063632 /* Sources */,
 				09B204A921412C3100063632 /* Frameworks */,
 				09B204AA21412C3100063632 /* Resources */,
-				23C40B53249908BF00B5CBF9 /* ShellScript */,
+				23C40B53249908BF00B5CBF9 /* Carthage Copy Bundle */,
 			);
 			buildRules = (
 			);
@@ -2726,6 +2726,7 @@
 				4387A63E1E3BAF6D0024FD55 /* Headers */,
 				4387A63F1E3BAF6D0024FD55 /* Resources */,
 				23ED1A1C24979C7500AD3269 /* Embed Frameworks */,
+				23C40B552499197200B5CBF9 /* Carthage Copy Bundle */,
 			);
 			buildRules = (
 			);
@@ -2743,7 +2744,7 @@
 				4387A6461E3BAF6D0024FD55 /* Sources */,
 				4387A6471E3BAF6D0024FD55 /* Frameworks */,
 				4387A6481E3BAF6D0024FD55 /* Resources */,
-				23C40B5424990B2200B5CBF9 /* ShellScript */,
+				23C40B5424990B2200B5CBF9 /* Carthage Copy Bundle */,
 			);
 			buildRules = (
 			);
@@ -2867,7 +2868,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		23C40B53249908BF00B5CBF9 /* ShellScript */ = {
+		23C40B53249908BF00B5CBF9 /* Carthage Copy Bundle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2877,6 +2878,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/OHHTTPStubs.framework",
 			);
+			name = "Carthage Copy Bundle";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -2885,7 +2887,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
 		};
-		23C40B5424990B2200B5CBF9 /* ShellScript */ = {
+		23C40B5424990B2200B5CBF9 /* Carthage Copy Bundle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2895,6 +2897,25 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 			);
+			name = "Carthage Copy Bundle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+		};
+		23C40B552499197200B5CBF9 /* Carthage Copy Bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Carthage Copy Bundle";
 			outputFileListPaths = (
 			);
 			outputPaths = (
