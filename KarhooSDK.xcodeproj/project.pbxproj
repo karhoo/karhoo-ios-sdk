@@ -153,7 +153,7 @@
 		09F8AC07214FE6DF00E293B7 /* AuthorisedUserInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 09F8AC04214FE6DF00E293B7 /* AuthorisedUserInfo.json */; };
 		09F90F912150FA2C003BC867 /* PasswordResetMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F90F902150FA2C003BC867 /* PasswordResetMethodSpec.swift */; };
 		09F90F942151008C003BC867 /* CancelTripMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F90F932151008C003BC867 /* CancelTripMethodSpec.swift */; };
-		2320CCAE2499041100A149A6 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239E3FC12498CC40005AB7F0 /* OHHTTPStubs.framework */; };
+		2320CCAE2499041100A149A6 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239E3FC12498CC40005AB7F0 /* OHHTTPStubs.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
 		2359B45B234251FB008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359B45A234251FA008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift */; };
@@ -2713,6 +2713,7 @@
 				09B204A821412C3100063632 /* Sources */,
 				09B204A921412C3100063632 /* Frameworks */,
 				09B204AA21412C3100063632 /* Resources */,
+				23C40B53249908BF00B5CBF9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2871,6 +2872,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		23C40B53249908BF00B5CBF9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/OHHTTPStubs.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		09A9B2872405901900823FB0 /* Sources */ = {
