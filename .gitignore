@@ -9,7 +9,7 @@ IDEWorkspaceChecks.plist
 WorkspaceSettings.xcsettings
 
 # Carthage
-
+Carthage/
 
 # Fastlane
 fastlane/report.xml
