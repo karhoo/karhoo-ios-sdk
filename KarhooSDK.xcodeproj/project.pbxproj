@@ -2099,7 +2099,6 @@
 				4387A6421E3BAF6D0024FD55 /* Products */,
 				18DBF3907EAF3E4DE145B9C0 /* Frameworks */,
 				09CA785420EE59B200D3BB6F /* Recovered References */,
-				AC7DB22BA038B454399F81BE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2330,13 +2329,6 @@
 				434B58421E434E5F009E8FB8 /* MockUserDataStore.swift */,
 			);
 			path = DataStore;
-			sourceTree = "<group>";
-		};
-		AC7DB22BA038B454399F81BE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		BAA0A09FEA1B89384EFDA915 /* TripUpdate */ = {
@@ -2751,6 +2743,7 @@
 				4387A6461E3BAF6D0024FD55 /* Sources */,
 				4387A6471E3BAF6D0024FD55 /* Frameworks */,
 				4387A6481E3BAF6D0024FD55 /* Resources */,
+				23C40B5424990B2200B5CBF9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2883,6 +2876,24 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/OHHTTPStubs.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
+		};
+		23C40B5424990B2200B5CBF9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 			);
 			outputFileListPaths = (
 			);
