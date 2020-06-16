@@ -47,6 +47,8 @@ final class DefaultAnalyticsPayloadBuilder {
             return
         }
 
+        let authState = Karhoo.configuration.authenticationMethod()
+        payload[AnalyticsConstants.EventNames.guestMode.description] = authState.isGuest()
         payload[AnalyticsConstants.Keys.userId.description] = user.userId
         addUserLocationPayload(location: locationProvider.getLastKnownLocation())
     }
