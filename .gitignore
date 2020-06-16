@@ -10,6 +10,7 @@ WorkspaceSettings.xcsettings
 
 # CocoaPods
 Pods/
+Carthage/
 
 # Fastlane
 fastlane/report.xml
