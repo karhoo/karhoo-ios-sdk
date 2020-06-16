@@ -12,6 +12,7 @@ public enum AnalyticsConstants {
 
     public enum EventNames: String {
 
+        case guestMode = "guest_mode"
         case userLoggedIn = "user_logged_in"
         case userLoggedOut = "user_logged_out"
         case appOpened = "app_opened"
