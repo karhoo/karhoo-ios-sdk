@@ -313,6 +313,7 @@
 		5C75D6572080E4E60065133B /* KarhooCodableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C75D6562080E4E60065133B /* KarhooCodableModel.swift */; };
 		5C75D65D208CC84E0065133B /* LocationDetailsAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C75D65C208CC84E0065133B /* LocationDetailsAddress.swift */; };
 		5C870D2920CDBC9C0039A2BF /* LoginRequestPayloadMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C870D2820CDBC9C0039A2BF /* LoginRequestPayloadMock.swift */; };
+		5C8E3765249A4444004F19C3 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23ED1A1924979C7500AD3269 /* Reachability.framework */; };
 		5CA2CE422343510E000AEC1E /* OrganisationMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2CE412343510E000AEC1E /* OrganisationMock.swift */; };
 		5CA2CE45234368B7000AEC1E /* UISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2CE44234368B7000AEC1E /* UISettings.swift */; };
 		BAA0A0478693DADB025AE19A /* KarhooPasswordResetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0AAD70E6AE0FF8C70BEC1 /* KarhooPasswordResetInteractor.swift */; };
@@ -869,6 +870,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C8E3765249A4444004F19C3 /* Reachability.framework in Frameworks */,
 				4387A67F1E3BB6070024FD55 /* KarhooSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

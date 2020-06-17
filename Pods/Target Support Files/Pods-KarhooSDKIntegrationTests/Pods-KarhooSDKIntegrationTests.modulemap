@@ -1,0 +1,6 @@
+framework module Pods_KarhooSDKIntegrationTests {
+  umbrella header "Pods-KarhooSDKIntegrationTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
