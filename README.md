@@ -10,6 +10,10 @@ Set up dependencies with:
 ```
 carthage bootstrap
 ```  
+you may get an error with xcode build when running carthage bootstrap or carthage update.  A common fix for this is:
+```  
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+```  
 
 # SDK Architecture overview:
 
