@@ -4,7 +4,12 @@
 
 KarhooSDK is a framework for integrating with the KarhooAPI: https://developer.karhoo.com
 
-To setup the project, simply clone, pod install and run the unit tests to verify everything works.
+The project is set up with carthage. Install carthage: https://github.com/Carthage/Carthage 
+
+Set up dependencies with: 
+```
+carthage bootstrap
+```  
 
 # SDK Architecture overview:
 
