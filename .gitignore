@@ -8,8 +8,8 @@ build/
 IDEWorkspaceChecks.plist
 WorkspaceSettings.xcsettings
 
-# CocoaPods
-Pods/
+# Carthage
+Carthage/
 
 # Fastlane
 fastlane/report.xml
