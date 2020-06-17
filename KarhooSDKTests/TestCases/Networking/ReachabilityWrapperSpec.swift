@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import Reachability
+import Reachability
 @testable import KarhooSDK
 
 class ReachabilityWrapperSpec: XCTestCase {
