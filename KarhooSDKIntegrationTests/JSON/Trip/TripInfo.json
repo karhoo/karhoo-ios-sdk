@@ -42,6 +42,8 @@
     "total": 3550,
     "currency": "GBP",
     "gratuity_percent": 15,
+    "high_price": 2000,
+    "low_price": 1000,
     "breakdown": [
       {
         "value": 1030,
