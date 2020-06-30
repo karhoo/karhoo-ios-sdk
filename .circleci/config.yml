@@ -1,0 +1,56 @@
+# For a detailed guide to building and testing on iOS, read the docs:
+# https://circleci.com/docs/2.0/testing-ios/
+
+version: 2.1
+
+jobs:
+
+  build:
+    working_directory: ~/code
+    macos:
+      xcode: 11.3.1 # Specify the Xcode version to use
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "4c:67:bc:5b:c7:9a:d2:93:b5:99:c3:57:60:4f:52:95"
+      - checkout
+      - run:
+          name: Install CocoaPods
+          command: pod install
+      - run:
+          name: Install CocoaPods
+          command: pod update --verbose
+      #- run: 
+      #    name: Run Unit Tests
+      #    command: xcodebuild -workspace 'Karhoo.xcworkspace' -scheme 'KarhooTests' -destination 'platform=iOS Simulator,name=iPhone 11' CODE_SIGNING_ALLOWED=NO -UseModernBuildSystem=YES test | xcpretty --test --color
+      - run:
+          name: Build SDK
+          command: xcodebuild -workspace 'Karhoo.xcworkspace' -scheme 'KarhooTests' -destination 'platform=iOS Simulator,name=iPhone 11' CODE_SIGNING_ALLOWED=NO -UseModernBuildSystem=YES | xcpretty --color
+
+      # SauceLabs
+      - run:
+          name: "Install Sauce Connect Client"
+          command: |
+            #!/bin/bash
+            curl https://eu-central-1.saucelabs.com/downloads/sc-4.6.2-osx.zip -o saucelabs.zip
+            unzip saucelabs.zip
+      - run:
+          name: "Launch Tunnel"
+          background: true
+          command: |
+            cd sc-*
+            bin/sc --pidfile /tmp/sc.pid1 -u ${SAUCE_USERNAME} -k ${SAUCE_ACCESS_KEY} -i demo-js-tunnel --no-remove-colliding-tunnels --se-port 4445
+      - run:
+          name: "Run XCUITest Tests on Real Devices"
+          command: |
+            while ! lsof -i:4445 -t; do sleep 3; done
+            cd .circleci/
+            java -jar runner.jar xcuitest --test KarhooTestingApp-Runner.ipa --app KarhooTestingApp.ipa --apikey {SAUCE_ACCESS_KEY} --datacenter EU
+      # Collect XML test results data to show in the UI, and save the same XML
+      # files under test-results folder in the Artifacts tab
+      - store_test_results:
+          path: test_output
+      - store_artifacts:
+          path: test_output
+          destination: scan-output
