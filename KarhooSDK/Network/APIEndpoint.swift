@@ -147,6 +147,8 @@ enum APIEndpoint {
         case .addPaymentDetails: return "v2"
         case .getNonce: return "v2"
         case .paymentSDKToken: return "v2"
+        case .quotes(_ ): return "v2"
+        case .quoteListId: return "v2"
         default: return "v1"
         }
     }
