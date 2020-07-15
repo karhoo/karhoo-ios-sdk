@@ -27,7 +27,7 @@ public struct VehicleAvailability: KarhooCodableModel {
 
     public let classes: [String]
 
-    public init(classes: [String] = [""]) {
+    public init(classes: [String] = []) {
         self.classes = classes
     }
 

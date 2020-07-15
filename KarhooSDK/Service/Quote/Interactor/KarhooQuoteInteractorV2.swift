@@ -14,7 +14,7 @@ final class KarhooQuoteInteractorV2: QuoteInteractor {
     private let quotesRequest: RequestSender
     private var quoteSearch: QuoteSearch?
     private var quoteListId: QuoteListId?
-    private let filterRidesWithETA: Int = 20
+    private let filterRidesWithETA: Int = 30
     private let refreshQuoteListMinimumValidity: Int = 10
 
     init(quoteListIdRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
@@ -35,11 +35,14 @@ final class KarhooQuoteInteractorV2: QuoteInteractor {
 
         if let quoteListId = self.quoteListId {
             makeQuotesRequest(quoteListId: quoteListId, callback: quotesCallback)
+        } else {
+            requestAndHandleQuoteListId(callback: quotesCallback)
         }
     }
 
     func cancel() {
         quoteListIdRequest.cancelNetworkRequest()
+        quotesRequest.cancelNetworkRequest()
         quoteListId = nil
     }
 
@@ -126,12 +129,13 @@ private extension KarhooQuoteInteractorV2 {
             dateScheduled = dateFormatter.toString(from: quoteSearchDate)
         }
 
-        let origin = QuoteRequestPoint(latitude: quoteSearch.origin.position.latitude,
-                                       longitude: quoteSearch.origin.position.longitude,
+        let origin = QuoteRequestPoint(latitude: "\(quoteSearch.origin.position.latitude)",
+                                       longitude:"\(quoteSearch.origin.position.longitude)",
                                        displayAddress: quoteSearch.origin.address.displayAddress)
 
-        let destination = QuoteRequestPoint(latitude: quoteSearch.destination.position.latitude,
-                                            longitude: quoteSearch.destination.position.longitude, displayAddress: quoteSearch.destination.address.displayAddress)
+        let destination = QuoteRequestPoint(latitude: "\(quoteSearch.destination.position.latitude)",
+                                            longitude: "\(quoteSearch.destination.position.longitude)",
+            displayAddress: quoteSearch.destination.address.displayAddress)
 
         return QuoteRequestPayload(origin: origin,
                                   destination: destination,

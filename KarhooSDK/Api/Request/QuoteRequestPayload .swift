@@ -30,8 +30,8 @@ public struct QuoteRequestPayload: Codable, KarhooCodableModel {
 
 struct QuoteRequestPoint: KarhooCodableModel {
 
-    let latitude: Double
-    let longitude: Double
+    let latitude: String
+    let longitude: String
     let displayAddress: String?
 
     enum CodingKeys: String, CodingKey {
