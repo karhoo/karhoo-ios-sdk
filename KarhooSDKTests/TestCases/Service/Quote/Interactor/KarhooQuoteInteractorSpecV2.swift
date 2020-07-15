@@ -172,7 +172,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
        // mockAvailabilityRequest.triggerSuccessWithDecoded(value: mockCategories)
         mockQuoteListIdRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result!.errorValue()!))
+        XCTAssertNotNil(expectedError.equals(result?.errorValue()))
     }
 
     /**
@@ -217,7 +217,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
 
         mockQuotesRequest.triggerSuccessWithDecoded(value: expectedResult)
 
-        XCTAssertEqual(expectedQuote.quoteId, result!.successValue()!.quotes(for: "foo")[0].quoteId)
+        XCTAssertEqual(expectedQuote.quoteId, result?.successValue()?.quotes(for: "foo")[0].quoteId)
     }
 
     /**
@@ -239,7 +239,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
 
         mockQuotesRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result!.errorValue()))
+        XCTAssert(expectedError.equals(result?.errorValue()))
     }
 
     /**
@@ -307,7 +307,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
 
         mockQuotesRequest.triggerSuccessWithDecoded(value: expectedResult)
 
-        XCTAssertEqual(expectedQuote.quoteId, result!.successValue()!.quotes(for: "foo")[0].quoteId)
+        XCTAssertEqual(expectedQuote.quoteId, result?.successValue()?.quotes(for: "foo")[0].quoteId)
     }
 
     /**
@@ -373,7 +373,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
         mockQuotesRequest.triggerSuccessWithDecoded(value: validQuoteList)
 
         XCTAssertNotNil(result)
-        XCTAssertTrue(result!.isSuccess())
+        XCTAssert(result?.isSuccess() == true)
     }
 
 }

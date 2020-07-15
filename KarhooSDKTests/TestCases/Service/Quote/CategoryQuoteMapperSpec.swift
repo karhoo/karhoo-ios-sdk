@@ -34,7 +34,7 @@ final class CategoryQuoteMapperSpec: XCTestCase {
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
         mockQuotes.append(QuoteMock().set(quoteId: "fizzQuote").set(categoryName: "fizz").build())
 
-        let expectedOutput = testObject.map(categories: mockCategories, toQuotes: mockQuotes)
+        let expectedOutput = testObject.map(categories: mockCategories.categories, toQuotes: mockQuotes)
 
         let fooQuotes = expectedOutput.first(where: { $0.categoryName == "foo"})?.quotes
         let barQuotes = expectedOutput.first(where: { $0.categoryName == "bar"})?.quotes
@@ -59,7 +59,7 @@ final class CategoryQuoteMapperSpec: XCTestCase {
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
 
-        let expectedOutput = testObject.map(categories: mockCategories, toQuotes: mockQuotes)
+        let expectedOutput = testObject.map(categories: mockCategories.categories, toQuotes: mockQuotes)
 
         let fooQuotes = expectedOutput.first(where: { $0.categoryName == "foo"})?.quotes
         let barQuotes = expectedOutput.first(where: { $0.categoryName == "bar"})?.quotes
@@ -83,7 +83,7 @@ final class CategoryQuoteMapperSpec: XCTestCase {
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
 
-        let expectedOutput = testObject.map(categories: mockCategories, toQuotes: mockQuotes)
+        let expectedOutput = testObject.map(categories: mockCategories.categories, toQuotes: mockQuotes)
 
         XCTAssertEqual(2, expectedOutput.count)
     }
@@ -98,7 +98,7 @@ final class CategoryQuoteMapperSpec: XCTestCase {
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
         mockQuotes.append(QuoteMock().set(quoteId: "fizzQuote").set(categoryName: "fizz").build())
 
-        let expectedOutput = testObject.map(categories: nil, toQuotes: mockQuotes)
+        let expectedOutput = testObject.map(categories: [], toQuotes: mockQuotes)
 
         let fooQuotes = expectedOutput.first(where: { $0.categoryName == "foo"})?.quotes
         let barQuotes = expectedOutput.first(where: { $0.categoryName == "bar"})?.quotes

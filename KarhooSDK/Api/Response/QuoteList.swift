@@ -13,15 +13,18 @@ public struct QuoteList: KarhooCodableModel {
     public let listId: String
     public let status: String
     let validity: Int
+    public let availability: Availability
 
     internal init(quoteItems: [Quote] = [],
                   listId: String = "",
                   status: String = "",
-                  validity: Int = 0) {
+                  validity: Int = 0,
+                  availability: Availability = Availability()) {
         self.quoteItems = quoteItems
         self.listId = listId
         self.status = status
         self.validity = validity
+        self.availability = availability
     }
 
     enum CodingKeys: String, CodingKey {
@@ -29,6 +32,7 @@ public struct QuoteList: KarhooCodableModel {
         case listId = "id"
         case status
         case validity
+        case availability
     }
 
     public init(from decoder: Decoder) throws {
@@ -37,6 +41,7 @@ public struct QuoteList: KarhooCodableModel {
         self.listId = try container.decode(String.self, forKey: .listId)
         self.status = (try? container.decode(String.self, forKey: .status)) ?? ""
         self.validity = (try? container.decode(Int.self, forKey: .validity)) ?? 0
+        self.availability = (try? container.decode(Availability.self, forKey: .availability)) ?? Availability()
     }
 
     public func encode(to encoder: Encoder) throws {
