@@ -69,7 +69,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
         testObject.set(quoteSearch: testQuoteSearch)
         testObject.execute(callback: { (_: Result<Quotes>) in })
 
-        let mockQuoteSearchPayload = mockQuoteListIdRequest.payloadSet as? QuoteRequestPayload
+        let mockQuoteSearchPayload = mockQuoteListIdRequest.payloadSet as? QuoteRequest
 
         XCTAssertEqual("2020-11-12T10:30", mockQuoteSearchPayload?.dateScheduled)
     }
@@ -111,9 +111,9 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
                                                     longitude: "\(mockQuoteSearch.destination.position.longitude)",
                                                     displayAddress: mockQuoteSearch.destination.address.displayAddress)
 
-        let expectedPayload = QuoteRequestPayload(origin: expectedOrigin,
-                                                  destination: expectedDestination,
-                                                  dateScheduled: dateScheduled)
+        let expectedPayload = QuoteRequest(origin: expectedOrigin,
+                                           destination: expectedDestination,
+                                           dateScheduled: dateScheduled)
 
         mockQuoteListIdRequest.assertRequestSendAndDecoded(endpoint: .quoteListId,
                                                            method: .post,

@@ -114,7 +114,7 @@ final class KarhooQuoteInteractorV2: QuoteInteractor {
 
 private extension KarhooQuoteInteractorV2 {
 
-    private var quoteRequestPayload: QuoteRequestPayload? {
+    private var quoteRequestPayload: QuoteRequest? {
 
         guard let quoteSearch = self.quoteSearch else {
             return nil
@@ -137,8 +137,8 @@ private extension KarhooQuoteInteractorV2 {
                                             longitude: "\(quoteSearch.destination.position.longitude)",
             displayAddress: quoteSearch.destination.address.displayAddress)
 
-        return QuoteRequestPayload(origin: origin,
-                                  destination: destination,
-                                  dateScheduled: dateScheduled)
+        return QuoteRequest(origin: origin,
+                            destination: destination,
+                            dateScheduled: dateScheduled)
     }
 }

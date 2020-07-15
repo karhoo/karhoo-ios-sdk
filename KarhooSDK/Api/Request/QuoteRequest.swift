@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct QuoteRequestPayload: Codable, KarhooCodableModel {
+struct QuoteRequest: Codable, KarhooCodableModel {
     let origin: QuoteRequestPoint
     let destination: QuoteRequestPoint
     let dateScheduled: String?
@@ -25,18 +25,5 @@ public struct QuoteRequestPayload: Codable, KarhooCodableModel {
         case origin = "origin"
         case destination = "destination"
         case dateScheduled = "local_time_of_pickup"
-    }
-}
-
-struct QuoteRequestPoint: KarhooCodableModel {
-
-    let latitude: String
-    let longitude: String
-    let displayAddress: String?
-
-    enum CodingKeys: String, CodingKey {
-        case latitude = "latitude"
-        case longitude = "longitude"
-        case displayAddress = "display_address"
     }
 }
