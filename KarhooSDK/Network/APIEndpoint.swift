@@ -89,7 +89,7 @@ enum APIEndpoint {
             return "/payments/payment-methods/braintree/client-tokens?organisation_id=\(payload.organisationId)"
                    + "&currency=\(payload.currency)"
         case .getNonce:
-            return "/payments/payment-methods/braintree/get-nonce"
+            return "/payments/payment-methods/braintree/get-payment-method"
         case .addPaymentDetails:
             return "/payments/payment-methods/braintree/add-payment-details"
         case .karhooUserTokenRefresh:
