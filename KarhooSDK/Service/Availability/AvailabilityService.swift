@@ -8,6 +8,8 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Availability is deprecated")
+
 public protocol AvailabilityService {
     func availability(availabilitySearch: AvailabilitySearch) -> Call<Categories>
 }

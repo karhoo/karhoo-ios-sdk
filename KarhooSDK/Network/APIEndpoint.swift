@@ -1,7 +1,9 @@
 import Foundation
 
 enum APIEndpoint {
+    @available(*, deprecated, message: "Availability is deprecated")
     case availability
+    
     case quoteListId
     case quotes(identifier: String)
     case bookTrip
