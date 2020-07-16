@@ -10,10 +10,14 @@ import Foundation
 
 struct CategoryQuoteMapper {
 
-    func map(categories: Categories?, toQuotes quotes: [Quote]) -> [QuoteCategory] {
-        let categoryKeysForMapping = (categories?.categories ?? quotes.map { $0.categoryName }).uniqueArray()
+    func map(categories: [String], toQuotes quotes: [Quote]) -> [QuoteCategory] {
+        var categoriesToMap: [String] = categories.uniqueArray()
 
-        return categoryKeysForMapping.map { category in
+        if categories.isEmpty {
+            categoriesToMap = quotes.map { $0.categoryName }.uniqueArray()
+        }
+
+        return categoriesToMap.map { category in
             let quotes = quotes.filter { $0.categoryName.lowercased() == category.lowercased() }
             return QuoteCategory(name: category,
                                  quotes: quotes)

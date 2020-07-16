@@ -1,7 +1,9 @@
 import Foundation
 
 enum APIEndpoint {
+    @available(*, deprecated, message: "Availability is deprecated")
     case availability
+    
     case quoteListId
     case quotes(identifier: String)
     case bookTrip
@@ -147,6 +149,8 @@ enum APIEndpoint {
         case .addPaymentDetails: return "v2"
         case .getNonce: return "v2"
         case .paymentSDKToken: return "v2"
+        case .quotes(_ ): return "v1"
+        case .quoteListId: return "v1"
         default: return "v1"
         }
     }

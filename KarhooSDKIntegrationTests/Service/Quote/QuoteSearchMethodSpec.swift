@@ -40,7 +40,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with success result")
         pollCall.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            self.assertSuccess(quote: result.successValue()!.all[0])
+            self.assertSuccess(quote: result.successValue()?.all[0])
 
             XCTAssertEqual(6, result.successValue()?.quoteCategories.count)
             XCTAssertEqual(1, result.successValue()?.quotes(for: "Saloon").count)
@@ -71,7 +71,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with success result")
         pollCall.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            self.assertSuccess(quote: result.successValue()!.all[0])
+            self.assertSuccess(quote: result.successValue()?.all[0])
             expectation.fulfill()
         })
 
@@ -175,7 +175,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
                                       responseData: RawKarhooErrorFactory.buildError(code: "K3003"))
 
             if quoteSearchResult.count == 2 {
-                self.assertSuccess(quote: quoteSearchResult[0].successValue()!.all[0])
+                self.assertSuccess(quote: quoteSearchResult[0].successValue()?.all[0])
                 XCTAssertEqual(.couldNotFindSpecifiedQuote, quoteSearchResult[1].errorValue()?.type)
                 expectation.fulfill()
             }
@@ -187,7 +187,12 @@ final class QuoteSearchMethodSpec: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 
-    private func assertSuccess(quote: Quote) {
+    private func assertSuccess(quote: Quote?) {
+        guard let quote = quote else {
+            XCTFail("Quote is nil")
+            return
+        }
+
         XCTAssertEqual("someQuoteId", quote.quoteId)
         XCTAssertEqual("Saloon", quote.categoryName)
         XCTAssertEqual("someFleetId", quote.fleetId)

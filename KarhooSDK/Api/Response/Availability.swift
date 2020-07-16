@@ -5,9 +5,20 @@
 
 import Foundation
 
-public struct Availability {
+public struct Availability: KarhooCodableModel {
 
-    var categories: [String]
-    let quotes: [Quote]
-    let quoteListId: String
+    public let vehicles: VehicleAvailability
+
+    enum CodingKeys: String, CodingKey {
+        case vehicles
+    }
+
+    init(vehicles: VehicleAvailability = VehicleAvailability()) {
+        self.vehicles = vehicles
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.vehicles = (try? container.decode(VehicleAvailability.self, forKey: .vehicles)) ?? VehicleAvailability()
+    }
 }
