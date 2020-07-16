@@ -10,26 +10,60 @@ import Foundation
 
 public struct Quote: KarhooCodableModel, Equatable {
 
+    @available(*, deprecated, message: "use id (QuotesV2)")
     public let quoteId: String
+
+    @available(*, deprecated, message: "use fleet.id (QuotesV2)")
     public let fleetId: String
+
+    @available(*, deprecated, message: "use not supported (QuotesV2)")
     public let availabilityId: String
+
+    @available(*, deprecated, message: "use fleet.phoneNumber (QuotesV2)")
     public let phoneNumber: String
+
+    @available(*, deprecated, message: "use fleet.name (QuotesV2)")
     public let fleetName: String
+
+    @available(*, deprecated, message: "use fleet.supplierLogoUrl (QuotesV2)")
     public let supplierLogoUrl: String
-    public let vehicleClass: String
-    public let quoteType: QuoteType
-    public let highPrice: Double
-    public let lowPrice: Double
-    public let currencyCode: String
-    public let qtaHighMinutes: Int
-    public let qtaLowMinutes: Int
+
+    @available(*, deprecated, message: "use fleet.termsConditionsUrl (QuotesV2)")
     public let termsConditionsUrl: String
+
+    @available(*, deprecated, message: "use vehicle.vehicleClass (QuotesV2)")
+    public let vehicleClass: String
+
+    @available(*, deprecated, message: "use price.highPrice (QuotesV2)")
+    public let highPrice: Double
+
+    @available(*, deprecated, message: "use price.lowPrice (QuotesV2)")
+    public let lowPrice: Double
+
+    @available(*, deprecated, message: "use price.currencyCode (QuotesV2)")
+    public let currencyCode: String
+
+    @available(*, deprecated, message: "use vehicle.qta.qtaHighMinutes (QuotesV2)")
+    public let qtaHighMinutes: Int
+
+    @available(*, deprecated, message: "use vehicle.qta.qtaHighMinutes (QuotesV2)")
+    public let qtaLowMinutes: Int
+
+    @available(*, deprecated, message: "use vehicle.vehicleClass (QuotesV2)")
     public let categoryName: String
-    public let pickUpType: PickUpType
-    public let source: QuoteSource
+
+
     public let vehicleAttributes: VehicleAttributes
 
-    public init(quoteId: String = "",
+    // v2
+    public let id: String
+    public let quoteType: QuoteType
+    public let pickUpType: PickUpType
+    public let source: QuoteSource
+    public let fleet: FleetInfo
+
+    public init(id: String = "",
+                quoteId: String = "",
                 fleetId: String = "",
                 availabilityId: String = "",
                 fleetName: String = "",
@@ -46,7 +80,10 @@ public struct Quote: KarhooCodableModel, Equatable {
                 categoryName: String = "",
                 source: QuoteSource = .fleet,
                 pickUpType: PickUpType = .default,
+                fleet: FleetInfo = FleetInfo(),
                 vehicleAttributes: VehicleAttributes = VehicleAttributes()) {
+        self.id = id
+        self.fleet = fleet
         self.quoteId = quoteId
         self.fleetId = fleetId
         self.availabilityId = availabilityId
@@ -68,6 +105,8 @@ public struct Quote: KarhooCodableModel, Equatable {
     }
 
     enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case fleet
         case quoteId = "quote_id"
         case fleetId = "fleet_id"
         case availabilityId = "availability_id"
@@ -110,9 +149,13 @@ public struct Quote: KarhooCodableModel, Equatable {
         self.pickUpType = (try? container.decode(PickUpType.self, forKey: .pickUpType)) ?? .default
         self.source = (try? container.decode(QuoteSource.self, forKey: .source)) ?? .fleet
         self.vehicleAttributes = (try? container.decode(VehicleAttributes.self, forKey: .vehicleAttributes)) ?? VehicleAttributes()
+
+        self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
+        self.fleet = (try? container.decode(FleetInfo.self, forKey: .fleet)) ?? FleetInfo()
+
     }
 
     public static func == (lhs: Quote, rhs: Quote) -> Bool {
-        return lhs.quoteId == rhs.quoteId
+        return lhs.quoteId == rhs.quoteId || lhs.id == rhs.id
     }
 }
