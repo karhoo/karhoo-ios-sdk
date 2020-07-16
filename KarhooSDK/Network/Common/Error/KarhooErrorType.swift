@@ -135,7 +135,7 @@ extension KarhooErrorType {
         case "K5001": self = .couldNotGetEstimates
         case "K5003": self = .noAvailableCategoriesInRequestedArea
             
-        // KPxxx Braintree Payments
+        // KPxxx Payments
         case "KP001": self = .couldNotFindCustomer
         case "KP002": self = .couldNotInitailizeClient
         case "KP003": self = .couldNotFindDefaultPayment
