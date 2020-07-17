@@ -54,6 +54,7 @@ public struct Quote: KarhooCodableModel, Equatable {
 
 
     public let vehicleAttributes: VehicleAttributes
+    public let validity: Int
 
     // v2
     public let id: String
@@ -61,6 +62,7 @@ public struct Quote: KarhooCodableModel, Equatable {
     public let pickUpType: PickUpType
     public let source: QuoteSource
     public let fleet: FleetInfo
+    public let vehicle: QuoteVehicle
 
     public init(id: String = "",
                 quoteId: String = "",
@@ -81,7 +83,9 @@ public struct Quote: KarhooCodableModel, Equatable {
                 source: QuoteSource = .fleet,
                 pickUpType: PickUpType = .default,
                 fleet: FleetInfo = FleetInfo(),
-                vehicleAttributes: VehicleAttributes = VehicleAttributes()) {
+                vehicleAttributes: VehicleAttributes = VehicleAttributes(),
+                vehicle: QuoteVehicle = QuoteVehicle(),
+                validity: Int = 0) {
         self.id = id
         self.fleet = fleet
         self.quoteId = quoteId
@@ -102,6 +106,8 @@ public struct Quote: KarhooCodableModel, Equatable {
         self.pickUpType = pickUpType
         self.source = source
         self.vehicleAttributes = vehicleAttributes
+        self.vehicle = vehicle
+        self.validity = validity
     }
 
     enum CodingKeys: String, CodingKey {
@@ -125,6 +131,8 @@ public struct Quote: KarhooCodableModel, Equatable {
         case pickUpType = "pick_up_type"
         case source
         case vehicleAttributes = "vehicle_attributes"
+        case vehicle
+        case validity
     }
 
     public init(from decoder: Decoder) throws {
@@ -152,7 +160,8 @@ public struct Quote: KarhooCodableModel, Equatable {
 
         self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
         self.fleet = (try? container.decode(FleetInfo.self, forKey: .fleet)) ?? FleetInfo()
-
+        self.vehicle = (try? container.decode(QuoteVehicle.self, forKey: .vehicle)) ?? QuoteVehicle()
+        self.validity = (try? container.decode(Int.self, forKey: .validity)) ?? 0
     }
 
     public static func == (lhs: Quote, rhs: Quote) -> Bool {
