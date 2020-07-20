@@ -12,7 +12,7 @@ import XCTest
 final class GetNonceMethodSpec: XCTestCase {
 
     private var paymentService: PaymentService!
-    private let path = "/v2/payments/payment-methods/braintree/get-nonce"
+    private let path = "/v2/payments/payment-methods/braintree/get-payment-method"
     private var call: Call<Nonce>!
 
     override func setUp() {
