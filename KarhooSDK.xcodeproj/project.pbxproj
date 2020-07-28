@@ -153,6 +153,8 @@
 		09F8AC07214FE6DF00E293B7 /* AuthorisedUserInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 09F8AC04214FE6DF00E293B7 /* AuthorisedUserInfo.json */; };
 		09F90F912150FA2C003BC867 /* PasswordResetMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F90F902150FA2C003BC867 /* PasswordResetMethodSpec.swift */; };
 		09F90F942151008C003BC867 /* CancelTripMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F90F932151008C003BC867 /* CancelTripMethodSpec.swift */; };
+		14A4100F24D06AA300900F10 /* Quotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A4100E24D06AA300900F10 /* Quotes.json */; };
+		14A4101424D06CB500900F10 /* MockQuoteInteractorV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4101324D06CB500900F10 /* MockQuoteInteractorV2.swift */; };
 		2320CCAE2499041100A149A6 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239E3FC12498CC40005AB7F0 /* OHHTTPStubs.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
@@ -600,6 +602,8 @@
 		09F8AC04214FE6DF00E293B7 /* AuthorisedUserInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AuthorisedUserInfo.json; sourceTree = "<group>"; };
 		09F90F902150FA2C003BC867 /* PasswordResetMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetMethodSpec.swift; sourceTree = "<group>"; };
 		09F90F932151008C003BC867 /* CancelTripMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTripMethodSpec.swift; sourceTree = "<group>"; };
+		14A4100E24D06AA300900F10 /* Quotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Quotes.json; sourceTree = "<group>"; };
+		14A4101324D06CB500900F10 /* MockQuoteInteractorV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQuoteInteractorV2.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
 		2359B45A234251FA008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooUpdateUserDetailsInteractorSpec.swift; sourceTree = "<group>"; };
@@ -1209,6 +1213,7 @@
 			isa = PBXGroup;
 			children = (
 				09928D4120EFAB1300B9F462 /* MockQuoteInteractor.swift */,
+				14A4101324D06CB500900F10 /* MockQuoteInteractorV2.swift */,
 			);
 			path = Quote;
 			sourceTree = "<group>";
@@ -1243,6 +1248,7 @@
 		09B204B7214135C000063632 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				14A4101024D06AC500900F10 /* QuotesV2 */,
 				4032BD0A23FC47B600C2409B /* Auth */,
 				237E0C5F2347851500798AA0 /* Fare */,
 				09EE81EC215283BD004B2B09 /* Quote */,
@@ -1568,6 +1574,14 @@
 				09EE81E62152585D004B2B09 /* TripSearch.json */,
 			);
 			path = Trip;
+			sourceTree = "<group>";
+		};
+		14A4101024D06AC500900F10 /* QuotesV2 */ = {
+			isa = PBXGroup;
+			children = (
+				14A4100E24D06AA300900F10 /* Quotes.json */,
+			);
+			path = QuotesV2;
 			sourceTree = "<group>";
 		};
 		18DBF3907EAF3E4DE145B9C0 /* Frameworks */ = {
@@ -2879,6 +2893,7 @@
 				FC1202472146A7CA00161081 /* Error.json in Resources */,
 				09B204BC2141366C00063632 /* InvalidData.json in Resources */,
 				09F8ABFD214FB61100E293B7 /* PaymentSDKToken.json in Resources */,
+				14A4100F24D06AA300900F10 /* Quotes.json in Resources */,
 				09EE81F021528791004B2B09 /* QuoteListId.json in Resources */,
 				09F8ABE9214A9B1500E293B7 /* DriverTracking.json in Resources */,
 				09F8AC07214FE6DF00E293B7 /* AuthorisedUserInfo.json in Resources */,
@@ -3235,6 +3250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC57F94821301637009193CB /* MockPollCallFactory.swift in Sources */,
+				14A4101424D06CB500900F10 /* MockQuoteInteractorV2.swift in Sources */,
 				432D47871ECC31940085DBBE /* KarhooLogoutInteractorSpec.swift in Sources */,
 				4371C5C11EB0E8070059429D /* AnalyticsServiceSpec.swift in Sources */,
 				4322B48C1E69A57B002108D5 /* MockAnalyticsService.swift in Sources */,

@@ -15,6 +15,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
     private var testobject: KarhooQuoteService!
     private var mockQuoteInteractor: MockQuoteInteractor!
+    private var mockQuoteInteractorV2: MockQuoteInteractor!
 
     private let mockQuoteSearch: QuoteSearch = QuoteSearch(origin: LocationInfoMock()
                                                                    .set(placeId: "originPlaceId")
@@ -34,7 +35,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
         mockQuoteInteractor = MockQuoteInteractor()
 
-        testobject = KarhooQuoteService(quoteInteractor: mockQuoteInteractor)
+        testobject = KarhooQuoteService(quoteInteractor: mockQuoteInteractor, quoteV2Interactor: mockQuoteInteractorV2)
     }
 
     /**
@@ -64,6 +65,37 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
         let expectedError = TestUtil.getRandomError()
         mockQuoteInteractor.triggerFail(error: expectedError)
+
+        XCTAssert(expectedError.equals(result?.errorValue()))
+    }
+    
+    /**
+      * When: QuoteV2 search succeeds
+      * Then: callback should be executed with expected value
+      */
+    func testQuoteV2SearchSucces() {
+        let pollCall = testobject.quotesV2(quoteSearch: mockQuoteSearch)
+
+        var result: Result<Quotes>?
+        pollCall.execute(callback: { result = $0 })
+
+        mockQuoteInteractorV2.triggerSuccess(result: mockQuotesResult)
+
+        XCTAssertEqual("success-quote", result?.successValue()?.quotes(for: "foo")[0].quoteId)
+    }
+
+    /**
+     * When: Quote search fails
+     * Then: callback should be executed with expected value
+     */
+    func testQuoteV2SearchFails() {
+        let pollCall = testobject.quotesV2(quoteSearch: mockQuoteSearch)
+
+        var result: Result<Quotes>?
+        pollCall.execute(callback: { result = $0 })
+
+        let expectedError = TestUtil.getRandomError()
+        mockQuoteInteractorV2.triggerFail(error: expectedError)
 
         XCTAssert(expectedError.equals(result?.errorValue()))
     }
