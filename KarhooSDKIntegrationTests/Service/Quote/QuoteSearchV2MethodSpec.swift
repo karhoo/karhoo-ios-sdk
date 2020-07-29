@@ -50,7 +50,7 @@ final class QuoteSearchV2MethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 1)
     }
 
     /**
@@ -154,7 +154,7 @@ final class QuoteSearchV2MethodSpec: XCTestCase {
       */
     func testQuoteSearchPolling() {
         NetworkStub.successResponse(jsonFile: "QuoteListId.json", path: quoteListIdPath)
-        NetworkStub.successResponse(jsonFile: "Quotes.json", path: quotesPath)
+        NetworkStub.successResponse(jsonFile: "QuotesV2.json", path: quotesPath)
 
         var quoteSearchResult: [Result<Quotes>] = []
         let expectation = self.expectation(description: "polling returns 2 times")
