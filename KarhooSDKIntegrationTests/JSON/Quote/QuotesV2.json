@@ -27,8 +27,8 @@
       "pick_up_type": "DEFAULT",
       "price": {
         "currency_code": "GBP",
-        "high": 565,
-        "low": 565
+        "high": 5650,
+        "low": 5450
       },
       "quote_type": "ESTIMATED",
       "source": "FLEET",
@@ -54,7 +54,7 @@
       "pick_up_type": "DEFAULT",
       "price": {
         "currency_code": "GBP",
-        "high": 1001,
+        "high": 1021,
         "low": 1001
       },
       "quote_type": "FIXED",

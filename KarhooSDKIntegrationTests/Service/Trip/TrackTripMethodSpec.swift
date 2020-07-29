@@ -123,7 +123,7 @@ final class TrackTripMethodSpec: XCTestCase {
         XCTAssertEqual("A5TH-R27D", trip.displayId)
 
         let fleetInfo = trip.fleetInfo
-        XCTAssertEqual("some fleet id", fleetInfo.fleetId)
+        XCTAssertEqual("some fleet id", fleetInfo.id)
         XCTAssertEqual("some fleet name", fleetInfo.name)
         XCTAssertEqual("some logo url", fleetInfo.logoUrl)
         XCTAssertEqual("some description", fleetInfo.description)

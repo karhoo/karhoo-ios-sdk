@@ -34,7 +34,7 @@ public struct QuotePrice: Codable {
         let intLowPrice: Int = (try? container.decode(Int.self, forKey: .lowPrice)) ?? 0
         self.lowPrice = Double(intLowPrice) * 0.01
 
-        let intHighPrice: Int = (try? container.decode(Int.self, forKey: .lowPrice)) ?? 0
+        let intHighPrice: Int = (try? container.decode(Int.self, forKey: .highPrice)) ?? 0
         self.highPrice = Double(intHighPrice) * 0.01
 
         self.currencyCode = (try? container.decode(String.self, forKey: .currencyCode)) ?? ""

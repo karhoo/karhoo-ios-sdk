@@ -184,19 +184,19 @@ final class QuoteSearchV2MethodSpec: XCTestCase {
             return
         }
 
-        XCTAssertEqual("someQuoteId", quote.id)
+        XCTAssertEqual("1762fe84-cb53-11ea-994d-52087d195d90:NTIxMjNiZDktY2M5OC00YjhkLWE5OGEtMTIyNDQ2ZDY5ZTc5O3NhbG9vbg==", quote.id)
         XCTAssertEqual("Saloon", quote.vehicle.vehicleClass)
-        XCTAssertEqual("someFleetId", quote.fleet.fleetId)
-        XCTAssertEqual("someFleetName", quote.fleet.name)
-        XCTAssertEqual(1, quote.vehicle.qta.lowMinutes)
-        XCTAssertEqual(2, quote.vehicle.qta.highMinutes)
+        XCTAssertEqual("52123bd9-cc98-4b8d-a98a-122446d69e79", quote.fleet.id)
+        XCTAssertEqual("iCabbi [Sandbox]", quote.fleet.name)
+        XCTAssertEqual(30, quote.vehicle.qta.lowMinutes)
+        XCTAssertEqual(30, quote.vehicle.qta.highMinutes)
         XCTAssertEqual(.estimated, quote.quoteType)
-        XCTAssertEqual(7.78, quote.price.lowPrice)
-        XCTAssertEqual(7.79, quote.price.highPrice)
-        XCTAssertEqual("someTermsUrl", quote.fleet.termsConditionsUrl)
-        XCTAssertEqual("someLogoUrl", quote.fleet.logoUrl)
-        XCTAssertEqual("+123", quote.fleet.phoneNumber)
+        XCTAssertEqual(54.50, quote.price.lowPrice)
+        XCTAssertEqual(56.50, quote.price.highPrice)
+        XCTAssertEqual("http://www.google.com", quote.fleet.termsConditionsUrl)
+        XCTAssertEqual("https://cdn.karhoo.com/d/images/logos/52123bd9-cc98-4b8d-a98a-122446d69e79.png", quote.fleet.logoUrl)
+        XCTAssertEqual("+447904839920", quote.fleet.phoneNumber)
         XCTAssertEqual(PickUpType.default, quote.pickUpType)
-        XCTAssertEqual(.market, quote.source)
+        XCTAssertEqual(.fleet, quote.source)
     }
 }
