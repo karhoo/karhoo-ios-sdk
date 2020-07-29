@@ -15,7 +15,7 @@ final class KarhooQuoteService: QuoteService {
 
     init(quoteInteractor: QuoteInteractor = KarhooQuoteInteractor(), quoteV2Interactor: QuoteInteractor = KarhooQuoteInteractorV2()) {
         self.quoteInteractor = quoteInteractor
-        self.quoteInteractorV2 = quoteInteractor
+        self.quoteInteractorV2 = quoteV2Interactor
     }
 
     @available(*, deprecated, message: "use quotes (QuotesV2)")
