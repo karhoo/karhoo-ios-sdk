@@ -63,6 +63,7 @@ public struct Quote: KarhooCodableModel, Equatable {
     public let source: QuoteSource
     public let fleet: FleetInfo
     public let vehicle: QuoteVehicle
+    public let price: QuotePrice
 
     public init(id: String = "",
                 quoteId: String = "",
@@ -85,6 +86,7 @@ public struct Quote: KarhooCodableModel, Equatable {
                 fleet: FleetInfo = FleetInfo(),
                 vehicleAttributes: VehicleAttributes = VehicleAttributes(),
                 vehicle: QuoteVehicle = QuoteVehicle(),
+                price: QuotePrice = QuotePrice(),
                 validity: Int = 0) {
         self.id = id
         self.fleet = fleet
@@ -108,6 +110,7 @@ public struct Quote: KarhooCodableModel, Equatable {
         self.vehicleAttributes = vehicleAttributes
         self.vehicle = vehicle
         self.validity = validity
+        self.price = price
     }
 
     enum CodingKeys: String, CodingKey {
@@ -133,6 +136,7 @@ public struct Quote: KarhooCodableModel, Equatable {
         case vehicleAttributes = "vehicle_attributes"
         case vehicle
         case validity
+        case price
     }
 
     public init(from decoder: Decoder) throws {
@@ -162,6 +166,7 @@ public struct Quote: KarhooCodableModel, Equatable {
         self.fleet = (try? container.decode(FleetInfo.self, forKey: .fleet)) ?? FleetInfo()
         self.vehicle = (try? container.decode(QuoteVehicle.self, forKey: .vehicle)) ?? QuoteVehicle()
         self.validity = (try? container.decode(Int.self, forKey: .validity)) ?? 0
+        self.price = (try? container.decode(QuotePrice.self, forKey: .price)) ?? QuotePrice()
     }
 
     public static func == (lhs: Quote, rhs: Quote) -> Bool {

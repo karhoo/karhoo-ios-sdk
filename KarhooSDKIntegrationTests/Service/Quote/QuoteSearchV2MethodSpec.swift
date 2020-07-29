@@ -40,8 +40,8 @@ final class QuoteSearchV2MethodSpec: XCTestCase {
             self.assertSuccess(quote: result.successValue()?.all[0])
 
             XCTAssertEqual(6, result.successValue()?.quoteCategories.count)
-            XCTAssertEqual(1, result.successValue()?.quotes(for: "Saloon").count)
-            XCTAssertEqual(0, result.successValue()?.quotes(for: "Taxi").count)
+            XCTAssertEqual(2, result.successValue()?.quotes(for: "Saloon").count)
+            XCTAssertEqual(1, result.successValue()?.quotes(for: "Taxi").count)
             XCTAssertEqual(0, result.successValue()?.quotes(for: "MPV").count)
             XCTAssertEqual(0, result.successValue()?.quotes(for: "Exec").count)
             XCTAssertEqual(0, result.successValue()?.quotes(for: "Electric").count)
@@ -50,7 +50,7 @@ final class QuoteSearchV2MethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 3)
     }
 
     /**
@@ -184,19 +184,19 @@ final class QuoteSearchV2MethodSpec: XCTestCase {
             return
         }
 
-        XCTAssertEqual("someQuoteId", quote.quoteId)
-        XCTAssertEqual("Saloon", quote.categoryName)
-        XCTAssertEqual("someFleetId", quote.fleetId)
-        XCTAssertEqual("someFleetName", quote.fleetName)
-        XCTAssertEqual(1, quote.qtaLowMinutes)
-        XCTAssertEqual(2, quote.qtaHighMinutes)
+        XCTAssertEqual("someQuoteId", quote.id)
+        XCTAssertEqual("Saloon", quote.vehicle.vehicleClass)
+        XCTAssertEqual("someFleetId", quote.fleet.fleetId)
+        XCTAssertEqual("someFleetName", quote.fleet.name)
+        XCTAssertEqual(1, quote.vehicle.qta.lowMinutes)
+        XCTAssertEqual(2, quote.vehicle.qta.highMinutes)
         XCTAssertEqual(.estimated, quote.quoteType)
-        XCTAssertEqual(7.78, quote.lowPrice)
-        XCTAssertEqual(7.79, quote.highPrice)
-        XCTAssertEqual("someTermsUrl", quote.termsConditionsUrl)
-        XCTAssertEqual("someLogoUrl", quote.supplierLogoUrl)
-        XCTAssertEqual("+123", quote.phoneNumber)
-        XCTAssertEqual(PickUpType.meetAndGreet, quote.pickUpType)
+        XCTAssertEqual(7.78, quote.price.lowPrice)
+        XCTAssertEqual(7.79, quote.price.highPrice)
+        XCTAssertEqual("someTermsUrl", quote.fleet.termsConditionsUrl)
+        XCTAssertEqual("someLogoUrl", quote.fleet.logoUrl)
+        XCTAssertEqual("+123", quote.fleet.phoneNumber)
+        XCTAssertEqual(PickUpType.default, quote.pickUpType)
         XCTAssertEqual(.market, quote.source)
     }
 }
