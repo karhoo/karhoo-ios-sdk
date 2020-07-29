@@ -147,13 +147,12 @@ final class BookTripMethodSpec: XCTestCase {
         XCTAssertEqual("A5TH-R27D", trip.displayId)
 
         let fleetInfo = trip.fleetInfo
-        XCTAssertEqual("some fleet id", fleetInfo.id)
+        XCTAssertEqual("some fleet id", fleetInfo.fleetId)
         XCTAssertEqual("some fleet name", fleetInfo.name)
         XCTAssertEqual("some logo url", fleetInfo.logoUrl)
         XCTAssertEqual("some description", fleetInfo.description)
         XCTAssertEqual("some phone number", fleetInfo.phoneNumber)
         XCTAssertEqual("some terms and conditions", fleetInfo.termsConditionsUrl)
-        XCTAssertEqual("dispatch-co@karhoo.com", fleetInfo.email)
 
         let vehicle = trip.vehicle
         XCTAssertEqual("MPV", vehicle.vehicleClass)
