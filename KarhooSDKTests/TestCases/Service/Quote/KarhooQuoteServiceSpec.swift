@@ -25,7 +25,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
                                                                         .build(),
                                                            dateScheduled: Date())
 
-    static let mockFleet = FleetInfo(fleetId: "success-quoutev2")
+    static let mockFleet = FleetInfo(id: "success-quoutev2")
     static let mockQuote = QuoteMock().set(quoteId: "success-quote").set(categoryName: "foo").set(fleet: mockFleet).build()
     let mockQuotesResult = Quotes(quoteListId: "some",
                                   quoteCategories: [QuoteCategory(name: "foo", quotes: [mockQuote])],
@@ -82,7 +82,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
         mockQuoteInteractorV2.triggerSuccess(result: mockQuotesResult)
 
-        XCTAssertEqual("success-quotev2", result?.successValue()?.quotes(for: "foo")[0].fleet.fleetId)
+        XCTAssertEqual("success-quotev2", result?.successValue()?.quotes(for: "foo")[0].fleet.id)
     }
 
     /**

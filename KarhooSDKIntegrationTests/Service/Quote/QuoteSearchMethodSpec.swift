@@ -58,28 +58,6 @@ final class QuoteSearchMethodSpec: XCTestCase {
 
     /**
      * Given: Searching for quotes
-     * When: Availability fails
-     * And: Quote list id and Quotes request succeeds
-     * Then: Success result should be propogated (quotes)
-     // categories will come from quotes in this scenario, not availability
-     */
-    func testAvailabilityRequestErrorResponse() {
-        NetworkStub.errorResponse(path: availabilityPath, responseData: RawKarhooErrorFactory.buildError(code: "K5001"))
-        NetworkStub.successResponse(jsonFile: "QuoteListId.json", path: quoteListIdPath)
-        NetworkStub.successResponse(jsonFile: "Quotes.json", path: quotesPath)
-
-        let expectation = self.expectation(description: "Calls callback with success result")
-        pollCall.execute(callback: { result in
-            XCTAssertTrue(result.isSuccess())
-            self.assertSuccess(quote: result.successValue()?.all[0])
-            expectation.fulfill()
-        })
-
-        waitForExpectations(timeout: 1)
-    }
-
-    /**
-     * Given: Searching for quotes
      * When: QuotesListId fails (no availability)
      * Then: Expected error should be propogated
      */
