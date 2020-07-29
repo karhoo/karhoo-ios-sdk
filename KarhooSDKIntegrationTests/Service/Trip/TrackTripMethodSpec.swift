@@ -129,7 +129,6 @@ final class TrackTripMethodSpec: XCTestCase {
         XCTAssertEqual("some description", fleetInfo.description)
         XCTAssertEqual("some phone number", fleetInfo.phoneNumber)
         XCTAssertEqual("some terms and conditions", fleetInfo.termsConditionsUrl)
-        XCTAssertEqual("dispatch-co@karhoo.com", fleetInfo.email)
 
         let vehicle = trip.vehicle
         XCTAssertEqual("MPV", vehicle.vehicleClass)
