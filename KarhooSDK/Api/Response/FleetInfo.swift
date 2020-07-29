@@ -16,22 +16,19 @@ public struct FleetInfo: Codable {
     public let description: String
     public let phoneNumber: String
     public let termsConditionsUrl: String
-    public let email: String
 
     public init(id: String = "",
                 name: String = "",
                 description: String = "",
                 phoneNumber: String = "",
                 termsConditionsUrl: String = "",
-                logoUrl: String = "",
-                email: String = "") {
+                logoUrl: String = "") {
         self.id = id
         self.name = name
         self.logoUrl = logoUrl
         self.description = description
         self.phoneNumber = phoneNumber
         self.termsConditionsUrl = termsConditionsUrl
-        self.email = email
     }
 
     enum CodingKeys: String, CodingKey {
@@ -52,7 +49,6 @@ public struct FleetInfo: Codable {
         self.description = (try? container.decode(String.self, forKey: .description)) ?? ""
         self.phoneNumber = (try? container.decode(String.self, forKey: .phoneNumber)) ?? ""
         self.termsConditionsUrl = (try? container.decode(String.self, forKey: .termsConditionsUrl)) ?? ""
-        self.email = (try? container.decode(String.self, forKey: .email)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -63,6 +59,5 @@ public struct FleetInfo: Codable {
         try container.encode(description, forKey: .description)
         try container.encode(phoneNumber, forKey: .phoneNumber)
         try container.encode(termsConditionsUrl, forKey: .termsConditionsUrl)
-        try container.encode(email, forKey: .email)
     }
 }
