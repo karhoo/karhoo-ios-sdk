@@ -1,0 +1,100 @@
+{
+  "availability": {
+    "vehicles": {
+      "classes": [
+        "MPV",
+        "Taxi",
+        "Saloon",
+        "Exec",
+        "Moto",
+        "Electric"
+      ]
+    }
+  },
+  "id": "1762fe84-cb53-11ea-994d-52087d195d90",
+  "quotes": [
+    {
+      "fleet": {
+        "description": "iCabbi Sandbox Fleet: London's Favorite Ride. Ride options include hot tub limo and stag night beer mpv. Will provide water and food",
+        "id": "52123bd9-cc98-4b8d-a98a-122446d69e79",
+        "logo_url": "https://cdn.karhoo.com/d/images/logos/52123bd9-cc98-4b8d-a98a-122446d69e79.png",
+        "name": "iCabbi [Sandbox]",
+        "phone_number": "+447904839920",
+        "rating": {},
+        "terms_conditions_url": "http://www.google.com"
+      },
+      "id": "1762fe84-cb53-11ea-994d-52087d195d90:NTIxMjNiZDktY2M5OC00YjhkLWE5OGEtMTIyNDQ2ZDY5ZTc5O3NhbG9vbg==",
+      "pick_up_type": "DEFAULT",
+      "price": {
+        "currency_code": "GBP",
+        "high": 5650,
+        "low": 5450
+      },
+      "quote_type": "ESTIMATED",
+      "source": "FLEET",
+      "vehicle": {
+        "class": "Saloon",
+        "qta": {
+          "high_minutes": 30,
+          "low_minutes": 30
+        }
+      }
+    },
+    {
+      "fleet": {
+        "description": "Do Not Change",
+        "id": "087609c4-4233-4be7-971b-f67a8618ef26",
+        "logo_url": "https://cdn.karhoo.net/d/images/organisation-logos/703c9c2e7062574b44e5905798d43e07.png",
+        "name": "Trip Exp Zoo Fleet",
+        "phone_number": "+447715364788",
+        "rating": {},
+        "terms_conditions_url": "https://karhoo.com/fleettcs/cdda3d54-2926-451f-b839-4201c9adc9f5"
+      },
+      "id": "1762fe84-cb53-11ea-994d-52087d195d90:MDg3NjA5YzQtNDIzMy00YmU3LTk3MWItZjY3YTg2MThlZjI2O3RheGk=",
+      "pick_up_type": "DEFAULT",
+      "price": {
+        "currency_code": "GBP",
+        "high": 1021,
+        "low": 1001
+      },
+      "quote_type": "FIXED",
+      "source": "FLEET",
+      "vehicle": {
+        "class": "Taxi",
+        "qta": {
+          "high_minutes": 2,
+          "low_minutes": 2
+        }
+      }
+    },
+    {
+      "fleet": {
+        "description": "Zoo Automated Test",
+        "id": "0318c873-f7cb-4976-bd91-511fc347ec7b",
+        "logo_url": "https://cdn.karhoo.com/d/images/logos/cc775eda-950d-4a77-aa83-172d487a4cbf.png",
+        "name": "Doggo [Zoo Fleet]",
+        "phone_number": "+447715364890",
+        "rating": {},
+        "terms_conditions_url": "https://karhoo.com/fleettcs/cdda3d54-2926-451f-b839-4201c9adc9f5"
+      },
+      "id": "1762fe84-cb53-11ea-994d-52087d195d90:MDMxOGM4NzMtZjdjYi00OTc2LWJkOTEtNTExZmMzNDdlYzdiO3NhbG9vbg==",
+      "pick_up_type": "DEFAULT",
+      "price": {
+        "currency_code": "GBP",
+        "high": 826,
+        "low": 826
+      },
+      "quote_type": "FIXED",
+      "source": "FLEET",
+      "vehicle": {
+        "class": "Saloon",
+        "qta": {
+          "high_minutes": 2,
+          "low_minutes": 2
+        }
+      }
+    }
+  ],
+  "status": "PROGRESSING",
+  "validity": 296
+}

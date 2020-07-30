@@ -93,6 +93,16 @@ final class QuoteMock {
         create(categoryName: categoryName)
         return self
     }
+    
+    func set(fleet: FleetInfo) -> QuoteMock {
+        create(fleet: fleet)
+        return self
+    }
+    
+    func set(vehicle: QuoteVehicle) -> QuoteMock {
+        create(vehicle: vehicle)
+        return self
+    }
 
     private func create(quoteId: String? = nil,
                         fleetId: String? = nil,
@@ -108,7 +118,9 @@ final class QuoteMock {
                         qtaHighMinutes: Int? = nil,
                         qtaLowMinutes: Int? = nil,
                         termsConditionsUrl: String? = nil,
-                        categoryName: String? = nil) {
+                        categoryName: String? = nil,
+                        fleet: FleetInfo? = nil,
+                        vehicle: QuoteVehicle? = nil) {
         self.quote = Quote(
                 quoteId: quoteId ?? quote.quoteId,
                 fleetId: fleetId ?? quote.fleetId,
@@ -124,6 +136,8 @@ final class QuoteMock {
                 qtaHighMinutes: qtaHighMinutes ?? quote.qtaHighMinutes,
                 qtaLowMinutes: qtaLowMinutes ?? quote.qtaLowMinutes,
                 termsConditionsURL: termsConditionsUrl ?? quote.termsConditionsUrl,
-                categoryName: categoryName ?? quote.categoryName)
+                categoryName: categoryName ?? quote.categoryName,
+                fleet: fleet ?? quote.fleet,
+                vehicle: vehicle ?? quote.vehicle)
     }
 }

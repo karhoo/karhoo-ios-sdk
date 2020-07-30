@@ -9,13 +9,17 @@ typealias QuoteListKeys = QuoteList.CodingKeys
 
 public struct QuoteList: KarhooCodableModel {
 
+    @available(*, deprecated, message: "use quotes (QuotesV2)")
     public let quoteItems: [Quote]
+
+    public let quotes: [Quote]
     public let listId: String
     public let status: String
     let validity: Int
     public let availability: Availability
 
     internal init(quoteItems: [Quote] = [],
+                  quotes: [Quote] = [],
                   listId: String = "",
                   status: String = "",
                   validity: Int = 0,
@@ -25,10 +29,12 @@ public struct QuoteList: KarhooCodableModel {
         self.status = status
         self.validity = validity
         self.availability = availability
+        self.quotes = quotes
     }
 
     enum CodingKeys: String, CodingKey {
         case quoteItems = "quote_items"
+        case quotes
         case listId = "id"
         case status
         case validity
@@ -38,6 +44,7 @@ public struct QuoteList: KarhooCodableModel {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.quoteItems = (try? container.decode([Quote].self, forKey: .quoteItems)) ?? []
+        self.quotes = (try? container.decode([Quote].self, forKey: .quotes)) ?? []
         self.listId = try container.decode(String.self, forKey: .listId)
         self.status = (try? container.decode(String.self, forKey: .status)) ?? ""
         self.validity = (try? container.decode(Int.self, forKey: .validity)) ?? 0

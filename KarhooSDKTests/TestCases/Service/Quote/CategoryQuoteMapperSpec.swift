@@ -94,9 +94,9 @@ final class CategoryQuoteMapperSpec: XCTestCase {
       */
     func testNilCategoriesMapsValidQuotesCorrectly() {
         var mockQuotes: [Quote] = []
-        mockQuotes.append(QuoteMock().set(quoteId: "fooQuote").set(categoryName: "foo").build())
-        mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
-        mockQuotes.append(QuoteMock().set(quoteId: "fizzQuote").set(categoryName: "fizz").build())
+        mockQuotes.append(QuoteMock().set(quoteId: "fooQuote").set(vehicle: QuoteVehicle(vehicleClass: "foo")).build())
+        mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(vehicle: QuoteVehicle(vehicleClass: "bar")).build())
+        mockQuotes.append(QuoteMock().set(quoteId: "fizzQuote").set(vehicle: QuoteVehicle(vehicleClass: "fizz")).build())
 
         let expectedOutput = testObject.map(categories: [], toQuotes: mockQuotes)
 

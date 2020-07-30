@@ -1,19 +1,17 @@
 //
-//  QuoteSearchMethodSpec.swift
+//  QuoteSearchV2MethodSpec.swift
 //  KarhooSDKIntegrationTests
 //
-//  
-//  Copyright © 2020 Karhoo. All rights reserved.
+//  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
 import XCTest
 @testable import KarhooSDK
 
-final class QuoteSearchMethodSpec: XCTestCase {
+final class QuoteSearchV2MethodSpec: XCTestCase {
 
-    private let availabilityPath = "/v1/quotes/availability"
-    private let quoteListIdPath = "/v1/quotes"
-    private let quotesPath = "/v1/quotes/some-id"
+    private let quoteListIdPath = "/v2/quotes"
+    private let quotesPath = "/v2/quotes/some-id"
     private var quoteService: QuoteService!
     private var pollCall: PollCall<Quotes>!
 
@@ -24,7 +22,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
                                       destination: LocationInfoMock().set(placeId: "destinationPlaceId").build(),
                                       dateScheduled: Date())
         quoteService = Karhoo.getQuoteService()
-        pollCall = quoteService.quotes(quoteSearch: quoteSearch)
+        pollCall = quoteService.quotesV2(quoteSearch: quoteSearch)
     }
 
     /**
@@ -33,9 +31,8 @@ final class QuoteSearchMethodSpec: XCTestCase {
       * Then: Success result should be propogated
       */
     func testHappyPath() {
-        NetworkStub.successResponse(jsonFile: "Availability.json", path: availabilityPath)
         NetworkStub.successResponse(jsonFile: "QuoteListId.json", path: quoteListIdPath)
-        NetworkStub.successResponse(jsonFile: "Quotes.json", path: quotesPath)
+        NetworkStub.successResponse(jsonFile: "QuotesV2.json", path: quotesPath)
 
         let expectation = self.expectation(description: "Calls callback with success result")
         pollCall.execute(callback: { result in
@@ -43,8 +40,8 @@ final class QuoteSearchMethodSpec: XCTestCase {
             self.assertSuccess(quote: result.successValue()?.all[0])
 
             XCTAssertEqual(6, result.successValue()?.quoteCategories.count)
-            XCTAssertEqual(1, result.successValue()?.quotes(for: "Saloon").count)
-            XCTAssertEqual(0, result.successValue()?.quotes(for: "Taxi").count)
+            XCTAssertEqual(2, result.successValue()?.quotes(for: "Saloon").count)
+            XCTAssertEqual(1, result.successValue()?.quotes(for: "Taxi").count)
             XCTAssertEqual(0, result.successValue()?.quotes(for: "MPV").count)
             XCTAssertEqual(0, result.successValue()?.quotes(for: "Exec").count)
             XCTAssertEqual(0, result.successValue()?.quotes(for: "Electric").count)
@@ -62,9 +59,8 @@ final class QuoteSearchMethodSpec: XCTestCase {
      * Then: Expected error should be propogated
      */
     func testQuoteListIdRequestErrorResponse() {
-        NetworkStub.successResponse(jsonFile: "Availability.json", path: availabilityPath)
         NetworkStub.errorResponse(path: quoteListIdPath, responseData: RawKarhooErrorFactory.buildError(code: "K3002"))
-        NetworkStub.successResponse(jsonFile: "Quotes.json", path: quotesPath)
+        NetworkStub.successResponse(jsonFile: "QuotesV2.json", path: quotesPath)
 
         let expectation = self.expectation(description: "Calls callback with error result")
         pollCall.execute(callback: { result in
@@ -81,7 +77,6 @@ final class QuoteSearchMethodSpec: XCTestCase {
      * Then: Expected error should be propogated
      */
     func testQuotesRequestErrorResponse() {
-        NetworkStub.successResponse(jsonFile: "Availability.json", path: availabilityPath)
         NetworkStub.successResponse(jsonFile: "QuoteListId.json", path: quoteListIdPath)
         NetworkStub.errorResponse(path: quotesPath, responseData: RawKarhooErrorFactory.buildError(code: "K3003"))
 
@@ -100,7 +95,6 @@ final class QuoteSearchMethodSpec: XCTestCase {
      * Then: Unknown error should be propogated
      */
     func testQuoteSearchEmptySuccessResult() {
-        NetworkStub.successResponse(jsonFile: "Availability.json", path: availabilityPath)
         NetworkStub.successResponse(jsonFile: "QuoteListId.json", path: quoteListIdPath)
         NetworkStub.emptySuccessResponse(path: quotesPath)
 
@@ -119,7 +113,6 @@ final class QuoteSearchMethodSpec: XCTestCase {
      * Then: Unknown error should be propogated
      */
     func testQuotesRequestTimeout() {
-        NetworkStub.successResponse(jsonFile: "Availability.json", path: availabilityPath)
         NetworkStub.successResponse(jsonFile: "QuoteListId.json", path: quoteListIdPath)
         NetworkStub.errorResponseTimeOutConnection(path: quotesPath)
 
@@ -139,9 +132,8 @@ final class QuoteSearchMethodSpec: XCTestCase {
       * Then: correct results should be propogated
       */
     func testQuoteSearchPolling() {
-        NetworkStub.successResponse(jsonFile: "Availability.json", path: availabilityPath)
         NetworkStub.successResponse(jsonFile: "QuoteListId.json", path: quoteListIdPath)
-        NetworkStub.successResponse(jsonFile: "Quotes.json", path: quotesPath)
+        NetworkStub.successResponse(jsonFile: "QuotesV2.json", path: quotesPath)
 
         var quoteSearchResult: [Result<Quotes>] = []
         let expectation = self.expectation(description: "polling returns 2 times")
@@ -171,19 +163,19 @@ final class QuoteSearchMethodSpec: XCTestCase {
             return
         }
 
-        XCTAssertEqual("someQuoteId", quote.quoteId)
-        XCTAssertEqual("Saloon", quote.categoryName)
-        XCTAssertEqual("someFleetId", quote.fleetId)
-        XCTAssertEqual("someFleetName", quote.fleetName)
-        XCTAssertEqual(1, quote.qtaLowMinutes)
-        XCTAssertEqual(2, quote.qtaHighMinutes)
+        XCTAssertEqual("1762fe84-cb53-11ea-994d-52087d195d90:NTIxMjNiZDktY2M5OC00YjhkLWE5OGEtMTIyNDQ2ZDY5ZTc5O3NhbG9vbg==", quote.id)
+        XCTAssertEqual("Saloon", quote.vehicle.vehicleClass)
+        XCTAssertEqual("52123bd9-cc98-4b8d-a98a-122446d69e79", quote.fleet.id)
+        XCTAssertEqual("iCabbi [Sandbox]", quote.fleet.name)
+        XCTAssertEqual(30, quote.vehicle.qta.lowMinutes)
+        XCTAssertEqual(30, quote.vehicle.qta.highMinutes)
         XCTAssertEqual(.estimated, quote.quoteType)
-        XCTAssertEqual(7.78, quote.lowPrice)
-        XCTAssertEqual(7.79, quote.highPrice)
-        XCTAssertEqual("someTermsUrl", quote.termsConditionsUrl)
-        XCTAssertEqual("someLogoUrl", quote.supplierLogoUrl)
-        XCTAssertEqual("+123", quote.phoneNumber)
-        XCTAssertEqual(PickUpType.meetAndGreet, quote.pickUpType)
-        XCTAssertEqual(.market, quote.source)
+        XCTAssertEqual(54.50, quote.price.lowPrice)
+        XCTAssertEqual(56.50, quote.price.highPrice)
+        XCTAssertEqual("http://www.google.com", quote.fleet.termsConditionsUrl)
+        XCTAssertEqual("https://cdn.karhoo.com/d/images/logos/52123bd9-cc98-4b8d-a98a-122446d69e79.png", quote.fleet.logoUrl)
+        XCTAssertEqual("+447904839920", quote.fleet.phoneNumber)
+        XCTAssertEqual(PickUpType.default, quote.pickUpType)
+        XCTAssertEqual(.fleet, quote.source)
     }
 }

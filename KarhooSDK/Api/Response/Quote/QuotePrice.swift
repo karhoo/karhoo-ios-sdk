@@ -10,12 +10,12 @@ import Foundation
 
 public struct QuotePrice: Codable {
 
-    public let highPrice: Int
-    public let lowPrice: Int
+    public let highPrice: Double
+    public let lowPrice: Double
     public let currencyCode: String
 
-    public init(highPrice: Int = 0,
-                lowPrice: Int = 0,
+    public init(highPrice: Double = 0,
+                lowPrice: Double = 0,
                 currencyCode: String = "") {
         self.highPrice = highPrice
         self.lowPrice = lowPrice
@@ -23,15 +23,20 @@ public struct QuotePrice: Codable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case highPrice = "high_minutes"
-        case lowPrice = "low_minutes"
+        case highPrice = "high"
+        case lowPrice = "low"
         case currencyCode = "currency_code"
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.highPrice = (try? container.decode(Int.self, forKey: .highPrice)) ?? 0
-        self.lowPrice = (try? container.decode(Int.self, forKey: .lowPrice)) ?? 0
+
+        let intLowPrice: Int = (try? container.decode(Int.self, forKey: .lowPrice)) ?? 0
+        self.lowPrice = Double(intLowPrice) * 0.01
+
+        let intHighPrice: Int = (try? container.decode(Int.self, forKey: .highPrice)) ?? 0
+        self.highPrice = Double(intHighPrice) * 0.01
+
         self.currencyCode = (try? container.decode(String.self, forKey: .currencyCode)) ?? ""
     }
 }

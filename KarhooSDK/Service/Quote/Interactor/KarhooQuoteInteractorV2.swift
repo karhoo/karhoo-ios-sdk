@@ -52,7 +52,7 @@ final class KarhooQuoteInteractorV2: QuoteInteractor {
         }
 
         quoteListIdRequest.requestAndDecode(payload: requestPayload,
-                                            endpoint: .quoteListId,
+                                            endpoint: .quoteListIdV2,
                                             callback: { [weak self] (result: Result<QuoteListId>) in
                                                 if let quoteListId = result.successValue() {
                                                     self?.makeQuotesRequest(quoteListId: quoteListId,
@@ -68,7 +68,7 @@ final class KarhooQuoteInteractorV2: QuoteInteractor {
         self.quoteListId = quoteListId
 
         quotesRequest.requestAndDecode(payload: nil,
-                                       endpoint: .quotes(identifier: quoteListId.identifier),
+                                       endpoint: .quotesV2(identifier: quoteListId.identifier),
                                        callback: { [weak self] (result: Result<QuoteList>) in
                                         if let successValue = result.successValue() {
                                             self?.handleSuccessfulQuoteRequest(quoteList: successValue,
@@ -96,7 +96,7 @@ final class KarhooQuoteInteractorV2: QuoteInteractor {
             return
         }
 
-        let filteredQuotes = quoteList.quoteItems.filter { $0.qtaHighMinutes <= filterRidesWithETA }
+        let filteredQuotes = quoteList.quotes.filter { $0.vehicle.qta.highMinutes <= filterRidesWithETA }
         let quoteCategories = CategoryQuoteMapper().map(categories: quoteList.availability.vehicles.classes,
                                                         toQuotes: filteredQuotes)
         let quotes = Quotes(quoteListId: quoteList.listId,
