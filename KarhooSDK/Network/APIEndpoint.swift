@@ -35,6 +35,7 @@ enum APIEndpoint {
     case authRevoke
     case authUserInfo
     case authRefresh
+    case provider
 
     var path: String {
         switch self {
@@ -112,6 +113,8 @@ enum APIEndpoint {
             return "/oauth/v2/userinfo"
         case .authRefresh:
             return "/oauth/v2/token"
+        case .provider:
+            return "v3/payments/providers"
         }
     }
 
@@ -149,6 +152,7 @@ enum APIEndpoint {
         case .authUserInfo: return .get
         case .authRefresh: return .post
         case .custom(_, let method): return method
+        case .provider: return .get
         }
     }
 
