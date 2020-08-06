@@ -158,6 +158,7 @@
 		142CB39224DC2F5C0065149C /* PaymentProviderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CB39124DC2F5C0065149C /* PaymentProviderInteractor.swift */; };
 		142CB39424DC30840065149C /* KarhooPaymentProviderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CB39324DC30840065149C /* KarhooPaymentProviderInteractor.swift */; };
 		142CB39724DC44C80065149C /* KarhooPaymentProviderInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CB39624DC44C80065149C /* KarhooPaymentProviderInteractorSpec.swift */; };
+		1477E3FC24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477E3FB24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift */; };
 		14A4101424D06CB500900F10 /* MockQuoteInteractorV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4101324D06CB500900F10 /* MockQuoteInteractorV2.swift */; };
 		14A4101624D07B6700900F10 /* QuoteSearchV2MethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A4101524D07B6700900F10 /* QuoteSearchV2MethodSpec.swift */; };
 		14A4101824D1728200900F10 /* QuotesV2.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A4101724D1728200900F10 /* QuotesV2.json */; };
@@ -613,6 +614,7 @@
 		142CB39124DC2F5C0065149C /* PaymentProviderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentProviderInteractor.swift; sourceTree = "<group>"; };
 		142CB39324DC30840065149C /* KarhooPaymentProviderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooPaymentProviderInteractor.swift; sourceTree = "<group>"; };
 		142CB39624DC44C80065149C /* KarhooPaymentProviderInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooPaymentProviderInteractorSpec.swift; sourceTree = "<group>"; };
+		1477E3FB24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPaymentProviderInteractor.swift; sourceTree = "<group>"; };
 		14A4101324D06CB500900F10 /* MockQuoteInteractorV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQuoteInteractorV2.swift; sourceTree = "<group>"; };
 		14A4101524D07B6700900F10 /* QuoteSearchV2MethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteSearchV2MethodSpec.swift; sourceTree = "<group>"; };
 		14A4101724D1728200900F10 /* QuotesV2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QuotesV2.json; sourceTree = "<group>"; };
@@ -1604,6 +1606,14 @@
 			isa = PBXGroup;
 			children = (
 				142CB39624DC44C80065149C /* KarhooPaymentProviderInteractorSpec.swift */,
+			);
+			path = PaymentProvider;
+			sourceTree = "<group>";
+		};
+		1477E3FA24DC5F6900581FC2 /* PaymentProvider */ = {
+			isa = PBXGroup;
+			children = (
+				1477E3FB24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift */,
 			);
 			path = PaymentProvider;
 			sourceTree = "<group>";
@@ -2643,6 +2653,7 @@
 		BAA0ADFA31768B401CD88B01 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				1477E3FA24DC5F6900581FC2 /* PaymentProvider */,
 				5C224EB2223DD81C00C1CFCE /* AddPaymentDetails */,
 				09F79E45223AAA2D00D5B0B8 /* GetNonce */,
 				BAA0A16C33556F8407404DA8 /* PaymentSDKToken */,
@@ -3382,6 +3393,7 @@
 				096B31C020B702E8002B41E9 /* MockTripSearchInteractor.swift in Sources */,
 				BAA0A9E6A724F31D9BCFD880 /* KarhooTripStatusInteractorSpec.swift in Sources */,
 				0981F6CB20CEE1AD00BF7FB5 /* KarhooLoginInteractorSpec.swift in Sources */,
+				1477E3FC24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift in Sources */,
 				0970BA8A2114970A0015A170 /* KarhooPollCallSpec.swift in Sources */,
 				237E0C64234788F000798AA0 /* KarhooFareServiceSpec.swift in Sources */,
 				09820E7420D809E000782530 /* MockRegisterInteractor.swift in Sources */,

@@ -24,7 +24,7 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
      */
     func testRequestFormat() {
         testObject.execute(callback: { ( _: Result<PaymentProvider>) in})
-        mockRequestSender.assertRequestSendAndDecoded(endpoint: .provider,
+        mockRequestSender.assertRequestSendAndDecoded(endpoint: .paymentProvider,
                                                       method: .get,
                                                       payload: nil)
     }

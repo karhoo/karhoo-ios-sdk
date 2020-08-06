@@ -18,7 +18,7 @@ final class KarhooPaymentProviderInteractor: PaymentProviderInteractor {
 
     func execute<T>(callback: @escaping (Result<T>) -> Void) where T: KarhooCodableModel {
         paymentProviderRequestSender.requestAndDecode(payload: nil,
-                                                      endpoint: .provider,
+                                                      endpoint: .paymentProvider,
                                                       callback: callback)
     }
 

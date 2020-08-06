@@ -15,6 +15,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
     private var mockPaymentSDKTokenInteractor: MockPaymentSDKTokenInteractor!
     private var mockGetNonceInteractor: MockGetNonceInteractor!
     private var mockAddPaymentDetailsInteractor: MockAddPaymentDetailsInteractor!
+    private var mockPaymentProviderInteractor: MockPaymentProviderInteractor!
     private var testObject: KarhooPaymentService!
     private let mockRequestPayload: PaymentSDKTokenPayload = PaymentSDKTokenPayload(organisationId: "some",
                                                                                     currency: "gbp")
@@ -27,7 +28,8 @@ class KarhooPaymentServiceSpec: XCTestCase {
 
         testObject = KarhooPaymentService(tokenInteractor: mockPaymentSDKTokenInteractor,
                                           getNonceInteractor: mockGetNonceInteractor,
-                                          addPaymentDetailsInteractor: mockAddPaymentDetailsInteractor)
+                                          addPaymentDetailsInteractor: mockAddPaymentDetailsInteractor,
+                                          paymentProviderInteractor: mockPaymentProviderInteractor)
     }
 
     /**
@@ -149,6 +151,41 @@ class KarhooPaymentServiceSpec: XCTestCase {
 
         let error = TestUtil.getRandomError()
         mockAddPaymentDetailsInteractor.triggerFail(error: error)
+
+        XCTAssert(error.equals(executeResult!.errorValue()!))
+    }
+
+    /**
+     *  When:   Getting payment provider succeeds
+     *  Then:   A success response should be sent through the callback
+     */
+    func testGetPaymentProviderSuccessful() {
+        let karhooCall = testObject.getPaymentProvider()
+
+        var executeResult: Result<PaymentProvider>?
+        karhooCall.execute(callback: { result in
+            executeResult = result
+        })
+
+        mockPaymentProviderInteractor.triggerSuccess(result: PaymentProvider(id: "some_id", loyaltyProgammes: []))
+
+        XCTAssertEqual("some_id", executeResult?.successValue()?.id)
+    }
+
+    /**
+     *  When:   Getting payment provider  fails
+     *  Then:   An error should be sent through the callback
+     */
+    func testGetPaymentProviderFail() {
+        let karhooCall = testObject.getPaymentProvider()
+
+        var executeResult: Result<PaymentProvider>?
+        karhooCall.execute(callback: { result in
+            executeResult = result
+        })
+
+        let error = TestUtil.getRandomError()
+        mockPaymentProviderInteractor.triggerFail(error: error)
 
         XCTAssert(error.equals(executeResult!.errorValue()!))
     }
