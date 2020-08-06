@@ -7,6 +7,4 @@
 
 import Foundation
 
-protocol PaymentProviderInteractor: KarhooExecutable {
-
-}
+protocol PaymentProviderInteractor: KarhooExecutable {}
