@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Provider : KarhooCodableModel {
+public struct PaymentProvider : KarhooCodableModel {
     public let id: String
     public let loyaltyProgammes: [LoyaltyProgramme]
     

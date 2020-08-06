@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol GetProviderInteractor: KarhooExecutable {
-    func getProvider() -> Call<Provider>
+protocol PaymentProviderInteractor: KarhooExecutable {
+
 }

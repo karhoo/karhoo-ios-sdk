@@ -21,8 +21,8 @@ public struct LoyaltyProgramme: KarhooCodableModel {
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.id = (try? decoder.container(String.self, forKey: .id)) ?? ""
-        self.name = (try? decoder.container(String.self, forKey: .name) ?? ""
+        self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
+        self.name = (try? container.decode(String.self, forKey: .name)) ?? ""
     }
     
     enum CodingKeys: String, CodingKey {
