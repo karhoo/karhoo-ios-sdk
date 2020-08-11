@@ -36,6 +36,7 @@ enum APIEndpoint {
     case authUserInfo
     case authRefresh
     case adyenPaymentMethods
+    case paymentProvider
 
     var path: String {
         switch self {
@@ -115,6 +116,8 @@ enum APIEndpoint {
             return "/oauth/v2/token"
         case .adyenPaymentMethods:
             return "/payments/adyen/payments-methods"
+        case .paymentProvider:
+            return "/payments/providers"
         }
     }
 
@@ -153,6 +156,7 @@ enum APIEndpoint {
         case .authRefresh: return .post
         case .adyenPaymentMethods: return .post
         case .custom(_, let method): return method
+        case .paymentProvider: return .get
         }
     }
 
@@ -166,6 +170,7 @@ enum APIEndpoint {
         case .quotesV2(_ ): return "v2"
         case .quoteListIdV2: return "v2"
         case .adyenPaymentMethods: return "v3"
+        case .paymentProvider: return "v3"
         default: return "v1"
         }
     }

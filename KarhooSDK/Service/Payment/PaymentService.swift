@@ -15,4 +15,6 @@ public protocol PaymentService {
     func getNonce(nonceRequestPayload: NonceRequestPayload) -> Call<Nonce>
 
     func addPaymentDetails(addPaymentDetailsPayload: AddPaymentDetailsPayload) -> Call<Nonce>
+    
+    func getPaymentProvider() -> Call<PaymentProvider>
 }
