@@ -1619,6 +1619,8 @@
 				14E69FE924E1A8FA00133B1F /* InputDetail.swift */,
 			);
 			path = Adyen;
+            sourceTree = "<group>";
+        };
 		142CB39024DC2F4B0065149C /* PaymentProvider */ = {
 			isa = PBXGroup;
 			children = (
