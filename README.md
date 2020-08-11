@@ -18,3 +18,15 @@ There is a unit test target that tests individual classes work as expected, and 
 
 ![](docs/assets/network_sdk.png)
 
+# Setup 
+Install Carthage 
+	 `brew install carthage`
+   
+If you are running the project for the first time, navigate to BuiildPhases and under Link Binary with Libraries, remove the existing items 
+Close Xcode
+
+Run 
+	`carthage update`
+  
+Open Xcode
+If you are running the project for the first time, navigate to BuiildPhases and under Link Binary with Libraries, add the Carthage/Build/iOS/XXX.framework/
