@@ -10,18 +10,18 @@ import Foundation
 public struct AdyenPaymentMethod: KarhooCodableModel {
     public let brands: [String]
     public let configuration: [String: String]
-    public let details: [InputDetail]
-    public let group: [Group]
-    public let items: [Item]
+    public let details: [AdyenInputDetail]
+    public let group: [AdyenGroup]
+    public let items: [AdyenItem]
     public let paymentMethodData: String
     public let supportsRecurring: Bool
     public let type: String
     
     public init(brands: [String] = [],
                 configuration: [String: String] = [String: String](),
-                details: [InputDetail] = [],
-                group: [Group] = [],
-                items: [Item] = [],
+                details: [AdyenInputDetail] = [],
+                group: [AdyenGroup] = [],
+                items: [AdyenItem] = [],
                 paymentMethodData: String = "",
                 supportsRecurring: Bool,
                 type: String) {

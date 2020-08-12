@@ -5,15 +5,15 @@
 //  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
-public struct InputDetail: KarhooCodableModel {
+public struct AdyenInputDetail: KarhooCodableModel {
     public let configuration: [String: String]
     public let key: String
-    public let items: [Item]
+    public let items: [AdyenItem]
     public let type: String
     public let value: String
     
     public init(configuration: [String: String],
-                items: [Item] = [],
+                items: [AdyenItem] = [],
                 key: String = "",
                 type: String = "",
                 value: String = "") {

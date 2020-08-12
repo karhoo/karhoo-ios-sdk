@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Item: KarhooCodableModel {
+public struct AdyenItem: KarhooCodableModel {
     public let id: String
     public let name: String
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Group: KarhooCodableModel {
+public struct AdyenGroup: KarhooCodableModel {
     public let name: String
     public let paymentMethodData: String
     public let type: String
