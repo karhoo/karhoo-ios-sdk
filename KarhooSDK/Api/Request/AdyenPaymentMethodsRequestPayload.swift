@@ -9,12 +9,16 @@ import Foundation
 
 public struct AdyenPaymentMethodsRequestPayload: Codable, KarhooCodableModel {
     public let channel: String
+    public let merchantAccount: String
     
-    public init(channel: String = "iOS") {
+    public init(channel: String = "iOS",
+                merchantAccount: String = "") {
         self.channel = channel
+        self.merchantAccount = channel
     }
     
     enum CodingKeys: String, CodingKey {
         case channel
+        case merchantAccount
     }
 }

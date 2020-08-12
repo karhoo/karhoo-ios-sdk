@@ -19,7 +19,7 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
     }
     
     /**
-     * When: Adding payment details
+     * When: Getting payment provider
      * Then: Expected method, path and payload should be set
      */
     func testRequestFormat() {
@@ -39,7 +39,7 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
     }
     
     /**
-     * Given: Getting payment provider
+     * Given: Getting the payment provider
      * When: Get payment provider request succeeds
      * Then: Callback should be success
      */
@@ -55,7 +55,7 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
     }
 
     /**
-     * Given: Getting payment provider
+     * Given: Getting the payment provider
      * When: Get payment provider request succeeds
      * Then: Callback should contain expected error
      */
