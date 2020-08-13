@@ -9,18 +9,13 @@ import Foundation
 
 final class KarhooAdyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor {
     private let adyenPaymentMethodsRequestSender: RequestSender
-    private var adyenPaymentMethodsRequestPayload: AdyenPaymentMethodsRequestPayload?
 
     init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
         self.adyenPaymentMethodsRequestSender = requestSender
     }
-    
-    func set(adyenPaymentMethodsRequestPayload: AdyenPaymentMethodsRequestPayload) {
-        self.adyenPaymentMethodsRequestPayload = adyenPaymentMethodsRequestPayload
-    }
 
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
-        guard let payload = self.adyenPaymentMethodsRequestPayload else { return }
+        let payload = AdyenPaymentMethodsRequestPayload()
         adyenPaymentMethodsRequestSender.requestAndDecode(payload: payload,
                                                           endpoint: .adyenPaymentMethods,
                                                           callback: callback)

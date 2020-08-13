@@ -11,16 +11,12 @@ import XCTest
 final class KarhooAdyenPaymentMethodsInteractorSpec: XCTestCase {
     private var testObject: KarhooAdyenPaymentMethodsInteractor!
     private var mockRequestSender: MockRequestSender!
-    private var mockAdyenPaymentMethodsRequestPayload: AdyenPaymentMethodsRequestPayload!
-    
+        
     override func setUp() {
         super.setUp()
         
         mockRequestSender = MockRequestSender()
         testObject = KarhooAdyenPaymentMethodsInteractor(requestSender: mockRequestSender)
-        
-        mockAdyenPaymentMethodsRequestPayload = AdyenPaymentMethodsRequestPayload()
-        testObject.set(adyenPaymentMethodsRequestPayload: mockAdyenPaymentMethodsRequestPayload)
     }
     
     /**
@@ -57,10 +53,6 @@ final class KarhooAdyenPaymentMethodsInteractorSpec: XCTestCase {
             expectedResult = response
         })
 
-//        mockGetNonceRequest.triggerSuccessWithDecoded(value: Nonce(nonce: "some_nonce"))
-        
-//        testObject.execute(callback: { expectedResult = $0})
-
         mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
 
         XCTAssertEqual(2, expectedResult!.successValue()?.paymentMethods.count)
@@ -84,15 +76,5 @@ final class KarhooAdyenPaymentMethodsInteractorSpec: XCTestCase {
         XCTAssertNil(expectedResult?.successValue())
         XCTAssertFalse(expectedResult!.isSuccess())
         XCTAssert(expectedError.equals(expectedResult!.errorValue()!))
-
-//        var expectedResult: Result<AdyenPaymentMethods>?
-//
-//        testObject.execute(callback: { expectedResult = $0})
-//
-//        mockRequestSender.triggerFail(error: expectedError)
-
-//        XCTAssertNil(expectedResult?.successValue())
-
-//        XCTAssert(expectedError.equals(expectedResult!.errorValue()!))
     }
 }

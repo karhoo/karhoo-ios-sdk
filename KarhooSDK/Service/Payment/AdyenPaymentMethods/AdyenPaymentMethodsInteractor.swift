@@ -8,5 +8,4 @@
 import Foundation
 
 protocol AdyenPaymentMethodsInteractor: KarhooExecutable {
-    func set(adyenPaymentMethodsRequestPayload: AdyenPaymentMethodsRequestPayload)
 }

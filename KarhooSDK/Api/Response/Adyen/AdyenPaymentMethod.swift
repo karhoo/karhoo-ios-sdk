@@ -10,7 +10,7 @@ import Foundation
 public struct AdyenPaymentMethod: KarhooCodableModel {
     public let brands: [String]
     public let configuration: [String: String]
-    public let details: [AdyenInputDetail]
+    public let details: [AdyenDetail]
     public let group: [AdyenGroup]
     public let items: [AdyenItem]
     public let paymentMethodData: String
@@ -19,7 +19,7 @@ public struct AdyenPaymentMethod: KarhooCodableModel {
     
     public init(brands: [String] = [],
                 configuration: [String: String] = [String: String](),
-                details: [AdyenInputDetail] = [],
+                details: [AdyenDetail] = [],
                 group: [AdyenGroup] = [],
                 items: [AdyenItem] = [],
                 paymentMethodData: String = "",
