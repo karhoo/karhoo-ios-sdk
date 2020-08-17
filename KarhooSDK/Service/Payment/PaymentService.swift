@@ -17,4 +17,6 @@ public protocol PaymentService {
     func addPaymentDetails(addPaymentDetailsPayload: AddPaymentDetailsPayload) -> Call<Nonce>
     
     func getPaymentProvider() -> Call<PaymentProvider>
+    
+    func getAdyenPaymentMethods() -> Call<AdyenPaymentMethods>
 }

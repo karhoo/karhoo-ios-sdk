@@ -1,30 +1,31 @@
 //
-//  PaymentProviderInteractor.swift
+//  KarhooAdyenPaymentMethodsInteractorSpec.swift
 //  KarhooSDKTests
 //
 //  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
+
 import XCTest
 @testable import KarhooSDK
 
-final class KarhooPaymentProviderInteractorSpec: XCTestCase {
-    private var testObject: KarhooPaymentProviderInteractor!
+final class KarhooAdyenPaymentMethodsInteractorSpec: XCTestCase {
+    private var testObject: KarhooAdyenPaymentMethodsInteractor!
     private var mockRequestSender: MockRequestSender!
-    
+        
     override func setUp() {
         super.setUp()
-
+        
         mockRequestSender = MockRequestSender()
-        testObject = KarhooPaymentProviderInteractor(requestSender: mockRequestSender)
+        testObject = KarhooAdyenPaymentMethodsInteractor(requestSender: mockRequestSender)
     }
     
     /**
-     * When: Getting payment provider
+     * When: Getting Adyen payment methods
      * Then: Expected method, path and payload should be set
      */
     func testRequestFormat() {
-        testObject.execute(callback: { ( _: Result<PaymentProvider>) in})
-        mockRequestSender.assertRequestSendAndDecoded(endpoint: .paymentProvider,
+        testObject.execute(callback: { ( _: Result<AdyenPaymentMethods>) in})
+        mockRequestSender.assertRequestSendAndDecoded(endpoint: .adyenPaymentMethods,
                                                       method: .get,
                                                       payload: nil)
     }
@@ -39,30 +40,34 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
     }
     
     /**
-     * Given: Getting the payment provider
-     * When: Get payment provider request succeeds
+     * Given: Getting Adyen payment methods
+     * When: Get Adyen payment methods request succeeds
      * Then: Callback should be success
      */
     func testPaymentProviderSuccess() {
-        let expectedResponse = PaymentProvider(id: "some_id", loyaltyProgammes: [])
-        var expectedResult: Result<PaymentProvider>?
+        let paymentMethod = AdyenPaymentMethodMock().build()
+        let expectedResponse = AdyenPaymentMethods(paymentMethods: [paymentMethod, paymentMethod])
+        var expectedResult: Result<AdyenPaymentMethods>?
         
-        testObject.execute(callback: { expectedResult = $0})
+        testObject.execute(callback: { response in
+            expectedResult = response
+        })
 
         mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
 
-        XCTAssertEqual("some_id", expectedResult!.successValue()?.id)
+        XCTAssertEqual(2, expectedResult!.successValue()?.paymentMethods.count)
+        XCTAssertEqual("Credit Card", expectedResult!.successValue()?.paymentMethods[0].name)
     }
 
     /**
-     * Given: Getting the payment provider
-     * When: Get payment provider request succeeds
+     * Given: Getting Adyen payment methods
+     * When: Get Adyen payment methods request succeeds
      * Then: Callback should contain expected error
      */
     func testPaymentProviderFail() {
         let expectedError = TestUtil.getRandomError()
 
-        var expectedResult: Result<PaymentProvider>?
+        var expectedResult: Result<AdyenPaymentMethods>?
 
         testObject.execute(callback: { expectedResult = $0})
 

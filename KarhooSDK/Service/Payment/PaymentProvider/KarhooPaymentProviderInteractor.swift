@@ -10,13 +10,12 @@ import Foundation
 final class KarhooPaymentProviderInteractor: PaymentProviderInteractor {
     
     private let paymentProviderRequestSender: RequestSender
-    private var paymentProviderCallback: CallbackClosure<PaymentProvider>?
 
     init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
         self.paymentProviderRequestSender = requestSender
     }
 
-    func execute<T>(callback: @escaping (Result<T>) -> Void) where T: KarhooCodableModel {
+    func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
         paymentProviderRequestSender.requestAndDecode(payload: nil,
                                                       endpoint: .paymentProvider,
                                                       callback: callback)
