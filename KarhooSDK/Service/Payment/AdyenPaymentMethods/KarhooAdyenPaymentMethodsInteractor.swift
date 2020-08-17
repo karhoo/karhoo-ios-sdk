@@ -8,6 +8,7 @@
 import Foundation
 
 final class KarhooAdyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor {
+
     private let adyenPaymentMethodsRequestSender: RequestSender
 
     init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
