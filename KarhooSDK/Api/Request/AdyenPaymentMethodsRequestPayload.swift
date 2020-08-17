@@ -8,9 +8,9 @@
 import Foundation
 
 public struct AdyenPaymentMethodsRequestPayload: Codable, KarhooCodableModel {
-    public let channel: String?
+    public let channel: String
     
-    public init(channel: String? = "iOS") {
+    public init(channel: String = "iOS") {
         self.channel = channel
     }
     
