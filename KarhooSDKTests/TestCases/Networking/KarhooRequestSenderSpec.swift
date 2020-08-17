@@ -18,7 +18,7 @@ final class KarhooRequestSenderSpec: XCTestCase {
     private var requestTesting: RequestTesting!
     private var mockPayload: MockPayload!
 
-    let endpoint = APIEndpoint.availability
+    let endpoint = APIEndpoint.bookTrip
 
     override func setUp() {
         mockPayload = MockPayload(value: "some")

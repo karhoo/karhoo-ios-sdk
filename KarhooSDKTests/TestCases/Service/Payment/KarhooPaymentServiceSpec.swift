@@ -15,7 +15,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
     private var mockPaymentSDKTokenInteractor: MockPaymentSDKTokenInteractor!
     private var mockGetNonceInteractor: MockGetNonceInteractor!
     private var mockAddPaymentDetailsInteractor: MockAddPaymentDetailsInteractor!
-    private var mockPaymentProviderInteractor: MockPaymentProviderInteractor!
+    private var mockPaymentProviderInteractor = MockPaymentProviderInteractor()
     private var testObject: KarhooPaymentService!
     private let mockRequestPayload: PaymentSDKTokenPayload = PaymentSDKTokenPayload(organisationId: "some",
                                                                                     currency: "gbp")

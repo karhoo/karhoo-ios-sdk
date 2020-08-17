@@ -15,7 +15,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
     private var testobject: KarhooQuoteService!
     private var mockQuoteInteractor: MockQuoteInteractor!
-    private var mockQuoteInteractorV2: MockQuoteInteractor!
+    private var mockQuoteInteractorV2 = MockQuoteInteractorV2()
 
     private let mockQuoteSearch: QuoteSearch = QuoteSearch(origin: LocationInfoMock()
                                                                    .set(placeId: "originPlaceId")
@@ -25,7 +25,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
                                                                         .build(),
                                                            dateScheduled: Date())
 
-    static let mockFleet = FleetInfo(id: "success-quoutev2")
+    static let mockFleet = FleetInfo(id: "success-quotev2")
     static let mockQuote = QuoteMock().set(quoteId: "success-quote").set(categoryName: "foo").set(fleet: mockFleet).build()
     let mockQuotesResult = Quotes(quoteListId: "some",
                                   quoteCategories: [QuoteCategory(name: "foo", quotes: [mockQuote])],

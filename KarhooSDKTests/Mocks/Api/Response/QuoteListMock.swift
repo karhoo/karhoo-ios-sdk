@@ -51,6 +51,7 @@ final class QuoteListMock {
 
         self.quoteList = QuoteList(
                 quoteItems: quoteListItems,
+                quotes: quoteListItems,
                 listId: listId,
                 status: status,
                 validity: validity)
