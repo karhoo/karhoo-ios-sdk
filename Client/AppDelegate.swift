@@ -32,9 +32,9 @@ struct SDKConfig: KarhooSDKConfiguration {
     }
 
     func authenticationMethod() -> AuthenticationMethod {
-        let guestSettings = GuestSettings(identifier: "",
-                                          referer: "",
-                                          organisationId: "")
+        let guestSettings = GuestSettings(identifier: Keys.identifier,
+                                          referer: Keys.referer,
+                                          organisationId: Keys.organisationId)
         return .guest(settings: guestSettings)
     }
 }
