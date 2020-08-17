@@ -7,32 +7,28 @@
 
 public struct AdyenDetail: KarhooCodableModel {
     public let configuration: [String: String]
-    public let key: String?
     public let items: [AdyenItem]
-    public let name: String?
-    public let type: String?
-    public let value: String?
+    public let key: String
+    public let optional: Bool
+    public let type: String
     
     public init(configuration: [String: String],
                 items: [AdyenItem] = [],
-                key: String? = "",
-                name: String? = "",
-                type: String? = "",
-                value: String? = "") {
-        self.configuration = configuration
+                key: String = "",
+                optional: Bool = false,
+                type: String = "") {
+        self.configuration = configuration 
         self.items = items
         self.key = key
-        self.name = name
+        self.optional = optional
         self.type = type
-        self.value = value
     }
     
     enum CodingKeys: String, CodingKey {
         case configuration
         case key
         case items
-        case name
+        case optional
         case type
-        case value
     }
 }

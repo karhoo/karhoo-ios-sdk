@@ -36,8 +36,8 @@ final class AdyenPaymentMethodsSpec: XCTestCase {
             XCTAssertEqual("Credit Card", result.successValue()?.groups[0].name)
             XCTAssertEqual(2, result.successValue()?.groups[0].types.count)
             XCTAssertEqual(1, result.successValue()?.paymentMethods.count)
-            XCTAssertEqual("Credit Card", result.successValue()?.paymentMethods[0].details[0].name)
-            XCTAssertEqual("scheme", result.successValue()?.paymentMethods[0].details[0].type)
+            XCTAssertEqual("Credit Card", result.successValue()?.paymentMethods[0].name)
+            XCTAssertEqual("scheme", result.successValue()?.paymentMethods[0].type)
             expectation.fulfill()
         })
         

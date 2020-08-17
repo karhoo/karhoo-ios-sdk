@@ -56,7 +56,7 @@ final class KarhooAdyenPaymentMethodsInteractorSpec: XCTestCase {
         mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
 
         XCTAssertEqual(2, expectedResult!.successValue()?.paymentMethods.count)
-        XCTAssertEqual("some data", expectedResult!.successValue()?.paymentMethods[0].paymentMethodData)
+        XCTAssertEqual("Credit Card", expectedResult!.successValue()?.paymentMethods[0].name)
     }
 
     /**

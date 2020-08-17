@@ -15,13 +15,10 @@ final class AdyenPaymentMethodMock {
     
     init() {
         self.adyenPaymentMethod = AdyenPaymentMethod(brands: ["amex", "maestro", "visa"],
-                                                     configuration: [String: String](),
                                                      details: [],
-                                                     group: [],
-                                                     items: [],
-                                                     paymentMethodData: "some data",
+                                                     name: "Credit Card",
                                                      supportsRecurring: true,
-                                                     type: "")
+                                                     type: "scheme")
     }
     
     func build() -> AdyenPaymentMethod {
