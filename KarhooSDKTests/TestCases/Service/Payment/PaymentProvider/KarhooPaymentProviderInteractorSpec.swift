@@ -44,14 +44,14 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
      * Then: Callback should be success
      */
     func testPaymentProviderSuccess() {
-        let expectedResponse = PaymentProvider(id: "some_id", loyaltyProgammes: [])
+        let expectedResponse = PaymentProvider(provider: Provider(id: "some_id", loyaltyProgammes: []))
         var expectedResult: Result<PaymentProvider>?
         
         testObject.execute(callback: { expectedResult = $0})
 
         mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
 
-        XCTAssertEqual("some_id", expectedResult!.successValue()?.id)
+        XCTAssertEqual("some_id", expectedResult!.successValue()?.provider.id)
     }
 
     /**
