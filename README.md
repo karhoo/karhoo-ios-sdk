@@ -8,6 +8,7 @@
     src="https://cdn.karhoo.com/s/images/logos/karhoo_logo.png"
   />
 </a>
+</div>
 
 <h1>Karhoo iOS Network SDK</h1>
 
@@ -17,14 +18,6 @@ KarhooSDK is a framework for integrating with the KarhooAPI: https://developer.k
 
 
 [**Read The Docs**](https://developer.karhoo.com/docs/build-apps-using-sdks)
-
-</div>
-
-<hr />
-
-![](https://github.com/karhoo/Karhoo-iOS-SDK/workflows/Develop%20Branch%20CI/badge.svg)
-
-KarhooSDK is a framework for integrating with the KarhooAPI: https://developer.karhoo.com
 
 
 ## Installation
@@ -111,3 +104,7 @@ For questions related to using the library, please re-visit a documentation firs
 [Karhoo Developer Site](https://developer.karhoo.com/)
 
 [The iOS UI SDK](https://github.com/karhoo/karhoo-ios-ui-sdk)
+
+## License
+[BSD-2-Clause](./LICENSE)
+
