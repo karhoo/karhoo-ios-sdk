@@ -53,6 +53,7 @@ public struct QuoteList: KarhooCodableModel {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(quotes, forKey: .quotes)
         try container.encode(quoteItems, forKey: .quoteItems)
         try container.encode(listId, forKey: .listId)
         try container.encode(status, forKey: .status)

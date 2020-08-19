@@ -121,7 +121,9 @@ final class QuoteMock {
                         categoryName: String? = nil,
                         fleet: FleetInfo? = nil,
                         vehicle: QuoteVehicle? = nil) {
+        let quoteVehicle = QuoteVehicle(qta: QuoteQta(highMinutes: qtaHighMinutes ?? 0, lowMinutes: qtaLowMinutes ?? 0))
         self.quote = Quote(
+                id: quoteId ?? quote.id,
                 quoteId: quoteId ?? quote.quoteId,
                 fleetId: fleetId ?? quote.fleetId,
                 availabilityId: availabilityId ?? quote.availabilityId,
@@ -138,6 +140,6 @@ final class QuoteMock {
                 termsConditionsURL: termsConditionsUrl ?? quote.termsConditionsUrl,
                 categoryName: categoryName ?? quote.categoryName,
                 fleet: fleet ?? quote.fleet,
-                vehicle: vehicle ?? quote.vehicle)
+                vehicle: quoteVehicle ?? quote.vehicle)
     }
 }

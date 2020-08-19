@@ -115,7 +115,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
                                            destination: expectedDestination,
                                            dateScheduled: dateScheduled)
 
-        mockQuoteListIdRequest.assertRequestSendAndDecoded(endpoint: .quoteListId,
+        mockQuoteListIdRequest.assertRequestSendAndDecoded(endpoint: .quoteListIdV2,
                                                            method: .post,
                                                            payload: expectedPayload)
 
@@ -150,7 +150,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
 
         mockQuoteListIdRequest.triggerSuccessWithDecoded(value: QuoteListId(identifier: "some", validityTime: 100))
 
-        mockQuotesRequest.assertRequestSendAndDecoded(endpoint: .quotes(identifier: "some"),
+        mockQuotesRequest.assertRequestSendAndDecoded(endpoint: .quotesV2(identifier: "some"),
                                                       method: .post,
                                                       payload: nil)
     }
@@ -177,7 +177,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
 
         mockQuotesRequest.triggerSuccessWithDecoded(value: expectedResult)
 
-        XCTAssertEqual(expectedQuote.quoteId, result?.successValue()?.quotes(for: "foo")[0].quoteId)
+        XCTAssertEqual(expectedQuote.id, result?.successValue()?.all[0].id)
     }
 
     /**
@@ -257,7 +257,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
 
         mockQuotesRequest.triggerSuccessWithDecoded(value: expectedResult)
 
-        XCTAssertEqual(expectedQuote.quoteId, result?.successValue()?.quotes(for: "foo")[0].quoteId)
+        XCTAssertEqual(expectedQuote.id, result?.successValue()?.all[0].id)
     }
 
     /**
