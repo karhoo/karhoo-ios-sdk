@@ -44,11 +44,94 @@ Create a `Cartfile` that lists the framework and run `carthage update`. Follow t
 github "Karhoo/Karhoo-ios-sdk"
 ```
 
+# Usage
+
+## Initialisation
+
+There are a few things the SDK needs to know before you can get started. Such as what environment to connect to, or what kind of authentication method to use. These dependencies can be setup in an implementation of the KarhooSDKConfiguration protocol.
+
+```swift
+import KarhooSDK
+
+struct YourCompanyKarhooConfiguration: KarhooSDKConfiguration {
+    
+    func environment() -> KarhooEnvironment {
+        return .sandbox
+    }
+
+    func authenticationMethod() -> AuthenticationMethod {
+    // for other authentication methods such as guest or token exchange bookings please see: https://developer.karhoo.com/docs/using-the-network-sdk#authentication
+        return .karhooUser
+    }
+}
+```
+
+With this configuration the SDK can be initialised in your App/SceneDelegate
+
+```swift
+import KarhooSDK
+
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Karhoo.set(configuration: YourCompanyKarhooConfiguration())
+       ..
+        return true
+    }
+}
+```
+
+For full documentation of SDK services please visit our Developer Portal: https://developer.karhoo.com/reference#user-service
+
+## Making Requests
+
+The SDK uses two generic types. Call and PollCall. These are network requests that are going to either make one request or observe the end point over a given interval. 
+
+### Example Call
+
+```swift
+let tripService = Karhoo.getTripService()
+let tripCancellation = TripCancellation(tripId: "123", cancelReason: .notNeededAnymore)
+
+tripService.cancel(tripCancellation: tripCancellation).execute { result in
+    switch result {
+    case .success:
+        print("Trip cancelled")
+    case .failure(let error):
+        print("error: \(error.code) \(error.message)")
+    }
+}
+```
+
+### Example PollCall
+
+Perhaps you want to monitor a trip and update your UI accordingly. We've made an Observable type that can subscribe / unsubscribe a subject to a publisher. 
+
+```swift
+//ensure your reference for the Observer (Subject) AND the Observable (Publisher) are not confined to the scope of a function otherwise they go out of memory at runtime and your UI won't update.
+
+private var tripTrackingObservable: Observable<TripInfo>?
+private var tripTrackingObserver: Observer<TripInfo>?
+
+
+tripTrackingObserver = Observer<TripInfo>.value { [weak self] tripInfo in
+           			print("new trip update! ", tripInfo)
+        		}
+        
+tripTrackingObservable = tripService.trackTrip(identifier: "some-trip-id").observable(pollTime: 5) // where 5 = 5 seconds
+
+tripTrackingObservable?.subscribe(observer: tripTrackingObserver)
+
+// deallocation
+tripTrackingObservable?.unsubscribe(observer: tripTrackingObserver)
+```
+
 # SDK Architecture overview:
 
 The SDK is split into Services. Services such as Trip, DriverTracking, Availability, User, Payments etc. These services in turn depend on Interactors, these Interactors depend on a request. Simply calling a function in a service will trigger the interactor to call the request. The request uses our HttpClient to make the network call. 
-
-Call and PollCall objects are returned from the KarhooSDK. PollCalls return observables which can be used to poll the endpoint, and Calls have an execute function which fires the request. 
 
 Models are encoded/decoded using Decodable structs. These are located in Api/DataObjects/Request /Response groups. 
 
