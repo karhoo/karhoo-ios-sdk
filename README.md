@@ -112,7 +112,6 @@ Perhaps you want to monitor a trip and update your UI accordingly. We've made an
 
 ```swift
 //ensure your reference for the Observer (Subject) AND the Observable (Publisher) are not confined to the scope of a function otherwise they go out of memory at runtime and your UI won't update.
-
 private var tripTrackingObservable: Observable<TripInfo>?
 private var tripTrackingObserver: Observer<TripInfo>?
 
