@@ -48,7 +48,7 @@ github "Karhoo/Karhoo-ios-sdk"
 
 ## Initialisation
 
-There are a few things the SDK needs to know before you can get started. Such as what environment to connect to, or what kind of authentication method to use. These dependencies can be setup in an implementation of the KarhooSDKConfiguration protocol.
+There are a few things the SDK needs to know before you can get started. Such as what environment to connect to, or what kind of authentication method to use. These dependencies can be set up in an implementation of the KarhooSDKConfiguration protocol.
 
 ```swift
 import KarhooSDK
