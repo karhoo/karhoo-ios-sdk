@@ -15,17 +15,20 @@ final class KarhooPaymentService: PaymentService {
     private let addPaymentDetailsInteractor: AddPaymentDetailsInteractor
     private let paymentProviderInteractor: PaymentProviderInteractor
     private let adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor
+    private let adyenPaymentsInteractor: AdyenPaymentsInteractor
 
     init(tokenInteractor: PaymentSDKTokenInteractor = KarhooPaymentSDKTokenInteractor(),
          getNonceInteractor: GetNonceInteractor = KarhooGetNonceInteractor(),
          addPaymentDetailsInteractor: AddPaymentDetailsInteractor = KarhooAddPaymentDetailsInteractor(),
          paymentProviderInteractor: PaymentProviderInteractor = KarhooPaymentProviderInteractor(),
-         adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor = KarhooAdyenPaymentMethodsInteractor()) {
+         adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor = KarhooAdyenPaymentMethodsInteractor(),
+    adyenPaymentsInteractor: AdyenPaymentsInteractor = KarhooAdyenPaymentsInteractor()){
         self.paymentSDKTokenInteractor = tokenInteractor
         self.getNonceInteractor = getNonceInteractor
         self.addPaymentDetailsInteractor = addPaymentDetailsInteractor
         self.paymentProviderInteractor = paymentProviderInteractor
         self.adyenPaymentMethodsInteractor = adyenPaymentMethodsInteractor
+        self.adyenPaymentsInteractor = adyenPaymentsInteractor
     }
 
     func initialisePaymentSDK(paymentSDKTokenPayload: PaymentSDKTokenPayload) -> Call<PaymentSDKToken> {
@@ -52,4 +55,9 @@ final class KarhooPaymentService: PaymentService {
     func getAdyenPaymentMethods() -> Call<AdyenPaymentMethods> {
         return Call(executable: adyenPaymentMethodsInteractor)
     }
+    
+    func getAdyenPayments() -> Call<AdyenPaymentsResponse> {
+        return Call(executable: adyenPaymentsInteractor)
+    }
+    
 }

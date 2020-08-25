@@ -5,6 +5,8 @@
 //  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
+import Foundation
+
 public struct AdyenDetail: KarhooCodableModel {
     public let items: [AdyenItem]
     public let key: String
