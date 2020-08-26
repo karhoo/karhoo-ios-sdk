@@ -28,7 +28,7 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
   * Then: Expected method, path and payload should be set
   */
  func testRequestFormat() {
-     testObject.execute(callback: { ( _: Result<AdyenPaymentsResponse>) in})
+     testObject.execute(callback: { ( _: Result<AdyenPayment>) in})
      mockRequestSender.assertRequestSendAndDecoded(endpoint: .adyenPayments,
                                                    method: .get,
                                                    payload: nil)

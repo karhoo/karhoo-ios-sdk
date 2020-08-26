@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct AdyenPayments: KarhooCodableModel {
+public struct AdyenPayment: KarhooCodableModel {
     public let pspReference: String
     public let resultCode: String
     public let amount: AdyenAmount
@@ -39,7 +39,7 @@ public struct AdyenPayments: KarhooCodableModel {
         self.amount = (try? container.decode(AdyenAmount.self, forKey: .amount)) ?? AdyenAmount()
         self.merchantReference = (try? container.decode(String.self, forKey: .merchantReference)) ?? ""
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(pspReference, forKey: .pspReference)

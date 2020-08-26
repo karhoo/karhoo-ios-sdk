@@ -13,9 +13,9 @@ public struct AdyenAmount: KarhooCodableModel {
     public let value: Double
     
     public init(currency: String = "",
-        value: Double = 0) {
-    self.currency = currency
-    self.value = value
+                value: Double = 0) {
+        self.currency = currency
+        self.value = value
     }
     
     enum CodingKeys: String, CodingKey {
@@ -28,7 +28,7 @@ public struct AdyenAmount: KarhooCodableModel {
         self.currency = (try? container.decode(String.self, forKey: .currency)) ?? ""
         self.value = (try? container.decode(Double.self, forKey: .value)) ?? 0.0
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(currency, forKey: .currency)

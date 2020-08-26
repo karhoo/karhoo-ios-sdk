@@ -56,7 +56,7 @@ final class KarhooPaymentService: PaymentService {
         return Call(executable: adyenPaymentMethodsInteractor)
     }
     
-    func getAdyenPayments() -> Call<AdyenPaymentsResponse> {
+    func getAdyenPayments() -> Call<AdyenTransaction> {
         return Call(executable: adyenPaymentsInteractor)
     }
     
