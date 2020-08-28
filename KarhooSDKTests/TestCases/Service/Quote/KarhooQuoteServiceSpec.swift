@@ -36,40 +36,9 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
         mockQuoteInteractor = MockQuoteInteractor()
 
-        testobject = KarhooQuoteService(quoteInteractor: mockQuoteInteractor, quoteV2Interactor: mockQuoteInteractorV2)
+        testobject = KarhooQuoteService(quoteV2Interactor: mockQuoteInteractorV2)
     }
 
-    /**
-      * When: Quote search succeeds
-      * Then: callback should be executed with expected value
-      */
-    func testQuoteSearchSucces() {
-        let pollCall = testobject.quotes(quoteSearch: mockQuoteSearch)
-
-        var result: Result<Quotes>?
-        pollCall.execute(callback: { result = $0 })
-
-        mockQuoteInteractor.triggerSuccess(result: mockQuotesResult)
-
-        XCTAssertEqual("success-quote", result?.successValue()?.quotes(for: "foo")[0].quoteId)
-    }
-
-    /**
-     * When: Quote search fails
-     * Then: callback should be executed with expected value
-     */
-    func testQuoteSearchFails() {
-        let pollCall = testobject.quotes(quoteSearch: mockQuoteSearch)
-
-        var result: Result<Quotes>?
-        pollCall.execute(callback: { result = $0 })
-
-        let expectedError = TestUtil.getRandomError()
-        mockQuoteInteractor.triggerFail(error: expectedError)
-
-        XCTAssert(expectedError.equals(result?.errorValue()))
-    }
-    
     /**
       * When: QuoteV2 search succeeds
       * Then: callback should be executed with expected value

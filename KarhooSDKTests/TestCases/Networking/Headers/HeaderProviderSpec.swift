@@ -128,7 +128,7 @@ final class HeaderProviderSpec: XCTestCase {
         var httpHeader = ["foo": "bar"]
 
         let finalHeaders = testHeaderProvider.headersWithCorrelationId(headers: &httpHeader,
-                                                                       endpoint: .availability)
+                                                                       endpoint: .bookTrip)
         let correlationId: String = finalHeaders["correlation_id"] ?? ""
 
         let prefix = String(correlationId.prefix(HeaderConstants.correlationIdPrefix.count))
@@ -147,7 +147,7 @@ final class HeaderProviderSpec: XCTestCase {
     func testMakingABookingRequestUsesTheSameIdAsQuote() {
         var headers = HttpHeaders()
         let quoteHeaders = testHeaderProvider.headersWithCorrelationId(headers: &headers,
-                                                                       endpoint: .quoteListId)
+                                                                       endpoint: .quoteListIdV2)
         let bookingHeaders = testHeaderProvider.headersWithCorrelationId(headers: &headers,
                                                                          endpoint: .bookTrip)
 
@@ -162,9 +162,9 @@ final class HeaderProviderSpec: XCTestCase {
     func testMultipleQuoteRequestsGenerateDifferentIds() {
         var headers = HttpHeaders()
         let quoteHeadersOne = testHeaderProvider.headersWithCorrelationId(headers: &headers,
-                                                                          endpoint: .quoteListId)
+                                                                          endpoint: .quoteListIdV2)
         let quoteHeadersTwo = testHeaderProvider.headersWithCorrelationId(headers: &headers,
-                                                                          endpoint: .quoteListId)
+                                                                          endpoint: .quoteListIdV2)
 
         XCTAssertNotEqual(quoteHeadersOne, quoteHeadersTwo)
     }

@@ -1,11 +1,7 @@
 import Foundation
 
 enum APIEndpoint {
-    @available(*, deprecated, message: "Availability is deprecated")
-    case availability
-    
-    case quoteListId
-    case quotes(identifier: String)
+
     case quoteListIdV2
     case quotesV2(identifier: String)
     case bookTrip
@@ -49,12 +45,6 @@ enum APIEndpoint {
 
     var relativePath: String {
         switch self {
-        case .availability:
-            return "/quotes/availability"
-        case .quoteListId:
-            return "/quotes/"
-        case .quotes(let identifier):
-            return "/quotes/\(identifier)"
         case .quoteListIdV2:
             return "/quotes/"
         case .quotesV2(let identifier):
@@ -123,9 +113,6 @@ enum APIEndpoint {
 
     var method: HttpMethod {
         switch self {
-        case .availability: return .post
-        case .quoteListId: return .post
-        case .quotes: return .get
         case .quoteListIdV2: return .post
         case .quotesV2: return .get
         case .bookTrip: return .post
@@ -165,8 +152,6 @@ enum APIEndpoint {
         case .addPaymentDetails: return "v2"
         case .getNonce: return "v2"
         case .paymentSDKToken: return "v2"
-        case .quotes(_ ): return "v1"
-        case .quoteListId: return "v1"
         case .quotesV2(_ ): return "v2"
         case .quoteListIdV2: return "v2"
         case .paymentProvider: return "v3"

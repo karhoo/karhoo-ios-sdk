@@ -13,7 +13,7 @@ import XCTest
 
 final class KarooQuoteInteractorSpecV2: XCTestCase {
 
-    private var testObject: KarhooQuoteInteractorV2!
+    private var testObject: KarhooQuoteInteractor!
     private var mockQuoteListIdRequest: MockRequestSender!
     private var mockQuotesRequest: MockRequestSender!
 
@@ -29,7 +29,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
         mockQuoteListIdRequest = MockRequestSender()
         mockQuotesRequest = MockRequestSender()
 
-        testObject = KarhooQuoteInteractorV2(quoteListIdRequest: mockQuoteListIdRequest,
+        testObject = KarhooQuoteInteractor(quoteListIdRequest: mockQuoteListIdRequest,
                                              quotesRequest: mockQuotesRequest)
 
         testObject.set(quoteSearch: mockQuoteSearch)
@@ -41,7 +41,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
      * And: No requests should be made
      */
     func testNoQuoteSearchSet() {
-        let noQuoteSearchSetInteractor = KarhooQuoteInteractorV2(quoteListIdRequest: mockQuoteListIdRequest,
+        let noQuoteSearchSetInteractor = KarhooQuoteInteractor(quoteListIdRequest: mockQuoteListIdRequest,
                                                                  quotesRequest: mockQuotesRequest)
 
         noQuoteSearchSetInteractor.execute(callback: { (_:Result<Quotes>) in })

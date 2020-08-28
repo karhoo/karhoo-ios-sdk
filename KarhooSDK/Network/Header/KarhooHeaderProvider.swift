@@ -55,7 +55,7 @@ class KarhooHeaderProvider: HeaderProvider {
     func headersWithCorrelationId(headers: inout HttpHeaders, endpoint: APIEndpoint) -> HttpHeaders {
         var uuid: String
         switch endpoint {
-        case .quoteListId:
+        case .quoteListIdV2:
             uuid = createQuoteUUID()
         case .bookTrip:
             uuid = bookingUUID()

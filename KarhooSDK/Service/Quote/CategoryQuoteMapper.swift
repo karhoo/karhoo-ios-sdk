@@ -19,11 +19,7 @@ struct CategoryQuoteMapper {
 
         return categoriesToMap.map { category in
             let quotes = quotes.filter {
-                var name = $0.categoryName
-                if name.isEmpty {
-                    name = $0.vehicle.vehicleClass
-                }
-
+                let name = $0.vehicle.vehicleClass
                 return name.lowercased() == category.lowercased()
             }
             
