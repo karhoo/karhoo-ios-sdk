@@ -14,8 +14,7 @@ import XCTest
 final class KarhooQuoteServiceSpec: XCTestCase {
 
     private var testobject: KarhooQuoteService!
-    private var mockQuoteInteractor: MockQuoteInteractor!
-    private var mockQuoteInteractorV2 = MockQuoteInteractorV2()
+    private var mockQuoteInteractor = MockQuoteInteractor()
 
     private let mockQuoteSearch: QuoteSearch = QuoteSearch(origin: LocationInfoMock()
                                                                    .set(placeId: "originPlaceId")
@@ -36,20 +35,20 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
         mockQuoteInteractor = MockQuoteInteractor()
 
-        testobject = KarhooQuoteService(quoteV2Interactor: mockQuoteInteractorV2)
+        testobject = KarhooQuoteService(quoteInteractor: mockQuoteInteractor)
     }
 
     /**
-      * When: QuoteV2 search succeeds
+      * When: Quote search succeeds
       * Then: callback should be executed with expected value
       */
-    func testQuoteV2SearchSucces() {
-        let pollCall = testobject.quotesV2(quoteSearch: mockQuoteSearch)
+    func testQuoteSearchSucces() {
+        let pollCall = testobject.quotes(quoteSearch: mockQuoteSearch)
 
         var result: Result<Quotes>?
         pollCall.execute(callback: { result = $0 })
 
-        mockQuoteInteractorV2.triggerSuccess(result: mockQuotesResult)
+        mockQuoteInteractor.triggerSuccess(result: mockQuotesResult)
 
         XCTAssertEqual("success-quotev2", result?.successValue()?.quotes(for: "foo")[0].fleet.id)
     }
@@ -58,14 +57,14 @@ final class KarhooQuoteServiceSpec: XCTestCase {
      * When: Quote search fails
      * Then: callback should be executed with expected value
      */
-    func testQuoteV2SearchFails() {
-        let pollCall = testobject.quotesV2(quoteSearch: mockQuoteSearch)
+    func testQuoteSearchFails() {
+        let pollCall = testobject.quotes(quoteSearch: mockQuoteSearch)
 
         var result: Result<Quotes>?
         pollCall.execute(callback: { result = $0 })
 
         let expectedError = TestUtil.getRandomError()
-        mockQuoteInteractorV2.triggerFail(error: expectedError)
+        mockQuoteInteractor.triggerFail(error: expectedError)
 
         XCTAssert(expectedError.equals(result?.errorValue()))
     }

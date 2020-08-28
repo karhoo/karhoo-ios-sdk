@@ -1,5 +1,5 @@
 //
-//  QuoteSearchV2MethodSpec.swift
+//  QuoteSearchMethodSpec.swift
 //  KarhooSDKIntegrationTests
 //
 //  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import KarhooSDK
 
-final class QuoteSearchV2MethodSpec: XCTestCase {
+final class QuoteSearchMethodSpec: XCTestCase {
 
     private let quoteListIdPath = "/v2/quotes"
     private let quotesPath = "/v2/quotes/some-id"
@@ -22,7 +22,7 @@ final class QuoteSearchV2MethodSpec: XCTestCase {
                                       destination: LocationInfoMock().set(placeId: "destinationPlaceId").build(),
                                       dateScheduled: Date())
         quoteService = Karhoo.getQuoteService()
-        pollCall = quoteService.quotesV2(quoteSearch: quoteSearch)
+        pollCall = quoteService.quotes(quoteSearch: quoteSearch)
     }
 
     /**

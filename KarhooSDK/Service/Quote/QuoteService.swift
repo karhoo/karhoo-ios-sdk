@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol QuoteService {    
-    func quotesV2(quoteSearch: QuoteSearch) -> PollCall<Quotes>
+    func quotes(quoteSearch: QuoteSearch) -> PollCall<Quotes>
 }

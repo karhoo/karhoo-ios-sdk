@@ -1,5 +1,5 @@
 //
-//  KarhooQuoteInteractorSpecV2.swift
+//  KarhooQuoteInteractorSpec.swift
 //  KarhooSDKTests
 //
 //  Created by Jeevan Thandi on 14/07/2020.
@@ -115,7 +115,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
                                            destination: expectedDestination,
                                            dateScheduled: dateScheduled)
 
-        mockQuoteListIdRequest.assertRequestSendAndDecoded(endpoint: .quoteListIdV2,
+        mockQuoteListIdRequest.assertRequestSendAndDecoded(endpoint: .quoteListId,
                                                            method: .post,
                                                            payload: expectedPayload)
 
@@ -150,7 +150,7 @@ final class KarooQuoteInteractorSpecV2: XCTestCase {
 
         mockQuoteListIdRequest.triggerSuccessWithDecoded(value: QuoteListId(identifier: "some", validityTime: 100))
 
-        mockQuotesRequest.assertRequestSendAndDecoded(endpoint: .quotesV2(identifier: "some"),
+        mockQuotesRequest.assertRequestSendAndDecoded(endpoint: .quotes(identifier: "some"),
                                                       method: .post,
                                                       payload: nil)
     }

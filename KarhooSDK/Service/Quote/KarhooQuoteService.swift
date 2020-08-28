@@ -10,15 +10,15 @@ import Foundation
 
 final class KarhooQuoteService: QuoteService {
 
-    private let quoteInteractorV2: QuoteInteractor
+    private let quoteInteractor: QuoteInteractor
 
-    init(quoteV2Interactor: QuoteInteractor = KarhooQuoteInteractor()) {
-        self.quoteInteractorV2 = quoteV2Interactor
+    init(quoteInteractor: QuoteInteractor = KarhooQuoteInteractor()) {
+        self.quoteInteractor = quoteInteractor
     }
 
-    func quotesV2(quoteSearch: QuoteSearch) -> PollCall<Quotes> {
-        quoteInteractorV2.set(quoteSearch: quoteSearch)
-        let pollExecutor = PollExecutor(executable: quoteInteractorV2)
+    func quotes(quoteSearch: QuoteSearch) -> PollCall<Quotes> {
+        quoteInteractor.set(quoteSearch: quoteSearch)
+        let pollExecutor = PollExecutor(executable: quoteInteractor)
         return PollCall(pollExecutor: pollExecutor)
     }
 }
