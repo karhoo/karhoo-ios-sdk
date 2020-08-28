@@ -2925,7 +2925,6 @@
 						DevelopmentTeam = U7U4Q7YGDH;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 09A9B28A2405901900823FB0;
 					};
 				};
 			};
@@ -3839,7 +3838,6 @@
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/KarhooSDK/Api/Networking/GRPC/";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Client.app/Client";
 			};
 			name = Debug;
 		};
@@ -3866,7 +3864,6 @@
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/KarhooSDK/Api/Networking/GRPC/";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Client.app/Client";
 			};
 			name = Release;
 		};

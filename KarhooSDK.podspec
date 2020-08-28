@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.source                = { :git => "https://github.com/karhoo/karhoo-ios-sdk.git", :tag => s.version }
   s.source_files          = 'KarhooSDK/**/*.swift'
   s.platform              = :ios, '10.0'
+  s.osx.deployment_target = "10.9"
   s.requires_arc          = true
   s.swift_version         = '5.0'
 
@@ -17,3 +18,5 @@ Pod::Spec.new do |s|
   s.dependency   'KeychainSwift', '12.0.0'
 
 end
+
+
