@@ -6,8 +6,9 @@
 //  Copyright © 2020 Karhoo. All rights reserved.
 //
 
-import Foundation
+#if !os(macOS)
 import UIKit
+#endif
 
 final class BatteryMonitor {
     public var batteryLevel: Float {
