@@ -8,7 +8,6 @@
 
 #if !os(macOS)
 import UIKit
-#endif
 
 final class BatteryMonitor {
     public var batteryLevel: Float {
@@ -19,3 +18,4 @@ final class BatteryMonitor {
         UIDevice.current.isBatteryMonitoringEnabled = true
     }
 }
+#endif

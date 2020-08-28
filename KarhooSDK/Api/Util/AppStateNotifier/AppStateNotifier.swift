@@ -7,7 +7,6 @@
 //
 #if !os(macOS)
 import UIKit
-#endif
 
 public protocol AppStateChangeDelegate: class {
     func appDidBecomeActive()
@@ -93,3 +92,4 @@ public final class AppStateNotifier: AppStateNotifierProtocol {
         broadcaster.broadcast { ($0 as? AppStateChangeDelegate)?.appWillEnterForeground() }
     }
 }
+#endif
