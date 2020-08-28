@@ -5,8 +5,9 @@
 //  
 //  Copyright © 2020 Karhoo. All rights reserved.
 //
-
+#if !os(macOS)
 import UIKit
+#endif
 
 public protocol AppStateChangeDelegate: class {
     func appDidBecomeActive()
