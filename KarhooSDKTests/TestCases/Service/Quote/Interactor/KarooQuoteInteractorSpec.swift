@@ -11,7 +11,7 @@ import XCTest
 
 @testable import KarhooSDK
 
-final class KarooQuoteInteractorSpecV2: XCTestCase {
+final class KarooQuoteInteractorSpec: XCTestCase {
 
     private var testObject: KarhooQuoteInteractor!
     private var mockQuoteListIdRequest: MockRequestSender!
