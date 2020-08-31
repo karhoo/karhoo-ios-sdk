@@ -11,7 +11,7 @@ public struct AdyenPaymentMethodsGroup: KarhooCodableModel {
     public let groupType: String
     public let name: String
     public let types: [String]
-        
+    
     public init(groupType: String = "",
                 name: String = "",
                 types: [String] = []) {
@@ -32,7 +32,7 @@ public struct AdyenPaymentMethodsGroup: KarhooCodableModel {
         self.name = (try? container.decode(String.self, forKey: .name)) ?? ""
         self.types = (try? container.decode(Array.self, forKey: .types)) ?? []
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(groupType, forKey: .groupType)
