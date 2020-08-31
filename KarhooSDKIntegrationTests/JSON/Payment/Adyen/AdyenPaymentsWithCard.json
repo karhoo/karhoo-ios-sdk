@@ -1,0 +1,12 @@
+{
+   "transaction_id":"aaaa-aaaa-aaaa",
+   "payload":{
+      "pspReference":"853598516547275E",
+      "resultCode":"Authorised",
+      "amount":{
+         "currency":"USD",
+         "value":1000
+      },
+      "merchantReference":"Your order number"
+   }
+}
