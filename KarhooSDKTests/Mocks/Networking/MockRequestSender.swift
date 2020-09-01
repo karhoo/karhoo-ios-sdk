@@ -42,7 +42,9 @@ final class MockRequestSender: RequestSender {
             callback(.failure(error: error))
         }
         self.valueCallback = { value in
-            guard let value = value as? T else { return }
+            guard let value = value as? T else {
+                return
+            }
             callback(.success(result: value))
         }
     }
