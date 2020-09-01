@@ -22,7 +22,7 @@ final class AdyenPaymentsSpec: XCTestCase {
         
         paymentService = KarhooPaymentService()
         
-        call = paymentService.getAdyenPayments()
+        call = paymentService.adyenPayment()
     }
     
     /**
