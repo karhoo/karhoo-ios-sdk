@@ -2,8 +2,8 @@
 //  MockQuoteInteractor.swift
 //  KarhooSDKTests
 //
-//  
-//  Copyright © 2020 Karhoo. All rights reserved.
+//  Created by Jo Santamaria on 28/07/2020.
+//  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
 import Foundation

@@ -2,27 +2,23 @@
 //  KarhooQuoteInteractor.swift
 //  KarhooSDK
 //
-//  
-//  Copyright © 2020 Karhoo. All rights reserved.
+//  Created by Jeevan Thandi on 14/07/2020.
+//  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
 import Foundation
 
 final class KarhooQuoteInteractor: QuoteInteractor {
 
-    private let availabilityRequest: RequestSender
     private let quoteListIdRequest: RequestSender
     private let quotesRequest: RequestSender
     private var quoteSearch: QuoteSearch?
     private var quoteListId: QuoteListId?
-    private var availableQuoteCategories: Categories?
-    private let filterRidesWithETA: Int = 20
+    private let filterRidesWithETA: Int = 30
     private let refreshQuoteListMinimumValidity: Int = 10
 
-    init(availabilityRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
-         quoteListIdRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+    init(quoteListIdRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          quotesRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
-        self.availabilityRequest = availabilityRequest
         self.quoteListIdRequest = quoteListIdRequest
         self.quotesRequest = quotesRequest
     }
@@ -40,39 +36,22 @@ final class KarhooQuoteInteractor: QuoteInteractor {
         if let quoteListId = self.quoteListId {
             makeQuotesRequest(quoteListId: quoteListId, callback: quotesCallback)
         } else {
-            requestAndHandleAvailability(callback: quotesCallback)
+            requestAndHandleQuoteListId(callback: quotesCallback)
         }
     }
 
     func cancel() {
-        availabilityRequest.cancelNetworkRequest()
         quoteListIdRequest.cancelNetworkRequest()
+        quotesRequest.cancelNetworkRequest()
         quoteListId = nil
     }
 
-    private func requestAndHandleAvailability(callback: @escaping CallbackClosure<Quotes>) {
-        guard let payload = self.availabilitySearch else {
-            return
-        }
-
-        availabilityRequest.requestAndDecode(payload: payload,
-                                             endpoint: .availability,
-                                             callback: { [weak self] (result: Result<Categories>) in
-                                                self?.availableQuoteCategories = result.successValue()
-                                                self?.requestAndHandleQuoteListId(callback: callback)
-        })
-    }
-
     private func requestAndHandleQuoteListId(callback: @escaping CallbackClosure<Quotes>) {
-        guard let requestPayload = self.availabilitySearch else {
+        guard let requestPayload = self.quoteRequestPayload else {
             return
         }
 
-        let quoteListIdRequestPayload = QuoteListIdRequestPayload(origin: requestPayload.originPlaceId,
-                                                                  destination: requestPayload.destinationPlaceId,
-                                                                  dateScheduled: requestPayload.dateScheduled)
-
-        quoteListIdRequest.requestAndDecode(payload: quoteListIdRequestPayload,
+        quoteListIdRequest.requestAndDecode(payload: requestPayload,
                                             endpoint: .quoteListId,
                                             callback: { [weak self] (result: Result<QuoteListId>) in
                                                 if let quoteListId = result.successValue() {
@@ -117,9 +96,9 @@ final class KarhooQuoteInteractor: QuoteInteractor {
             return
         }
 
-        let filteredQuotes = quoteList.quoteItems.filter { $0.qtaHighMinutes <= filterRidesWithETA }
-        let quoteCategories = CategoryQuoteMapper().map(categories: availableQuoteCategories?.categories ?? [],
-                                                       toQuotes: filteredQuotes)
+        let filteredQuotes = quoteList.quotes.filter { $0.vehicle.qta.highMinutes <= filterRidesWithETA }
+        let quoteCategories = CategoryQuoteMapper().map(categories: quoteList.availability.vehicles.classes,
+                                                        toQuotes: filteredQuotes)
         let quotes = Quotes(quoteListId: quoteList.listId,
                             quoteCategories: quoteCategories,
                             all: filteredQuotes)
@@ -135,7 +114,7 @@ final class KarhooQuoteInteractor: QuoteInteractor {
 
 private extension KarhooQuoteInteractor {
 
-    private var availabilitySearch: AvailabilitySearch? {
+    private var quoteRequestPayload: QuoteRequest? {
 
         guard let quoteSearch = self.quoteSearch else {
             return nil
@@ -150,8 +129,16 @@ private extension KarhooQuoteInteractor {
             dateScheduled = dateFormatter.toString(from: quoteSearchDate)
         }
 
-        return AvailabilitySearch(origin: quoteSearch.origin.placeId,
-                                  destination: quoteSearch.destination.placeId,
-                                  dateScheduled: dateScheduled)
+        let origin = QuoteRequestPoint(latitude: "\(quoteSearch.origin.position.latitude)",
+                                       longitude:"\(quoteSearch.origin.position.longitude)",
+                                       displayAddress: quoteSearch.origin.address.displayAddress)
+
+        let destination = QuoteRequestPoint(latitude: "\(quoteSearch.destination.position.latitude)",
+                                            longitude: "\(quoteSearch.destination.position.longitude)",
+            displayAddress: quoteSearch.destination.address.displayAddress)
+
+        return QuoteRequest(origin: origin,
+                            destination: destination,
+                            dateScheduled: dateScheduled)
     }
 }
