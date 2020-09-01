@@ -15,19 +15,25 @@ public struct AdyenAction: KarhooCodableModel {
     public let data: AdyenData
     public let method: String
     public let type: String
+    public let token: String
+    public let sdkData: AdyenSDKData
     
     public init(paymentData: String = "",
                 paymentMethodType: String = "",
                 url: String = "",
                 data: AdyenData = AdyenData(),
                 method: String = "",
-                type: String = "") {
+                type: String = "",
+                token: String = "",
+                sdkData: AdyenSDKData = AdyenSDKData()) {
         self.paymentData = paymentData
         self.paymentMethodType = paymentMethodType
         self.url = url
         self.data = data
         self.method = method
         self.type = type
+        self.token = token
+        self.sdkData = sdkData
     }
     
     enum CodingKeys: String, CodingKey {
@@ -37,6 +43,8 @@ public struct AdyenAction: KarhooCodableModel {
         case data
         case method
         case type
+        case token
+        case sdkData
     }
     
     public init(from decoder: Decoder) throws {
@@ -47,6 +55,8 @@ public struct AdyenAction: KarhooCodableModel {
         self.data = (try? container.decode(AdyenData.self, forKey: .data)) ?? AdyenData()
         self.method = (try? container.decode(String.self, forKey: .method)) ?? ""
         self.type = (try? container.decode(String.self, forKey: .type)) ?? ""
+        self.token = (try? container.decode(String.self, forKey: .token)) ?? ""
+        self.sdkData = (try? container.decode(AdyenSDKData.self, forKey: .token)) ?? AdyenSDKData()
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -57,5 +67,7 @@ public struct AdyenAction: KarhooCodableModel {
         try container.encode(data, forKey: .data)
         try container.encode(method, forKey: .method)
         try container.encode(type, forKey: .type)
+        try container.encode(token, forKey: .token)
+        try container.encode(sdkData, forKey: .sdkData)
     }
 }

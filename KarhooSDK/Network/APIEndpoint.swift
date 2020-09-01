@@ -38,6 +38,7 @@ enum APIEndpoint {
     case paymentProvider
     case adyenPaymentMethods
     case adyenPayments
+    case adyenPaymentsDetails
 
     var path: String {
         switch self {
@@ -121,6 +122,8 @@ enum APIEndpoint {
             return "/payments/adyen/payments-methods"
         case .adyenPayments:
             return "/payments/adyen/payments"
+        case .adyenPaymentsDetails:
+            return "/payments/adyen/payments-details"
         }
     }
 
@@ -161,6 +164,7 @@ enum APIEndpoint {
         case .paymentProvider: return .get
         case .adyenPaymentMethods: return .post
         case .adyenPayments: return .post
+        case .adyenPaymentsDetails: return .post
         }
     }
 
@@ -176,6 +180,7 @@ enum APIEndpoint {
         case .paymentProvider: return "v3"
         case .adyenPaymentMethods: return "v3"
         case .adyenPayments: return "v3"
+        case .adyenPaymentsDetails: return "v3"
         default: return "v1"
         }
     }
