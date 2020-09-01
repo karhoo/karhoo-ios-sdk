@@ -5,7 +5,7 @@
 //  
 //  Copyright © 2020 Karhoo. All rights reserved.
 //
-
+#if !os(macOS)
 import UIKit
 
 public protocol AppStateChangeDelegate: class {
@@ -92,3 +92,4 @@ public final class AppStateNotifier: AppStateNotifierProtocol {
         broadcaster.broadcast { ($0 as? AppStateChangeDelegate)?.appWillEnterForeground() }
     }
 }
+#endif

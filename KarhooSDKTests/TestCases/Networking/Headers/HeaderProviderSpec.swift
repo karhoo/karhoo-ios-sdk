@@ -128,7 +128,7 @@ final class HeaderProviderSpec: XCTestCase {
         var httpHeader = ["foo": "bar"]
 
         let finalHeaders = testHeaderProvider.headersWithCorrelationId(headers: &httpHeader,
-                                                                       endpoint: .availability)
+                                                                       endpoint: .bookTrip)
         let correlationId: String = finalHeaders["correlation_id"] ?? ""
 
         let prefix = String(correlationId.prefix(HeaderConstants.correlationIdPrefix.count))

@@ -40,9 +40,9 @@ final class CategoryQuoteMapperSpec: XCTestCase {
         let barQuotes = expectedOutput.first(where: { $0.categoryName == "bar"})?.quotes
         let fizzQuotes = expectedOutput.first(where: { $0.categoryName == "fizz"})?.quotes
 
-        XCTAssertEqual(mockQuotes[0].quoteId, fooQuotes?[0].quoteId)
-        XCTAssertEqual(mockQuotes[1].quoteId, barQuotes?[0].quoteId)
-        XCTAssertEqual(mockQuotes[2].quoteId, fizzQuotes?[0].quoteId)
+        XCTAssertEqual(mockQuotes[0].id, fooQuotes?[0].id)
+        XCTAssertEqual(mockQuotes[1].id, barQuotes?[0].id)
+        XCTAssertEqual(mockQuotes[2].id, fizzQuotes?[0].id)
     }
 
     /**
@@ -94,9 +94,9 @@ final class CategoryQuoteMapperSpec: XCTestCase {
       */
     func testNilCategoriesMapsValidQuotesCorrectly() {
         var mockQuotes: [Quote] = []
-        mockQuotes.append(QuoteMock().set(quoteId: "fooQuote").set(vehicle: QuoteVehicle(vehicleClass: "foo")).build())
-        mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(vehicle: QuoteVehicle(vehicleClass: "bar")).build())
-        mockQuotes.append(QuoteMock().set(quoteId: "fizzQuote").set(vehicle: QuoteVehicle(vehicleClass: "fizz")).build())
+        mockQuotes.append(QuoteMock().set(quoteId: "fooQuote").set(categoryName: "foo").build())
+        mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
+        mockQuotes.append(QuoteMock().set(quoteId: "fizzQuote").set(categoryName: "fizz").build())
 
         let expectedOutput = testObject.map(categories: [], toQuotes: mockQuotes)
 
@@ -104,8 +104,8 @@ final class CategoryQuoteMapperSpec: XCTestCase {
         let barQuotes = expectedOutput.first(where: { $0.categoryName == "bar"})?.quotes
         let fizzQuotes = expectedOutput.first(where: { $0.categoryName == "fizz"})?.quotes
 
-        XCTAssertEqual(mockQuotes[0].quoteId, fooQuotes![0].quoteId)
-        XCTAssertEqual(mockQuotes[1].quoteId, barQuotes![0].quoteId)
-        XCTAssertEqual(mockQuotes[2].quoteId, fizzQuotes![0].quoteId)
+        XCTAssertEqual(mockQuotes[0].id, fooQuotes![0].id)
+        XCTAssertEqual(mockQuotes[1].id, barQuotes![0].id)
+        XCTAssertEqual(mockQuotes[2].id, fizzQuotes![0].id)
     }
 }

@@ -24,14 +24,6 @@ public final class Karhoo {
         return userService!
     }
 
-    private static var availabilityService: AvailabilityService?
-    public static func getAvailabilityService() -> AvailabilityService {
-        if availabilityService == nil {
-            availabilityService = KarhooAvailabilityService()
-        }
-        return availabilityService!
-    }
-
     private static var addressService: AddressService?
     public static func getAddressService() -> AddressService {
         if addressService == nil {
