@@ -57,7 +57,7 @@ public struct AdyenAction: KarhooCodableModel {
         self.method = (try? container.decode(String.self, forKey: .method)) ?? ""
         self.type = (try? container.decode(String.self, forKey: .type)) ?? ""
         self.token = (try? container.decode(String.self, forKey: .token)) ?? ""
-        self.sdkData = (try? container.decode(AdyenSDKData.self, forKey: .token)) ?? AdyenSDKData()
+        self.sdkData = (try? container.decode(AdyenSDKData.self, forKey: .sdkData)) ?? AdyenSDKData()
     }
     
     public func encode(to encoder: Encoder) throws {
