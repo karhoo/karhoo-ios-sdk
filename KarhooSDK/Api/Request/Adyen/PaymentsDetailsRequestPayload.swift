@@ -16,7 +16,6 @@ public struct PaymentsDetailsRequestPayload: Codable, KarhooCodableModel {
     
     public init(transactionID: String = "",
                 paymentsPayload: AdyenPaymentsDetailsRequest = AdyenPaymentsDetailsRequest()) {
-        
         self.transactionID = transactionID
         self.paymentsPayload = paymentsPayload
     }
