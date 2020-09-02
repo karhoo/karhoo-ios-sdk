@@ -16,7 +16,6 @@ public struct AdyenPaymentsRequestPayload: Codable, KarhooCodableModel {
     
     public init(paymentsPayload: AdyenPaymentsRequest = AdyenPaymentsRequest(),
                 returnUrlSuffix: String = "") {
-        
         self.paymentsPayload = paymentsPayload
         self.returnUrlSuffix = returnUrlSuffix
     }
