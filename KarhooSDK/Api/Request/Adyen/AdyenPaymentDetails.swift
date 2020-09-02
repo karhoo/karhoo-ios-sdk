@@ -9,6 +9,7 @@
 import Foundation
 
 public struct AdyenPaymentDetails: Codable, KarhooCodableModel {
+    
     public let MD: String
     public let PaReq: String
     public let PaRes: String
@@ -26,24 +27,22 @@ public struct AdyenPaymentDetails: Codable, KarhooCodableModel {
     //public let threeds2.challengeResult String
     //public let threeds2.fingerprint
     
-    public init(
-        MD: String = "",
-        PaReq: String = "",
-        PaRes: String = "",
-        billingToken: String = "",
-        //cupsecureplus.smscode: String = "",
-        facilitatorAccessToken: String = "",
-        oneTimePasscode: String = "",
-        orderID: String = "",
-        payerID: String = "",
-        payload: String = "",
-        paymentID: String = "",
-        paymentStatus: String = "",
-        redirectResult: String = "",
-        //threeds2.challengeResult: String = "",
-        //threeds2.fingerprint: String = ""
-        returnUrlQueryString: String = "") {
-        
+    public init(MD: String = "",
+                PaReq: String = "",
+                PaRes: String = "",
+                billingToken: String = "",
+                //cupsecureplus.smscode: String = "",
+                facilitatorAccessToken: String = "",
+                oneTimePasscode: String = "",
+                orderID: String = "",
+                payerID: String = "",
+                payload: String = "",
+                paymentID: String = "",
+                paymentStatus: String = "",
+                redirectResult: String = "",
+                //threeds2.challengeResult: String = "",
+                //threeds2.fingerprint: String = ""
+                returnUrlQueryString: String = "") {
         self.MD = MD
         self.PaReq = PaReq
         self.PaRes = PaRes

@@ -9,6 +9,7 @@
 import Foundation
 
 public struct AdyenPaymentMethod: KarhooCodableModel {
+    
     public let storedPaymentMethodId: String
     public let type: String
     

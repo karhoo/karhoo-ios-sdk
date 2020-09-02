@@ -9,6 +9,7 @@
 import Foundation
 
 public struct AdyenPaymentsRequest: Codable, KarhooCodableModel {
+    
     public let amount: AdyenAmount
     public let reference: String
     public let paymentMethod: AdyenPaymentMethod
@@ -16,12 +17,11 @@ public struct AdyenPaymentsRequest: Codable, KarhooCodableModel {
     public let merchantAccount: String
     
     
-    public init(
-        amount: AdyenAmount = AdyenAmount(),
-        reference: String = "",
-        paymentMethod: AdyenPaymentMethod = AdyenPaymentMethod(),
-        returnUrl: String = "",
-        merchantAccount: String = "") {
+    public init(amount: AdyenAmount = AdyenAmount(),
+                reference: String = "",
+                paymentMethod: AdyenPaymentMethod = AdyenPaymentMethod(),
+                returnUrl: String = "",
+                merchantAccount: String = "") {
         
         self.amount = amount
         self.reference = reference

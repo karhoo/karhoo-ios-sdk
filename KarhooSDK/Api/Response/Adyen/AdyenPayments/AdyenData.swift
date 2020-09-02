@@ -9,6 +9,7 @@
 import Foundation
 
 public struct AdyenData: KarhooCodableModel {
+    
     public let MD: String
     public let PaReq: String
     public let TermUrl: String

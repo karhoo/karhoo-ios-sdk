@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct AdyenPaymentsDetailsRequestPayload: Codable, KarhooCodableModel {
+public struct PaymentsDetailsRequestPayload: Codable, KarhooCodableModel {
+    
     public let transactionID: String
     public let paymentsPayload: AdyenPaymentsDetailsRequest
 
     
-    public init(
-        transactionID: String = "",
-        paymentsPayload: AdyenPaymentsDetailsRequest = AdyenPaymentsDetailsRequest()) {
+    public init(transactionID: String = "",
+                paymentsPayload: AdyenPaymentsDetailsRequest = AdyenPaymentsDetailsRequest()) {
         
         self.transactionID = transactionID
         self.paymentsPayload = paymentsPayload

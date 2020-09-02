@@ -12,6 +12,7 @@ import KarhooSDK
 enum AuthRequestType: String {
     case login = "Login"
     case revoke = "Revoke"
+    case adyen = "Adyen"
 }
 
 class AuthRequestsTesterViewController: UIViewController {
@@ -66,6 +67,8 @@ class AuthRequestsTesterViewController: UIViewController {
             login()
         case .revoke:
             revoke()
+        case .adyen:
+            adyenLogin()
         }
     }
     
@@ -97,6 +100,41 @@ class AuthRequestsTesterViewController: UIViewController {
             } else {
                 self?.responseLabel.textColor = .red
                 self?.responseLabel.text = "Failed\nError: \(String(describing: result.errorValue().debugDescription))"
+            }
+        })
+    }
+    
+    
+    private func adyenLogin() {
+        Karhoo.getUserService().login(userLogin: .init(username: "", password: "")).execute(callback: { [weak self] result in
+            if result.isSuccess() {
+                self?.responseLabel.textColor = .green
+                self?.responseLabel.text = "Success: \(result.isSuccess())"
+                self?.adyen()
+            } else {
+                self?.responseLabel.textColor = .red
+                self?.responseLabel.text = "Failed\nError: \(String(describing: result.errorValue().debugDescription))"
+            }
+        })
+    }
+    
+    private func adyen() {
+        let payload = PaymentsDetailsRequestPayload(transactionID: "123")
+        Karhoo.getPaymentService().getAdyenPaymentDetails(paymentDetails: payload).execute(callback: { [weak self] result in
+            if result.isSuccess() {
+                self?.responseLabel.textColor = .green
+                let output = """
+                Success!
+                Payload: \(result.successValue().debugDescription)
+                """
+                self?.responseLabel.text = output
+            } else {
+                let output = """
+                Fail!
+                Payload: \(result.errorValue().debugDescription)
+                """
+                self?.responseLabel.textColor = .red
+                self?.responseLabel.text = output
             }
         })
     }

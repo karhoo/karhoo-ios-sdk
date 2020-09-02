@@ -9,12 +9,10 @@
 import Foundation
 
 public struct AdyenPaymentsDetails: KarhooCodableModel {
+    
     public let action: AdyenAction
     public let amount: AdyenAmount
 
-    
-    
-    
     public init(action: AdyenAction = AdyenAction(),
                 amount: AdyenAmount = AdyenAmount()
                 ) {

@@ -13,7 +13,8 @@ class ViewController: UIViewController {
     var table: UITableView!
     let endpoints = [
         ["title": "Login", "type": "Token Exchange"],
-        ["title": "Revoke", "type": "Token Exchange"]
+        ["title": "Revoke", "type": "Token Exchange"],
+        ["title": "Adyen", "type": "Token Exchange"]
     ]
     
     var data = [TableSection: [[String: String]]]()
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
     
     enum TableSection: Int {
         case tokenExchange = 0
+        case adyen = 1
     }
     
     init() {
@@ -57,6 +59,7 @@ class ViewController: UIViewController {
     
     private func sortData() {
         data[.tokenExchange] = endpoints.filter({ $0["type"] == "Token Exchange"})
+        data[.adyen] = endpoints.filter({ $0["type"] == "Adyen"})
     }
     
     override func viewDidLoad() {
@@ -106,6 +109,7 @@ extension ViewController: UITableViewDelegate {
             switch tableSection {
             case .tokenExchange:
                 label.text = "Token Exchange"
+            case .adyen: label.text = "Adyen"
             }
         }
         view.addSubview(label)

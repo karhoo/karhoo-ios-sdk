@@ -9,13 +9,13 @@
 import Foundation
 
 public struct AdyenPaymentsRequestPayload: Codable, KarhooCodableModel {
+    
     public let paymentsPayload: AdyenPaymentsRequest
     public let returnUrlSuffix: String
 
     
-    public init(
-        paymentsPayload: AdyenPaymentsRequest = AdyenPaymentsRequest(),
-        returnUrlSuffix: String = "") {
+    public init(paymentsPayload: AdyenPaymentsRequest = AdyenPaymentsRequest(),
+                returnUrlSuffix: String = "") {
         
         self.paymentsPayload = paymentsPayload
         self.returnUrlSuffix = returnUrlSuffix

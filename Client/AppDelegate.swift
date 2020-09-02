@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Karhoo.set(configuration: SDKConfig())
+        Karhoo.set(configuration: AdyenSDKConfig())
         return true
     }
 
@@ -38,3 +38,6 @@ struct SDKConfig: KarhooSDKConfiguration {
         return .guest(settings: guestSettings)
     }
 }
+
+
+

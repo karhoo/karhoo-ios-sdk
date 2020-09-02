@@ -9,4 +9,5 @@
 import Foundation
 
 protocol AdyenPaymentsDetailsInteractor:KarhooExecutable {
+    func set(paymentsDetails: PaymentsDetailsRequestPayload)
 }

@@ -9,15 +9,14 @@
 import Foundation
 
 public struct AdyenPaymentsDetailsRequest: Codable, KarhooCodableModel {
+    
     public let details: AdyenPaymentDetails
     public let paymentData: String
     public let threeDSAuthenticationOnly: Bool
     
-    
-    public init(
-        details: AdyenPaymentDetails = AdyenPaymentDetails(),
-        paymentData: String = "",
-        threeDSAuthenticationOnly: Bool = false) {
+    public init(details: AdyenPaymentDetails = AdyenPaymentDetails(),
+                paymentData: String = "",
+                threeDSAuthenticationOnly: Bool = false) {
         
         self.details = details
         self.paymentData = paymentData
