@@ -52,7 +52,7 @@ final class KarhooAdyenPaymentsDetailsInteractorSpec: XCTestCase {
         let mockpayment = AdyenPaymentsDetailsRequest(paymentData: "mock")
 
         let expectedResponse = PaymentsDetailsRequestPayload(transactionID: "", paymentsPayload: mockpayment)
-        var expectedResult: Result<PaymentsDetailsRequestPayload>?
+        var expectedResult: Result<AdyenPaymentsDetails>?
 
         testObject.execute(callback: { response in
             expectedResult = response
