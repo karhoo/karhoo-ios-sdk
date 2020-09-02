@@ -17,7 +17,6 @@ public struct AdyenPaymentsDetailsRequest: Codable, KarhooCodableModel {
     public init(details: AdyenPaymentDetails = AdyenPaymentDetails(),
                 paymentData: String = "",
                 threeDSAuthenticationOnly: Bool = false) {
-        
         self.details = details
         self.paymentData = paymentData
         self.threeDSAuthenticationOnly = threeDSAuthenticationOnly
