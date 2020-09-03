@@ -60,7 +60,7 @@ final class KarhooAdyenPaymentsDetailsInteractorSpec: XCTestCase {
 
         mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
 
-        XCTAssertEqual("mock", expectedResult!.successValue()?.paymentsPayload.paymentData)
+        XCTAssertEqual("mock", expectedResult!.successValue()?)
     }
 
     /**

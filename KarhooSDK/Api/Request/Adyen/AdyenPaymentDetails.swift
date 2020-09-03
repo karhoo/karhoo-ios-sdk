@@ -14,7 +14,7 @@ public struct AdyenPaymentDetails: Codable, KarhooCodableModel {
     public let PaReq: String
     public let PaRes: String
     public let billingToken: String
-    //public let cupsecureplus.smscode: String
+    public let cupSecurePlusSmsCode: String
     public let facilitatorAccessToken: String
     public let oneTimePasscode: String
     public let orderID: String
@@ -24,14 +24,14 @@ public struct AdyenPaymentDetails: Codable, KarhooCodableModel {
     public let paymentStatus: String
     public let redirectResult: String
     public let returnUrlQueryString: String
-    //public let threeds2.challengeResult String
-    //public let threeds2.fingerprint
+    public let threeds2ChallengeResult: String
+    public let threeds2Fingerprint: String
     
     public init(MD: String = "",
                 PaReq: String = "",
                 PaRes: String = "",
                 billingToken: String = "",
-                //cupsecureplus.smscode: String = "",
+                cupSecurePlusSmsCode: String = "",
                 facilitatorAccessToken: String = "",
                 oneTimePasscode: String = "",
                 orderID: String = "",
@@ -40,14 +40,14 @@ public struct AdyenPaymentDetails: Codable, KarhooCodableModel {
                 paymentID: String = "",
                 paymentStatus: String = "",
                 redirectResult: String = "",
-                //threeds2.challengeResult: String = "",
-                //threeds2.fingerprint: String = ""
+                threeds2ChallengeResult: String = "",
+                threeds2Fingerprint: String = ""
                 returnUrlQueryString: String = "") {
         self.MD = MD
         self.PaReq = PaReq
         self.PaRes = PaRes
         self.billingToken = billingToken
-        //self.cupsecureplus.smscode = cupsecureplus
+        self.cupSecurePlusSmsCode = cupSecurePlusSmsCode
         self.facilitatorAccessToken = facilitatorAccessToken
         self.oneTimePasscode = oneTimePasscode
         self.orderID = orderID
@@ -57,8 +57,8 @@ public struct AdyenPaymentDetails: Codable, KarhooCodableModel {
         self.paymentStatus = paymentStatus
         self.redirectResult = redirectResult
         self.returnUrlQueryString = returnUrlQueryString
-        //        self.threeds2.challengeResult = threeds2.challengeResult
-        //        self.threeds2.fingerprint = threeds2.fingerprint
+        self.threeds2ChallengeResult = threeds2ChallengeResult
+        self.threeds2Fingerprint = threeds2Fingerprint
     }
     
     enum CodingKeys: String, CodingKey {
@@ -66,7 +66,7 @@ public struct AdyenPaymentDetails: Codable, KarhooCodableModel {
         case PaReq
         case PaRes
         case billingToken
-        //case cupsecureplus.smscode
+        case cupSecurePlusSmsCode = "cupsecureplus.smscode"
         case facilitatorAccessToken
         case oneTimePasscode
         case orderID
@@ -76,8 +76,8 @@ public struct AdyenPaymentDetails: Codable, KarhooCodableModel {
         case paymentStatus
         case redirectResult
         case returnUrlQueryString
-        //case threeds2.challengeResult
-        //case threeds2.fingerprintcase
+        case threeds2ChallengeResult = "threeds2.challengeResult"
+        case threeds2Fingerprint = "threeds2.fingerprintcase"
     }
     
 }
