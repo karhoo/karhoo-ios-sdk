@@ -8,6 +8,7 @@
 import Foundation
 
 public struct AdyenPaymentMethodsRequestPayload: Codable, KarhooCodableModel {
+    
     public let channel: String
     public let merchantAccount: String
     

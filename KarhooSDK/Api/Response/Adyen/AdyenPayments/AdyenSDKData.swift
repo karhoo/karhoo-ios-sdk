@@ -1,15 +1,15 @@
 //
-//  AdyenData.swift
+//  AdyenSDKData.swift
 //  KarhooSDK
 //
-//  Created by Nurseda Balcioglu on 27/08/2020.
+//  Created by Nurseda Balcioglu on 01/09/2020.
 //  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
 import Foundation
 
-public struct AdyenData: KarhooCodableModel {
-    
+public struct AdyenSDKData: KarhooCodableModel {
+    // TODO: Find out the parameters of this object 
     public let MD: String
     public let PaReq: String
     public let TermUrl: String

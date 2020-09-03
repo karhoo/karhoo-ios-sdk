@@ -9,6 +9,7 @@
 import Foundation
 
 public struct AdyenAmount: KarhooCodableModel {
+    
     public let currency: String
     public let value: Double
     
