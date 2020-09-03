@@ -54,6 +54,11 @@ final class UserInfoMock {
         create(nonce: nonce)
         return self
     }
+
+    func set(paymentProvider: PaymentProvider?) -> UserInfoMock {
+        create(paymentProvider: paymentProvider)
+        return self
+    }
     
     func set(externalId: String) -> UserInfoMock {
         create(externalId: externalId)
@@ -71,6 +76,7 @@ final class UserInfoMock {
                         mobile: String = "",
                         organisations: [Organisation] = [],
                         nonce: Nonce? = nil,
+                        paymentProvider: PaymentProvider? = nil,
                         externalId: String = "") {
         self.user = UserInfo(userId: userId.isEmpty ? user.userId : userId,
                              firstName: firstName.isEmpty ? user.firstName : firstName,
@@ -78,8 +84,8 @@ final class UserInfoMock {
                              email: email.isEmpty ? user.email : email,
                              mobileNumber: mobile.isEmpty ? user.mobileNumber : user.mobileNumber,
                              organisations: organisations.isEmpty ? user.organisations : organisations,
+                             nonce: nonce == nil ? user.nonce : nonce,
                              externalId: externalId)
-        
-        self.user.nonce = nonce
+        user.paymentProvider = paymentProvider == nil ? self.user.paymentProvider : paymentProvider
     }
 }

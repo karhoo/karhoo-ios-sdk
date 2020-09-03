@@ -10,12 +10,13 @@ import XCTest
 final class KarhooPaymentProviderInteractorSpec: XCTestCase {
     private var testObject: KarhooPaymentProviderInteractor!
     private var mockRequestSender: MockRequestSender!
-    
+    private var mockUserDataStore = MockUserDataStore()
+
     override func setUp() {
         super.setUp()
 
         mockRequestSender = MockRequestSender()
-        testObject = KarhooPaymentProviderInteractor(requestSender: mockRequestSender)
+        testObject = KarhooPaymentProviderInteractor(requestSender: mockRequestSender, userDataStore: mockUserDataStore)
     }
     
     /**
@@ -42,22 +43,25 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
      * Given: Getting the payment provider
      * When: Get payment provider request succeeds
      * Then: Callback should be success
+     * And: payment provider should be persisted to user data store
      */
     func testPaymentProviderSuccess() {
-        let expectedResponse = PaymentProvider(provider: Provider(id: "some_id", loyaltyProgammes: []))
+        let expectedResponse = PaymentProvider(provider: Provider(id: "braintree"))
         var expectedResult: Result<PaymentProvider>?
         
         testObject.execute(callback: { expectedResult = $0})
 
         mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
 
-        XCTAssertEqual("some_id", expectedResult!.successValue()?.provider.id)
+        XCTAssertEqual(.braintree, mockUserDataStore.updatedPaymentProvider!.provider.type)
+        XCTAssertEqual(.braintree, expectedResult!.successValue()?.provider.type)
     }
 
     /**
      * Given: Getting the payment provider
      * When: Get payment provider request succeeds
      * Then: Callback should contain expected error
+     * And: No provider is persisted
      */
     func testPaymentProviderFail() {
         let expectedError = TestUtil.getRandomError()
@@ -69,6 +73,7 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
         mockRequestSender.triggerFail(error: expectedError)
 
         XCTAssertNil(expectedResult?.successValue())
+        XCTAssertNil(mockUserDataStore.updatedPaymentProvider)
         XCTAssertFalse(expectedResult!.isSuccess())
         XCTAssert(expectedError.equals(expectedResult!.errorValue()!))
     }

@@ -151,7 +151,6 @@
 		09F90F912150FA2C003BC867 /* PasswordResetMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F90F902150FA2C003BC867 /* PasswordResetMethodSpec.swift */; };
 		09F90F942151008C003BC867 /* CancelTripMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F90F932151008C003BC867 /* CancelTripMethodSpec.swift */; };
 		142CB38B24DC290A0065149C /* LoyaltyProgramme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CB38A24DC290A0065149C /* LoyaltyProgramme.swift */; };
-		142CB38D24DC2B8E0065149C /* PaymentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CB38C24DC2B8E0065149C /* PaymentProvider.swift */; };
 		142CB39224DC2F5C0065149C /* PaymentProviderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CB39124DC2F5C0065149C /* PaymentProviderInteractor.swift */; };
 		142CB39424DC30840065149C /* KarhooPaymentProviderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CB39324DC30840065149C /* KarhooPaymentProviderInteractor.swift */; };
 		142CB39724DC44C80065149C /* KarhooPaymentProviderInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142CB39624DC44C80065149C /* KarhooPaymentProviderInteractorSpec.swift */; };
@@ -308,6 +307,7 @@
 		5C08DFB420E5A92A002203CB /* MockAnalyticsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C08DFB320E5A92A002203CB /* MockAnalyticsProvider.swift */; };
 		5C0A612924FE808800AD4C8B /* MockQuoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A612824FE808800AD4C8B /* MockQuoteInteractor.swift */; };
 		5C0A612B24FE80BC00AD4C8B /* QuoteSearchMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A612A24FE80BC00AD4C8B /* QuoteSearchMethodSpec.swift */; };
+		5C0A612D24FFD8CA00AD4C8B /* PaymentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0A612C24FFD8CA00AD4C8B /* PaymentProvider.swift */; };
 		5C103FA22411C31F00F5F2F9 /* TokenExchangeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C103FA12411C31F00F5F2F9 /* TokenExchangeSettings.swift */; };
 		5C103FA42411DF7F00F5F2F9 /* GuestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C103FA32411DF7F00F5F2F9 /* GuestSettings.swift */; };
 		5C15D5EA203711D200B47A71 /* BookingSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C15D5E9203711D100B47A71 /* BookingSearch.swift */; };
@@ -631,7 +631,6 @@
 		09F90F902150FA2C003BC867 /* PasswordResetMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetMethodSpec.swift; sourceTree = "<group>"; };
 		09F90F932151008C003BC867 /* CancelTripMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTripMethodSpec.swift; sourceTree = "<group>"; };
 		142CB38A24DC290A0065149C /* LoyaltyProgramme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyProgramme.swift; sourceTree = "<group>"; };
-		142CB38C24DC2B8E0065149C /* PaymentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentProvider.swift; sourceTree = "<group>"; };
 		142CB39124DC2F5C0065149C /* PaymentProviderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentProviderInteractor.swift; sourceTree = "<group>"; };
 		142CB39324DC30840065149C /* KarhooPaymentProviderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooPaymentProviderInteractor.swift; sourceTree = "<group>"; };
 		142CB39624DC44C80065149C /* KarhooPaymentProviderInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooPaymentProviderInteractorSpec.swift; sourceTree = "<group>"; };
@@ -790,6 +789,7 @@
 		5C08DFB320E5A92A002203CB /* MockAnalyticsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalyticsProvider.swift; sourceTree = "<group>"; };
 		5C0A612824FE808800AD4C8B /* MockQuoteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockQuoteInteractor.swift; sourceTree = "<group>"; };
 		5C0A612A24FE80BC00AD4C8B /* QuoteSearchMethodSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteSearchMethodSpec.swift; sourceTree = "<group>"; };
+		5C0A612C24FFD8CA00AD4C8B /* PaymentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentProvider.swift; sourceTree = "<group>"; };
 		5C103FA12411C31F00F5F2F9 /* TokenExchangeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenExchangeSettings.swift; sourceTree = "<group>"; };
 		5C103FA32411DF7F00F5F2F9 /* GuestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestSettings.swift; sourceTree = "<group>"; };
 		5C15D5E9203711D100B47A71 /* BookingSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSearch.swift; sourceTree = "<group>"; };
@@ -1375,8 +1375,8 @@
 				313DC2DC20221D0100D9DD1B /* Vehicle.swift */,
 				FC8EB5CA21651AA0009DC8DE /* VehicleAttributes.swift */,
 				142CB38A24DC290A0065149C /* LoyaltyProgramme.swift */,
-				142CB38C24DC2B8E0065149C /* PaymentProvider.swift */,
 				143975DB24EAC7AB0006EB80 /* Provider.swift */,
+				5C0A612C24FFD8CA00AD4C8B /* PaymentProvider.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -3251,6 +3251,7 @@
 				40F4058F2334C50100D384A6 /* LocationInfoSearch.swift in Sources */,
 				FC8F475121553184007841FB /* Observer.swift in Sources */,
 				FC57F945213015E7009193CB /* PollCallFactory.swift in Sources */,
+				5C0A612D24FFD8CA00AD4C8B /* PaymentProvider.swift in Sources */,
 				3150CE2C1F9F7B6000DE6D62 /* UserLocationProvider.swift in Sources */,
 				6FA6200C24F68B7300C1DF48 /* AdyenCard.swift in Sources */,
 				4371C59C1EB0E7F70059429D /* KarhooAnalyticsService.swift in Sources */,
@@ -3267,7 +3268,6 @@
 				5CA2CE45234368B7000AEC1E /* UISettings.swift in Sources */,
 				313DC2F020221FCF00D9DD1B /* QuoteType.swift in Sources */,
 				6FA61FFA24F5209500C1DF48 /* AdyenPayment.swift in Sources */,
-				142CB38D24DC2B8E0065149C /* PaymentProvider.swift in Sources */,
 				5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */,
 				5C5BE90D2411A513005DD14E /* AuthenticationMethod.swift in Sources */,
 				09A56E002097162C00891F02 /* LocationDetailsExt.swift in Sources */,

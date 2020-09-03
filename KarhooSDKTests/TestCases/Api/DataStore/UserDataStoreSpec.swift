@@ -195,6 +195,27 @@ class UserDataStoreSpec: XCTestCase {
     }
 
     /**
+     * When: Updating payment provider
+     * Then: payment provider should be set on the user
+     * And: observer should be broadcasted
+     */
+    func testUpdatePaymentProvider() {
+        let storedUser = UserInfoMock().set(userId: "some").build()
+        mockUserDefaults.set(storedUser.encode()!, forKey: DefaultUserDataStore.currentUserKey)
+
+        let user = testObject.getCurrentUser()
+
+        XCTAssertNil(user?.paymentProvider)
+
+        let newPaymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+        testObject.updatePaymentProvider(paymentProvider: newPaymentProvider)
+
+        XCTAssertEqual(testObject.getCurrentUser()?.paymentProvider?.provider.type, .braintree)
+        XCTAssertEqual(mockObserver.userUpdatedTo?.paymentProvider?.provider.type, .braintree)
+        XCTAssertTrue(mockObserver.userStateUpdateCalled)
+    }
+
+    /**
      * When: Updating user nonce to nil
      * Then: Nonce should be set to nil
      * And: observer should be broadcasted
@@ -240,7 +261,8 @@ class UserDataStoreSpec: XCTestCase {
      * And: observer should be broadcasted with new user
      */
     func testUpdateUserRetainsUserNonce() {
-        let currentUserData = UserInfoMock().set(userId: "nonceUser").set(nonce: Nonce(nonce: "some")).build()
+        let currentUserData = UserInfoMock().set(userId: "nonceUser").set(nonce: Nonce(nonce: "some")).set(paymentProvider: PaymentProvider(provider: Provider(id: "123"))).build()
+
         var newUserUpdate = UserInfoMock().set(userId: "nonceUser").build()
 
         mockUserDefaults.set(currentUserData.encode()!, forKey: DefaultUserDataStore.currentUserKey)
