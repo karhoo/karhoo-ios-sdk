@@ -41,7 +41,7 @@ public struct AdyenPaymentDetails: Codable, KarhooCodableModel {
                 paymentStatus: String = "",
                 redirectResult: String = "",
                 threeds2ChallengeResult: String = "",
-                threeds2Fingerprint: String = ""
+                threeds2Fingerprint: String = "",
                 returnUrlQueryString: String = "") {
         self.MD = MD
         self.PaReq = PaReq
