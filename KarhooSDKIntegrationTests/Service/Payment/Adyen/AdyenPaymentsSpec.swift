@@ -21,7 +21,6 @@ final class AdyenPaymentsSpec: XCTestCase {
         super.setUp()
         
         paymentService = KarhooPaymentService()
-        
         call = paymentService.getAdyenPayment()
     }
     

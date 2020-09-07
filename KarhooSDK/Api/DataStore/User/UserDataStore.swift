@@ -13,6 +13,7 @@ protocol UserDataStore {
     func getCurrentCredentials() -> Credentials?
     func setCurrentUser(user: UserInfo, credentials: Credentials)
     func updateCurrentUserNonce(nonce: Nonce?)
+    func updatePaymentProvider(paymentProvider: PaymentProvider?)
     func updateUser(user: inout UserInfo)
     func removeCurrentUserAndCredentials()
     func set(credentials: Credentials)
@@ -80,12 +81,25 @@ final class DefaultUserDataStore: UserDataStore {
         }
 
         user.nonce = nonce
+        updateUser(data: user.encode())
+    }
 
-        guard let updatedUserData = user.encode() else {
+    func updatePaymentProvider(paymentProvider: PaymentProvider?) {
+        guard var user = getCurrentUser() else {
             return
         }
 
-        persistantStore.set(updatedUserData, forKey: DefaultUserDataStore.currentUserKey)
+        user.paymentProvider = paymentProvider
+        updateUser(data: user.encode())
+    }
+
+    private func updateUser(data: Data?) {
+        guard let data = data else {
+            return
+        }
+
+        persistantStore.set(data, forKey: DefaultUserDataStore.currentUserKey)
+        persistantStore.synchronize()
         broadcastChange()
     }
 
@@ -94,13 +108,11 @@ final class DefaultUserDataStore: UserDataStore {
             user.nonce = currentNonce
         }
 
-        guard let newUserData = user.encode() else {
-            return
+        if let currentPaymentProvider = getCurrentUser()?.paymentProvider {
+            user.paymentProvider = currentPaymentProvider
         }
 
-        persistantStore.set(newUserData, forKey: DefaultUserDataStore.currentUserKey)
-        persistantStore.synchronize()
-        broadcastChange()
+        updateUser(data: user.encode())
     }
 
     func removeCurrentUserAndCredentials() {
