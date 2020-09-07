@@ -1,17 +1,17 @@
 //
-//  KarhooAdyenPaymentsInteractorSpec.swift
+//  KarhooPaymentsDetailsInteractorSpec.swift
 //  KarhooSDKTests
 //
-//  Created by Nurseda Balcioglu on 25/08/2020.
+//  Created by Nurseda Balcioglu on 01/09/2020.
 //  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
 import XCTest
 @testable import KarhooSDK
 
-final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
+final class KarhooAdyenPaymentsDetailsInteractorSpec: XCTestCase {
     
-    private var testObject: KarhooAdyenPaymentsInteractor!
+    private var testObject: KarhooAdyenPaymentsDetailsInteractor!
     private var mockRequestSender: MockRequestSender!
     
     override func setUp() {
@@ -19,7 +19,7 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
         
         mockRequestSender = MockRequestSender()
         testObject =
-            KarhooAdyenPaymentsInteractor(requestSender: mockRequestSender)
+            KarhooAdyenPaymentsDetailsInteractor(requestSender: mockRequestSender)
     }
     
     
@@ -28,8 +28,8 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
      * Then: Expected method, path and payload should be set
      */
     func testRequestFormat() {
-        testObject.execute(callback: { ( _: Result<AdyenTransaction>) in})
-        mockRequestSender.assertRequestSendAndDecoded(endpoint: .adyenPayments,
+        testObject.execute(callback: { ( _: Result<AdyenPaymentsDetails>) in})
+        mockRequestSender.assertRequestSendAndDecoded(endpoint: .adyenPaymentsDetails,
                                                       method: .post,
                                                       payload: nil)
     }
@@ -42,36 +42,36 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
         testObject.cancel()
         XCTAssertTrue(mockRequestSender.cancelNetworkRequestCalled)
     }
-    
+
     /**
      * Given: Getting Adyen payments
      * When: Get Adyen payments request succeeds
      * Then: Callback should be success
      */
-    func testPaymentsSuccess() {
-        let mockpayment = AdyenPayment(pspReference: "mock")
-        
-        let expectedResponse = AdyenTransaction(transactionID: "", payload: mockpayment)
-        var expectedResult: Result<AdyenTransaction>?
-        
+    func testPaymentProviderSuccess() {
+        let mockpayment = AdyenAction(paymentData: "mock")
+
+        let expectedResponse = AdyenPaymentsDetails(action: mockpayment)
+        var expectedResult: Result<AdyenPaymentsDetails>?
+
         testObject.execute(callback: { response in
             expectedResult = response
         })
-        
+
         mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
-        
-        XCTAssertEqual("mock", expectedResult!.successValue()?.payload.pspReference)
+
+        XCTAssertEqual("mock", expectedResult!.successValue()?.action.paymentData)
     }
-    
+
     /**
      * Given: Getting Adyen payments
      * When: Get Adyen payments request succeeds
      * Then: Callback should contain expected error
      */
-    func testPaymentsFail() {
+    func testPaymentFail() {
         let expectedError = TestUtil.getRandomError()
 
-        var expectedResult: Result<AdyenTransaction>?
+        var expectedResult: Result<AdyenPaymentsDetails>?
 
         testObject.execute(callback: { expectedResult = $0})
 

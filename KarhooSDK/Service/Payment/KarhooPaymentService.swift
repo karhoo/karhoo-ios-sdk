@@ -16,19 +16,22 @@ final class KarhooPaymentService: PaymentService {
     private let paymentProviderInteractor: PaymentProviderInteractor
     private let adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor
     private let adyenPaymentsInteractor: AdyenPaymentsInteractor
+    private let adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor
 
     init(tokenInteractor: PaymentSDKTokenInteractor = KarhooPaymentSDKTokenInteractor(),
          getNonceInteractor: GetNonceInteractor = KarhooGetNonceInteractor(),
          addPaymentDetailsInteractor: AddPaymentDetailsInteractor = KarhooAddPaymentDetailsInteractor(),
          paymentProviderInteractor: PaymentProviderInteractor = KarhooPaymentProviderInteractor(),
          adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor = KarhooAdyenPaymentMethodsInteractor(),
-    adyenPaymentsInteractor: AdyenPaymentsInteractor = KarhooAdyenPaymentsInteractor()){
+         adyenPaymentsInteractor: AdyenPaymentsInteractor = KarhooAdyenPaymentsInteractor(),
+         adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor = KarhooAdyenPaymentsDetailsInteractor()){
         self.paymentSDKTokenInteractor = tokenInteractor
         self.getNonceInteractor = getNonceInteractor
         self.addPaymentDetailsInteractor = addPaymentDetailsInteractor
         self.paymentProviderInteractor = paymentProviderInteractor
         self.adyenPaymentMethodsInteractor = adyenPaymentMethodsInteractor
         self.adyenPaymentsInteractor = adyenPaymentsInteractor
+        self.adyenPaymentsDetailsInteractor = adyenPaymentsDetailsInteractor
     }
 
     func initialisePaymentSDK(paymentSDKTokenPayload: PaymentSDKTokenPayload) -> Call<PaymentSDKToken> {
@@ -56,8 +59,13 @@ final class KarhooPaymentService: PaymentService {
         return Call(executable: adyenPaymentMethodsInteractor)
     }
     
-    func adyenPayment() -> Call<AdyenTransaction> {
+    func getAdyenPayment() -> Call<AdyenTransaction> {
         return Call(executable: adyenPaymentsInteractor)
+    }
+    
+    func getAdyenPaymentDetails(paymentDetails: PaymentsDetailsRequestPayload) -> Call<AdyenPaymentsDetails> {
+        adyenPaymentsDetailsInteractor.set(paymentsDetails: paymentDetails)
+        return Call(executable: adyenPaymentsDetailsInteractor)
     }
     
 }

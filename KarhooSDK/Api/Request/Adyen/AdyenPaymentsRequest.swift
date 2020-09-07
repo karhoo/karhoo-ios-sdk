@@ -1,14 +1,15 @@
 //
-//  AdyenPaymentsRequestPayload.swift
+//  AdyenPaymentsRequest.swift
 //  KarhooSDK
 //
-//  Created by Nurseda Balcioglu on 25/08/2020.
+//  Created by Nurseda Balcioglu on 01/09/2020.
 //  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
 import Foundation
 
-public struct AdyenPaymentsRequestPayload: Codable, KarhooCodableModel {
+public struct AdyenPaymentsRequest: Codable, KarhooCodableModel {
+    
     public let amount: AdyenAmount
     public let reference: String
     public let paymentMethod: AdyenPaymentMethod
@@ -16,12 +17,11 @@ public struct AdyenPaymentsRequestPayload: Codable, KarhooCodableModel {
     public let merchantAccount: String
     
     
-    public init(
-        amount: AdyenAmount = AdyenAmount(),
-        reference: String = "",
-        paymentMethod: AdyenPaymentMethod = AdyenPaymentMethod(),
-        returnUrl: String = "",
-        merchantAccount: String = "") {
+    public init(amount: AdyenAmount = AdyenAmount(),
+                reference: String = "",
+                paymentMethod: AdyenPaymentMethod = AdyenPaymentMethod(),
+                returnUrl: String = "",
+                merchantAccount: String = "") {
         
         self.amount = amount
         self.reference = reference

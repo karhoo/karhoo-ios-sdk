@@ -9,6 +9,7 @@
 import Foundation
 
 public struct AdyenPayment: KarhooCodableModel {
+    
     public let pspReference: String
     public let resultCode: String
     public let amount: AdyenAmount
