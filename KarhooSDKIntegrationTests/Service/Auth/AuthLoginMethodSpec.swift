@@ -10,7 +10,7 @@ import XCTest
 
 final class AuthLoginMethodSpec: XCTestCase {
     private var authService: AuthService!
-    private let exchangeTokenPath = "/karhoo/anonymous/token-exchange"
+    private let exchangeTokenPath = "/oauth/v2/token-exchange"
     private let userInfoPath = "/oauth/v2/userinfo"
     
     private var call: Call<UserInfo>!
