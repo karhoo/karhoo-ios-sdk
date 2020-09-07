@@ -99,7 +99,7 @@ enum APIEndpoint {
         case .custom(let path, _):
             return path
         case .authTokenExchange:
-            return "/karhoo/anonymous/token-exchange"
+            return "/oauth/v2/token-exchange"
         case .authRevoke:
             return "/oauth/v2/revoke"
         case .authUserInfo:
