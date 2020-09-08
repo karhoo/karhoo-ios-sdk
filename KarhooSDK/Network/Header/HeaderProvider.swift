@@ -16,5 +16,7 @@ protocol HeaderProvider {
     func headersWithJSONContentType(headers: inout HttpHeaders) -> HttpHeaders
 
     func headersWithFormEncodedType(headers: inout HttpHeaders) -> HttpHeaders
+    
+    func headersWithAcceptJSONType(headers: inout HttpHeaders) -> HttpHeaders
 
 }
