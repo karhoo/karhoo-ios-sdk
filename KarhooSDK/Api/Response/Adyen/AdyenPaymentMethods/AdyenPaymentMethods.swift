@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: remove once DecodableData is confirmed working
 public struct AdyenPaymentMethods: KarhooCodableModel {
     public let groups: [AdyenPaymentMethodsGroup]
     public let oneClickPaymentMethods: [AdyenOneClickPaymentMethods]
