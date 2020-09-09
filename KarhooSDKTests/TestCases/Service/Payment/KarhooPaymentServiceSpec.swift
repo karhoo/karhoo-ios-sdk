@@ -16,6 +16,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
     private var mockGetNonceInteractor: MockGetNonceInteractor!
     private var mockAddPaymentDetailsInteractor: MockAddPaymentDetailsInteractor!
     private var mockPaymentProviderInteractor = MockPaymentProviderInteractor()
+    private var mockAdyenPaymentMethodsInteractor = MockAdyenPaymentMethodsInteractor()
     private var testObject: KarhooPaymentService!
     private let mockRequestPayload: PaymentSDKTokenPayload = PaymentSDKTokenPayload(organisationId: "some",
                                                                                     currency: "gbp")
@@ -186,6 +187,41 @@ class KarhooPaymentServiceSpec: XCTestCase {
 
         let error = TestUtil.getRandomError()
         mockPaymentProviderInteractor.triggerFail(error: error)
+
+        XCTAssert(error.equals(executeResult!.errorValue()!))
+    }
+
+    /** Note: This endpoint returns Data to be decoded by the Adyen Drop In SDK
+     *  When:   Getting payment methods data succeeds
+     *  Then:   A success response should be sent through the callback
+     */
+    func testAdyenPaymentMethodsSuccess() {
+        let karhooCall = testObject.adyenPaymentMethods(request: AdyenPaymentMethodsRequest())
+
+        var executeResult: Result<DecodableData>?
+        karhooCall.execute(callback: { result in
+            executeResult = result
+        })
+
+        mockAdyenPaymentMethodsInteractor.triggerSuccess(result: DecodableData(data: Data()))
+
+        XCTAssertEqual(executeResult?.successValue()?.data, Data())
+    }
+
+    /**
+     *  When:   Getting payment provider  fails
+     *  Then:   An error should be sent through the callback
+     */
+    func testAdyenPaymentMethodsFail() {
+        let karhooCall = testObject.adyenPaymentMethods(request: AdyenPaymentMethodsRequest())
+
+        var executeResult: Result<DecodableData>?
+        karhooCall.execute(callback: { result in
+            executeResult = result
+        })
+
+        let error = TestUtil.getRandomError()
+        mockAdyenPaymentMethodsInteractor.triggerFail(error: error)
 
         XCTAssert(error.equals(executeResult!.errorValue()!))
     }
