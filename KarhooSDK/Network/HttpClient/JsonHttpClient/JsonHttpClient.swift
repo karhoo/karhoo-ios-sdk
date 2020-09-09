@@ -116,6 +116,7 @@ final class JsonHttpClient: HttpClient {
         case .authRevoke,
              .authTokenExchange:
             headers = headerProvider.headersWithFormEncodedType(headers: &headers)
+            headers = headerProvider.headersWithAcceptJSONType(headers: &headers)
         default:
             headers = headerProvider.headersWithAuthorization(headers: &headers, endpoint: endpoint)
             headers = headerProvider.headersWithCorrelationId(headers: &headers, endpoint: endpoint)
