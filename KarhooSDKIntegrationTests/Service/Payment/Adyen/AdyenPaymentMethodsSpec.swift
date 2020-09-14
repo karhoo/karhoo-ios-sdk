@@ -12,14 +12,14 @@ final class AdyenPaymentMethodsSpec: XCTestCase {
 
     private var paymentService: PaymentService!
     private let path: String = "/v3/payments/adyen/payments-methods"
-    private var call: Call<AdyenPaymentMethods>!
+    private var call: Call<DecodableData>!
     
     override func setUp() {
         super.setUp()
         
         paymentService = KarhooPaymentService()
         
-        call = paymentService.getAdyenPaymentMethods()
+        call = paymentService.adyenPaymentMethods(request: AdyenPaymentMethodsRequest())
     }
     
     /**
@@ -33,11 +33,7 @@ final class AdyenPaymentMethodsSpec: XCTestCase {
         let expectation = self.expectation(description: "Callback called with succeess")
         
         call.execute(callback: { result in
-            XCTAssertEqual("Credit Card", result.successValue()?.groups[0].name)
-            XCTAssertEqual(2, result.successValue()?.groups[0].types.count)
-            XCTAssertEqual(1, result.successValue()?.paymentMethods.count)
-            XCTAssertEqual("Credit Card", result.successValue()?.paymentMethods[0].name)
-            XCTAssertEqual("scheme", result.successValue()?.paymentMethods[0].type)
+            XCTAssertNotNil(result.successValue()!.data)
             expectation.fulfill()
         })
         
@@ -58,6 +54,8 @@ final class AdyenPaymentMethodsSpec: XCTestCase {
 
         call.execute(callback: { result in
             XCTAssertEqual(.generalRequestError, result.errorValue()!.type)
+            XCTAssertNil(result.successValue())
+
             expectation.fulfill()
         })
         

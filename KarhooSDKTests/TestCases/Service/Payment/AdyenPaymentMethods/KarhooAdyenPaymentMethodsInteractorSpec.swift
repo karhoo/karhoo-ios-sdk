@@ -17,6 +17,7 @@ final class KarhooAdyenPaymentMethodsInteractorSpec: XCTestCase {
         
         mockRequestSender = MockRequestSender()
         testObject = KarhooAdyenPaymentMethodsInteractor(requestSender: mockRequestSender)
+        testObject.set(request: AdyenPaymentMethodsRequest())
     }
     
     /**
@@ -24,10 +25,10 @@ final class KarhooAdyenPaymentMethodsInteractorSpec: XCTestCase {
      * Then: Expected method, path and payload should be set
      */
     func testRequestFormat() {
-        testObject.execute(callback: { ( _: Result<AdyenPaymentMethods>) in})
-        mockRequestSender.assertRequestSendAndDecoded(endpoint: .adyenPaymentMethods,
-                                                      method: .get,
-                                                      payload: nil)
+        testObject.execute(callback: { ( _: Result<DecodableData>) in})
+        mockRequestSender.assertRequestSend(endpoint: .adyenPaymentMethods,
+                                            method: .post,
+                                            payload: AdyenPaymentMethodsRequest())
     }
 
     /**
@@ -44,20 +45,15 @@ final class KarhooAdyenPaymentMethodsInteractorSpec: XCTestCase {
      * When: Get Adyen payment methods request succeeds
      * Then: Callback should be success
      */
-    func testPaymentProviderSuccess() {
-        let mockpayment = AdyenPaymentMethodDetail(name: "mock")
+    func testPaymentMethodSuccess() {
+        var capturedResult: Result<DecodableData>?
         
-        let expectedResponse = AdyenPaymentMethods(groups: [], oneClickPaymentMethods: [], paymentMethods: [mockpayment], storedPaymentMethods: [])
-        var expectedResult: Result<AdyenPaymentMethods>?
-        
-        testObject.execute(callback: { response in
-            expectedResult = response
-        })
+        testObject.execute(callback: { capturedResult = $0})
 
-        mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
+        mockRequestSender.triggerSuccess(response: Data())
 
-        XCTAssertEqual(1, expectedResult!.successValue()?.paymentMethods.count)
-        XCTAssertEqual("mock", expectedResult!.successValue()?.paymentMethods[0].name)
+        XCTAssertNotNil(capturedResult?.successValue())
+        XCTAssertEqual(capturedResult?.successValue()?.data, Data())
     }
 
     /**
@@ -65,17 +61,16 @@ final class KarhooAdyenPaymentMethodsInteractorSpec: XCTestCase {
      * When: Get Adyen payment methods request succeeds
      * Then: Callback should contain expected error
      */
-    func testPaymentProviderFail() {
+    func testPaymentMethodsFail() {
         let expectedError = TestUtil.getRandomError()
 
-        var expectedResult: Result<AdyenPaymentMethods>?
+        var capturedResult: Result<DecodableData>?
 
-        testObject.execute(callback: { expectedResult = $0})
+        testObject.execute(callback: { capturedResult = $0})
 
         mockRequestSender.triggerFail(error: expectedError)
 
-        XCTAssertNil(expectedResult?.successValue())
-        XCTAssertFalse(expectedResult!.isSuccess())
-        XCTAssert(expectedError.equals(expectedResult!.errorValue()!))
+        XCTAssertNil(capturedResult?.successValue())
+        XCTAssert(expectedError.equals(capturedResult!.errorValue()!))
     }
 }
