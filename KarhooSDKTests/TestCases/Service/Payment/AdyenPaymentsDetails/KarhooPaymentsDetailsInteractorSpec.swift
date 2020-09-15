@@ -65,7 +65,7 @@ final class KarhooAdyenPaymentsDetailsInteractorSpec: XCTestCase {
 
     /**
      * Given: Getting Adyen payments
-     * When: Get Adyen payments request succeeds
+     * When: Get Adyen payments request fails
      * Then: Callback should contain expected error
      */
     func testPaymentFail() {
