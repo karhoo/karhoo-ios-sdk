@@ -23,4 +23,6 @@ public protocol PaymentService {
     func getAdyenPayment() -> Call<AdyenTransaction>
     
     func getAdyenPaymentDetails(paymentDetails: PaymentsDetailsRequestPayload) -> Call<AdyenPaymentsDetails>
+    
+    func getAdyenPublicKey() -> Call<AdyenPublicKey>
 }

@@ -111,5 +111,4 @@ final class AdyenPaymentsSpec: XCTestCase {
         
         waitForExpectations(timeout: 1)
     }
-    
 }

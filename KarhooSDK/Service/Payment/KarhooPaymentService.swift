@@ -17,6 +17,7 @@ final class KarhooPaymentService: PaymentService {
     private let adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor
     private let adyenPaymentsInteractor: AdyenPaymentsInteractor
     private let adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor
+    private let adyenPublicKeyInteractor: AdyenPublicKeyInteractor
 
     init(tokenInteractor: PaymentSDKTokenInteractor = KarhooPaymentSDKTokenInteractor(),
          getNonceInteractor: GetNonceInteractor = KarhooGetNonceInteractor(),
@@ -24,7 +25,8 @@ final class KarhooPaymentService: PaymentService {
          paymentProviderInteractor: PaymentProviderInteractor = KarhooPaymentProviderInteractor(),
          adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor = KarhooAdyenPaymentMethodsInteractor(),
          adyenPaymentsInteractor: AdyenPaymentsInteractor = KarhooAdyenPaymentsInteractor(),
-         adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor = KarhooAdyenPaymentsDetailsInteractor()){
+         adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor = KarhooAdyenPaymentsDetailsInteractor(),
+         adyenPublicKeyInteractor: AdyenPublicKeyInteractor = KarhooAdyenPublicKeyInteractor()){
         self.paymentSDKTokenInteractor = tokenInteractor
         self.getNonceInteractor = getNonceInteractor
         self.addPaymentDetailsInteractor = addPaymentDetailsInteractor
@@ -32,6 +34,7 @@ final class KarhooPaymentService: PaymentService {
         self.adyenPaymentMethodsInteractor = adyenPaymentMethodsInteractor
         self.adyenPaymentsInteractor = adyenPaymentsInteractor
         self.adyenPaymentsDetailsInteractor = adyenPaymentsDetailsInteractor
+        self.adyenPublicKeyInteractor = adyenPublicKeyInteractor
     }
 
     func initialisePaymentSDK(paymentSDKTokenPayload: PaymentSDKTokenPayload) -> Call<PaymentSDKToken> {
@@ -66,5 +69,9 @@ final class KarhooPaymentService: PaymentService {
     func getAdyenPaymentDetails(paymentDetails: PaymentsDetailsRequestPayload) -> Call<AdyenPaymentsDetails> {
         adyenPaymentsDetailsInteractor.set(paymentsDetails: paymentDetails)
         return Call(executable: adyenPaymentsDetailsInteractor)
+    }
+    
+    func getAdyenPublicKey() -> Call<AdyenPublicKey> {
+        return Call(executable: adyenPublicKeyInteractor)
     }
 }
