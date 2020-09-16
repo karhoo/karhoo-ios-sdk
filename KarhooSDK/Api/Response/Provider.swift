@@ -15,7 +15,7 @@ public struct Provider: KarhooCodableModel {
     public let id: String
 
     public var type: PaymentProviderType {
-        switch self.id {
+        switch self.id.lowercased() {
         case "braintree": return .braintree
         case "adyen": return .adyen
         default: return .unknown
