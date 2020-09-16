@@ -34,6 +34,7 @@ final class PaymentProviderSpec: XCTestCase {
         
         call.execute(callback: { result in
             XCTAssertEqual("Adyen", result.successValue()?.provider.id)
+            XCTAssertEqual(PaymentProviderType.adyen, result.successValue()?.provider.type)
             expectation.fulfill()
         })
         
