@@ -28,7 +28,7 @@ You can use [CocoaPods](http://cocoapods.org/) to install `KarhooSDK` by adding 
 ```ruby
 
 use_frameworks!
-pod 'KarhooSDK'
+pod 'KarhooSDK', '~> 1.2.2'
 ```
 
 then import `KarhooSDK` wherever you want to access Karhoo services
@@ -42,6 +42,18 @@ Create a `Cartfile` that lists the framework and run `carthage update`. Follow t
 
 ```
 github "Karhoo/Karhoo-ios-sdk"
+```
+
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler and Xcode 11+
+
+Once you have your Swift package set up, adding Karhoo as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+.package(url: "https://github.com/Karhoo/karhoo-ios-sdk.git", .upToNextMajor(from: "1.2.2"))
+]
 ```
 
 # Usage
@@ -139,17 +151,7 @@ There is a unit test target that tests individual classes work as expected, and 
 ![](docs/assets/network_sdk.png)
 
 # Setup For Development 
-Install Carthage 
-	 `brew install carthage`
-   
-If you are running the project for the first time, navigate to BuiildPhases and under Link Binary with Libraries, remove the existing items 
-Close Xcode
-
-Run 
-	`carthage update`
-  
-Open Xcode
-If you are running the project for the first time, navigate to BuiildPhases and under Link Binary with Libraries, add the Carthage/Build/iOS/XXX.framework/
+We use Swift Package Manager to handle the SDK internal dependencies and development. On Xcode 11+, once you've checked out the project you can go to `Xcode -> File -> Swift Packages -> Update to Latest Package Versions`
 
 ## Running Tests
 There is an Xcode scheme for unit tests and integration tests. Unit tests test the functionality of individual classes using mocked dependencies. The integration tests mock backend responses with JSON contrtacts and ensure the SDK works from input to output.
