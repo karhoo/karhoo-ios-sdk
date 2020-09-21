@@ -59,6 +59,7 @@ final class KarhooPaymentService: PaymentService {
     }
     
     func adyenPaymentMethods(request: AdyenPaymentMethodsRequest) -> Call<DecodableData> {
+        adyenPaymentMethodsInteractor.set(request: request)
         return Call(executable: adyenPaymentMethodsInteractor)
     }
     

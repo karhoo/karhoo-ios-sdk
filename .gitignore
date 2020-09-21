@@ -8,8 +8,10 @@ build/
 IDEWorkspaceChecks.plist
 WorkspaceSettings.xcsettings
 
-# Carthage
+# dependency managers
 Carthage/
+.build/
+.swiftpm/
 
 # Fastlane
 fastlane/report.xml

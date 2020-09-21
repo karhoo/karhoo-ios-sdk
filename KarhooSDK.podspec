@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name                  = "KarhooSDK"
-  s.version               = "1.1.1"
+  s.version               = "1.2.2"
   s.summary               = "Karhoo Network SDK"
   s.homepage              = "https://developer.karhoo.com/docs/build-apps-using-sdks"
   s.license               = 'BSD 2-Clause'
@@ -18,5 +18,3 @@ Pod::Spec.new do |s|
   s.dependency   'KeychainSwift', '12.0.0'
 
 end
-
-

@@ -204,7 +204,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
         })
 
         mockAdyenPaymentMethodsInteractor.triggerSuccess(result: DecodableData(data: Data()))
-
+        XCTAssertNotNil(mockAdyenPaymentMethodsInteractor.adyenPaymentMethodsRequest)
         XCTAssertEqual(executeResult?.successValue()?.data, Data())
     }
 

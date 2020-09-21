@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -171,7 +171,6 @@
 		14E69FE624E1A4FA00133B1F /* AdyenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E69FE524E1A4FA00133B1F /* AdyenItem.swift */; };
 		14E69FE824E1A6B400133B1F /* AdyenGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E69FE724E1A6B400133B1F /* AdyenGroup.swift */; };
 		14E69FEA24E1A8FA00133B1F /* AdyenDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E69FE924E1A8FA00133B1F /* AdyenDetail.swift */; };
-		2320CCAE2499041100A149A6 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239E3FC12498CC40005AB7F0 /* OHHTTPStubs.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
 		2359B45B234251FB008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359B45A234251FA008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift */; };
@@ -186,10 +185,6 @@
 		237E0C64234788F000798AA0 /* KarhooFareServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0C63234788F000798AA0 /* KarhooFareServiceSpec.swift */; };
 		237E0C672347897B00798AA0 /* MockFareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0C662347897B00798AA0 /* MockFareInteractor.swift */; };
 		237E0C692347931D00798AA0 /* KarhooFareInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237E0C682347931D00798AA0 /* KarhooFareInteractorSpec.swift */; };
-		239E3FC52498CC4F005AB7F0 /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239E3FC42498CC4F005AB7F0 /* KeychainSwift.framework */; };
-		239E3FC62498CC4F005AB7F0 /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 239E3FC42498CC4F005AB7F0 /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		23ED1A1A24979C7500AD3269 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23ED1A1924979C7500AD3269 /* Reachability.framework */; };
-		23ED1A1B24979C7500AD3269 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 23ED1A1924979C7500AD3269 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		274211D129AC87080586E523 /* DriverTrackingInfoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27421D16D44DEC18A835BDB0 /* DriverTrackingInfoMock.swift */; };
 		2742125CDD868E90FDAED0B4 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27421AB287B1A33F00AC4119 /* UserInfo.swift */; };
 		274212DB927ADC241604D704 /* UserDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27421A91EE9BE3C99E54F313 /* UserDataStore.swift */; };
@@ -324,6 +319,9 @@
 		5C2856F220E3B1DD009B9464 /* LocationInfoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2856F120E3B1DC009B9464 /* LocationInfoMock.swift */; };
 		5C2E265024282B0400B1FF0C /* KarhooAddPaymentDetailsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090E0164223FAB6E005D1CB7 /* KarhooAddPaymentDetailsSpec.swift */; };
 		5C3C66D8245718BE00C736E9 /* JsonHttpClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F939B01F3CD33200914E18 /* JsonHttpClientSpec.swift */; };
+		5C4252B52518F32A00CCCB5D /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 5C4252B42518F32A00CCCB5D /* Reachability */; };
+		5C4252BB2518F37600CCCB5D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5C4252BA2518F37600CCCB5D /* KeychainSwift */; };
+		5C4253332519068400CCCB5D /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5C4253322519068400CCCB5D /* OHHTTPStubsSwift */; };
 		5C49849024C0A89F00F646A4 /* QuoteVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C49848F24C0A89F00F646A4 /* QuoteVehicle.swift */; };
 		5C49849224C0A8E900F646A4 /* QuoteQta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C49849124C0A8E900F646A4 /* QuoteQta.swift */; };
 		5C49849424C0A8FA00F646A4 /* QuotePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C49849324C0A8FA00F646A4 /* QuotePrice.swift */; };
@@ -332,7 +330,6 @@
 		5C75D65D208CC84E0065133B /* LocationDetailsAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C75D65C208CC84E0065133B /* LocationDetailsAddress.swift */; };
 		5C813E67250FB40A0060A9A9 /* AdyenPaymentMethodsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E69FE124E1897300133B1F /* AdyenPaymentMethodsRequest.swift */; };
 		5C870D2920CDBC9C0039A2BF /* LoginRequestPayloadMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C870D2820CDBC9C0039A2BF /* LoginRequestPayloadMock.swift */; };
-		5C8E3765249A4444004F19C3 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23ED1A1924979C7500AD3269 /* Reachability.framework */; };
 		5CA2CE422343510E000AEC1E /* OrganisationMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2CE412343510E000AEC1E /* OrganisationMock.swift */; };
 		5CA2CE45234368B7000AEC1E /* UISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2CE44234368B7000AEC1E /* UISettings.swift */; };
 		5CAEC77D24BDA9920008EA50 /* KarhooQuoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAEC77C24BDA9920008EA50 /* KarhooQuoteInteractor.swift */; };
@@ -485,21 +482,6 @@
 			remoteInfo = Client;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		23ED1A1C24979C7500AD3269 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				239E3FC62498CC4F005AB7F0 /* KeychainSwift.framework in Embed Frameworks */,
-				23ED1A1B24979C7500AD3269 /* Reachability.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0900D34820D2B17B0082D1E8 /* RefreshTokenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenInteractor.swift; sourceTree = "<group>"; };
@@ -972,7 +954,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				09B204B121412C3200063632 /* KarhooSDK.framework in Frameworks */,
-				2320CCAE2499041100A149A6 /* OHHTTPStubs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,8 +961,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				239E3FC52498CC4F005AB7F0 /* KeychainSwift.framework in Frameworks */,
-				23ED1A1A24979C7500AD3269 /* Reachability.framework in Frameworks */,
+				5C4252B52518F32A00CCCB5D /* Reachability in Frameworks */,
+				5C4253332519068400CCCB5D /* OHHTTPStubsSwift in Frameworks */,
+				5C4252BB2518F37600CCCB5D /* KeychainSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,7 +971,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C8E3765249A4444004F19C3 /* Reachability.framework in Frameworks */,
 				4387A67F1E3BB6070024FD55 /* KarhooSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3017,7 +2998,6 @@
 				09B204A821412C3100063632 /* Sources */,
 				09B204A921412C3100063632 /* Frameworks */,
 				09B204AA21412C3100063632 /* Resources */,
-				23C40B53249908BF00B5CBF9 /* Carthage Copy Bundle */,
 			);
 			buildRules = (
 			);
@@ -3025,6 +3005,8 @@
 				09B204B321412C3200063632 /* PBXTargetDependency */,
 			);
 			name = KarhooSDKIntegrationTests;
+			packageProductDependencies = (
+			);
 			productName = KarhooSDKIntegrationTests;
 			productReference = 09B204AC21412C3100063632 /* KarhooSDKIntegrationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -3037,14 +3019,17 @@
 				4387A63D1E3BAF6D0024FD55 /* Frameworks */,
 				4387A63E1E3BAF6D0024FD55 /* Headers */,
 				4387A63F1E3BAF6D0024FD55 /* Resources */,
-				23ED1A1C24979C7500AD3269 /* Embed Frameworks */,
-				23C40B552499197200B5CBF9 /* Carthage Copy Bundle */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = KarhooSDK;
+			packageProductDependencies = (
+				5C4252B42518F32A00CCCB5D /* Reachability */,
+				5C4252BA2518F37600CCCB5D /* KeychainSwift */,
+				5C4253322519068400CCCB5D /* OHHTTPStubsSwift */,
+			);
 			productName = KarhooSDK;
 			productReference = 4387A6411E3BAF6D0024FD55 /* KarhooSDK.framework */;
 			productType = "com.apple.product-type.framework";
@@ -3056,7 +3041,6 @@
 				4387A6461E3BAF6D0024FD55 /* Sources */,
 				4387A6471E3BAF6D0024FD55 /* Frameworks */,
 				4387A6481E3BAF6D0024FD55 /* Resources */,
-				23C40B5424990B2200B5CBF9 /* Carthage Copy Bundle */,
 			);
 			buildRules = (
 			);
@@ -3065,6 +3049,8 @@
 				5CDD26D224BE560C00436F01 /* PBXTargetDependency */,
 			);
 			name = KarhooSDKTests;
+			packageProductDependencies = (
+			);
 			productName = KarhooSDKTests;
 			productReference = 4387A64A1E3BAF6D0024FD55 /* KarhooSDKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -3113,6 +3099,11 @@
 				Base,
 			);
 			mainGroup = 4387A6371E3BAF6D0024FD55;
+			packageReferences = (
+				5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */,
+				5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				5C4252EF2518F72200CCCB5D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+			);
 			productRefGroup = 4387A6421E3BAF6D0024FD55 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3185,65 +3176,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		23C40B53249908BF00B5CBF9 /* Carthage Copy Bundle */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/OHHTTPStubs.framework",
-			);
-			name = "Carthage Copy Bundle";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
-		};
-		23C40B5424990B2200B5CBF9 /* Carthage Copy Bundle */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
-			);
-			name = "Carthage Copy Bundle";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
-		};
-		23C40B552499197200B5CBF9 /* Carthage Copy Bundle */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Carthage Copy Bundle";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		09A9B2872405901900823FB0 /* Sources */ = {
@@ -3732,7 +3664,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Client/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.Client;
@@ -3755,7 +3690,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Client/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.Client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3783,7 +3721,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = KarhooSDKIntegrationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.KarhooSDKIntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3810,7 +3752,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = KarhooSDKIntegrationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.KarhooSDKIntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3933,7 +3879,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3951,7 +3898,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -3970,10 +3917,15 @@
 				INFOPLIST_FILE = KarhooSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.2.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2.2;
 				MODULEMAP_PRIVATE_FILE = "";
-				PRODUCT_BUNDLE_IDENTIFIER = se.bespokecode.KarhooSDK;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.KarhooSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
@@ -3991,7 +3943,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4010,10 +3962,15 @@
 				INFOPLIST_FILE = KarhooSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.2.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2.2;
 				MODULEMAP_PRIVATE_FILE = "";
-				PRODUCT_BUNDLE_IDENTIFIER = se.bespokecode.KarhooSDK;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.KarhooSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
@@ -4039,7 +3996,11 @@
 					"\"$(SRCROOT)/KarhooSDK/Networking/GRPC/Compiled/\"",
 				);
 				INFOPLIST_FILE = KarhooSDKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = se.bespokecode.KarhooSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4066,11 +4027,16 @@
 					"\"$(SRCROOT)/KarhooSDK/Networking/GRPC/Compiled/\"",
 				);
 				INFOPLIST_FILE = KarhooSDKTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.bespokecode.KarhooSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/KarhooSDK/Api/Networking/GRPC/";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -4124,6 +4090,51 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 19.0.0;
+			};
+		};
+		5C4252EF2518F72200CCCB5D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5C4252B42518F32A00CCCB5D /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
+		5C4252BA2518F37600CCCB5D /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+		5C4253322519068400CCCB5D /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C4252EF2518F72200CCCB5D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4387A6381E3BAF6D0024FD55 /* Project object */;
 }
