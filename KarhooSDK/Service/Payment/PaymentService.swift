@@ -20,7 +20,7 @@ public protocol PaymentService {
     
     func adyenPaymentMethods(request: AdyenPaymentMethodsRequest) -> Call<DecodableData>
     
-    func getAdyenPayment() -> Call<AdyenTransaction>
+    func adyenPayments() -> Call<AdyenTransaction>
     
     func getAdyenPaymentDetails(paymentDetails: PaymentsDetailsRequestPayload) -> Call<AdyenPaymentsDetails>
     

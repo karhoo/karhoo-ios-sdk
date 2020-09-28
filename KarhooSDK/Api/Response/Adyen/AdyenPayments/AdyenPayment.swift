@@ -15,8 +15,7 @@ public struct AdyenPayment: KarhooCodableModel {
     public let amount: AdyenAmount
     public let merchantReference: String
     public let action: AdyenAction
-    
-    
+
     public init(pspReference: String = "",
                 resultCode: String = "",
                 amount: AdyenAmount = AdyenAmount(),
