@@ -65,6 +65,8 @@ final class KarhooAdyenPublicKeyInteractorSpec: XCTestCase {
        */
       func testPaymentFail() {
           let expectedError = TestUtil.getRandomError()
+        
+        
           var result: Result<AdyenPublicKey>?
 
           testObject.execute(callback: { result = $0})
