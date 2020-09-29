@@ -1,5 +1,5 @@
 FASTLANE_HIDE_CHANGELOG = true
-FASTLANE_SKIP_UPDATE_CHECK = true
+FASTLANE_SKIP_UPDATE_CHECK = false
 
 default_platform(:ios)
 
