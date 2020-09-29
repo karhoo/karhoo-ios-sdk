@@ -61,11 +61,10 @@ final class KarhooAdyenPublicKeyInteractorSpec: XCTestCase {
       /**
        * Given: Getting public key
        * When: Get request fails
-       * Then: Callback should contain expected error
+       * Then: Callback should contain expected errorr
        */
       func testPaymentFail() {
           let expectedError = TestUtil.getRandomError()
-        
         
           var result: Result<AdyenPublicKey>?
 
