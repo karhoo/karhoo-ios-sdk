@@ -18,14 +18,14 @@ platform :ios do
  end
 
  desc "Danger publish test results"
-  lane :DangerPostCI do
+  lane :iosDangerPostCI do
     danger(
       danger_id: "POST_CI",
      )
  end
 
   desc "Description of what the lane does"
-  lane :unit_tests_integration_tests do
+  lane :ios unit_tests_integration_tests do
 	scan(
 	    workspace: "KarhooSDK.xcworkspace",
 	    scheme: "KarhooSDK",
@@ -45,7 +45,7 @@ platform :ios do
   end
 
   desc "Xcov Report"
-  lane :XcovReport do
+  lane :ios XcovReport do
     xcov(
       workspace: "KarhooSDK.xcodeproj",
       scheme: "KarhooSDK",
