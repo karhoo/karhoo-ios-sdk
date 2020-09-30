@@ -27,7 +27,7 @@ platform :ios do
   desc "Description of what the lane does"
   lane :unit_tests_integration_tests do
 	scan(
-	    workspace: "KarhooSDK.xcworkspace",
+	    workspace: "KarhooSDK.xcodeproj",
 	    scheme: "KarhooSDK",
 	    code_coverage: true,
 	    clean: true,
