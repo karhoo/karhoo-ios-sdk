@@ -45,7 +45,7 @@ platform :ios do
   end
 
   desc "Xcov Report"
-  lane :ios XcovReport do
+  lane :XcovReport do
     xcov(
       workspace: "KarhooSDK.xcodeproj",
       scheme: "KarhooSDK",
