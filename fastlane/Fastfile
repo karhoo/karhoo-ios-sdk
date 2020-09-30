@@ -51,7 +51,7 @@ platform :ios do
       scheme: "KarhooSDK",
       output_directory: "fastlane/test_output",
       ignore_file_path: "./*view.swift",
-      slack_channel: "sdktestscoverage",
+      slack_channel: "mobile-pull-requests",
       slack_message: "KarhooSDK test coverage report:"
     )
   end
