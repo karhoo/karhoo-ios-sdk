@@ -13,6 +13,9 @@ jobs:
       - run:
           name: Fastlane
           command: bundle check || bundle install --path vendor/bundle
+      - run:
+          name: Fastlane Xcov report
+          command: fastlane ios XcovReport
       - store_artifacts:
           path: output
       - store_test_results:
