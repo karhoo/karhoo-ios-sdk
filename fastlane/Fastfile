@@ -25,27 +25,23 @@ end
      )
  end
 
+ desc "Build and prepare the app for testing"
+  lane :build_for_test do
+   xcodebuild scheme: 'KarhooSDK', destination: "OS=14.0,name=iPhone 11"
+end
+
   desc "Description of what the lane does"
   lane :unit_tests_integration_tests do
 	scan(
 	    project: "KarhooSDK.xcodeproj",
 	    scheme: "KarhooSDK",
-	    devices: "iPhone 11",
+	    device: "iPhone 11",
+            deployment_target_version: "13.0"
 	    code_coverage: true,
 	    clean: true,
-	    slack_url: "https://hooks.slack.com/workflows/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",
-	    slack_channel: "mobile-pull-requests",
 	    output_types: "junit",
             output_files: "NetworkSDKTests.xml"
     )
-  end
-
-  error do |lane, exception|
-     slack(
-       message: exception.message,
-       success: false,
-       payload: { "Error Info" => exception.message } 
-     )
   end
 
   desc "Xcov Report"
@@ -57,6 +53,32 @@ end
       ignore_file_path: "./*view.swift",
       slack_channel: "mobile-pull-requests",
       slack_message: "KarhooSDK test coverage report:"
+    )
+  end
+
+################
+# Success/Error:
+################
+
+after_all do |lane|
+  # This block is called, only if the executed lane was successful
+  if ENV["SLACK_URL"]
+    slack(
+      message: nil,
+      success: true,
+      default_payloads: [:test_result, :git_branch]
+    )
+  end
+
+  clean_build_artifacts
+end
+
+
+error do |lane, exception|
+  if ENV["SLACK_URL"]
+    slack(
+      message: exception.to_s,
+      success: false
     )
   end
 
