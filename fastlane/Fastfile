@@ -7,7 +7,7 @@ default_platform(:ios)
 platform :ios do
   before_all do
     setup_circle_ci
-  end
+
 
  desc "Danger PR Validation"
   lane :DangerPRValidation do
@@ -27,13 +27,14 @@ platform :ios do
   desc "Description of what the lane does"
   lane :unit_tests_integration_tests do
 	scan(
-	    workspace: "KarhooSDK.xcworkspace",
+	    project: "KarhooSDK.xcodeproj",
 	    scheme: "KarhooSDK",
 	    code_coverage: true,
 	    clean: true,
-	    slack_message: "Unit/Integration Tests for *Karhoo iOS SDK*",
+	    slack_url: "https://hooks.slack.com/workflows/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",
+	    slack_channel: "mobile-pull-requests",
 	    output_types: "junit",
-      output_files: "NetworkSDKTests.xml"
+            output_files: "NetworkSDKTests.xml"
     )
   end
 
@@ -47,7 +48,7 @@ platform :ios do
   desc "Xcov Report"
   lane :XcovReport do
     xcov(
-      workspace: "KarhooSDK.xcworkspace",
+      workspace: "KarhooSDK.xcodeproj",
       scheme: "KarhooSDK",
       output_directory: "fastlane/test_output",
       ignore_file_path: "./*view.swift",
