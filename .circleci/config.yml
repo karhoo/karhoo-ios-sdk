@@ -7,7 +7,7 @@ jobs:
     working_directory: /Users/distiller/project/KarhooSDK.xcodeproj
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: test
+      FASTLANE_LANE: unit_tests_integration_tests
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
