@@ -61,6 +61,7 @@ end
 ################
 
 after_all do |lane|
+  clean_build_artifacts
   # This block is called, only if the executed lane was successful
   if ENV["SLACK_URL"]
     slack(
@@ -69,10 +70,6 @@ after_all do |lane|
       default_payloads: [:test_result, :git_branch]
     )
   end
-
-  clean_build_artifacts
-end
-
 
 error do |lane, exception|
   if ENV["SLACK_URL"]
