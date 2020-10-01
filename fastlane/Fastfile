@@ -64,7 +64,7 @@ after_all do |lane|
   # This block is called, only if the executed lane was successful
   if ENV["SLACK_URL"]
     slack(
-      message: nil,
+      message: "iOS NSDK success",
       success: true,
       default_payloads: [:test_result, :git_branch]
     )
