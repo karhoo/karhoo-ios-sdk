@@ -27,7 +27,7 @@ platform :ios do
   desc "Description of what the lane does"
   lane :unit_tests_integration_tests do
 	scan(
-	    workspace: "KarhooSDK.xcodeproj",
+	    workspace: "KarhooSDK.xcworkspace",
 	    scheme: "KarhooSDK",
 	    code_coverage: true,
 	    clean: true,
@@ -47,7 +47,7 @@ platform :ios do
   desc "Xcov Report"
   lane :XcovReport do
     xcov(
-      workspace: "KarhooSDK.xcodeproj",
+      workspace: "KarhooSDK.xcworkspace",
       scheme: "KarhooSDK",
       output_directory: "fastlane/test_output",
       ignore_file_path: "./*view.swift",
