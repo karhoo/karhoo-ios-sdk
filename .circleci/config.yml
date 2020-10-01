@@ -25,9 +25,8 @@ jobs:
           command: bundle check || bundle install --path vendor/bundle
       - save_cache:
           name: Save cache
-          command: |
-            key: 1-gems-{{ checksum "Gemfile.lock" }}
-            paths:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
             - vendor/bundle
       - run:
           name: fastlane
