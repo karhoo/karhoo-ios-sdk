@@ -1,12 +1,14 @@
 FASTLANE_HIDE_CHANGELOG = true
 FASTLANE_SKIP_UPDATE_CHECK = true
-ENV["SLACK_URL"] = "https://hooks.slack.com/workflows/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"
+fastlane_require 'dotenv'
+
 
 default_platform(:ios)
 
 
 platform :ios do
   before_all do
+    ENV["SLACK_URL"] = ENV["SLACK_WEBHOOK_URL"]
     setup_circle_ci
 end
 
@@ -25,10 +27,6 @@ end
      )
  end
 
- desc "Build and prepare the app for testing"
-  lane :build_for_test do
-   xcodebuild scheme: 'KarhooSDK', destination: "OS=14.0,name=iPhone 11"
-end
 
   desc "Description of what the lane does"
   lane :unit_tests_integration_tests do
@@ -36,7 +34,7 @@ end
 	    project: "KarhooSDK.xcodeproj",
 	    scheme: "KarhooSDK",
 	    device: "iPhone 11",
-            deployment_target_version: "13.0",
+            deployment_target_version: "14.0",
 	    code_coverage: true,
 	    clean: true,
 	    output_types: "junit",
@@ -51,7 +49,6 @@ end
       scheme: "KarhooSDK",
       output_directory: "fastlane/test_output",
       ignore_file_path: "./*view.swift",
-      slack_channel: "mobile-pull-requests",
       slack_message: "KarhooSDK test coverage report:"
     )
   end
@@ -62,23 +59,19 @@ end
 
 after_all do |lane|
   # This block is called, only if the executed lane was successful
-  if ENV["SLACK_URL"]
     slack(
-      message: "iOS NSDK success",
-      success: true,
+      channel: "#mobile_circleci_results",
+      message: nil,
       default_payloads: [:test_result, :git_branch]
     )
-  end
-
- clean_build_artifacts
+    clean_build_artifacts
  end
 
 error do |lane, exception|
-  if ENV["SLACK_URL"]
     slack(
       message: exception.to_s,
       success: false
     )
   end
-end
+
 end

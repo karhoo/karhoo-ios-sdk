@@ -26,11 +26,6 @@ Danger PR Validation
 fastlane ios iosDangerPostCI
 ```
 Danger publish test results
-### ios build_for_test
-```
-fastlane ios build_for_test
-```
-Build and prepare the app for testing
 ### ios unit_tests_integration_tests
 ```
 fastlane ios unit_tests_integration_tests
