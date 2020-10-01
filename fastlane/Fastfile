@@ -69,6 +69,7 @@ after_all do |lane|
 
 error do |lane, exception|
     slack(
+      channel: "#mobile_circleci_results",
       message: exception.to_s,
       success: false
     )
