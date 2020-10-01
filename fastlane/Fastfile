@@ -1,5 +1,6 @@
 FASTLANE_HIDE_CHANGELOG = true
 FASTLANE_SKIP_UPDATE_CHECK = true
+ENV["SLACK_URL"] = "https://hooks.slack.com/workflows/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"
 
 default_platform(:ios)
 
@@ -7,7 +8,7 @@ default_platform(:ios)
 platform :ios do
   before_all do
     setup_circle_ci
-
+end
 
  desc "Danger PR Validation"
   lane :DangerPRValidation do
@@ -29,6 +30,7 @@ platform :ios do
 	scan(
 	    project: "KarhooSDK.xcodeproj",
 	    scheme: "KarhooSDK",
+	    devices: "iPhone 11",
 	    code_coverage: true,
 	    clean: true,
 	    slack_url: "https://hooks.slack.com/workflows/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",
@@ -41,7 +43,8 @@ platform :ios do
   error do |lane, exception|
      slack(
        message: exception.message,
-       success: false
+       success: false,
+       payload: { "Error Info" => exception.message } 
      )
   end
 
