@@ -1,6 +1,6 @@
 # .circleci/config.yml
  version: 2.1
-jobs:
+ jobs:
     build-and-test:
     macos:
       xcode: 12.0.0
@@ -52,13 +52,13 @@ jobs:
       - store_test_results:
           path: output/scan
 
-  adhoc:
-    macos:
+    adhoc:
+     macos:
       xcode: 12.0.0
-    environment:
+     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: adhoc
-    steps:
+     steps:
       - checkout
       - run: bundle install
       - run:
@@ -67,7 +67,7 @@ jobs:
       - store_artifacts:
           path: output
 
-workflows:
+ workflows:
   build-test-adhoc:
     jobs:
       - build-and-test
@@ -77,3 +77,4 @@ workflows:
               only: development
           requires:
             - build-and-test
+
