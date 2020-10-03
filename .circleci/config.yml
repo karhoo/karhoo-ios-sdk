@@ -1,4 +1,4 @@
-# .circleci/config.ymll
+# .circleci/config.yml
 version: 2.1
 jobs:
     build-and-test:
@@ -52,7 +52,7 @@ jobs:
       - store_test_results:
           path: output/scan
 
-    adhoc:
+  adhoc:
     macos:
       xcode: 12.0.0
     environment:
