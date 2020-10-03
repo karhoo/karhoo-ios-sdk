@@ -1,6 +1,5 @@
-# .circleci/config.yml
- version: 2.1
- jobs:
+version: 2.1 # .circleci/config.yml
+jobs:
     build-and-test:
     macos:
       xcode: 12.0.0
@@ -67,7 +66,7 @@
       - store_artifacts:
           path: output
 
- workflows:
+workflows:
   build-test-adhoc:
     jobs:
       - build-and-test
@@ -77,4 +76,5 @@
               only: development
           requires:
             - build-and-test
+
 
