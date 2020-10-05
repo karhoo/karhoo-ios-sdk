@@ -15,7 +15,7 @@ final class AdyenPaymentsSpec: XCTestCase {
     
     private var paymentService: PaymentService!
     private let path: String = "/v3/payments/adyen/payments"
-    private var call: Call<AdyenTransaction>!
+    private var call: Call<AdyenPayments>!
     
     override func setUp() {
         super.setUp()

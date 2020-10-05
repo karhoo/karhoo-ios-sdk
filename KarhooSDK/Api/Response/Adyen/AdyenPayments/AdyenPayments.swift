@@ -8,13 +8,13 @@
 
 import Foundation
 
-public struct AdyenTransaction: KarhooCodableModel {
+public struct AdyenPayments: KarhooCodableModel {
 
     public let transactionID: String
-    public let payload: AdyenPayment
-    
+    public let payload: [String: Any]
+
     public init(transactionID: String = "",
-                payload: AdyenPayment = AdyenPayment()) {
+                payload: [String: Any] = [:]) {
         self.transactionID = transactionID
         self.payload = payload
     }
@@ -23,16 +23,16 @@ public struct AdyenTransaction: KarhooCodableModel {
         case transactionID = "transaction_id"
         case payload
     }
-    
+
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.transactionID = (try? container.decode(String.self, forKey: .transactionID)) ?? ""
-        self.payload = (try? container.decode(AdyenPayment.self, forKey: .payload)) ?? AdyenPayment()
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        transactionID = try values.decode(String.self, forKey: .transactionID)
+        payload = try values.decode([String: Any].self, forKey: .payload)
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(transactionID, forKey: .transactionID)
         try container.encode(payload, forKey: .payload)
+        try container.encode(transactionID, forKey: .transactionID)
     }
 }

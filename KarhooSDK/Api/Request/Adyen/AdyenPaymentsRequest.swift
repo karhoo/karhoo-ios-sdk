@@ -1,40 +1,69 @@
 //
-//  AdyenPaymentsRequest.swift
+//  AdyenPaymentsRequestPayload.swift
 //  KarhooSDK
 //
-//  Created by Nurseda Balcioglu on 01/09/2020.
+//  Created by Nurseda Balcioglu on 25/08/2020.
 //  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
 import Foundation
 
-public struct AdyenPaymentsRequest: Codable, KarhooCodableModel {
+public struct AdyenDropInPayload: KarhooCodableModel {
+
+    public init() {}
     
-    public let amount: AdyenAmount
-    public let reference: String
-    public let paymentMethod: AdyenPaymentMethod
-    public let returnUrl: String
-    public let merchantAccount: String
+    public var paymentMethod: [String: Any] = [:]
+    public var channel = "iOS"
+    public var returnUrl: String = ""
+    public var amount: AdyenAmount = AdyenAmount()
+    public var storePaymentMethod: Bool = false
+
+    enum CodingKeys: String, CodingKey {
+        case paymentMethod
+        case channel
+        case returnUrl
+        case storePaymentMethod
+        case amount
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        paymentMethod = try values.decode([String: Any].self, forKey: .paymentMethod)
+        channel = try values.decode(String.self, forKey: .channel)
+        returnUrl = try values.decode(String.self, forKey: .returnUrl)
+        storePaymentMethod = try values.decode(Bool.self, forKey: .storePaymentMethod)
+        amount = try values.decode(AdyenAmount.self, forKey: .amount)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(paymentMethod, forKey: .paymentMethod)
+        try container.encode(channel, forKey: .channel)
+        try container.encode(returnUrl, forKey: .returnUrl)
+        try container.encode(storePaymentMethod, forKey: .storePaymentMethod)
+        try container.encode(amount, forKey: .amount)
+    }
+}
+
+public struct AdyenPaymentsRequest: KarhooRequestModel {
     
-    
-    public init(amount: AdyenAmount = AdyenAmount(),
-                reference: String = "",
-                paymentMethod: AdyenPaymentMethod = AdyenPaymentMethod(),
-                returnUrl: String = "",
-                merchantAccount: String = "") {
-        
-        self.amount = amount
-        self.reference = reference
-        self.paymentMethod = paymentMethod
-        self.returnUrl = returnUrl
-        self.merchantAccount = merchantAccount
+    public let paymentsPayload: AdyenDropInPayload
+    public let returnUrlSuffix: String
+
+    public init(paymentsPayload: AdyenDropInPayload,
+                returnUrlSuffix: String = "") {
+        self.paymentsPayload = paymentsPayload
+        self.returnUrlSuffix = returnUrlSuffix
     }
     
     enum CodingKeys: String, CodingKey {
-        case amount
-        case reference
-        case paymentMethod
-        case returnUrl
-        case merchantAccount
+        case paymentsPayload = "payments_payload"
+        case returnUrlSuffix = "return_url_suffix"
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(returnUrlSuffix, forKey: .returnUrlSuffix)
+        try container.encode(paymentsPayload, forKey: .paymentsPayload)
     }
 }

@@ -14,7 +14,7 @@ final class KarhooRequestSender: RequestSender {
         self.httpClient = httpClient
     }
 
-    func request(payload: KarhooCodableModel?,
+    func request(payload: KarhooRequestModel?,
                  endpoint: APIEndpoint,
                  callback: @escaping CallbackClosure<HttpResponse>) {
         networkRequest = httpClient.sendRequest(endpoint: endpoint,
@@ -23,20 +23,12 @@ final class KarhooRequestSender: RequestSender {
                                                 completion: callback)
     }
 
-    func requestAndDecode<T: KarhooCodableModel>(payload: KarhooCodableModel?,
+    func requestAndDecode<T: KarhooCodableModel>(payload: KarhooRequestModel?,
                                                  endpoint: APIEndpoint,
                                                  callback: @escaping CallbackClosure<T>) {
         request(payload: payload,
-                endpoint: endpoint) { response in
-            if let value = response.successValue()?.decodeData(ofType: T.self) {
-                callback(.success(result: value))
-            } else {
-                if let error = response.errorValue() {
-                    callback(.failure(error: error))
-                } else {
-                    callback(.failure(error: SDKErrorFactory.unexpectedError()))
-                }
-            }
+                endpoint: endpoint) { [weak self] response in
+            self?.handler(response: response, callback: callback)
         }
     }
 
@@ -44,17 +36,21 @@ final class KarhooRequestSender: RequestSender {
         networkRequest = httpClient.sendRequest(endpoint: endpoint,
                                                 data: nil,
                                                 urlComponents: body,
-                                                completion: { response in
-                                                           if let value = response.successValue()?.decodeData(ofType: T.self) {
-                                                               callback(.success(result: value))
-                                                           } else {
-                                                               if let error = response.errorValue() {
-                                                                   callback(.failure(error: error))
-                                                               } else {
-                                                                   callback(.failure(error: SDKErrorFactory.unexpectedError()))
-                                                               }
-                                                           }
-                                                       })
+                                                completion: { [weak self] response in
+                                                    self?.handler(response: response, callback: callback)
+                                                })
+    }
+
+    private func handler<T: KarhooCodableModel>(response: Result<HttpResponse>, callback: @escaping CallbackClosure<T>) {
+        if let value = response.successValue()?.decodeData(ofType: T.self) {
+            callback(.success(result: value))
+        } else {
+            if let error = response.errorValue() {
+                callback(.failure(error: error))
+            } else {
+                callback(.failure(error: SDKErrorFactory.unexpectedError()))
+            }
+        }
     }
 
     func cancelNetworkRequest() {

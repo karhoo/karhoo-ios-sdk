@@ -11,10 +11,10 @@ import Foundation
 public struct PaymentsDetailsRequestPayload: Codable, KarhooCodableModel {
     
     public let transactionID: String
-    public let paymentsPayload: AdyenPaymentsDetailsRequest
+    public let paymentsPayload: DecodableData
     
     public init(transactionID: String = "",
-                paymentsPayload: AdyenPaymentsDetailsRequest = AdyenPaymentsDetailsRequest()) {
+                paymentsPayload: DecodableData = DecodableData(data: Data())) {
         self.transactionID = transactionID
         self.paymentsPayload = paymentsPayload
     }

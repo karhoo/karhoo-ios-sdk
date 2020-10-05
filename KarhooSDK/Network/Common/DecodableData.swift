@@ -14,4 +14,8 @@ public struct DecodableData: KarhooCodableModel {
     public init(data: Data) {
         self.data = data
     }
+
+    public func encode(to encoder: Encoder) throws {
+
+    }
 }
