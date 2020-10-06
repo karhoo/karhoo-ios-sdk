@@ -8,7 +8,8 @@ jobs:
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: unit_tests_integration_tests
-    shell: /bin/bash --login -o pipefail
+    shell: /bin/bash --login -eo pipefail
+    resource_class: large
     steps:
       - checkout
       - run:
@@ -18,16 +19,9 @@ jobs:
             rm ~/.ssh/id_rsa || true
             for ip in $(dig @8.8.8.8 bitbucket.org +short); do ssh-keyscan bitbucket.org,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
             for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
-      - restore_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
       - run:
           name: Bundle install
           command: bundle check || bundle install --path vendor/bundle
-      - save_cache:
-          name: Save cache
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
       - run:
           name: Create Keys.swift
           command: |
