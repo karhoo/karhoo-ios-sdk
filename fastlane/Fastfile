@@ -1,12 +1,16 @@
 FASTLANE_HIDE_CHANGELOG = true
 FASTLANE_SKIP_UPDATE_CHECK = true
+fastlane_require 'dotenv'
+
 
 default_platform(:ios)
 
 
 platform :ios do
   before_all do
-  end
+    ENV["SLACK_URL"] = ENV["SLACK_WEBHOOK_URL"]
+    setup_circle_ci
+end
 
  desc "Danger PR Validation"
   lane :DangerPRValidation do
@@ -17,41 +21,57 @@ platform :ios do
  end
 
  desc "Danger publish test results"
-  lane :DangerPostCI do
+  lane :iosDangerPostCI do
     danger(
       danger_id: "POST_CI",
      )
  end
 
+
   desc "Description of what the lane does"
   lane :unit_tests_integration_tests do
 	scan(
-	    workspace: "KarhooSDK.xcworkspace",
+	    project: "KarhooSDK.xcodeproj",
 	    scheme: "KarhooSDK",
+	    device: "iPhone 11",
+            deployment_target_version: "14.0",
 	    code_coverage: true,
 	    clean: true,
-	    slack_message: "Unit/Integration Tests for *Karhoo iOS SDK*",
 	    output_types: "junit",
-      output_files: "NetworkSDKTests.xml"
+            output_files: "NetworkSDKTests.xml"
     )
-  end
-
-  error do |lane, exception|
-     slack(
-       message: exception.message,
-       success: false
-     )
   end
 
   desc "Xcov Report"
   lane :XcovReport do
     xcov(
-      workspace: "KarhooSDK.xcworkspace",
+      project: "KarhooSDK.xcodeproj",
       scheme: "KarhooSDK",
       output_directory: "fastlane/test_output",
       ignore_file_path: "./*view.swift",
-      slack_channel: "sdktestscoverage",
       slack_message: "KarhooSDK test coverage report:"
+    )
+  end
+
+################
+# Success/Error:
+################
+
+after_all do |lane|
+  # This block is called, only if the executed lane was successful
+    slack(
+      channel: "#mobile_circleci_results",
+      message: nil,
+      default_payloads: [:test_result, :git_branch]
+    )
+    clean_build_artifacts
+ end
+
+error do |lane, exception|
+    slack(
+      channel: "#mobile_circleci_results",
+      message: exception.to_s,
+      success: false
     )
   end
 
