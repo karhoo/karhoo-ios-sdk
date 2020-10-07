@@ -13,20 +13,20 @@ import XCTest
 
 class MockRefreshTokenRequest: RequestSender {
 
-    var payloadSet: KarhooCodableModel?
+    var payloadSet: KarhooRequestModel?
     var endpointSet: APIEndpoint?
     var requestCalled = false
     var beforeResponse: (() -> Void)!
     private var errorCallback: ((KarhooError) -> Void)?
     private var valueCallback: ((Any) -> Void)?
 
-    func request(payload: KarhooCodableModel?,
+    func request(payload: KarhooRequestModel?,
                  endpoint: APIEndpoint,
                  callback: @escaping CallbackClosure<HttpResponse>) {
         fatalError("Not Implemented")
     }
 
-    func requestAndDecode<T: KarhooCodableModel>(payload: KarhooCodableModel?,
+    func requestAndDecode<T: KarhooCodableModel>(payload: KarhooRequestModel?,
                                                  endpoint: APIEndpoint,
                                                  callback: @escaping CallbackClosure<T>) {
         requestCalled = true

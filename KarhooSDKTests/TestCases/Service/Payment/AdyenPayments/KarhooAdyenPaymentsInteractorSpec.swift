@@ -49,9 +49,7 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
      * Then: Callback should be success
      */
     func testPaymentsSuccess() {
-        let mockpayment = AdyenPayment(pspReference: "mock")
-        
-        let expectedResponse = AdyenPayments(transactionID: "", payload: mockpayment)
+        let expectedResponse = AdyenPayments(transactionID: "mock", payload: ["":""])
         var expectedResult: Result<AdyenPayments>?
         
         testObject.execute(callback: { response in
@@ -60,7 +58,7 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
         
         mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
         
-        XCTAssertEqual("mock", expectedResult!.successValue()?.payload.pspReference)
+        XCTAssertEqual("mock", expectedResult!.successValue()?.transactionID)
     }
     
     /**

@@ -50,7 +50,7 @@ public struct AdyenPaymentsRequest: KarhooRequestModel {
     public let paymentsPayload: AdyenDropInPayload
     public let returnUrlSuffix: String
 
-    public init(paymentsPayload: AdyenDropInPayload,
+    public init(paymentsPayload: AdyenDropInPayload = AdyenDropInPayload(),
                 returnUrlSuffix: String = "") {
         self.paymentsPayload = paymentsPayload
         self.returnUrlSuffix = returnUrlSuffix
