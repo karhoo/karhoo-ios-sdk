@@ -8,13 +8,13 @@
 
 import Foundation
 
-public struct PaymentsDetailsRequestPayload: Codable, KarhooCodableModel {
+public struct PaymentsDetailsRequestPayload: KarhooRequestModel {
     
     public let transactionID: String
-    public let paymentsPayload: DecodableData
+    public let paymentsPayload: [String: Any]
     
     public init(transactionID: String = "",
-                paymentsPayload: DecodableData = DecodableData(data: Data())) {
+                paymentsPayload: [String: Any]) {
         self.transactionID = transactionID
         self.paymentsPayload = paymentsPayload
     }
@@ -22,5 +22,11 @@ public struct PaymentsDetailsRequestPayload: Codable, KarhooCodableModel {
     enum CodingKeys: String, CodingKey {
         case transactionID = "transaction_id"
         case paymentsPayload = "payments_payload"
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(transactionID, forKey: .transactionID)
+        try container.encode(paymentsPayload, forKey: .paymentsPayload)
     }
 }
