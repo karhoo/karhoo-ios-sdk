@@ -1,5 +1,5 @@
 //
-//  AdyenPaymentsDetailsRequest.swift
+//  AdyenPaymentsDetailsRequestPayload.swift
 //  KarhooSDK
 //
 //  Created by Nurseda Balcioglu on 01/09/2020.
@@ -8,23 +8,25 @@
 
 import Foundation
 
-public struct AdyenPaymentsDetailsRequest: Codable, KarhooCodableModel {
+public struct PaymentsDetailsRequestPayload: KarhooRequestModel {
     
-    public let details: AdyenPaymentDetails
-    public let paymentData: String
-    public let threeDSAuthenticationOnly: Bool
+    public let transactionID: String
+    public let paymentsPayload: [String: Any]
     
-    public init(details: AdyenPaymentDetails = AdyenPaymentDetails(),
-                paymentData: String = "",
-                threeDSAuthenticationOnly: Bool = false) {
-        self.details = details
-        self.paymentData = paymentData
-        self.threeDSAuthenticationOnly = threeDSAuthenticationOnly
+    public init(transactionID: String = "",
+                paymentsPayload: [String: Any]) {
+        self.transactionID = transactionID
+        self.paymentsPayload = paymentsPayload
     }
     
     enum CodingKeys: String, CodingKey {
-        case details
-        case paymentData
-        case threeDSAuthenticationOnly
+        case transactionID = "transaction_id"
+        case paymentsPayload = "payments_payload"
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(transactionID, forKey: .transactionID)
+        try container.encode(paymentsPayload, forKey: .paymentsPayload)
     }
 }
