@@ -27,20 +27,24 @@ final class KarhooAdyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor
         }
 
         adyenPaymentsDetailsRequestSender.request(payload: paymentsDetails,
-                                                           endpoint: .adyenPaymentsDetails,
-                                                           callback: { [weak self] result in
-                                                            self?.handle(result, interactorCallback: dataCallback)
-                                                           })
+                                                  endpoint: .adyenPaymentsDetails,
+                                                  callback: { [weak self] result in
+                                                    self?.handle(result,
+                                                                 interactorCallback: dataCallback)
+                                                  })
     }
     
     func cancel() {
         adyenPaymentsDetailsRequestSender.cancelNetworkRequest()
     }
 
-    private func handle(_ response: Result<HttpResponse>, interactorCallback: CallbackClosure<DecodableData>) {
+    private func handle(_ response: Result<HttpResponse>,
+                        interactorCallback: CallbackClosure<DecodableData>) {
         switch response {
-        case .failure(let error): interactorCallback(.failure(error: error))
-        case .success(let response): interactorCallback(.success(result: DecodableData(data: response.data)))
+        case .failure(let error):
+            interactorCallback(.failure(error: error))
+        case .success(let response):
+            interactorCallback(.success(result: DecodableData(data: response.data)))
         }
     }
 }
