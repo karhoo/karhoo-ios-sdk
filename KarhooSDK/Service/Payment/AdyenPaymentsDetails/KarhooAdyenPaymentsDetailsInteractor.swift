@@ -22,12 +22,25 @@ final class KarhooAdyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor
     }
     
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
-        adyenPaymentsDetailsRequestSender.requestAndDecode(payload: paymentsDetails,
+        guard let dataCallback = callback as? CallbackClosure<DecodableData> else {
+            return
+        }
+
+        adyenPaymentsDetailsRequestSender.request(payload: paymentsDetails,
                                                            endpoint: .adyenPaymentsDetails,
-                                                           callback: callback)
+                                                           callback: { [weak self] result in
+                                                            self?.handle(result, interactorCallback: dataCallback)
+                                                           })
     }
     
     func cancel() {
         adyenPaymentsDetailsRequestSender.cancelNetworkRequest()
+    }
+
+    private func handle(_ response: Result<HttpResponse>, interactorCallback: CallbackClosure<DecodableData>) {
+        switch response {
+        case .failure(let error): interactorCallback(.failure(error: error))
+        case .success(let response): interactorCallback(.success(result: DecodableData(data: response.data)))
+        }
     }
 }
