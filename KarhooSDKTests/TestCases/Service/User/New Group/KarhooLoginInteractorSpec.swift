@@ -237,7 +237,7 @@ class KarhooLoginInteractorSpec: XCTestCase {
     }
 
     /**
-      * Given: Login successful
+      * Given: Login successful and the payment provider is braintree
       * When: Nonce succeeds
       * Then: User should be updated
       */
@@ -247,6 +247,8 @@ class KarhooLoginInteractorSpec: XCTestCase {
                                 lastFour: "1234")
 
         triggerSuccessfulLoginAndProfileFetch()
+        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
 
         XCTAssertTrue(mockGetNonceRequestSender.requestAndDecodeCalled)
 
@@ -274,18 +276,36 @@ class KarhooLoginInteractorSpec: XCTestCase {
     }
 
     /**
-     * Given: Login successful
+     * Given: Login successful and the payment provider is braintree
      * When: Nonce fails
      * Then: User should be updated
      */
     func testGetNonceFailsAfterSuccessfulLogin() {
         triggerSuccessfulLoginAndProfileFetch()
-
-        XCTAssertTrue(mockGetNonceRequestSender.requestAndDecodeCalled)
+        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
 
         mockGetNonceRequestSender.triggerFail(error: TestUtil.getRandomError())
 
+        XCTAssertTrue(mockGetNonceRequestSender.requestAndDecodeCalled)
         XCTAssertTrue(mockUserDataStore.updateCurrentNonceCalled)
+        XCTAssertNil(mockUserDataStore.updateCurrentNonce)
+    }
+
+    /**
+     * Given: Login successful and the payment
+     * When: provider is adyen
+     * Then: get nonce should not be called
+     */
+    func testAdyenDoesNotGetBraintreeNonce() {
+        triggerSuccessfulLoginAndProfileFetch()
+        let paymentProvider = PaymentProvider(provider: Provider(id: "adyen"))
+        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
+
+        mockGetNonceRequestSender.triggerFail(error: TestUtil.getRandomError())
+
+        XCTAssertFalse(mockGetNonceRequestSender.requestAndDecodeCalled)
+        XCTAssertFalse(mockUserDataStore.updateCurrentNonceCalled)
         XCTAssertNil(mockUserDataStore.updateCurrentNonce)
     }
 

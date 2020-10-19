@@ -14,15 +14,18 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
     private let userInfoSender: RequestSender
     private let userDataStore: UserDataStore
     private let analytics: AnalyticsService
-    
+    private let paymentProviderRequest: RequestSender
+
     init(tokenExchangeRequestSender: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          userInfoSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          userDataStore: UserDataStore = DefaultUserDataStore(),
-         analytics: AnalyticsService = KarhooAnalyticsService()) {
+         analytics: AnalyticsService = KarhooAnalyticsService(),
+         paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared)) {
         self.tokenExchangeRequestSender = tokenExchangeRequestSender
         self.userInfoSender = userInfoSender
         self.userDataStore = userDataStore
         self.analytics = analytics
+        self.paymentProviderRequest = paymentProviderRequest
     }
     
     func cancel() {
@@ -52,12 +55,14 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
         })
     }
 
-    private func getUserInfo(_ token: String, callback: @escaping CallbackClosure<UserInfo>) {
+    private func getUserInfo(_ token: String,
+                             callback: @escaping CallbackClosure<UserInfo>) {
         userInfoSender.requestAndDecode(payload: nil,
                                         endpoint: .authUserInfo) { [weak self](result: Result<UserInfo>) in
                                             switch result {
                                             case .success(var user):
                                                 self?.userDataStore.updateUser(user: &user)
+                                                self?.updatePaymentProvider()
                                                 self?.analytics.send(eventName: .ssoUserLogIn)
                                                 callback(.success(result: user))
                                             case .failure(let error):
@@ -76,5 +81,13 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
                                               value: tokenExchangeSettings?.clientId ?? ""),
                                  URLQueryItem(name: AuthHeaderKeys.token.rawValue, value: token)]
         return components
+    }
+
+    private func updatePaymentProvider() {
+        paymentProviderRequest.requestAndDecode(payload: nil,
+                                                endpoint: .paymentProvider,
+                                                callback: { [weak self] (result: Result<PaymentProvider>) in
+                                                    self?.userDataStore.updatePaymentProvider(paymentProvider: result.successValue())
+                                                })
     }
 }
