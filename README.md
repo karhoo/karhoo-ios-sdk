@@ -98,9 +98,86 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 For full documentation of SDK services please visit our Developer Portal: https://developer.karhoo.com/reference#user-service
 
+## Authentication
+
+The KarhooSDK requires authentication, attempting to interact with the SDKs without authenticating will result in errors. There are three possible authentication methods supported:
+
+### Karhoo User
+
+A user that is created and managed within the Karhoo platform. Karhoo users are useful for corporate travel and proof of concept integrations. Setup your KarhooSDKConfiguration interface authentication method as ```.karhooUser```. Then you can use the UserService to make a login request with a username and password.
+
+```swift
+let userService = Karhoo.getUserService()
+let userLogin = UserLogin(email: "your-user@email.com", password: "abc")
+
+userService.login(userLogin: userLogin).execute { result in
+    switch result {
+    case .success(let user):
+        print("user authenticated: ", user)
+    case .failure(let error):
+        print("error: \(error.code) \(error.message)")
+    }
+}
+```
+
+### Guest User
+
+Guest users are anonymous and useful for B2C traveller solutions. When booking as a guest user, the user of your application will not be required to authenticate, however you will be required to provide passenger details when making a booking with the trip service. To setup the SDK in guest mode, specify the authentication method in your KarhooSDKConfiguration interface as ``` .guest``` and provide your credentials as an associated value. After that, you'll be able to interact with the SDK services. 
+
+```swift
+struct YourCompanyKarhooConfiguration: KarhooSDKConfiguration {
+    
+    func environment() -> KarhooEnvironment {
+        return .sandbox
+    }
+
+    func authenticationMethod() -> AuthenticationMethod {
+        return .guest(settings: GuestSettings(identifier: "", 
+                                              referer: "", 
+                                              organisationId: ""))
+    }
+}
+```
+
+
+### Token Exchange
+
+It is also possible to sync your users with the Karhoo platform so you can swap your users JWT token for a karhoo user token. This allows your users to automatically authenticate and use Karhoo services. If your integration involves this authentication method you can setup the SDK accordingy using the ```AuthService```
+
+Firstly, specify ```.tokenExchange``` as the authentication method in your SDK configuration file.
+
+```swift
+struct YourCompanyKarhooConfiguration: KarhooSDKConfiguration {
+    
+    func environment() -> KarhooEnvironment {
+        return .sandbox
+    }
+
+    func authenticationMethod() -> AuthenticationMethod {
+        return .tokenExchange(settings: TokenExchangeSettings(clientId: "", 
+                                                              scope: ""))
+    }
+}
+```
+
+Then use the ```AuthService``` to swap your JWT for a Karhoo user.
+
+```swift
+let authService = Karhoo.getAuthService()
+
+authService.login(token: "user-jwt").execute { result in
+    switch result {
+    case .success(let user):
+        print("user authenticated: ", user)
+    case .failure(let error):
+        print("error: \(error.code) \(error.message)")
+    }
+}
+```
+
 ## Making Requests
 
-The SDK uses two generic types. Call and PollCall. These are network requests that are going to either make one request or observe the end point over a given interval. 
+Once the SDK is authenticated you can make use of the various services of the Karhoo platform. The SDK uses two generic types, Call and PollCall. These are network requests that are going to either make one request or observe the end point over a given interval. 
 
 ### Example Call
 
