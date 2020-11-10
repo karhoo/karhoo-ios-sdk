@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol CoverageInteractor: KarhooExecutable {
-    func set(coverageRequest: CoverageRequest)
+protocol QuoteCoverageInteractor: KarhooExecutable {
+    func set(coverageRequest: QuoteCoverageRequest)
 }

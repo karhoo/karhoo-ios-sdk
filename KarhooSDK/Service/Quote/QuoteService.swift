@@ -10,5 +10,5 @@ import Foundation
 
 public protocol QuoteService {    
     func quotes(quoteSearch: QuoteSearch) -> PollCall<Quotes>
-    func coverage(coverageRequest: CoverageRequest) -> Call<Coverage>
+    func coverage(coverageRequest: QuoteCoverageRequest) -> Call<QuoteCoverage>
 }

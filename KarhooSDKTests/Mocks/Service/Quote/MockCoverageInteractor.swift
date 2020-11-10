@@ -10,13 +10,13 @@ import Foundation
 
 @testable import KarhooSDK
 
-final class MockCoverageInteractor: CoverageInteractor, MockInteractor {
+final class MockCoverageInteractor: QuoteCoverageInteractor, MockInteractor {
 
-    var callbackSet: CallbackClosure<Coverage>?
+    var callbackSet: CallbackClosure<QuoteCoverage>?
     var cancelCalled = false
 
-    var coverageRequestSet: CoverageRequest?
-    func set(coverageRequest: CoverageRequest) {
+    var coverageRequestSet: QuoteCoverageRequest?
+    func set(coverageRequest: QuoteCoverageRequest) {
         coverageRequestSet = coverageRequest
     }
 }

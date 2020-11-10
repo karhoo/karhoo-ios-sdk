@@ -9,28 +9,24 @@
 import Foundation
 @testable import KarhooSDK
 
-final class CoverageMock {
-
-    private var coverage: Coverage
-
+final class QuoteCoverageMock {
+    
+    private var coverage: QuoteCoverage
+    
     init() {
-        self.coverage = Coverage()
+        self.coverage = QuoteCoverage()
     }
-
-    func build() -> Coverage {
+    
+    func build() -> QuoteCoverage {
         return coverage
     }
-
-    func set(coverage: Bool) -> CoverageMock {
+    
+    func set(coverage: Bool) -> QuoteCoverageMock {
         create(coverage: coverage)
         return self
     }
-
-    private func create(coverage: Bool = false) {
-        
-        self.coverage = Coverage(coverage: coverage)
-        
-    }
     
-
+    private func create(coverage: Bool = false) {
+        self.coverage = QuoteCoverage(coverage: coverage)
+    }
 }

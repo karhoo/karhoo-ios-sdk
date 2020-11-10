@@ -11,14 +11,14 @@ import XCTest
 
 @testable import KarhooSDK
 
-final class KarhooCoverageSpec: XCTestCase {
+final class KarhooCoverageInteractorSpec: XCTestCase {
 
     private var testobject: KarhooQuoteService!
     private var mockCoverageInteractor = MockCoverageInteractor()
     
-    private let mockCoverage: CoverageRequest = CoverageRequest(latitude: "", longitude: "", localTimeOfPickup: "")
+    private let mockCoverage: QuoteCoverageRequest = QuoteCoverageRequest(latitude: "", longitude: "", localTimeOfPickup: "")
     
-    let mockCoverageResult = Coverage(coverage: true)
+    let mockCoverageResult = QuoteCoverage(coverage: true)
 
 
     override func setUp() {
@@ -36,7 +36,7 @@ final class KarhooCoverageSpec: XCTestCase {
     func testCoverageSucces() {
         let call = testobject.coverage(coverageRequest: mockCoverage)
 
-        var result: Result<Coverage>?
+        var result: Result<QuoteCoverage>?
         call.execute(callback: { result = $0 })
 
         mockCoverageInteractor.triggerSuccess(result: mockCoverageResult)
@@ -50,7 +50,7 @@ final class KarhooCoverageSpec: XCTestCase {
     func testCoverageFails() {
         let call = testobject.coverage(coverageRequest: mockCoverage)
 
-        var result: Result<Coverage>?
+        var result: Result<QuoteCoverage>?
         call.execute(callback: { result = $0 })
 
         let expectedError = TestUtil.getRandomError()

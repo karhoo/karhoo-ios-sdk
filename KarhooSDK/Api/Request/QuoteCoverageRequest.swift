@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CoverageRequest: KarhooCodableModel {
+public struct QuoteCoverageRequest: KarhooCodableModel {
 
    public let latitude: String
    public let longitude: String

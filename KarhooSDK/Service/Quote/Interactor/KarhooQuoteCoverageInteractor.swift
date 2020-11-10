@@ -8,20 +8,22 @@
 
 import Foundation
 
-final class KarhooCoverageInteractor: CoverageInteractor {
+final class KarhooQuoteCoverageInteractor: QuoteCoverageInteractor {
     private var coverageRequestSender: RequestSender
-    private var coverageRequest: CoverageRequest?
+    private var coverageRequest: QuoteCoverageRequest?
     
     init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
         self.coverageRequestSender = requestSender
     }
     
-    func set(coverageRequest: CoverageRequest) {
+    func set(coverageRequest: QuoteCoverageRequest) {
         self.coverageRequest = coverageRequest
     }
     
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
-        coverageRequestSender.requestAndDecode(payload: nil, endpoint: .coverage, callback: callback)
+        guard let coverageRequest = self.coverageRequest else { return }
+        
+        coverageRequestSender.requestAndDecode(payload: coverageRequest, endpoint: .coverage, callback: callback)
     }
     
     func cancel() {

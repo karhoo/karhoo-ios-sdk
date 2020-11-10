@@ -1,5 +1,5 @@
 //
-//  Coverage.swift
+//  QuoteCoverage.swift
 //  KarhooSDK
 //
 //  Created by Nurseda Balcioglu on 10/11/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Coverage : KarhooCodableModel {
+public struct QuoteCoverage: KarhooCodableModel {
     public var coverage: Bool
 
     public init(coverage: Bool = false) {

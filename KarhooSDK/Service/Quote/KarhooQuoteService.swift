@@ -11,10 +11,10 @@ import Foundation
 final class KarhooQuoteService: QuoteService {
 
     private let quoteInteractor: QuoteInteractor
-    private let coverageInteractor: CoverageInteractor
+    private let coverageInteractor: QuoteCoverageInteractor
 
     init(quoteInteractor: QuoteInteractor = KarhooQuoteInteractor(),
-         coverageInteractor: CoverageInteractor = KarhooCoverageInteractor()) {
+         coverageInteractor: QuoteCoverageInteractor = KarhooQuoteCoverageInteractor()) {
         self.quoteInteractor = quoteInteractor
         self.coverageInteractor = coverageInteractor
     }
@@ -25,7 +25,7 @@ final class KarhooQuoteService: QuoteService {
         return PollCall(pollExecutor: pollExecutor)
     }
     
-    func coverage(coverageRequest: CoverageRequest) -> Call<Coverage> {
+    func coverage(coverageRequest: QuoteCoverageRequest) -> Call<QuoteCoverage> {
         coverageInteractor.set(coverageRequest: coverageRequest)
         return Call(executable: coverageInteractor)
     }
