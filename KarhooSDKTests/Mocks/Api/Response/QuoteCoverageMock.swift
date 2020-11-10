@@ -14,11 +14,7 @@ final class QuoteCoverageMock {
     private var coverage: QuoteCoverage
     
     init() {
-        self.coverage = QuoteCoverage()
-    }
-    
-    func build() -> QuoteCoverage {
-        return coverage
+        self.coverage = QuoteCoverage(coverage: false)
     }
     
     func set(coverage: Bool) -> QuoteCoverageMock {
@@ -28,5 +24,9 @@ final class QuoteCoverageMock {
     
     private func create(coverage: Bool = false) {
         self.coverage = QuoteCoverage(coverage: coverage)
+    }
+    
+    func build() -> QuoteCoverage {
+        return coverage
     }
 }
