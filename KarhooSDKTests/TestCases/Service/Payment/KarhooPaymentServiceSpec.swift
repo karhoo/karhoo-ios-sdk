@@ -30,7 +30,8 @@ class KarhooPaymentServiceSpec: XCTestCase {
         testObject = KarhooPaymentService(tokenInteractor: mockPaymentSDKTokenInteractor,
                                           getNonceInteractor: mockGetNonceInteractor,
                                           addPaymentDetailsInteractor: mockAddPaymentDetailsInteractor,
-                                          paymentProviderInteractor: mockPaymentProviderInteractor)
+                                          paymentProviderInteractor: mockPaymentProviderInteractor,
+                                          adyenPaymentMethodsInteractor: mockAdyenPaymentMethodsInteractor)
     }
 
     /**
