@@ -13,6 +13,14 @@ public struct QuoteCoverageRequest: KarhooCodableModel {
    public let latitude: String
    public let longitude: String
    public let localTimeOfPickup: String?
+    
+    public init(latitude: String = "",
+                longitude: String = "",
+                localTimeOfPickup: String? = "") {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.localTimeOfPickup = localTimeOfPickup
+    }
 
     enum CodingKeys: String, CodingKey {
         case latitude = "latitude"

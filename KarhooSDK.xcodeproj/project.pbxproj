@@ -347,6 +347,9 @@
 		6F69F355255AA3D300F8DA05 /* MockCoverageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69F354255AA3D300F8DA05 /* MockCoverageInteractor.swift */; };
 		6F69F365255AB91B00F8DA05 /* QuoteCoverageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69F364255AB91B00F8DA05 /* QuoteCoverageMock.swift */; };
 		6F69F387255AE87100F8DA05 /* KarhooQuoteCoverageInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69F386255AE87100F8DA05 /* KarhooQuoteCoverageInteractorSpec.swift */; };
+		6F69F391255C09CE00F8DA05 /* QuoteCoverageMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69F390255C09CE00F8DA05 /* QuoteCoverageMethodSpec.swift */; };
+		6F69F397255C0AF200F8DA05 /* QuoteCoverage.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F69F396255C0AF200F8DA05 /* QuoteCoverage.json */; };
+		6F69F3A1255C0FD000F8DA05 /* QuoteCoverageError.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F69F3A0255C0FD000F8DA05 /* QuoteCoverageError.json */; };
 		6FA61FF124F4F66300C1DF48 /* AdyenPaymentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA61FF024F4F66300C1DF48 /* AdyenPaymentsInteractor.swift */; };
 		6FA61FF324F4F6C000C1DF48 /* KarhooAdyenPaymentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA61FF224F4F6C000C1DF48 /* KarhooAdyenPaymentsInteractor.swift */; };
 		6FA61FF524F4FF1D00C1DF48 /* AdyenPaymentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA61FF424F4FF1D00C1DF48 /* AdyenPaymentsRequest.swift */; };
@@ -817,6 +820,9 @@
 		6F69F354255AA3D300F8DA05 /* MockCoverageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoverageInteractor.swift; sourceTree = "<group>"; };
 		6F69F364255AB91B00F8DA05 /* QuoteCoverageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCoverageMock.swift; sourceTree = "<group>"; };
 		6F69F386255AE87100F8DA05 /* KarhooQuoteCoverageInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooQuoteCoverageInteractorSpec.swift; sourceTree = "<group>"; };
+		6F69F390255C09CE00F8DA05 /* QuoteCoverageMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCoverageMethodSpec.swift; sourceTree = "<group>"; };
+		6F69F396255C0AF200F8DA05 /* QuoteCoverage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QuoteCoverage.json; sourceTree = "<group>"; };
+		6F69F3A0255C0FD000F8DA05 /* QuoteCoverageError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QuoteCoverageError.json; sourceTree = "<group>"; };
 		6FA61FF024F4F66300C1DF48 /* AdyenPaymentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPaymentsInteractor.swift; sourceTree = "<group>"; };
 		6FA61FF224F4F6C000C1DF48 /* KarhooAdyenPaymentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooAdyenPaymentsInteractor.swift; sourceTree = "<group>"; };
 		6FA61FF424F4FF1D00C1DF48 /* AdyenPaymentsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPaymentsRequest.swift; sourceTree = "<group>"; };
@@ -1523,6 +1529,7 @@
 			isa = PBXGroup;
 			children = (
 				5C0A612A24FE80BC00AD4C8B /* QuoteSearchMethodSpec.swift */,
+				6F69F390255C09CE00F8DA05 /* QuoteCoverageMethodSpec.swift */,
 			);
 			path = Quote;
 			sourceTree = "<group>";
@@ -1531,6 +1538,8 @@
 			isa = PBXGroup;
 			children = (
 				14A4101724D1728200900F10 /* QuotesV2.json */,
+				6F69F396255C0AF200F8DA05 /* QuoteCoverage.json */,
+				6F69F3A0255C0FD000F8DA05 /* QuoteCoverageError.json */,
 				09EE81EE21528791004B2B09 /* Availability.json */,
 				09EE81ED21528791004B2B09 /* QuoteListId.json */,
 				09EE81EF21528791004B2B09 /* Quotes.json */,
@@ -3091,6 +3100,7 @@
 				09F8ABFD214FB61100E293B7 /* PaymentSDKToken.json in Resources */,
 				09EE81F021528791004B2B09 /* QuoteListId.json in Resources */,
 				1471BE2624E5904100BE1C4D /* AdyenPaymentMethods.json in Resources */,
+				6F69F3A1255C0FD000F8DA05 /* QuoteCoverageError.json in Resources */,
 				09F8ABE9214A9B1500E293B7 /* DriverTracking.json in Resources */,
 				09F8AC07214FE6DF00E293B7 /* AuthorisedUserInfo.json in Resources */,
 				09EE81E72152585D004B2B09 /* TripSearch.json in Resources */,
@@ -3102,6 +3112,7 @@
 				09F8ABF8214BF69400E293B7 /* Places.json in Resources */,
 				09F79E4B223ABD5B00D5B0B8 /* GetNonce.json in Resources */,
 				FC1202452146A4F000161081 /* Empty.json in Resources */,
+				6F69F397255C0AF200F8DA05 /* QuoteCoverage.json in Resources */,
 				143975E424EAC9FA0006EB80 /* PaymentProvider.json in Resources */,
 				4032BD1023FC47B600C2409B /* AuthUserInfo.json in Resources */,
 			);
@@ -3170,6 +3181,7 @@
 				6F19F25A2510B3A500E1F771 /* AdyenPublicKeySpec.swift in Sources */,
 				09F79E48223AB40000D5B0B8 /* NonceRequestPayload.swift in Sources */,
 				4095037B234CCF5A00C6F7A5 /* FareMethodSpec.swift in Sources */,
+				6F69F391255C09CE00F8DA05 /* QuoteCoverageMethodSpec.swift in Sources */,
 				09F8ABFB214FB4C900E293B7 /* PaymentSDKTokenMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
