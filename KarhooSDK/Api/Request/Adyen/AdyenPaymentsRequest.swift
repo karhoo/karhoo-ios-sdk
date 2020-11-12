@@ -1,40 +1,32 @@
 //
-//  AdyenPaymentsRequest.swift
+//  AdyenPaymentsRequestPayload.swift
 //  KarhooSDK
 //
-//  Created by Nurseda Balcioglu on 01/09/2020.
+//  Created by Nurseda Balcioglu on 25/08/2020.
 //  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
 import Foundation
 
-public struct AdyenPaymentsRequest: Codable, KarhooCodableModel {
+public struct AdyenPaymentsRequest: KarhooRequestModel {
     
-    public let amount: AdyenAmount
-    public let reference: String
-    public let paymentMethod: AdyenPaymentMethod
-    public let returnUrl: String
-    public let merchantAccount: String
-    
-    
-    public init(amount: AdyenAmount = AdyenAmount(),
-                reference: String = "",
-                paymentMethod: AdyenPaymentMethod = AdyenPaymentMethod(),
-                returnUrl: String = "",
-                merchantAccount: String = "") {
-        
-        self.amount = amount
-        self.reference = reference
-        self.paymentMethod = paymentMethod
-        self.returnUrl = returnUrl
-        self.merchantAccount = merchantAccount
+    public let paymentsPayload: AdyenDropInPayload
+    public let returnUrlSuffix: String
+
+    public init(paymentsPayload: AdyenDropInPayload = AdyenDropInPayload(),
+                returnUrlSuffix: String = "") {
+        self.paymentsPayload = paymentsPayload
+        self.returnUrlSuffix = returnUrlSuffix
     }
     
     enum CodingKeys: String, CodingKey {
-        case amount
-        case reference
-        case paymentMethod
-        case returnUrl
-        case merchantAccount
+        case paymentsPayload = "payments_payload"
+        case returnUrlSuffix = "return_url_suffix"
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(returnUrlSuffix, forKey: .returnUrlSuffix)
+        try container.encode(paymentsPayload, forKey: .paymentsPayload)
     }
 }

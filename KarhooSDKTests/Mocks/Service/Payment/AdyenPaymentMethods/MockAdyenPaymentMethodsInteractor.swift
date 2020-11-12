@@ -9,10 +9,10 @@
 
 final class MockAdyenPaymentMethodsInteractor: MockInteractor, AdyenPaymentMethodsInteractor {
     var cancelCalled: Bool = false
-    var callbackSet: CallbackClosure<AdyenPaymentMethods>?
+    var callbackSet: CallbackClosure<DecodableData>?
     
-    private(set) var adyenPaymentMethodsRequestPayload: AdyenPaymentMethodsRequestPayload?
-    func set(adyenPaymentMethodsRequestPayload: AdyenPaymentMethodsRequestPayload) {
-        self.adyenPaymentMethodsRequestPayload = adyenPaymentMethodsRequestPayload
+    private(set) var adyenPaymentMethodsRequest: AdyenPaymentMethodsRequest?
+    func set(request: AdyenPaymentMethodsRequest) {
+        self.adyenPaymentMethodsRequest = request
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum PickUpType: String, KarhooCodableModel {
+public enum PickUpType: String, Codable {
 
     case `default` = "DEFAULT"
     case meetAndGreet = "MEET_AND_GREET"

@@ -8,10 +8,25 @@
 
 import Foundation
 
-public protocol KarhooCodableModel: Codable {
+public protocol KarhooCodableModel: Decodable, KarhooRequestModel {
     func encode() -> Data?
 
     func equals(_ item: KarhooCodableModel) -> Bool
+}
+
+public protocol KarhooRequestModel: Encodable {
+    func encode() -> Data?
+}
+
+extension KarhooRequestModel {
+    public func encode() -> Data? {
+        do {
+            return try JSONEncoder().encode(self)
+        } catch let error {
+            print("----Error Encoding model: \(self) | Reason: \(error.localizedDescription)")
+            return nil
+        }
+    }
 }
 
 extension KarhooCodableModel {
@@ -30,4 +45,4 @@ extension KarhooCodableModel {
     }
 }
 
-extension Array: KarhooCodableModel where Element: KarhooCodableModel {}
+extension Array: KarhooCodableModel, KarhooRequestModel where Element: KarhooCodableModel {}

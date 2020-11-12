@@ -12,7 +12,7 @@ Install _fastlane_ using
 ```
 [sudo] gem install fastlane -NV
 ```
-or alternatively using `brew cask install fastlane`
+or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
@@ -21,9 +21,9 @@ or alternatively using `brew cask install fastlane`
 fastlane ios DangerPRValidation
 ```
 Danger PR Validation
-### ios DangerPostCI
+### ios iosDangerPostCI
 ```
-fastlane ios DangerPostCI
+fastlane ios iosDangerPostCI
 ```
 Danger publish test results
 ### ios unit_tests_integration_tests

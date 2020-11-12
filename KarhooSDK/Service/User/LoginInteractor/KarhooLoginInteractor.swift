@@ -117,16 +117,19 @@ final class KarhooLoginInteractor: LoginInteractor {
 
         analytics.send(eventName: .userLoggedIn)
         userDataStore.setCurrentUser(user: user, credentials: credentials)
-        updatePaymentProvider()
-        updateUserNonce(user: user)
+        updatePaymentProvider(user: user)
         callback(.success(result: result))
     }
 
-    private func updatePaymentProvider() {
+    private func updatePaymentProvider(user: UserInfo) {
         paymentProviderRequest.requestAndDecode(payload: nil,
                                                 endpoint: .paymentProvider,
                                                 callback: { [weak self] (result: Result<PaymentProvider>) in
                                                     self?.userDataStore.updatePaymentProvider(paymentProvider: result.successValue())
+
+                                                    if result.successValue()?.provider.type == .braintree {
+                                                        self?.updateUserNonce(user: user)
+                                                    }
         })
     }
 

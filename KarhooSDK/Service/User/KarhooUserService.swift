@@ -38,7 +38,6 @@ final class KarhooUserService: UserService {
     }
 
     public func logout() -> Call<KarhooVoid> {
-        authenticationMethodSanityCheck()
         return Call(executable: logoutInteractor)
     }
 

@@ -41,12 +41,27 @@ final class DefaultUserDataStore: UserDataStore {
     }
 
     func getCurrentUser() -> UserInfo? {
-        guard let rawData = persistantStore.value(forKey: DefaultUserDataStore.currentUserKey) as? Data else {
+        if let guest = guestUser() {
+            return guest
+        }
+
+        guard let rawData = rawUserData() else {
             return nil
         }
 
-        let user = try? JSONDecoder().decode(UserInfo.self, from: rawData)
-        return user?.userId.isEmpty == true ? nil : user
+        return decodeUserFrom(data: rawData)
+    }
+
+    private func rawUserData() -> Data? {
+        guard let rawData = persistantStore.value(forKey: DefaultUserDataStore.currentUserKey) as? Data else {
+            return nil
+        }
+        return rawData
+    }
+
+    private func decodeUserFrom(data: Data) -> UserInfo? {
+        let user = try? JSONDecoder().decode(UserInfo.self, from: data)
+        return user
     }
 
     func getCurrentCredentials() -> Credentials? {
@@ -66,6 +81,7 @@ final class DefaultUserDataStore: UserDataStore {
         guard let userData = user.encode() else {
             return
         }
+
         persistantStore.set(userData, forKey: DefaultUserDataStore.currentUserKey)
 
         let credentials = credentialsParser.from(credentials: credentials)
@@ -138,5 +154,35 @@ final class DefaultUserDataStore: UserDataStore {
             }
             observer.userStateUpdated(user: getCurrentUser())
         }
+    }
+
+    private func guestUser() -> UserInfo? {
+        guard let guestConfig = Karhoo.configuration.authenticationMethod().guestSettings else {
+            return nil
+        }
+
+        let primaryOrg = Organisation(id: guestConfig.organisationId,
+                                      name: "",
+                                      roles: [])
+        var guestUser = UserInfo(userId: "",
+                                 firstName: "",
+                                 lastName: "",
+                                 email: "",
+                                 mobileNumber: "",
+                                 organisations: [primaryOrg],
+                                 nonce: nil,
+                                 paymentProvider: nil,
+                                 locale: "",
+                                 externalId: "")
+
+        guard let storedUserData = rawUserData() else {
+            return guestUser
+        }
+
+        if let paymentProvider = decodeUserFrom(data: storedUserData)?.paymentProvider {
+            guestUser.paymentProvider = paymentProvider
+        }
+
+        return guestUser
     }
 }

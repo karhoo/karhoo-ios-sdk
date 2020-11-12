@@ -16,7 +16,9 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
     private var mockUserRequest: MockRequestSender!
     private var mockUserDataStore: MockUserDataStore!
     private var mockAnalytics: MockAnalyticsService!
-    
+    private var mockPaymentService = MockPaymentProviderInteractor()
+    private var mockPaymentProviderRequest = MockRequestSender()
+
     override func setUp() {
         super.setUp()
         
@@ -29,7 +31,8 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
         testObject = KarhooAuthLoginInteractor(tokenExchangeRequestSender: mocktokenExchangeRequest,
                                                userInfoSender: mockUserRequest,
                                                userDataStore: mockUserDataStore,
-                                               analytics: mockAnalytics)
+                                               analytics: mockAnalytics,
+                                               paymentProviderRequest: mockPaymentProviderRequest)
         testObject.set(token: "13123123123123")
     }
 
@@ -94,4 +97,25 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
         XCTAssertNotNil(result!.errorValue())
         XCTAssertNil(mockAnalytics.eventSent)
     }
+
+    /**
+     * Given: Login successful
+     * When: provider call succeeds
+     * Then: User should be updated
+     */
+    func testGetPaymentProvider() {
+        var result: Result<UserInfo>?
+        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+
+        testObject.execute(callback: { result = $0 })
+        mocktokenExchangeRequest.triggerEncodedRequestSuccess(value: AuthTokenMock().set(accessToken: "123").build())
+        mockUserRequest.triggerSuccessWithDecoded(value: UserInfoMock().set(firstName: "Bob").build())
+
+
+        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
+
+        XCTAssertNotNil(result!.successValue())
+        XCTAssertEqual(.braintree, mockUserDataStore.updatedPaymentProvider?.provider.type)
+    }
+
 }

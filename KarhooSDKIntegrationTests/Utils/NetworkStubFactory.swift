@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OHHTTPStubsSwift
 import OHHTTPStubs
 
 final class NetworkStub {
@@ -35,7 +36,7 @@ final class NetworkStub {
 
     static func errorResponse(path: String, responseData: Data) {
         stub(condition: isPath(path)) { _ in
-            return OHHTTPStubsResponse(data: responseData,
+            return HTTPStubsResponse(data: responseData,
                                        statusCode: 400,
                                        headers: ["Content-Type": "application/json"])
         }
@@ -58,14 +59,14 @@ final class NetworkStub {
     static func errorResponseNoNetworkConnection(path: String) {
         stub(condition: isPath(path)) { _ in
             let notConnectedError = NSError(domain: NSURLErrorDomain, code: URLError.notConnectedToInternet.rawValue)
-            return OHHTTPStubsResponse(error: notConnectedError)
+            return HTTPStubsResponse(error: notConnectedError)
         }
     }
 
     static func errorResponseTimeOutConnection(path: String) {
         stub(condition: isPath(path)) { _ in
             let timeOutError = NSError(domain: NSURLErrorDomain, code: URLError.timedOut.rawValue)
-            return OHHTTPStubsResponse(error: timeOutError)
+            return HTTPStubsResponse(error: timeOutError)
         }
     }
 
@@ -79,6 +80,6 @@ final class NetworkStub {
     }
 
     static func clearStubs() {
-        OHHTTPStubs.removeAllStubs()
+        HTTPStubs.removeAllStubs()
     }
 }

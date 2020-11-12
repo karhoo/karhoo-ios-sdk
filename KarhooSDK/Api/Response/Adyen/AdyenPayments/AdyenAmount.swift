@@ -11,10 +11,10 @@ import Foundation
 public struct AdyenAmount: KarhooCodableModel {
     
     public let currency: String
-    public let value: Double
+    public let value: Int
     
     public init(currency: String = "",
-                value: Double = 0) {
+                value: Int = 0) {
         self.currency = currency
         self.value = value
     }
@@ -27,7 +27,7 @@ public struct AdyenAmount: KarhooCodableModel {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.currency = (try? container.decode(String.self, forKey: .currency)) ?? ""
-        self.value = (try? container.decode(Double.self, forKey: .value)) ?? 0.0
+        self.value = (try? container.decode(Int.self, forKey: .value)) ?? 0
     }
     
     public func encode(to encoder: Encoder) throws {

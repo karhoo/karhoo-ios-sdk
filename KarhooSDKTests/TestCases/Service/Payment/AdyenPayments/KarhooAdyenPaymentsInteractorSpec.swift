@@ -28,7 +28,7 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
      * Then: Expected method, path and payload should be set
      */
     func testRequestFormat() {
-        testObject.execute(callback: { ( _: Result<AdyenTransaction>) in})
+        testObject.execute(callback: { ( _: Result<AdyenPayments>) in})
         mockRequestSender.assertRequestSendAndDecoded(endpoint: .adyenPayments,
                                                       method: .post,
                                                       payload: nil)
@@ -49,10 +49,8 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
      * Then: Callback should be success
      */
     func testPaymentsSuccess() {
-        let mockpayment = AdyenPayment(pspReference: "mock")
-        
-        let expectedResponse = AdyenTransaction(transactionID: "", payload: mockpayment)
-        var expectedResult: Result<AdyenTransaction>?
+        let expectedResponse = AdyenPayments(transactionID: "mock", payload: ["":""])
+        var expectedResult: Result<AdyenPayments>?
         
         testObject.execute(callback: { response in
             expectedResult = response
@@ -60,7 +58,7 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
         
         mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
         
-        XCTAssertEqual("mock", expectedResult!.successValue()?.payload.pspReference)
+        XCTAssertEqual("mock", expectedResult!.successValue()?.transactionID)
     }
     
     /**
@@ -71,7 +69,7 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
     func testPaymentsFail() {
         let expectedError = TestUtil.getRandomError()
 
-        var expectedResult: Result<AdyenTransaction>?
+        var expectedResult: Result<AdyenPayments>?
 
         testObject.execute(callback: { expectedResult = $0})
 

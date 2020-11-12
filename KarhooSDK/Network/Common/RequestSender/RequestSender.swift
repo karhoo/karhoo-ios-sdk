@@ -6,11 +6,11 @@
 import Foundation
 
 protocol RequestSender {
-    func request(payload: KarhooCodableModel?,
+    func request(payload: KarhooRequestModel?,
                  endpoint: APIEndpoint,
                  callback: @escaping CallbackClosure<HttpResponse>)
 
-    func requestAndDecode<T: KarhooCodableModel>(payload: KarhooCodableModel?,
+    func requestAndDecode<T: KarhooCodableModel>(payload: KarhooRequestModel?,
                                                  endpoint: APIEndpoint,
                                                  callback: @escaping CallbackClosure<T>)
 
