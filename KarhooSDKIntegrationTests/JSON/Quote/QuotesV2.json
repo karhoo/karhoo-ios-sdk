@@ -8,7 +8,11 @@
         "Exec",
         "Moto",
         "Electric"
-      ]
+      ],
+      "types": [
+          "electric",
+          "standard",
+          "mpv"]
     }
   },
   "id": "1762fe84-cb53-11ea-994d-52087d195d90",
@@ -33,7 +37,11 @@
       "quote_type": "ESTIMATED",
       "source": "FLEET",
       "vehicle": {
+        "type": "standard",
         "class": "Saloon",
+        "tags": [
+            "electric", "taxi"
+        ],
         "qta": {
           "high_minutes": 30,
           "low_minutes": 30
