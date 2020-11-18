@@ -1,42 +1,41 @@
 //
-//  QuoteCoverageMethodSpec.swift
+//  VerifyQuoteMethodSpec.swift
 //  KarhooSDKIntegrationTests
 //
-//  Created by Nurseda Balcioglu on 11/11/2020.
+//  Created by Nurseda Balcioglu on 18/11/2020.
 //  Copyright © 2020 Flit Technologies Ltd. All rights reserved.
 //
 
+import Foundation
 import XCTest
 @testable import KarhooSDK
 
-final class QuoteCoverageMethodSpec: XCTestCase {
+final class VerifyQuoteMethodSpec: XCTestCase {
 
-    private let quoteCoveragePath = "/v2/quotes/coverage"
+    private let verifyQuotePath = "/v2/quotes/verify/quoteID"
     private var quoteService: QuoteService!
-    private var call: Call<QuoteCoverage>!
+    private var call: Call<Quote>!
 
     override func setUp() {
         super.setUp()
 
-        let quoteCoverage = QuoteCoverageRequest(latitude: "", longitude: "", localTimeOfPickup: "")
+        let verifyQuote = VerifyQuotePayload(quoteID: "quoteID")
         quoteService = Karhoo.getQuoteService()
-        call = quoteService.coverage(coverageRequest: quoteCoverage)
+        call = quoteService.verifyQuote(verifyQuotePayload: verifyQuote)
     }
 
     /**
-      * Given: User is making a coverage call
+      * Given: User is making a verify call
       * When: All requests succceed as expected
       * Then: Success result should be propogated
       */
     func testHappyPath() {
-        NetworkStub.successResponse(jsonFile: "QuoteCoverage.json", path: quoteCoveragePath)
+        NetworkStub.successResponse(jsonFile: "QuotesV2.json", path: verifyQuotePath)
 
         let expectation = self.expectation(description: "Calls callback with success result")
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-
-            XCTAssertEqual(true, result.successValue()?.coverage)
-
+            XCTAssertEqual("1762fe84-cb53-11ea-994d-52087d195d90", result.successValue()?.id)
             expectation.fulfill()
         })
 
@@ -45,15 +44,15 @@ final class QuoteCoverageMethodSpec: XCTestCase {
 
     /**
      * Given: Searching for quotes
-     * When: QuoteCoverage fails
+     * When: Verify Quote fails
      * Then: Expected error should be propogated
      */
-    func testQuoteCoverageRequestErrorResponse() {
-        NetworkStub.errorResponse(path: quoteCoveragePath, responseData: RawKarhooErrorFactory.buildError(code: "KSDK01"))
+    func testVerifyQuoteRequestErrorResponse() {
+        NetworkStub.errorResponse(path: verifyQuotePath, responseData: RawKarhooErrorFactory.buildError(code: "K3003"))
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.couldNotFindSpecifiedQuote, result.errorValue()?.type)
             expectation.fulfill()
         })
 
@@ -65,9 +64,9 @@ final class QuoteCoverageMethodSpec: XCTestCase {
      * When: Quotes request times out
      * Then: Unknown error should be propogated
      */
-    func testQuotesRequestTimeout() {
-        NetworkStub.successResponse(jsonFile: "QuoteCoverage.json", path: quoteCoveragePath)
-        NetworkStub.errorResponseTimeOutConnection(path: quoteCoveragePath)
+    func testVerifyQuoteRequestTimeout() {
+        NetworkStub.successResponse(jsonFile: "QuotesV2.json", path: verifyQuotePath)
+        NetworkStub.errorResponseTimeOutConnection(path: verifyQuotePath)
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
@@ -78,4 +77,5 @@ final class QuoteCoverageMethodSpec: XCTestCase {
         waitForExpectations(timeout: 1)
     }
 }
+
 
