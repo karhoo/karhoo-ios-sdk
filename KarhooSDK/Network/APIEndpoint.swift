@@ -37,6 +37,7 @@ enum APIEndpoint {
     case adyenPaymentsDetails
     case adyenPublicKey
     case quoteCoverage
+    case verifyQuote(quoteID: String)
     
     var path: String {
         switch self {
@@ -120,6 +121,8 @@ enum APIEndpoint {
             return "/payments/adyen/public-key"
         case .quoteCoverage:
             return "/quotes/coverage"
+        case .verifyQuote(let quoteID):
+            return "/quotes/verify/\(quoteID)"
         }
     }
 
@@ -160,6 +163,7 @@ enum APIEndpoint {
         case .adyenPaymentsDetails: return .post
         case .adyenPublicKey: return .get
         case .quoteCoverage: return .get
+        case .verifyQuote: return .get
         }
     }
 
@@ -176,6 +180,7 @@ enum APIEndpoint {
         case .adyenPaymentsDetails: return "v3"
         case .adyenPublicKey: return "v3"
         case .quoteCoverage: return "v2"
+        case .verifyQuote: return "v2"
         default: return "v1"
         }
     }
