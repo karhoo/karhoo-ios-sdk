@@ -16,7 +16,6 @@
 
 KarhooSDK is a framework for integrating with the KarhooAPI: https://developer.karhoo.com
 
-
 [**Read The Docs**](https://developer.karhoo.com/docs/build-apps-using-sdks)
 
 
