@@ -40,7 +40,7 @@ final class TokenRefreshingHttpClientSpec: XCTestCase {
         mockHttpClient.networkRequestToReturn = mockNetworkRequest
 
         var capturedResult: Result<HttpResponse>?
-        let capturedRequest = testObject.sendRequest(endpoint: .availability) { result in
+        let capturedRequest = testObject.sendRequest(endpoint: .bookTrip) { result in
             capturedResult = result
         }
 
@@ -64,7 +64,7 @@ final class TokenRefreshingHttpClientSpec: XCTestCase {
         let mockNetworkRequest = MockNetworkRequest()
         mockHttpClient.networkRequestToReturn = mockNetworkRequest
 
-        let capturedRequest = testObject.sendRequest(endpoint: .availability) { _ in }
+        let capturedRequest = testObject.sendRequest(endpoint: .bookTrip) { _ in }
 
         XCTAssertNotNil(capturedRequest)
         XCTAssertNotNil((capturedRequest as? AsyncNetworkRequestWrapper)?.hasRequest)
@@ -83,7 +83,7 @@ final class TokenRefreshingHttpClientSpec: XCTestCase {
         mockHttpClient.networkRequestToReturn = mockNetworkRequest
 
         var capturedResult: Result<HttpResponse>?
-        let capturedRequest = testObject.sendRequest(endpoint: .quoteListId) { result in
+        let capturedRequest = testObject.sendRequest(endpoint: .bookTrip) { result in
                                                         capturedResult = result
         }
 
@@ -211,7 +211,7 @@ final class TokenRefreshingHttpClientSpec: XCTestCase {
         mockHttpClient.networkRequestToReturn = MockNetworkRequest()
 
         var capturedResult: Result<HttpResponse>?
-        testObject.sendRequest(endpoint: .availability) { result in
+        testObject.sendRequest(endpoint: .bookTrip) { result in
                                 capturedResult = result
         }
 
@@ -246,7 +246,7 @@ final class TokenRefreshingHttpClientSpec: XCTestCase {
         mockHttpClient.networkRequestToReturn = MockNetworkRequest()
 
         var capturedResult: Result<HttpResponse>?
-        testObject.sendRequest(endpoint: .availability) { result in
+        testObject.sendRequest(endpoint: .bookTrip) { result in
                                 capturedResult = result
         }
 

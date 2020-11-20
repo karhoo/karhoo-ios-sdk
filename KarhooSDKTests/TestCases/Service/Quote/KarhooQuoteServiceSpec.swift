@@ -14,7 +14,9 @@ import XCTest
 final class KarhooQuoteServiceSpec: XCTestCase {
 
     private var testobject: KarhooQuoteService!
-    private var mockQuoteInteractor: MockQuoteInteractor!
+    private var mockQuoteInteractor = MockQuoteInteractor()
+    private var mockCoverageInteractor = MockCoverageInteractor()
+    private var mockVerifyQuoteInteractor = MockVerifyQuoteInteractor()
 
     private let mockQuoteSearch: QuoteSearch = QuoteSearch(origin: LocationInfoMock()
                                                                    .set(placeId: "originPlaceId")
@@ -24,7 +26,14 @@ final class KarhooQuoteServiceSpec: XCTestCase {
                                                                         .build(),
                                                            dateScheduled: Date())
 
-    static let mockQuote = QuoteMock().set(quoteId: "success-quote").set(categoryName: "foo").build()
+    private let mockCoverageRequestPayload: QuoteCoverageRequest = QuoteCoverageRequest(latitude: "", longitude: "", localTimeOfPickup: "")
+    
+    private let mockVerifyQuotePayload: VerifyQuotePayload = VerifyQuotePayload(quoteID: "success-quote")
+    
+    let mockCoverageResult = QuoteCoverage(coverage: true)
+    
+    static let mockFleet = FleetInfo(id: "success-quotev2")
+    static let mockQuote = QuoteMock().set(quoteId: "success-quote").set(categoryName: "foo").set(fleet: mockFleet).build()
     let mockQuotesResult = Quotes(quoteListId: "some",
                                   quoteCategories: [QuoteCategory(name: "foo", quotes: [mockQuote])],
                                   all: [mockQuote])
@@ -34,7 +43,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
         mockQuoteInteractor = MockQuoteInteractor()
 
-        testobject = KarhooQuoteService(quoteInteractor: mockQuoteInteractor)
+        testobject = KarhooQuoteService(quoteInteractor: mockQuoteInteractor, coverageInteractor: mockCoverageInteractor, verifyQuoteInteractor: mockVerifyQuoteInteractor)
     }
 
     /**
@@ -49,7 +58,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
         mockQuoteInteractor.triggerSuccess(result: mockQuotesResult)
 
-        XCTAssertEqual("success-quote", result?.successValue()?.quotes(for: "foo")[0].quoteId)
+        XCTAssertEqual("success-quotev2", result?.successValue()?.quotes(for: "foo")[0].fleet.id)
     }
 
     /**
@@ -67,4 +76,66 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
         XCTAssert(expectedError.equals(result?.errorValue()))
     }
+    
+    /**
+      * When: Quote coverage succeeds
+      * Then: callback should be executed with expected value
+      */
+    func testCoverageSucces() {
+        let call = testobject.coverage(coverageRequest: mockCoverageRequestPayload)
+
+        var result: Result<QuoteCoverage>?
+        call.execute(callback: { result = $0 })
+
+        mockCoverageInteractor.triggerSuccess(result: mockCoverageResult)
+        XCTAssertTrue(result!.isSuccess())
+    }
+
+    /**
+     * When: Quote coverage fails
+     * Then: callback should be executed with expected value
+     */
+    func testCoverageFails() {
+        let call = testobject.coverage(coverageRequest: mockCoverageRequestPayload)
+
+        var result: Result<QuoteCoverage>?
+        call.execute(callback: { result = $0 })
+
+        let expectedError = TestUtil.getRandomError()
+        mockCoverageInteractor.triggerFail(error: expectedError)
+
+        XCTAssert(expectedError.equals(result?.errorValue()))
+    }
+    
+    /**
+      * When: Verify Quote  succeeds
+      * Then: callback should be executed with expected value
+      */
+    func testVerifyQUoteSucces() {
+        let call = testobject.verifyQuote(verifyQuotePayload: mockVerifyQuotePayload)
+
+        var result: Result<Quote>?
+        call.execute(callback: { result = $0 })
+
+        mockVerifyQuoteInteractor.triggerSuccess(result: KarhooQuoteServiceSpec.mockQuote)
+        XCTAssertEqual("success-quote", result?.successValue()?.id)
+    }
+
+    /**
+     * When: Verify Quote  fails
+     * Then: callback should be executed with expected value
+     */
+    func testVerifyQuoteFails() {
+        let call = testobject.verifyQuote(verifyQuotePayload: mockVerifyQuotePayload)
+
+        var result: Result<Quote>?
+        call.execute(callback: { result = $0 })
+
+        let expectedError = TestUtil.getRandomError()
+        mockVerifyQuoteInteractor.triggerFail(error: expectedError)
+
+        XCTAssert(expectedError.equals(result?.errorValue()))
+    }
+    
+    
 }

@@ -13,6 +13,7 @@ protocol UserDataStore {
     func getCurrentCredentials() -> Credentials?
     func setCurrentUser(user: UserInfo, credentials: Credentials)
     func updateCurrentUserNonce(nonce: Nonce?)
+    func updatePaymentProvider(paymentProvider: PaymentProvider?)
     func updateUser(user: inout UserInfo)
     func removeCurrentUserAndCredentials()
     func set(credentials: Credentials)
@@ -40,12 +41,27 @@ final class DefaultUserDataStore: UserDataStore {
     }
 
     func getCurrentUser() -> UserInfo? {
-        guard let rawData = persistantStore.value(forKey: DefaultUserDataStore.currentUserKey) as? Data else {
+        if let guest = guestUser() {
+            return guest
+        }
+
+        guard let rawData = rawUserData() else {
             return nil
         }
 
-        let user = try? JSONDecoder().decode(UserInfo.self, from: rawData)
-        return user?.userId.isEmpty == true ? nil : user
+        return decodeUserFrom(data: rawData)
+    }
+
+    private func rawUserData() -> Data? {
+        guard let rawData = persistantStore.value(forKey: DefaultUserDataStore.currentUserKey) as? Data else {
+            return nil
+        }
+        return rawData
+    }
+
+    private func decodeUserFrom(data: Data) -> UserInfo? {
+        let user = try? JSONDecoder().decode(UserInfo.self, from: data)
+        return user
     }
 
     func getCurrentCredentials() -> Credentials? {
@@ -65,6 +81,7 @@ final class DefaultUserDataStore: UserDataStore {
         guard let userData = user.encode() else {
             return
         }
+
         persistantStore.set(userData, forKey: DefaultUserDataStore.currentUserKey)
 
         let credentials = credentialsParser.from(credentials: credentials)
@@ -80,12 +97,25 @@ final class DefaultUserDataStore: UserDataStore {
         }
 
         user.nonce = nonce
+        updateUser(data: user.encode())
+    }
 
-        guard let updatedUserData = user.encode() else {
+    func updatePaymentProvider(paymentProvider: PaymentProvider?) {
+        guard var user = getCurrentUser() else {
             return
         }
 
-        persistantStore.set(updatedUserData, forKey: DefaultUserDataStore.currentUserKey)
+        user.paymentProvider = paymentProvider
+        updateUser(data: user.encode())
+    }
+
+    private func updateUser(data: Data?) {
+        guard let data = data else {
+            return
+        }
+
+        persistantStore.set(data, forKey: DefaultUserDataStore.currentUserKey)
+        persistantStore.synchronize()
         broadcastChange()
     }
 
@@ -94,13 +124,11 @@ final class DefaultUserDataStore: UserDataStore {
             user.nonce = currentNonce
         }
 
-        guard let newUserData = user.encode() else {
-            return
+        if let currentPaymentProvider = getCurrentUser()?.paymentProvider {
+            user.paymentProvider = currentPaymentProvider
         }
 
-        persistantStore.set(newUserData, forKey: DefaultUserDataStore.currentUserKey)
-        persistantStore.synchronize()
-        broadcastChange()
+        updateUser(data: user.encode())
     }
 
     func removeCurrentUserAndCredentials() {
@@ -126,5 +154,35 @@ final class DefaultUserDataStore: UserDataStore {
             }
             observer.userStateUpdated(user: getCurrentUser())
         }
+    }
+
+    private func guestUser() -> UserInfo? {
+        guard let guestConfig = Karhoo.configuration.authenticationMethod().guestSettings else {
+            return nil
+        }
+
+        let primaryOrg = Organisation(id: guestConfig.organisationId,
+                                      name: "",
+                                      roles: [])
+        var guestUser = UserInfo(userId: "",
+                                 firstName: "",
+                                 lastName: "",
+                                 email: "",
+                                 mobileNumber: "",
+                                 organisations: [primaryOrg],
+                                 nonce: nil,
+                                 paymentProvider: nil,
+                                 locale: "",
+                                 externalId: "")
+
+        guard let storedUserData = rawUserData() else {
+            return guestUser
+        }
+
+        if let paymentProvider = decodeUserFrom(data: storedUserData)?.paymentProvider {
+            guestUser.paymentProvider = paymentProvider
+        }
+
+        return guestUser
     }
 }

@@ -51,6 +51,7 @@ final class QuoteListMock {
 
         self.quoteList = QuoteList(
                 quoteItems: quoteListItems,
+                quotes: quoteListItems,
                 listId: listId,
                 status: status,
                 validity: validity)
@@ -58,9 +59,9 @@ final class QuoteListMock {
 
     private func getQuoteItemList(quoteItem: Quote) -> [Quote] {
         if !quoteItem.equals(Quote()) {
-            let updatedList = quoteList.quoteItems + [quoteItem]
+            let updatedList = quoteList.quotes + [quoteItem]
             return updatedList
         }
-        return quoteList.quoteItems
+        return quoteList.quotes
     }
 }

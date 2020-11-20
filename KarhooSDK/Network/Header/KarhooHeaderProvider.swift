@@ -23,6 +23,11 @@ class KarhooHeaderProvider: HeaderProvider {
         headers[HeaderConstants.contentType] = HeaderConstants.typeJSON
         return headers
     }
+    
+    func headersWithAcceptJSONType(headers: inout HttpHeaders) -> HttpHeaders {
+        headers[HeaderConstants.accept] = HeaderConstants.typeJSON
+        return headers
+    }
 
     func headersWithFormEncodedType(headers: inout HttpHeaders) -> HttpHeaders {
         headers[HeaderConstants.contentType] = HeaderConstants.typeEncoded

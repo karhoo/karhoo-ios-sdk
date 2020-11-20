@@ -22,6 +22,7 @@ final class AddPaymentDetailsMethodSpec: XCTestCase {
 
         let payload = AddPaymentDetailsPayload(nonce: "some", payer: Payer(), organisationId: "some+desiredOrg")
         self.call = paymentService.addPaymentDetails(addPaymentDetailsPayload: payload)
+        
     }
 
     /**
@@ -64,7 +65,7 @@ final class AddPaymentDetailsMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 2)
     }
 
     /**

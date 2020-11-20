@@ -118,6 +118,20 @@ final class HeaderProviderSpec: XCTestCase {
         XCTAssertEqual("bar", finalHeaders["foo"])
         XCTAssertEqual("application/json", finalHeaders["Content-Type"])
     }
+    
+    /**
+    *  Given:  A network request is made
+    *  When:   The payload type is accept with json
+    *  Then:   The content type should be of the correct value
+    */
+    func testAddingAcceptJsonTypeGetsAppendedToTheHeader() {
+        var httpHeader = ["foo": "bar"]
+
+        let finalHeaders = testHeaderProvider.headersWithAcceptJSONType(headers: &httpHeader)
+
+        XCTAssertEqual("bar", finalHeaders["foo"])
+        XCTAssertEqual("application/json", finalHeaders["accept"])
+    }
 
     /**
     *  Given:  A network request is made
@@ -128,7 +142,7 @@ final class HeaderProviderSpec: XCTestCase {
         var httpHeader = ["foo": "bar"]
 
         let finalHeaders = testHeaderProvider.headersWithCorrelationId(headers: &httpHeader,
-                                                                       endpoint: .availability)
+                                                                       endpoint: .bookTrip)
         let correlationId: String = finalHeaders["correlation_id"] ?? ""
 
         let prefix = String(correlationId.prefix(HeaderConstants.correlationIdPrefix.count))

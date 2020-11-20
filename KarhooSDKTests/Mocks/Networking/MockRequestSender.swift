@@ -12,12 +12,12 @@ import XCTest
 
 final class MockRequestSender: RequestSender {
 
-    var payloadSet: KarhooCodableModel?
+    var payloadSet: KarhooRequestModel?
     var endpointSet: APIEndpoint?
     // regular request
     var requestCallback: CallbackClosure<HttpResponse>?
     var requestCalled = false
-    func request(payload: KarhooCodableModel?,
+    func request(payload: KarhooRequestModel?,
                  endpoint: APIEndpoint,
                  callback: @escaping CallbackClosure<HttpResponse>) {
         requestCalled = true
@@ -31,7 +31,7 @@ final class MockRequestSender: RequestSender {
     // Using Any to avoid specifying class generics for each instance of TestRequestSender
     private var errorCallback: ((KarhooError) -> Void)?
     private var valueCallback: ((Any) -> Void)?
-    func requestAndDecode<T: KarhooCodableModel>(payload: KarhooCodableModel?,
+    func requestAndDecode<T: KarhooCodableModel>(payload: KarhooRequestModel?,
                                                  endpoint: APIEndpoint,
                                                  callback: @escaping CallbackClosure<T>) {
         self.requestAndDecodeCalled = true
@@ -42,7 +42,9 @@ final class MockRequestSender: RequestSender {
             callback(.failure(error: error))
         }
         self.valueCallback = { value in
-            guard let value = value as? T else { return }
+            guard let value = value as? T else {
+                return
+            }
             callback(.success(result: value))
         }
     }

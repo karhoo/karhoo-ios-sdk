@@ -1,0 +1,73 @@
+# .circleci/config.yml
+version: 2.1
+jobs:
+  build-and-test:
+    macos:
+      xcode: 12.0.0
+    working_directory: /Users/distiller/project/KarhooSDK.xcodeproj
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: unit_tests_integration_tests
+    shell: /bin/bash --login -eo pipefail
+    resource_class: medium
+    steps:
+      - checkout
+      - run:
+          name: Enable private repo cloning from GIT for Swift Package Manager
+          command: |
+            sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
+            rm ~/.ssh/id_rsa || true
+            for ip in $(dig @8.8.8.8 bitbucket.org +short); do ssh-keyscan bitbucket.org,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
+            for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
+      - run:
+          name: Bundle install
+          command: bundle check || bundle install
+      - run:
+          name: Create Keys.swift
+          command: |
+            echo "import KarhooSDK" > Client/Keys.swift
+            echo "struct Keys {" >> Client/Keys.swift
+            echo "static let identifier = \"\"" >> Client/Keys.swift
+            echo "static let referer = \"\"" >> Client/Keys.swift
+            echo "static let organisationId = \"\"}" >> Client/Keys.swift
+            echo "struct AdyenSDKConfig: KarhooSDKConfiguration {" >> Client/Keys.swift
+            echo "func environment() -> KarhooEnvironment {" >> Client/Keys.swift
+            echo "return .custom(environment: .init(host: \"$ADYEN_STG_HOST\", authHost: \"$ADYEN_STG_AUTHHOST\", guestHost: \"$ADYEN_STG_GUESTHOST\")) }" >> Client/Keys.swift
+            echo "func authenticationMethod() -> AuthenticationMethod {" >> Client/Keys.swift
+            echo "return .karhooUser }}" >> Client/Keys.swift
+      - run:
+          name: fastlane
+          command: bundle exec fastlane $FASTLANE_LANE
+      - run:
+          name: Fastlane Xcov report
+          command: bundle exec fastlane ios XcovReport
+      - store_artifacts:
+          path: output
+      - store_test_results:
+          path: output/scan
+
+  adhoc:
+    macos:
+      xcode: 12.0.0
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: adhoc
+    steps:
+      - checkout
+      - run: bundle install
+      - run:
+          name: Fastlane
+          command: bundle exec fastlane $FASTLANE_LANE
+      - store_artifacts:
+          path: output
+
+workflows:
+  build-test-adhoc:
+    jobs:
+      - build-and-test
+      - adhoc:
+          filters:
+            branches:
+              only: development
+          requires:
+            - build-and-test

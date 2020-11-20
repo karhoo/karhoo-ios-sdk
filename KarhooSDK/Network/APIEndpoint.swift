@@ -1,7 +1,7 @@
 import Foundation
 
 enum APIEndpoint {
-    case availability
+
     case quoteListId
     case quotes(identifier: String)
     case bookTrip
@@ -31,7 +31,14 @@ enum APIEndpoint {
     case authRevoke
     case authUserInfo
     case authRefresh
-
+    case paymentProvider
+    case adyenPaymentMethods
+    case adyenPayments
+    case adyenPaymentsDetails
+    case adyenPublicKey
+    case quoteCoverage
+    case verifyQuote(quoteID: String)
+    
     var path: String {
         switch self {
         case .custom(let path, _):
@@ -43,8 +50,6 @@ enum APIEndpoint {
 
     var relativePath: String {
         switch self {
-        case .availability:
-            return "/quotes/availability"
         case .quoteListId:
             return "/quotes/"
         case .quotes(let identifier):
@@ -89,7 +94,7 @@ enum APIEndpoint {
             return "/payments/payment-methods/braintree/client-tokens?organisation_id=\(payload.organisationId)"
                    + "&currency=\(payload.currency)"
         case .getNonce:
-            return "/payments/payment-methods/braintree/get-nonce"
+            return "/payments/payment-methods/braintree/get-payment-method"
         case .addPaymentDetails:
             return "/payments/payment-methods/braintree/add-payment-details"
         case .karhooUserTokenRefresh:
@@ -97,19 +102,32 @@ enum APIEndpoint {
         case .custom(let path, _):
             return path
         case .authTokenExchange:
-            return "/karhoo/anonymous/token-exchange"
+            return "/oauth/v2/token-exchange"
         case .authRevoke:
             return "/oauth/v2/revoke"
         case .authUserInfo:
             return "/oauth/v2/userinfo"
         case .authRefresh:
             return "/oauth/v2/token"
+        case .paymentProvider:
+            return "/payments/providers"
+        case .adyenPaymentMethods:
+            return "/payments/adyen/payments-methods"
+        case .adyenPayments:
+            return "/payments/adyen/payments"
+        case .adyenPaymentsDetails:
+            return "/payments/adyen/payments-details"
+        case .adyenPublicKey:
+            return "/payments/adyen/public-key"
+        case .quoteCoverage:
+            return "/quotes/coverage"
+        case .verifyQuote(let quoteID):
+            return "/quotes/verify/\(quoteID)"
         }
     }
 
     var method: HttpMethod {
         switch self {
-        case .availability: return .post
         case .quoteListId: return .post
         case .quotes: return .get
         case .bookTrip: return .post
@@ -139,6 +157,13 @@ enum APIEndpoint {
         case .authUserInfo: return .get
         case .authRefresh: return .post
         case .custom(_, let method): return method
+        case .paymentProvider: return .get
+        case .adyenPaymentMethods: return .post
+        case .adyenPayments: return .post
+        case .adyenPaymentsDetails: return .post
+        case .adyenPublicKey: return .get
+        case .quoteCoverage: return .get
+        case .verifyQuote: return .get
         }
     }
 
@@ -147,6 +172,15 @@ enum APIEndpoint {
         case .addPaymentDetails: return "v2"
         case .getNonce: return "v2"
         case .paymentSDKToken: return "v2"
+        case .quotes(_ ): return "v2"
+        case .quoteListId: return "v2"
+        case .paymentProvider: return "v3"
+        case .adyenPaymentMethods: return "v3"
+        case .adyenPayments: return "v3"
+        case .adyenPaymentsDetails: return "v3"
+        case .adyenPublicKey: return "v3"
+        case .quoteCoverage: return "v2"
+        case .verifyQuote: return "v2"
         default: return "v1"
         }
     }

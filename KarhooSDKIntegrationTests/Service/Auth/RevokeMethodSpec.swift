@@ -24,7 +24,7 @@ final class AuthRevokeMethodSpec: XCTestCase {
     }
 
     private func authenticate() {
-        NetworkStub.successResponse(jsonFile: "AuthToken.json", path: "/karhoo/anonymous/token-exchange")
+        NetworkStub.successResponse(jsonFile: "AuthToken.json", path: "/oauth/v2/token-exchange")
         NetworkStub.successResponse(jsonFile: "AuthorisedUserInfo.json", path: "/oauth/v2/userinfo")
 
         let expectation = self.expectation(description: "calls the callback with success")

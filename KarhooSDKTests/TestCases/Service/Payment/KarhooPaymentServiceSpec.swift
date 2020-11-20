@@ -15,6 +15,8 @@ class KarhooPaymentServiceSpec: XCTestCase {
     private var mockPaymentSDKTokenInteractor: MockPaymentSDKTokenInteractor!
     private var mockGetNonceInteractor: MockGetNonceInteractor!
     private var mockAddPaymentDetailsInteractor: MockAddPaymentDetailsInteractor!
+    private var mockPaymentProviderInteractor = MockPaymentProviderInteractor()
+    private var mockAdyenPaymentMethodsInteractor = MockAdyenPaymentMethodsInteractor()
     private var testObject: KarhooPaymentService!
     private let mockRequestPayload: PaymentSDKTokenPayload = PaymentSDKTokenPayload(organisationId: "some",
                                                                                     currency: "gbp")
@@ -27,7 +29,9 @@ class KarhooPaymentServiceSpec: XCTestCase {
 
         testObject = KarhooPaymentService(tokenInteractor: mockPaymentSDKTokenInteractor,
                                           getNonceInteractor: mockGetNonceInteractor,
-                                          addPaymentDetailsInteractor: mockAddPaymentDetailsInteractor)
+                                          addPaymentDetailsInteractor: mockAddPaymentDetailsInteractor,
+                                          paymentProviderInteractor: mockPaymentProviderInteractor,
+                                          adyenPaymentMethodsInteractor: mockAdyenPaymentMethodsInteractor)
     }
 
     /**
@@ -149,6 +153,76 @@ class KarhooPaymentServiceSpec: XCTestCase {
 
         let error = TestUtil.getRandomError()
         mockAddPaymentDetailsInteractor.triggerFail(error: error)
+
+        XCTAssert(error.equals(executeResult!.errorValue()!))
+    }
+
+    /**
+     *  When:   Getting payment provider succeeds
+     *  Then:   A success response should be sent through the callback
+     */
+    func testGetPaymentProviderSuccessful() {
+        let karhooCall = testObject.getPaymentProvider()
+
+        var executeResult: Result<PaymentProvider>?
+        karhooCall.execute(callback: { result in
+            executeResult = result
+        })
+
+        mockPaymentProviderInteractor.triggerSuccess(result: PaymentProvider(provider: Provider(id: "braintree")))
+
+        XCTAssertEqual(executeResult?.successValue()?.provider.type, .braintree)
+    }
+
+    /**
+     *  When:   Getting payment provider  fails
+     *  Then:   An error should be sent through the callback
+     */
+    func testGetPaymentProviderFail() {
+        let karhooCall = testObject.getPaymentProvider()
+
+        var executeResult: Result<PaymentProvider>?
+        karhooCall.execute(callback: { result in
+            executeResult = result
+        })
+
+        let error = TestUtil.getRandomError()
+        mockPaymentProviderInteractor.triggerFail(error: error)
+
+        XCTAssert(error.equals(executeResult!.errorValue()!))
+    }
+
+    /** Note: This endpoint returns Data to be decoded by the Adyen Drop In SDK
+     *  When:   Getting payment methods data succeeds
+     *  Then:   A success response should be sent through the callback
+     */
+    func testAdyenPaymentMethodsSuccess() {
+        let karhooCall = testObject.adyenPaymentMethods(request: AdyenPaymentMethodsRequest())
+
+        var executeResult: Result<DecodableData>?
+        karhooCall.execute(callback: { result in
+            executeResult = result
+        })
+
+        mockAdyenPaymentMethodsInteractor.triggerSuccess(result: DecodableData(data: Data()))
+        XCTAssertNotNil(mockAdyenPaymentMethodsInteractor.adyenPaymentMethodsRequest)
+        XCTAssertEqual(executeResult?.successValue()?.data, Data())
+    }
+
+    /**
+     *  When:   Getting payment provider  fails
+     *  Then:   An error should be sent through the callback
+     */
+    func testAdyenPaymentMethodsFail() {
+        let karhooCall = testObject.adyenPaymentMethods(request: AdyenPaymentMethodsRequest())
+
+        var executeResult: Result<DecodableData>?
+        karhooCall.execute(callback: { result in
+            executeResult = result
+        })
+
+        let error = TestUtil.getRandomError()
+        mockAdyenPaymentMethodsInteractor.triggerFail(error: error)
 
         XCTAssert(error.equals(executeResult!.errorValue()!))
     }

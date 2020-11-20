@@ -37,15 +37,6 @@ class KarhooSpec: XCTestCase {
     }
 
     /**
-     *  When:   Getting an availability service
-     *  Then:   It should return a KarhooAvailabilityService
-     */
-    func testGetAvailabilityService() {
-        let availabilityService = Karhoo.getAvailabilityService()
-        XCTAssertNotNil(availabilityService)
-    }
-
-    /**
      *  When:   Getting an address service
      *  Then:   It should return an instance of KarhooAddressService
      */

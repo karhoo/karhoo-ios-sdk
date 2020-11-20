@@ -65,6 +65,14 @@ public enum KarhooErrorType {
     // K5xxx Availability
     case noAvailabilityInRequestedArea
     case noAvailableCategoriesInRequestedArea
+    
+    // KPxxx Braintree Payments
+    case couldNotFindCustomer
+    case couldNotInitailizeClient
+    case couldNotFindDefaultPayment
+    case couldNotFindDefaultCard
+    case failedToGenerateNonce
+    case failedToCallMoneyService
 }
 
 extension KarhooErrorType {
@@ -126,6 +134,14 @@ extension KarhooErrorType {
         // K5xxx Availability
         case "K5001": self = .couldNotGetEstimates
         case "K5003": self = .noAvailableCategoriesInRequestedArea
+            
+        // KPxxx Payments
+        case "KP001": self = .couldNotFindCustomer
+        case "KP002": self = .couldNotInitailizeClient
+        case "KP003": self = .couldNotFindDefaultPayment
+        case "KP004": self = .couldNotFindDefaultCard
+        case "KP005": self = .failedToGenerateNonce
+        case "P0002": self = .failedToCallMoneyService
 
         default: self = .unknownError
         }

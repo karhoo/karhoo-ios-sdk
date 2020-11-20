@@ -32,11 +32,12 @@ struct SDKConfig: KarhooSDKConfiguration {
     }
 
     func authenticationMethod() -> AuthenticationMethod {
-       /* let tokenSettings = TokenExchangeSettings(clientId: "",
-                                                  scope: "")*/
-
-        let guestSettings = GuestSettings(identifier: "",
-                                          referer: "")
+        let guestSettings = GuestSettings(identifier: Keys.identifier,
+                                          referer: Keys.referer,
+                                          organisationId: Keys.organisationId)
         return .guest(settings: guestSettings)
     }
 }
+
+
+

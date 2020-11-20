@@ -1,0 +1,47 @@
+{
+
+   "transaction_id":"aaaa-aaaa-aaaa",
+   "payload":{
+
+      "resultCode":"RedirectShopper",
+      "action":{
+
+         "paymentData":"mockPaymentData",
+         "paymentMethodType":"scheme",
+         "url":"https://test.adyen.com/hpp/3d/validate.shtml",
+         "data":{
+
+            "MD":"czY4bFliY2gyTGZTZ09pSmpFVzZ1QT09IevNpXfv7kPuVWl2RhgExgUojZUq3xb21qJGThnCpjjElAvMS1XDoyN_qObHhQj8mwiKCU2oEkL79tg0N58A3eywcQfRQpPRg_xcCLLdEKt2iUfbs-E1tsEfVS45Fo4ug-RsB9OizjHisH6PneqXd8zJ03uAwsaVXunjTkTUmQ5S8AufEEytG9XMmvYml4LkptT5KMvJNY0_3xhF5STOqar7fHaqzWbos3PDYI7hxdQg5cZ6-UB6AWxNGNinrGMfbVqPfwj7L4ZY168PAJR5xh5eAbYrj0nXspfmsGOEeR_kGVfWZc86RNf65AIgbASo8GrM74o8p6jz",
+            "PaReq":"eNpVUn9vgjAQ/SpuH4CWClLI2aSTJXPJ0Ez8eyHloswBWmDqPv1a8MfWv+7du3u9viukW40Yr1B1GgW8YdNkGxwV+fQx4v7YD7nvTiZhEFL++ihgKd/xIOAbdVPUlXAd6jAgV2jatdpmVSsgU4eneSJcNvb8CZALhBL1PBYpNu2yLKU6dIVGDWRIQ5WVKNbyQ84eIrmcx7VqrooukJ4FVXdVq8/CZxzIFUCnv8S2bfcRIcfj0cnyM1aOqksglgFyH2zZ2agxSqciF4t4/ZOkOy9Jn1nyuRsvUumtNtKeKRBbAXnWomCUUcpZMKI8Yl7kB0D6PGSlHUGsV/HIpQ6l5qlDBvb2IjkAl1rmbwaM3xordRbcM9QNAZ72dYWmwvh6i4Hcx569WHdVawzz2OBvwENqosD63BNWpTC+MOrSXsYCILaVXFZILqs20b8v8At+Jqxq",
+            "TermUrl":"https://your-company.com/..."
+         },
+         "method":"POST",
+         "type":"redirect"
+      },
+      "details":[
+
+         {
+
+            "key":"MD",
+            "type":"text"
+         },
+         {
+
+            "key":"PaRes",
+            "type":"text"
+         }
+      ],
+      "paymentData":"Ab02b4c0!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",
+      "redirect":{
+
+         "data":{
+
+            "PaReq":"eNpVUn9vgjAQ/SpuH4CWClLI2aSTJXPJ0Ez8eyHloswBWmDqPv1a8MfWv+7du3u9viukW40Yr1B1GgW8YdNkGxwV+fQx4v7YD7nvTiZhEFL++ihgKd/xIOAbdVPUlXAd6jAgV2jatdpmVSsgU4eneSJcNvb8CZALhBL1PBYpNu2yLKU6dIVGDWRIQ5WVKNbyQ84eIrmcx7VqrooukJ4FVXdVq8/CZxzIFUCnv8S2bfcRIcfj0cnyM1aOqksglgFyH2zZ2agxSqciF4t4/ZOkOy9Jn1nyuRsvUumtNtKeKRBbAXnWomCUUcpZMKI8Yl7kB0D6PGSlHUGsV/HIpQ6l5qlDBvb2IjkAl1rmbwaM3xordRbcM9QNAZ72dYWmwvh6i4Hcx569WHdVawzz2OBvwENqosD63BNWpTC+MOrSXsYCILaVXFZILqs20b8v8At+Jqxq",
+            "TermUrl":"https://your-company.com/...",
+            "MD":"czY4bFliY2gyTGZTZ09pSmpFVzZ1QT09IevNpXfv7kPuVWl2RhgExgUojZUq3xb21qJGThnCpjjElAvMS1XDoyN_qObHhQj8mwiKCU2oEkL79tg0N58A3eywcQfRQpPRg_xcCLLdEKt2iUfbs-E1tsEfVS45Fo4ug-RsB9OizjHisH6PneqXd8zJ03uAwsaVXunjTkTUmQ5S8AufEEytG9XMmvYml4LkptT5KMvJNY0_3xhF5STOqar7fHaqzWbos3PDYI7hxdQg5cZ6-UB6AWxNGNinrGMfbVqPfwj7L4ZY168PAJR5xh5eAbYrj0nXspfmsGOEeR_kGVfWZc86RNf65AIgbASo8GrM74o8p6jz"
+         },
+         "method":"POST",
+         "url":"https://test.adyen.com/hpp/3d/validate.shtml"
+      }
+   }
+}

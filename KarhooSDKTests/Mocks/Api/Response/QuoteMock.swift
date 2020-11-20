@@ -93,6 +93,16 @@ final class QuoteMock {
         create(categoryName: categoryName)
         return self
     }
+    
+    func set(fleet: FleetInfo) -> QuoteMock {
+        create(fleet: fleet)
+        return self
+    }
+    
+    func set(vehicle: QuoteVehicle) -> QuoteMock {
+        create(vehicle: vehicle)
+        return self
+    }
 
     private func create(quoteId: String? = nil,
                         fleetId: String? = nil,
@@ -108,22 +118,16 @@ final class QuoteMock {
                         qtaHighMinutes: Int? = nil,
                         qtaLowMinutes: Int? = nil,
                         termsConditionsUrl: String? = nil,
-                        categoryName: String? = nil) {
+                        categoryName: String? = nil,
+                        fleet: FleetInfo? = nil,
+                        vehicle: QuoteVehicle? = nil) {
+        let quoteVehicle = QuoteVehicle(vehicleClass: categoryName ?? "",
+                                        qta: QuoteQta(highMinutes: qtaHighMinutes ?? 0,
+                                                      lowMinutes: qtaLowMinutes ?? 0))
         self.quote = Quote(
-                quoteId: quoteId ?? quote.quoteId,
-                fleetId: fleetId ?? quote.fleetId,
-                availabilityId: availabilityId ?? quote.availabilityId,
-                fleetName: fleetName ?? quote.fleetName,
-                phoneNumber: phoneNumber ?? quote.phoneNumber,
-                supplierLogoUrl: supplierLogoUrl ?? quote.supplierLogoUrl,
-                vehicleClass: vehicleClass ?? quote.vehicleClass,
+                id: quoteId ?? quote.id,
                 quoteType: quoteType ?? quote.quoteType,
-                highPrice: highPrice ?? Int(Double(quote.highPrice)/0.01),
-                lowPrice: lowPrice ?? Int(Double(quote.lowPrice)/0.01),
-                currencyCode: currencyCode ?? quote.currencyCode,
-                qtaHighMinutes: qtaHighMinutes ?? quote.qtaHighMinutes,
-                qtaLowMinutes: qtaLowMinutes ?? quote.qtaLowMinutes,
-                termsConditionsURL: termsConditionsUrl ?? quote.termsConditionsUrl,
-                categoryName: categoryName ?? quote.categoryName)
+                fleet: fleet ?? quote.fleet,
+                vehicle: quoteVehicle)
     }
 }

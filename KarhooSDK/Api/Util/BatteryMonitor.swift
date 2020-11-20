@@ -6,7 +6,7 @@
 //  Copyright © 2020 Karhoo. All rights reserved.
 //
 
-import Foundation
+#if !os(macOS)
 import UIKit
 
 final class BatteryMonitor {
@@ -18,3 +18,4 @@ final class BatteryMonitor {
         UIDevice.current.isBatteryMonitoringEnabled = true
     }
 }
+#endif

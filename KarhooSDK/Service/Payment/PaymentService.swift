@@ -15,4 +15,14 @@ public protocol PaymentService {
     func getNonce(nonceRequestPayload: NonceRequestPayload) -> Call<Nonce>
 
     func addPaymentDetails(addPaymentDetailsPayload: AddPaymentDetailsPayload) -> Call<Nonce>
+    
+    func getPaymentProvider() -> Call<PaymentProvider>
+    
+    func adyenPaymentMethods(request: AdyenPaymentMethodsRequest) -> Call<DecodableData>
+    
+    func adyenPayments(request: AdyenPaymentsRequest) -> Call<AdyenPayments>
+    
+    func getAdyenPaymentDetails(paymentDetails: PaymentsDetailsRequestPayload) -> Call<DecodableData>
+    
+    func getAdyenPublicKey() -> Call<AdyenPublicKey>
 }

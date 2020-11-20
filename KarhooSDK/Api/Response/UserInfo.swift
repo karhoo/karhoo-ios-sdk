@@ -21,6 +21,7 @@ public struct UserInfo: KarhooCodableModel, Equatable {
     public let primaryOrganisationID: String
     public let avatarURL: String
     public var nonce: Nonce?
+    public var paymentProvider: PaymentProvider?
     public let externalId: String
     
     public init(userId: String = "",
@@ -30,6 +31,7 @@ public struct UserInfo: KarhooCodableModel, Equatable {
                 mobileNumber: String = "",
                 organisations: [Organisation] = [],
                 nonce: Nonce? = nil,
+                paymentProvider: PaymentProvider? = nil,
                 locale: String = "",
                 externalId: String = "") {
         self.userId = userId
@@ -60,6 +62,7 @@ public struct UserInfo: KarhooCodableModel, Equatable {
         self.primaryOrganisationID = (try? container.decode(String.self, forKey: .primaryOrganisationID)) ?? ""
         self.avatarURL = (try? container.decode(String.self, forKey: .avatarURL)) ?? ""
         self.nonce = (try? container.decode(Nonce.self, forKey: .nonce)) ?? nil
+        self.paymentProvider = (try? container.decode(PaymentProvider.self, forKey: .paymentProvider)) ?? nil
         if container.contains(.upstream) {
             let upstream = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .upstream)
             self.externalId = (try? upstream.decode(String.self, forKey: .externalId)) ?? ""
@@ -81,6 +84,7 @@ public struct UserInfo: KarhooCodableModel, Equatable {
         try container.encode(primaryOrganisationID, forKey: .primaryOrganisationID)
         try container.encode(avatarURL, forKey: .avatarURL)
         try container.encode(nonce, forKey: .nonce)
+        try container.encode(paymentProvider, forKey: .paymentProvider)
         var upstream = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .upstream)
         try upstream.encode(externalId, forKey: .externalId)
     }
@@ -97,6 +101,7 @@ public struct UserInfo: KarhooCodableModel, Equatable {
         case primaryOrganisationID = "primary_organisation_id"
         case avatarURL = "avatar_url"
         case nonce
+        case paymentProvider
         case upstream
         case externalId = "sub"
     }

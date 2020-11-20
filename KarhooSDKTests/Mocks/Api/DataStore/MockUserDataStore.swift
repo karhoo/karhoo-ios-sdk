@@ -66,4 +66,9 @@ class MockUserDataStore: UserDataStore {
         self.updateUser = user
         updateUserCalled = true
     }
+
+    private(set) var updatedPaymentProvider: PaymentProvider?
+    func updatePaymentProvider(paymentProvider: PaymentProvider?) {
+        self.updatedPaymentProvider = paymentProvider
+    }
 }

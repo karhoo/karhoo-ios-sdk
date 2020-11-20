@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct QuoteListIdRequestPayload: Codable, KarhooCodableModel {
+struct QuoteListIdRequestPayload: Codable, KarhooCodableModel {
     let origin: String
     let destination: String
     let dateScheduled: String?

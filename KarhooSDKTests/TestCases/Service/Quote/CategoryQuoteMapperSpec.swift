@@ -34,15 +34,15 @@ final class CategoryQuoteMapperSpec: XCTestCase {
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
         mockQuotes.append(QuoteMock().set(quoteId: "fizzQuote").set(categoryName: "fizz").build())
 
-        let expectedOutput = testObject.map(categories: mockCategories, toQuotes: mockQuotes)
+        let expectedOutput = testObject.map(categories: mockCategories.categories, toQuotes: mockQuotes)
 
         let fooQuotes = expectedOutput.first(where: { $0.categoryName == "foo"})?.quotes
         let barQuotes = expectedOutput.first(where: { $0.categoryName == "bar"})?.quotes
         let fizzQuotes = expectedOutput.first(where: { $0.categoryName == "fizz"})?.quotes
 
-        XCTAssertEqual(mockQuotes[0].quoteId, fooQuotes?[0].quoteId)
-        XCTAssertEqual(mockQuotes[1].quoteId, barQuotes?[0].quoteId)
-        XCTAssertEqual(mockQuotes[2].quoteId, fizzQuotes?[0].quoteId)
+        XCTAssertEqual(mockQuotes[0].id, fooQuotes?[0].id)
+        XCTAssertEqual(mockQuotes[1].id, barQuotes?[0].id)
+        XCTAssertEqual(mockQuotes[2].id, fizzQuotes?[0].id)
     }
 
     /**
@@ -59,7 +59,7 @@ final class CategoryQuoteMapperSpec: XCTestCase {
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
 
-        let expectedOutput = testObject.map(categories: mockCategories, toQuotes: mockQuotes)
+        let expectedOutput = testObject.map(categories: mockCategories.categories, toQuotes: mockQuotes)
 
         let fooQuotes = expectedOutput.first(where: { $0.categoryName == "foo"})?.quotes
         let barQuotes = expectedOutput.first(where: { $0.categoryName == "bar"})?.quotes
@@ -83,7 +83,7 @@ final class CategoryQuoteMapperSpec: XCTestCase {
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
 
-        let expectedOutput = testObject.map(categories: mockCategories, toQuotes: mockQuotes)
+        let expectedOutput = testObject.map(categories: mockCategories.categories, toQuotes: mockQuotes)
 
         XCTAssertEqual(2, expectedOutput.count)
     }
@@ -98,14 +98,14 @@ final class CategoryQuoteMapperSpec: XCTestCase {
         mockQuotes.append(QuoteMock().set(quoteId: "barQuote").set(categoryName: "bar").build())
         mockQuotes.append(QuoteMock().set(quoteId: "fizzQuote").set(categoryName: "fizz").build())
 
-        let expectedOutput = testObject.map(categories: nil, toQuotes: mockQuotes)
+        let expectedOutput = testObject.map(categories: [], toQuotes: mockQuotes)
 
         let fooQuotes = expectedOutput.first(where: { $0.categoryName == "foo"})?.quotes
         let barQuotes = expectedOutput.first(where: { $0.categoryName == "bar"})?.quotes
         let fizzQuotes = expectedOutput.first(where: { $0.categoryName == "fizz"})?.quotes
 
-        XCTAssertEqual(mockQuotes[0].quoteId, fooQuotes![0].quoteId)
-        XCTAssertEqual(mockQuotes[1].quoteId, barQuotes![0].quoteId)
-        XCTAssertEqual(mockQuotes[2].quoteId, fizzQuotes![0].quoteId)
+        XCTAssertEqual(mockQuotes[0].id, fooQuotes![0].id)
+        XCTAssertEqual(mockQuotes[1].id, barQuotes![0].id)
+        XCTAssertEqual(mockQuotes[2].id, fizzQuotes![0].id)
     }
 }
