@@ -37,6 +37,13 @@ final class TripBookingMock {
                                        flightNumber: flightNumber)
         return self
     }
+    
+    func set(meta: [String: Any]) -> TripBookingMock {
+        self.tripBooking = TripBooking(quoteId: tripBooking.quoteId,
+                                       passengers: tripBooking.passengers,
+                                       meta: tripBooking.meta)
+        return self
+    }
 
     func build() -> TripBooking {
         return tripBooking

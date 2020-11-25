@@ -157,6 +157,7 @@
 		143975DC24EAC7AB0006EB80 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143975DB24EAC7AB0006EB80 /* Provider.swift */; };
 		143975E124EAC93B0006EB80 /* PaymentProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143975E024EAC93B0006EB80 /* PaymentProviderSpec.swift */; };
 		143975E424EAC9FA0006EB80 /* PaymentProvider.json in Resources */ = {isa = PBXBuildFile; fileRef = 143975E324EAC9FA0006EB80 /* PaymentProvider.json */; };
+		1448DA25256E99B300D2A73F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1448DA24256E99B300D2A73F /* Keys.swift */; };
 		1471BE2624E5904100BE1C4D /* AdyenPaymentMethods.json in Resources */ = {isa = PBXBuildFile; fileRef = 1471BE2524E5904100BE1C4D /* AdyenPaymentMethods.json */; };
 		1471BE2924E590B500BE1C4D /* AdyenPaymentMethodsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471BE2824E590B500BE1C4D /* AdyenPaymentMethodsSpec.swift */; };
 		1477E3FC24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477E3FB24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift */; };
@@ -330,7 +331,6 @@
 		5CAEC77D24BDA9920008EA50 /* KarhooQuoteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAEC77C24BDA9920008EA50 /* KarhooQuoteInteractor.swift */; };
 		5CAEC77F24BDAADF0008EA50 /* KarhooQuoteInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAEC77E24BDAADF0008EA50 /* KarhooQuoteInteractorSpec.swift */; };
 		5CAEC78124BDADE00008EA50 /* QuoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAEC78024BDADE00008EA50 /* QuoteRequest.swift */; };
-		5CBE369224EA972600C7B204 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBE369124EA972600C7B204 /* Keys.swift */; };
 		5CC6356E252B57AD00EDD6E3 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6356D252B57AD00EDD6E3 /* AnyCodable.swift */; };
 		5CDD26D424BF4EA900436F01 /* VehicleAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */; };
 		5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */; };
@@ -634,6 +634,7 @@
 		143975DB24EAC7AB0006EB80 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		143975E024EAC93B0006EB80 /* PaymentProviderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentProviderSpec.swift; sourceTree = "<group>"; };
 		143975E324EAC9FA0006EB80 /* PaymentProvider.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PaymentProvider.json; sourceTree = "<group>"; };
+		1448DA24256E99B300D2A73F /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		1471BE2524E5904100BE1C4D /* AdyenPaymentMethods.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AdyenPaymentMethods.json; sourceTree = "<group>"; };
 		1471BE2824E590B500BE1C4D /* AdyenPaymentMethodsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPaymentMethodsSpec.swift; sourceTree = "<group>"; };
 		1477E3FB24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPaymentProviderInteractor.swift; sourceTree = "<group>"; };
@@ -809,7 +810,6 @@
 		5CAEC77C24BDA9920008EA50 /* KarhooQuoteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooQuoteInteractor.swift; sourceTree = "<group>"; };
 		5CAEC77E24BDAADF0008EA50 /* KarhooQuoteInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooQuoteInteractorSpec.swift; sourceTree = "<group>"; };
 		5CAEC78024BDADE00008EA50 /* QuoteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteRequest.swift; sourceTree = "<group>"; };
-		5CBE369124EA972600C7B204 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		5CC6356D252B57AD00EDD6E3 /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
 		5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAvailability.swift; sourceTree = "<group>"; };
 		5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteRequestPoint.swift; sourceTree = "<group>"; };
@@ -1301,7 +1301,6 @@
 		09A9B28C2405901900823FB0 /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				5CBE369124EA972600C7B204 /* Keys.swift */,
 				09A9B28D2405901900823FB0 /* AppDelegate.swift */,
 				09A9B28F2405901900823FB0 /* SceneDelegate.swift */,
 				09A9B2912405901900823FB0 /* ViewController.swift */,
@@ -1309,6 +1308,7 @@
 				09A9B2962405901B00823FB0 /* Assets.xcassets */,
 				09A9B2982405901B00823FB0 /* LaunchScreen.storyboard */,
 				09A9B29B2405901B00823FB0 /* Info.plist */,
+				1448DA24256E99B300D2A73F /* Keys.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -3161,7 +3161,7 @@
 				40FBF609240FBB2E007F6A54 /* AuthRequestsTesterViewController.swift in Sources */,
 				09A9B28E2405901900823FB0 /* AppDelegate.swift in Sources */,
 				09A9B2902405901900823FB0 /* SceneDelegate.swift in Sources */,
-				5CBE369224EA972600C7B204 /* Keys.swift in Sources */,
+				1448DA25256E99B300D2A73F /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
