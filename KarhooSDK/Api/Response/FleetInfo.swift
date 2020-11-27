@@ -17,6 +17,8 @@ public struct FleetInfo: Codable {
     public let description: String
     public let phoneNumber: String
     public let termsConditionsUrl: String
+    public let capability: [String]
+    public let rating: FleetRating
 
     public init(id: String = "",
                 fleetId: String = "",
@@ -24,7 +26,9 @@ public struct FleetInfo: Codable {
                 description: String = "",
                 phoneNumber: String = "",
                 termsConditionsUrl: String = "",
-                logoUrl: String = "") {
+                logoUrl: String = "",
+                capability: [String] = [],
+                rating: FleetRating = FleetRating()) {
         self.id = id
         self.fleetId = fleetId
         self.name = name
@@ -32,6 +36,8 @@ public struct FleetInfo: Codable {
         self.description = description
         self.phoneNumber = phoneNumber
         self.termsConditionsUrl = termsConditionsUrl
+        self.capability = capability
+        self.rating = rating
     }
 
     enum CodingKeys: String, CodingKey {
@@ -42,6 +48,8 @@ public struct FleetInfo: Codable {
         case description
         case phoneNumber = "phone_number"
         case termsConditionsUrl = "terms_conditions_url"
+        case capability
+        case rating
     }
 
     public init(from decoder: Decoder) throws {
@@ -53,6 +61,8 @@ public struct FleetInfo: Codable {
         self.description = (try? container.decode(String.self, forKey: .description)) ?? ""
         self.phoneNumber = (try? container.decode(String.self, forKey: .phoneNumber)) ?? ""
         self.termsConditionsUrl = (try? container.decode(String.self, forKey: .termsConditionsUrl)) ?? ""
+        self.capability = (try? container.decode(Array.self, forKey: .capability)) ?? []
+        self.rating = (try? container.decode(FleetRating.self, forKey: .rating)) ?? FleetRating()
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -64,5 +74,7 @@ public struct FleetInfo: Codable {
         try container.encode(description, forKey: .description)
         try container.encode(phoneNumber, forKey: .phoneNumber)
         try container.encode(termsConditionsUrl, forKey: .termsConditionsUrl)
+        try container.encode(capability, forKey: .capability)
+        try container.encode(rating, forKey: .rating)
     }
 }

@@ -334,6 +334,8 @@
 		5CC6356E252B57AD00EDD6E3 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6356D252B57AD00EDD6E3 /* AnyCodable.swift */; };
 		5CDD26D424BF4EA900436F01 /* VehicleAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */; };
 		5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */; };
+		6F11A47D25713BC2003CFE15 /* NetPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F11A47C25713BC2003CFE15 /* NetPrice.swift */; };
+		6F11A48725714549003CFE15 /* FleetRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F11A48625714549003CFE15 /* FleetRating.swift */; };
 		6F19F24C250FB13600E1F771 /* AdyenPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19F24B250FB13600E1F771 /* AdyenPublicKey.swift */; };
 		6F19F24F250FC7CA00E1F771 /* AdyenPublicKeyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19F24E250FC7CA00E1F771 /* AdyenPublicKeyInteractor.swift */; };
 		6F19F253250FC81900E1F771 /* KarhooAdyenPublicKeyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19F252250FC81900E1F771 /* KarhooAdyenPublicKeyInteractor.swift */; };
@@ -813,6 +815,8 @@
 		5CC6356D252B57AD00EDD6E3 /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
 		5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAvailability.swift; sourceTree = "<group>"; };
 		5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteRequestPoint.swift; sourceTree = "<group>"; };
+		6F11A47C25713BC2003CFE15 /* NetPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetPrice.swift; sourceTree = "<group>"; };
+		6F11A48625714549003CFE15 /* FleetRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetRating.swift; sourceTree = "<group>"; };
 		6F19F24B250FB13600E1F771 /* AdyenPublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPublicKey.swift; sourceTree = "<group>"; };
 		6F19F24E250FC7CA00E1F771 /* AdyenPublicKeyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPublicKeyInteractor.swift; sourceTree = "<group>"; };
 		6F19F252250FC81900E1F771 /* KarhooAdyenPublicKeyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooAdyenPublicKeyInteractor.swift; sourceTree = "<group>"; };
@@ -1379,12 +1383,15 @@
 				5C49848F24C0A89F00F646A4 /* QuoteVehicle.swift */,
 				5C49849124C0A8E900F646A4 /* QuoteQta.swift */,
 				5C49849324C0A8FA00F646A4 /* QuotePrice.swift */,
+				6F11A47C25713BC2003CFE15 /* NetPrice.swift */,
+				6F11A48625714549003CFE15 /* FleetRating.swift */,
 				FC1B01EC2209D0D20069D7F3 /* QuoteCategory.swift */,
 				BAA0A316925D2F14D6EEEAE6 /* QuoteList.swift */,
 				274217092FA03DAFAD7776E1 /* QuoteListId.swift */,
 				09928D4820EFAB9300B9F462 /* Quotes.swift */,
 				09D293C122C530170051C455 /* QuoteSource.swift */,
 				313DC2EF20221FCE00D9DD1B /* QuoteType.swift */,
+				6F69F338255A783500F8DA05 /* QuoteCoverage.swift */,
 				09AF9AA820D174150046D725 /* RefreshToken.swift */,
 				400555702350AEDC008AD78F /* TripFare.swift */,
 				43584E6D1EE54D6400B4DFAB /* TripInfo.swift */,
@@ -1399,7 +1406,6 @@
 				142CB38A24DC290A0065149C /* LoyaltyProgramme.swift */,
 				143975DB24EAC7AB0006EB80 /* Provider.swift */,
 				5C0A612C24FFD8CA00AD4C8B /* PaymentProvider.swift */,
-				6F69F338255A783500F8DA05 /* QuoteCoverage.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -3210,6 +3216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCD32FF720E252680044BB64 /* KarhooTripUpdateInteractor.swift in Sources */,
+				6F11A47D25713BC2003CFE15 /* NetPrice.swift in Sources */,
 				5C15D5EA203711D200B47A71 /* BookingSearch.swift in Sources */,
 				6F9A9E4A25641BE400B50753 /* KarhooVerifyQuoteInteractor.swift in Sources */,
 				313DC2DD20221D0100D9DD1B /* Vehicle.swift in Sources */,
@@ -3289,6 +3296,7 @@
 				5C089DFC2509030700B3D4CA /* DecodableData.swift in Sources */,
 				313DC2F220221FDB00D9DD1B /* Quote.swift in Sources */,
 				5C75D65D208CC84E0065133B /* LocationDetailsAddress.swift in Sources */,
+				6F11A48725714549003CFE15 /* FleetRating.swift in Sources */,
 				313DC2E420221E7B00D9DD1B /* Place.swift in Sources */,
 				237E0C5E234783BE00798AA0 /* KarhooFareInteractor.swift in Sources */,
 				095E406D20B32DAE008EAF0F /* NetworkDateFormatter.swift in Sources */,
