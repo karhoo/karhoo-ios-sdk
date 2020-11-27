@@ -87,7 +87,7 @@ class KarhooBookingInteractorSpec: XCTestCase {
         testObject.set(tripBooking: tripBooking)
         testObject.execute(callback: { (_:Result<TripInfo>) in })
 
-        mockBookingRequest.assertRequestSendAndDecoded(endpoint: APIEndpoint.bookTripWithNonce,
+        mockBookingRequest.assertRequestSendAndDecoded(endpoint: APIEndpoint.bookTrip,
                                                        method: .post,
                                                        payload: tripBooking)
     }

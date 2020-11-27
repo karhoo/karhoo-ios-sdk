@@ -14,16 +14,22 @@ public struct QuoteVehicle: Codable {
     public let type: String
     public let tags: [String]
     public let qta: QuoteQta
-
+    public let passengerCapacity: Int
+    public let luggageCapacity: Int
+    
 
     public init(vehicleClass: String = "",
                 type: String = "",
                 tags: [String] = [],
-                qta: QuoteQta = QuoteQta()) {
+                qta: QuoteQta = QuoteQta(),
+                passengerCapacity: Int = 0,
+                luggageCapacity: Int = 0) {
         self.vehicleClass = vehicleClass
         self.type = type
         self.tags = tags
         self.qta = qta
+        self.passengerCapacity = passengerCapacity
+        self.luggageCapacity = luggageCapacity
     }
 
     enum CodingKeys: String, CodingKey {
@@ -31,6 +37,8 @@ public struct QuoteVehicle: Codable {
         case type
         case tags
         case qta
+        case passengerCapacity = "passenger_capacity"
+        case luggageCapacity = "luggage_capacity"
     }
 
     public init(from decoder: Decoder) throws {
@@ -39,5 +47,7 @@ public struct QuoteVehicle: Codable {
         self.type = (try? container.decode(String.self, forKey: .type)) ?? ""
         self.tags = (try? container.decode(Array.self, forKey: .tags)) ?? []
         self.qta = (try? container.decode(QuoteQta.self, forKey: .qta)) ?? QuoteQta()
+        self.passengerCapacity = (try? container.decode(Int.self, forKey: .passengerCapacity)) ?? 0
+        self.luggageCapacity = (try? container.decode(Int.self, forKey: .luggageCapacity)) ?? 0
     }
 }
