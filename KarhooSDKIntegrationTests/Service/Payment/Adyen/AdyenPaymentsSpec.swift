@@ -35,7 +35,7 @@ final class AdyenPaymentsSpec: XCTestCase {
         let expectation = self.expectation(description: "Callback called with succeess")
         
         call.execute(callback: { result in
-            XCTAssertEqual("aaaa-aaaa-aaaa", result.successValue()?.transactionID)
+            XCTAssertEqual("aaaa-aaaa-aaaa", result.successValue()?.tripId)
             XCTAssertNotNil(result.successValue()?.payload)
             expectation.fulfill()
         })

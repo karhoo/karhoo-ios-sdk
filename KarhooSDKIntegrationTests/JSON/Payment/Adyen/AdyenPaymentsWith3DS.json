@@ -1,6 +1,6 @@
 {
 
-   "transaction_id":"aaaa-aaaa-aaaa",
+   "trip_id":"aaaa-aaaa-aaaa",
    "payload":{
 
       "resultCode":"RedirectShopper",
