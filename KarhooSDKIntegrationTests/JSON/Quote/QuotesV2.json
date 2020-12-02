@@ -31,8 +31,8 @@
       "pick_up_type": "DEFAULT",
       "price": {
         "currency_code": "GBP",
-        "high": 56.50,
-        "low": 54.50
+        "high": 5650,
+        "low": 5450
       },
       "quote_type": "ESTIMATED",
       "source": "FLEET",
