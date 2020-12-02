@@ -45,6 +45,7 @@ public struct QuotePrice: Codable {
         
         intLowPrice = (try? container.decode(Int.self, forKey: .lowPrice)) ?? 0
         lowPrice = Double(intLowPrice) * 0.01
+        
         intHighPrice = (try? container.decode(Int.self, forKey: .highPrice)) ?? 0
         highPrice = Double(intHighPrice) * 0.01
         
