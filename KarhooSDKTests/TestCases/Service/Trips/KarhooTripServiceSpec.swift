@@ -16,6 +16,7 @@ final class KarhooTripServiceSpec: XCTestCase {
     private var mockTripBookingInteractor: MockBookingInteractor!
     private var mockCancelTripInteractor: MockCancelTripInteractor!
     private var mockTripSearchInteractor: MockTripSearchInteractor!
+    private var mockCancellationFeeInteractor: MockCancellationFeeInteractor!
 
     private var mocktripPollFactory: MockPollCallFactory!
     private var mocktripStatusPollFactory: MockPollCallFactory!
@@ -34,13 +35,15 @@ final class KarhooTripServiceSpec: XCTestCase {
         mocktripPollFactory = MockPollCallFactory()
         mocktripStatusPollFactory = MockPollCallFactory()
         mockAnalytics = MockAnalyticsService()
+        mockCancellationFeeInteractor = MockCancellationFeeInteractor()
 
         testObject = KarhooTripService(bookingInteractor: mockTripBookingInteractor,
                                        cancelTripInteractor: mockCancelTripInteractor,
                                        tripSearchInteractor: mockTripSearchInteractor,
                                        analytics: mockAnalytics,
                                        tripPollFactory: mocktripPollFactory,
-                                       tripStatusPollFactory: mocktripStatusPollFactory)
+                                       tripStatusPollFactory: mocktripStatusPollFactory,
+                                       cancellationFeeInteractor: mockCancellationFeeInteractor)
     }
 
     /**

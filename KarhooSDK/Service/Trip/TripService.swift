@@ -18,4 +18,6 @@ public protocol TripService {
     func trackTrip(identifier: String) -> PollCall<TripInfo>
 
     func status(tripId: String) -> PollCall<TripState>
+    
+    func cancellationFee(identifier: String) -> Call<CancellationFee>
 }
