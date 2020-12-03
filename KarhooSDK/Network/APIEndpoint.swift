@@ -40,7 +40,6 @@ enum APIEndpoint {
     case quoteCoverage
     case verifyQuote(quoteID: String)
     
-    
     var path: String {
         switch self {
         case .custom(let path, _):

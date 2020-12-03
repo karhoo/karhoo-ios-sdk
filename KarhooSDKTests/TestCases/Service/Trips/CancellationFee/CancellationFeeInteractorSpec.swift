@@ -47,7 +47,7 @@ final class CancellationFeeInteractorSpec: XCTestCase {
 
     /**
       * Given: Requesting cancellation fee for a trip
-      * When: The request succeeds with a true
+      * When: The request succeeds with a cancellation fee
       * Then: Callback should be a success with a cancellation fee result
       */
     func testRequestSuccessWithCancellationFee() {
@@ -62,7 +62,7 @@ final class CancellationFeeInteractorSpec: XCTestCase {
     
     /**
       * Given: Requesting cancellation fee for a trip
-      * When: The request succeeds with a false
+      * When: The request succeeds without a cancellation fee
       * Then: Callback should be a success with a cancellation fee result
       */
     func testRequestSuccessWithoutCancellationFee() {

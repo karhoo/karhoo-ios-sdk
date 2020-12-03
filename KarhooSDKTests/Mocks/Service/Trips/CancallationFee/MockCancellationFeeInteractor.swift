@@ -14,7 +14,6 @@ final class MockCancellationFeeInteractor: CancellationFeeInteractor, MockIntera
     var callbackSet: CallbackClosure<KarhooVoid>?
     var cancelCalled = false
     
-
     var identifierSet: String?
     func set(identifier: String){
         identifierSet = identifier
