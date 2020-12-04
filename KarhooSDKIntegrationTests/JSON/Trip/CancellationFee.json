@@ -1,0 +1,8 @@
+{
+    "cancellation_fee": true,
+    "fee": {
+        "currency": "GBP",
+        "type": "FIXED",
+        "value": 10
+    }
+}

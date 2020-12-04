@@ -7,6 +7,7 @@ enum APIEndpoint {
     case bookTrip
     case bookTripWithNonce
     case cancelTrip(identifier: String)
+    case cancellationFee(identifier: String)
     case cancelTripFollowCode(followCode: String)
     case trackDriver(identifier: String)
     case trackTrip(identifier: String)
@@ -72,6 +73,8 @@ enum APIEndpoint {
             return "/bookings/search"
         case .tripStatus(let identifier):
             return "/bookings/\(identifier)/status"
+        case .cancellationFee(let identifier):
+            return "/bookings/\(identifier)/cancel-fee"
         case .getFareDetails(let identifier):
             return "/fares/trip/\(identifier)"
         case .locationInfo:
@@ -133,6 +136,7 @@ enum APIEndpoint {
         case .bookTrip: return .post
         case .bookTripWithNonce: return .post
         case .cancelTrip: return .post
+        case .cancellationFee: return .get
         case .cancelTripFollowCode: return .post
         case .trackDriver: return .get
         case .trackTrip: return .get

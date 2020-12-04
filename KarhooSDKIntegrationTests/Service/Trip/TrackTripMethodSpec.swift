@@ -158,9 +158,5 @@ final class TrackTripMethodSpec: XCTestCase {
         XCTAssertEqual("Saloon", tripQuote.vehicleClass)
         XCTAssertEqual(5, tripQuote.qtaLowMinutes)
         XCTAssertEqual(8, tripQuote.qtaHighMinutes)
-
-        let vehicleAttributes = VehicleAttributes(childSeat: true, electric: true,
-                                                  hybrid: false, luggageCapacity: 2,
-                                                  passengerCapacity: 3)
-        XCTAssertEqual(vehicleAttributes, tripQuote.vehicleAttributes)    }
+    }
 }

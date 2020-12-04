@@ -10,7 +10,6 @@ import Foundation
 
 public struct Quote: KarhooCodableModel, Equatable {
 
-    public let vehicleAttributes: VehicleAttributes
     public let validity: Int
     public let id: String
     public let quoteType: QuoteType
@@ -25,7 +24,6 @@ public struct Quote: KarhooCodableModel, Equatable {
                 source: QuoteSource = .fleet,
                 pickUpType: PickUpType = .default,
                 fleet: FleetInfo = FleetInfo(),
-                vehicleAttributes: VehicleAttributes = VehicleAttributes(),
                 vehicle: QuoteVehicle = QuoteVehicle(),
                 price: QuotePrice = QuotePrice(),
                 validity: Int = 0) {
@@ -34,7 +32,6 @@ public struct Quote: KarhooCodableModel, Equatable {
         self.quoteType = quoteType
         self.pickUpType = pickUpType
         self.source = source
-        self.vehicleAttributes = vehicleAttributes
         self.vehicle = vehicle
         self.validity = validity
         self.price = price
@@ -46,7 +43,6 @@ public struct Quote: KarhooCodableModel, Equatable {
         case quoteType = "quote_type"
         case pickUpType = "pick_up_type"
         case source
-        case vehicleAttributes = "vehicle_attributes"
         case vehicle
         case validity
         case price
@@ -57,7 +53,6 @@ public struct Quote: KarhooCodableModel, Equatable {
         self.quoteType = (try? container.decode(QuoteType.self, forKey: .quoteType)) ?? .estimated
         self.pickUpType = (try? container.decode(PickUpType.self, forKey: .pickUpType)) ?? .default
         self.source = (try? container.decode(QuoteSource.self, forKey: .source)) ?? .fleet
-        self.vehicleAttributes = (try? container.decode(VehicleAttributes.self, forKey: .vehicleAttributes)) ?? VehicleAttributes()
 
         self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
         self.fleet = (try? container.decode(FleetInfo.self, forKey: .fleet)) ?? FleetInfo()
