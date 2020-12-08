@@ -20,6 +20,7 @@ public enum TripState: String, KarhooCodableModel {
     case driverCancelled = "DRIVER_CANCELLED"
     case karhooCancelled = "KARHOO_CANCELLED"
     case failed = "FAILED"
+    case preauthDeclined = "PREAUTH_DECLINED"
     case incomplete = "INCOMPLETE"
     case unknown = "UNKNOWN"
 }

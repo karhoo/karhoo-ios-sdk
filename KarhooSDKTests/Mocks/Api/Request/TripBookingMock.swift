@@ -15,32 +15,27 @@ final class TripBookingMock {
     private var tripBooking: TripBooking
 
     init() {
-        self.tripBooking = TripBooking(quoteId: "",
-                                       passengers: Passengers())
+        self.tripBooking = TripBooking(quoteId: "")
     }
 
     func set(quoteId: String) -> TripBookingMock {
-        self.tripBooking = TripBooking(quoteId: quoteId,
-                                                passengers: tripBooking.passengers)
+        self.tripBooking = TripBooking(quoteId: quoteId)
         return self
     }
 
     func set(passengers: Passengers) -> TripBookingMock {
-        self.tripBooking = TripBooking(quoteId: tripBooking.quoteId,
-                                       passengers: passengers)
+        self.tripBooking = TripBooking(quoteId: tripBooking.quoteId)
         return self
     }
 
     func set(flightNumber: String) -> TripBookingMock {
         self.tripBooking = TripBooking(quoteId: tripBooking.quoteId,
-                                       passengers: tripBooking.passengers,
                                        flightNumber: flightNumber)
         return self
     }
     
     func set(meta: [String: Any]) -> TripBookingMock {
         self.tripBooking = TripBooking(quoteId: tripBooking.quoteId,
-                                       passengers: tripBooking.passengers,
                                        meta: tripBooking.meta)
         return self
     }
