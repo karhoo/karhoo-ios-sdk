@@ -29,7 +29,8 @@ final class KarhooCancelTripInteractor: CancelTripInteractor {
             return
         }
 
-        let payload = CancelTripRequestPayload(reason: tripCancellation.cancelReason)
+        let payload = CancelTripRequestPayload(reason: tripCancellation.cancelReason,
+                                               explanation: tripCancellation.explanation)
 
         requestSender.request(payload: payload,
                               endpoint: endpoint(identifier: tripCancellation.tripId),

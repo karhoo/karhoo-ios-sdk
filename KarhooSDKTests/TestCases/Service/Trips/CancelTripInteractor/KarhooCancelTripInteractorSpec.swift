@@ -18,7 +18,8 @@ final class KarhooCancelTripInteractorSpec: XCTestCase {
     private var mockAnalyticsService: MockAnalyticsService!
 
     private let tripCancellationMock = TripCancellation(tripId: "some_tripId",
-                                                        cancelReason: .notNeededAnymore)
+                                                        cancelReason: .notNeededAnymore,
+                                                        explanation: "some_explanation")
     override func setUp() {
         super.setUp()
         MockSDKConfig.authenticationMethod = .karhooUser
@@ -39,7 +40,8 @@ final class KarhooCancelTripInteractorSpec: XCTestCase {
 
         let endpoint = APIEndpoint.cancelTrip(identifier: tripCancellationMock.tripId)
 
-        let testPayload = CancelTripRequestPayload(reason: tripCancellationMock.cancelReason)
+        let testPayload = CancelTripRequestPayload(reason: tripCancellationMock.cancelReason,
+                                                   explanation: "some_explanation")
 
         mockCancelTripRequestSender.assertRequestSend(endpoint: endpoint,
                                                       method: .post,
@@ -85,7 +87,8 @@ final class KarhooCancelTripInteractorSpec: XCTestCase {
         testObject.execute(callback: { (_:Result<KarhooVoid>) in  })
 
         let endpoint = APIEndpoint.cancelTripFollowCode(followCode: tripCancellationMock.tripId)
-        let testPayload = CancelTripRequestPayload(reason: tripCancellationMock.cancelReason)
+        let testPayload = CancelTripRequestPayload(reason: tripCancellationMock.cancelReason,
+                                                   explanation: "some_explanation")
 
         mockCancelTripRequestSender.assertRequestSend(endpoint: endpoint,
                                                       method: .post,
