@@ -13,6 +13,7 @@ final class DriverTrackingInfoMock {
 
     init() {
         self.driverTrackingInfo = DriverTrackingInfo(position: Position(latitude: 0, longitude: 0),
+                                                     direction: Direction(kph: 0, heading: 0),
                                                      originEta: 0,
                                                      destinationEta: 0)
     }
@@ -33,9 +34,11 @@ final class DriverTrackingInfoMock {
     }
 
     func create(position: Position? = nil,
+                direction: Direction? = nil,
                 originEta: Int? = nil,
                 destinationEta: Int? = nil) {
         driverTrackingInfo = DriverTrackingInfo(position: position ?? driverTrackingInfo.position,
+                                                direction: direction ?? driverTrackingInfo.direction,
                                                 originEta: originEta ?? driverTrackingInfo.originEta,
                                                 destinationEta: destinationEta ?? driverTrackingInfo.destinationEta)
     }

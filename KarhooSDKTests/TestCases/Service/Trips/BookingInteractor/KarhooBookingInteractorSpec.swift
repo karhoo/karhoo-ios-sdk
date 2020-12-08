@@ -40,6 +40,7 @@ class KarhooBookingInteractorSpec: XCTestCase {
       */
     func testRequestFormatNoPaymentNonce() {
         let tripBooking = TripBooking(quoteId: "some",
+                                      passengers: passengers,
                                       flightNumber: "312",
                                       comments: "comment")
 
@@ -57,6 +58,7 @@ class KarhooBookingInteractorSpec: XCTestCase {
      */
     func testRequestFormatWithPaymentNonce() {
         var tripBooking = TripBooking(quoteId: "some",
+                                      passengers: passengers,
                                       flightNumber: "312",
                                       comments: "comment")
 
@@ -76,6 +78,7 @@ class KarhooBookingInteractorSpec: XCTestCase {
      */
     func testRequestFormatWithMetadata() {
         var tripBooking = TripBooking(quoteId: "some",
+                                      passengers: passengers,
                                       flightNumber: "312",
                                       comments: "comment")
 
@@ -96,6 +99,7 @@ class KarhooBookingInteractorSpec: XCTestCase {
      */
     func testRequestSuccess() {
         let tripBooking = TripBooking(quoteId: "some",
+                                      passengers: passengers,
                                       flightNumber: "312")
         var capturedCallback: Result<TripInfo>?
 
@@ -116,6 +120,7 @@ class KarhooBookingInteractorSpec: XCTestCase {
      */
     func testRequestFails() {
         let tripBooking = TripBooking(quoteId: "some",
+                                      passengers: passengers,
                                       flightNumber: "312")
 
         var capturedCallback: Result<TripInfo>?

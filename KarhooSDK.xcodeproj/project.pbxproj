@@ -361,6 +361,7 @@
 		6F9A9E602565277800B50753 /* KarhooVerifyQuoteInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9A9E5F2565277800B50753 /* KarhooVerifyQuoteInteractorSpec.swift */; };
 		6F9A9E6625652D0500B50753 /* VerifyQuoteMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9A9E6525652D0500B50753 /* VerifyQuoteMethodSpec.swift */; };
 		6FA4EA52257F8DAE00173DAE /* CancelledByPayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA4EA51257F8DAE00173DAE /* CancelledByPayer.swift */; };
+		6FA4EA58257FA8D800173DAE /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA4EA57257FA8D800173DAE /* Direction.swift */; };
 		6FA61FF124F4F66300C1DF48 /* AdyenPaymentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA61FF024F4F66300C1DF48 /* AdyenPaymentsInteractor.swift */; };
 		6FA61FF324F4F6C000C1DF48 /* KarhooAdyenPaymentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA61FF224F4F6C000C1DF48 /* KarhooAdyenPaymentsInteractor.swift */; };
 		6FA61FF524F4FF1D00C1DF48 /* AdyenPaymentsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA61FF424F4FF1D00C1DF48 /* AdyenPaymentsRequest.swift */; };
@@ -854,6 +855,7 @@
 		6F9A9E5F2565277800B50753 /* KarhooVerifyQuoteInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooVerifyQuoteInteractorSpec.swift; sourceTree = "<group>"; };
 		6F9A9E6525652D0500B50753 /* VerifyQuoteMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyQuoteMethodSpec.swift; sourceTree = "<group>"; };
 		6FA4EA51257F8DAE00173DAE /* CancelledByPayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelledByPayer.swift; sourceTree = "<group>"; };
+		6FA4EA57257FA8D800173DAE /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		6FA61FF024F4F66300C1DF48 /* AdyenPaymentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPaymentsInteractor.swift; sourceTree = "<group>"; };
 		6FA61FF224F4F6C000C1DF48 /* KarhooAdyenPaymentsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooAdyenPaymentsInteractor.swift; sourceTree = "<group>"; };
 		6FA61FF424F4FF1D00C1DF48 /* AdyenPaymentsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPaymentsRequest.swift; sourceTree = "<group>"; };
@@ -1435,6 +1437,7 @@
 				6F3112B5257E913900D738E6 /* StateDetails.swift */,
 				6F3112BB257F81E400D738E6 /* Agent.swift */,
 				6FA4EA51257F8DAE00173DAE /* CancelledByPayer.swift */,
+				6FA4EA57257FA8D800173DAE /* Direction.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -3493,6 +3496,7 @@
 				0981F6C920CEC3DE00BF7FB5 /* KarhooLoginInteractor.swift in Sources */,
 				0900D34920D2B17B0082D1E8 /* RefreshTokenInteractor.swift in Sources */,
 				09D293C222C530170051C455 /* QuoteSource.swift in Sources */,
+				6FA4EA58257FA8D800173DAE /* Direction.swift in Sources */,
 				094B449E2285AC66002D2506 /* PaymentSDKTokenPayload.swift in Sources */,
 				BAA0ADC3A54466A62DCB5412 /* TripStatusInteractor.swift in Sources */,
 				BAA0A113CE860049AD045890 /* KarhooTripStatusInteractor.swift in Sources */,
