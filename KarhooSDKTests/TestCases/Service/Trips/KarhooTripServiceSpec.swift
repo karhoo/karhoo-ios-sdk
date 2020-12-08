@@ -53,7 +53,7 @@ final class KarhooTripServiceSpec: XCTestCase {
      *   And:  Correct trip is returned in callback
      */
     func testBookingTripRequestSuccess() {
-        let tripBooking = TripBooking(quoteId: "some", passengers: mockPassengers)
+        let tripBooking = TripBooking(quoteId: "some")
         let tripBooked = TripInfoMock().set(tripId: "some").build()
 
         var capturedCallback: Result<TripInfo>?
@@ -71,7 +71,7 @@ final class KarhooTripServiceSpec: XCTestCase {
      *  Then:  Error should be propagated through callback
      */
     func testBookingTripRequestFailure() {
-        let tripBooking = TripBooking(quoteId: "some", passengers: mockPassengers)
+        let tripBooking = TripBooking(quoteId: "some")
         let expectedError = TestUtil.getRandomError()
 
         var capturedCallback: Result<TripInfo>?

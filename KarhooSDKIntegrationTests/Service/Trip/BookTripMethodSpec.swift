@@ -35,7 +35,7 @@ final class BookTripMethodSpec: XCTestCase {
                                 locale: "")
 
         let passengers = Passengers(additionalPassengers: 0, passengerDetails: [PassengerDetails(user: userInfo)])
-        let tripBooking = TripBooking(quoteId: "123", passengers: passengers)
+        let tripBooking = TripBooking(quoteId: "123")
         call = tripService.book(tripBooking: tripBooking)
     }
 
