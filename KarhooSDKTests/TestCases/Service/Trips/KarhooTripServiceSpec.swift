@@ -71,7 +71,7 @@ final class KarhooTripServiceSpec: XCTestCase {
      *  Then:  Error should be propagated through callback
      */
     func testBookingTripRequestFailure() {
-        let tripBooking = TripBooking(quoteId: "some")
+        let tripBooking = TripBooking(quoteId: "some", passengers: mockPassengers)
         let expectedError = TestUtil.getRandomError()
 
         var capturedCallback: Result<TripInfo>?

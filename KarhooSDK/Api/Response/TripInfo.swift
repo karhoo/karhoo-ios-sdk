@@ -33,7 +33,7 @@ public struct TripInfo: KarhooCodableModel {
     public let meetingPoint: MeetingPoint?
     public let partnerTravellerID: String
     public let partnerTripID: String
-    public let stateDetails: StateDetails
+    public let stateDetails: StateDetails?
     public let agent: Agent
     public let cancelledBy: CancelledByPayer
     
@@ -58,7 +58,7 @@ public struct TripInfo: KarhooCodableModel {
                 costCenterReference: String = "",
                 partnerTravellerID: String = "",
                 partnerTripID: String = "",
-                stateDetails: StateDetails = .failure,
+                stateDetails: StateDetails? = nil,
                 agent: Agent = Agent(),
                 cancelledBy: CancelledByPayer = CancelledByPayer()) {
         self.tripId = tripId
