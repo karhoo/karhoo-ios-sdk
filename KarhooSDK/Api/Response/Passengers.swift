@@ -15,8 +15,8 @@ public struct Passengers: KarhooCodableModel, Equatable {
     public let luggage: Luggage
 
     public init(additionalPassengers: Int = 0,
-                luggage: Luggage = Luggage(),
-                passengerDetails: [PassengerDetails] = [PassengerDetails()]) {
+                passengerDetails: [PassengerDetails] = [PassengerDetails()],
+                luggage: Luggage = Luggage()) {
         self.additionalPassengers = additionalPassengers
         self.passengerDetails = passengerDetails
         self.luggage = luggage
@@ -39,7 +39,6 @@ public struct Passengers: KarhooCodableModel, Equatable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(additionalPassengers, forKey: .additionalPassengers)
-        try container.encode(passengerDetails, forKey: .passengerDetails)
         try container.encode(passengerDetails, forKey: .passengerDetails)
         try container.encode(luggage, forKey: .luggage)
     }
