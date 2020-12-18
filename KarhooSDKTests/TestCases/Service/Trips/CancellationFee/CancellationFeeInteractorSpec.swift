@@ -26,8 +26,6 @@ final class CancellationFeeInteractorSpec: XCTestCase {
         mockCancellationFeeRequest = MockRequestSender()
         testObject = KarhooCancellationFeeInteractor(requestSender: mockCancellationFeeRequest)
         testObject.set(identifier: identifier)
-     
-        
     }
 
     /**

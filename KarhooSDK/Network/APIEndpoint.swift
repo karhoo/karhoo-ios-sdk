@@ -39,6 +39,7 @@ enum APIEndpoint {
     case adyenPublicKey
     case quoteCoverage
     case verifyQuote(quoteID: String)
+    case loyaltyBalance(identifier: String)
     
     var path: String {
         switch self {
@@ -126,6 +127,8 @@ enum APIEndpoint {
             return "/quotes/coverage"
         case .verifyQuote(let quoteID):
             return "/quotes/verify/\(quoteID)"
+        case .loyaltyBalance(let identifier):
+            return "/payments/loyalty/programmes/\(identifier)/balance"
         }
     }
 
@@ -168,6 +171,7 @@ enum APIEndpoint {
         case .adyenPublicKey: return .get
         case .quoteCoverage: return .get
         case .verifyQuote: return .get
+        case .loyaltyBalance: return .get
         }
     }
 
@@ -185,6 +189,7 @@ enum APIEndpoint {
         case .adyenPublicKey: return "v3"
         case .quoteCoverage: return "v2"
         case .verifyQuote: return "v2"
+        case .loyaltyBalance: return "v3"
         default: return "v1"
         }
     }
