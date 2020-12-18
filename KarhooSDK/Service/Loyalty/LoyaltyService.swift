@@ -10,4 +10,6 @@ import Foundation
 
 public protocol LoyaltyService {
     func getLoyaltyBalance(identifier: String) -> Call<LoyaltyBalance>
+    
+    func getLoyaltyConversion(identifier: String) -> Call<LoyaltyConversion>
 }
