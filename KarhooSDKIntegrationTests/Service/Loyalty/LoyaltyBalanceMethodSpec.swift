@@ -42,7 +42,7 @@ final class LoyaltyBalanceMethodSpec: XCTestCase {
     }
     
     /**
-      * Given: Requesting a cancellation fee
+      * Given: Requesting a loyalty balance
       * When: Request succeeds with burnable false
       * Then: Success result should be propogated as false
       */
