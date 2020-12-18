@@ -39,13 +39,11 @@ final class KarhooPaymentService: PaymentService {
 
     func initialisePaymentSDK(paymentSDKTokenPayload: PaymentSDKTokenPayload) -> Call<PaymentSDKToken> {
         paymentSDKTokenInteractor.set(payload: paymentSDKTokenPayload)
-
         return Call(executable: paymentSDKTokenInteractor)
     }
 
     func addPaymentDetails(addPaymentDetailsPayload: AddPaymentDetailsPayload) -> Call<Nonce> {
         addPaymentDetailsInteractor.set(addPaymentDetailsPayload: addPaymentDetailsPayload)
-
         return Call(executable: addPaymentDetailsInteractor)
     }
 
