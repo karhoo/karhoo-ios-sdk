@@ -128,7 +128,7 @@ enum APIEndpoint {
         case .verifyQuote(let quoteID):
             return "/quotes/verify/\(quoteID)"
         case .loyaltyBalance(let identifier):
-            return "/payments/loyalty/programmes/\(identifier)/rates"
+            return "/payments/loyalty/programmes/\(identifier)/balance"
         }
     }
 
