@@ -4106,7 +4106,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4130,7 +4130,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.KarhooSDK;
@@ -4151,7 +4151,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4175,7 +4175,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.3;
+				MARKETING_VERSION = 1.2.4;
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.KarhooSDK;
