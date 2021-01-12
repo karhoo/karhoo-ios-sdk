@@ -50,18 +50,17 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
                 userInfoCallback(.failure(error: result.errorValue()))
                 return
             }
-            self?.userDataStore.set(credentials: authToken.toCredentials())
-            self?.getUserInfo(authToken.accessToken, callback: userInfoCallback)
+            self?.getUserInfo(authToken.toCredentials(), callback: userInfoCallback)
         })
     }
 
-    private func getUserInfo(_ token: String,
+    private func getUserInfo(_ credentials: Credentials,
                              callback: @escaping CallbackClosure<UserInfo>) {
         userInfoSender.requestAndDecode(payload: nil,
                                         endpoint: .authUserInfo) { [weak self](result: Result<UserInfo>) in
                                             switch result {
-                                            case .success(var user):
-                                                self?.userDataStore.updateUser(user: &user)
+                                            case .success(let user):
+                                                self?.userDataStore.setCurrentUser(user: user, credentials: credentials)
                                                 self?.updatePaymentProvider()
                                                 self?.analytics.send(eventName: .ssoUserLogIn)
                                                 callback(.success(result: user))
