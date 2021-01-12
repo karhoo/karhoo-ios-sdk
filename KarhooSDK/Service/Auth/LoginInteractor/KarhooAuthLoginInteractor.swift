@@ -62,6 +62,7 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
                                             switch result {
                                             case .success(let user):
                                                 self?.userDataStore.setCurrentUser(user: user, credentials: credentials)
+                                                let user1 = self?.userDataStore.getCurrentUser()
                                                 self?.updatePaymentProvider()
                                                 self?.analytics.send(eventName: .ssoUserLogIn)
                                                 callback(.success(result: user))
