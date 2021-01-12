@@ -50,6 +50,7 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
                 userInfoCallback(.failure(error: result.errorValue()))
                 return
             }
+            self?.userDataStore.set(credentials: authToken.toCredentials())
             self?.getUserInfo(authToken.toCredentials(), callback: userInfoCallback)
         })
     }
