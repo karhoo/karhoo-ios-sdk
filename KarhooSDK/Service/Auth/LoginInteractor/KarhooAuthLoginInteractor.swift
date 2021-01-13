@@ -28,7 +28,6 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
         self.userDataStore = userDataStore
         self.analytics = analytics
         self.paymentProviderRequest = paymentProviderRequest
-        
         self.nonceRequestSender = nonceRequestSender
     }
     
