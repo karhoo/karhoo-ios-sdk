@@ -97,8 +97,9 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
         paymentProviderRequest.requestAndDecode(payload: nil,
                                                 endpoint: .paymentProvider,
                                                 callback: { [weak self] (result: Result<PaymentProvider>) in
-                                                    self?.userDataStore.updatePaymentProvider(paymentProvider: result.successValue())
-                                                    if result.successValue()?.provider.type == .braintree {
+                                                    let paymentProvider = result.successValue()
+                                                    self?.userDataStore.updatePaymentProvider(paymentProvider: paymentProvider)
+                                                    if paymentProvider?.provider.type == .braintree {
                                                         self?.updateUserNonce(user: user)
                                                     }
                                                 })
