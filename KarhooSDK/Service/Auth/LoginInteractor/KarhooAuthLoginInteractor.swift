@@ -73,7 +73,6 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
     private func didLogin(user: UserInfo,
                           credentials: Credentials) {
         userDataStore.setCurrentUser(user: user, credentials: credentials)
-        let user1 = userDataStore.getCurrentUser()
         updatePaymentProvider()
         analytics.send(eventName: .ssoUserLogIn)
     }
@@ -94,7 +93,10 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
         paymentProviderRequest.requestAndDecode(payload: nil,
                                                 endpoint: .paymentProvider,
                                                 callback: { [weak self] (result: Result<PaymentProvider>) in
+                                                    let user1 = self?.userDataStore.getCurrentUser()
                                                     self?.userDataStore.updatePaymentProvider(paymentProvider: result.successValue())
+                                                    let user2 = self?.userDataStore.getCurrentUser()
+                                                    print(user2?.firstName)
                                                 })
     }
 }
