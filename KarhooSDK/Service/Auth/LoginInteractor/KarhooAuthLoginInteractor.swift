@@ -15,17 +15,21 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
     private let userDataStore: UserDataStore
     private let analytics: AnalyticsService
     private let paymentProviderRequest: RequestSender
+    private let nonceRequestSender: RequestSender
 
     init(tokenExchangeRequestSender: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          userInfoSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          userDataStore: UserDataStore = DefaultUserDataStore(),
          analytics: AnalyticsService = KarhooAnalyticsService(),
-         paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared)) {
+         paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
+         nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
         self.tokenExchangeRequestSender = tokenExchangeRequestSender
         self.userInfoSender = userInfoSender
         self.userDataStore = userDataStore
         self.analytics = analytics
         self.paymentProviderRequest = paymentProviderRequest
+        
+        self.nonceRequestSender = nonceRequestSender
     }
     
     func cancel() {
@@ -73,7 +77,7 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
     private func didLogin(user: UserInfo,
                           credentials: Credentials) {
         userDataStore.setCurrentUser(user: user, credentials: credentials)
-        updatePaymentProvider()
+        updatePaymentProvider(user: user)
         analytics.send(eventName: .ssoUserLogIn)
     }
     
@@ -89,14 +93,24 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
         return components
     }
 
-    private func updatePaymentProvider() {
+    private func updatePaymentProvider(user: UserInfo) {
         paymentProviderRequest.requestAndDecode(payload: nil,
                                                 endpoint: .paymentProvider,
                                                 callback: { [weak self] (result: Result<PaymentProvider>) in
-                                                    let user1 = self?.userDataStore.getCurrentUser()
                                                     self?.userDataStore.updatePaymentProvider(paymentProvider: result.successValue())
-                                                    let user2 = self?.userDataStore.getCurrentUser()
-                                                    print(user2?.firstName)
+                                                    if result.successValue()?.provider.type == .braintree {
+                                                        self?.updateUserNonce(user: user)
+                                                    }
                                                 })
+    }
+    
+    private func updateUserNonce(user: UserInfo) {
+        let payload = NonceRequestPayload(payer: Payer(user: user),
+                                          organisationId: user.organisations.first?.id ?? "")
+
+        nonceRequestSender.requestAndDecode(payload: payload,
+                                            endpoint: .getNonce) { [weak self] (result: Result<Nonce>) in
+                                                self?.userDataStore.updateCurrentUserNonce(nonce: result.successValue())
+        }
     }
 }
