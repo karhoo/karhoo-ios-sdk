@@ -50,26 +50,32 @@ final class KarhooAuthLoginInteractor: AuthLoginInteractor {
                 userInfoCallback(.failure(error: result.errorValue()))
                 return
             }
-            self?.userDataStore.set(credentials: authToken.toCredentials())
-            self?.getUserInfo(authToken.toCredentials(), callback: userInfoCallback)
+            let credentials = authToken.toCredentials()
+            self?.userDataStore.set(credentials: credentials)
+                                                    self?.getUserInfo(credentials: credentials, callback: userInfoCallback)
         })
     }
 
-    private func getUserInfo(_ credentials: Credentials,
+    private func getUserInfo(credentials: Credentials,
                              callback: @escaping CallbackClosure<UserInfo>) {
         userInfoSender.requestAndDecode(payload: nil,
                                         endpoint: .authUserInfo) { [weak self](result: Result<UserInfo>) in
                                             switch result {
                                             case .success(let user):
-                                                self?.userDataStore.setCurrentUser(user: user, credentials: credentials)
-                                                let user1 = self?.userDataStore.getCurrentUser()
-                                                self?.updatePaymentProvider()
-                                                self?.analytics.send(eventName: .ssoUserLogIn)
+                                                self?.didLogin(user: user, credentials: credentials)
                                                 callback(.success(result: user))
                                             case .failure(let error):
                                                 callback(.failure(error: error))
                                             }
         }
+    }
+    
+    private func didLogin(user: UserInfo,
+                          credentials: Credentials) {
+        userDataStore.setCurrentUser(user: user, credentials: credentials)
+        let user1 = userDataStore.getCurrentUser()
+        updatePaymentProvider()
+        analytics.send(eventName: .ssoUserLogIn)
     }
     
     private func authLoginHeaderComponents() -> URLComponents {
