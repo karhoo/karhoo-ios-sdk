@@ -157,7 +157,6 @@
 		143975DC24EAC7AB0006EB80 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143975DB24EAC7AB0006EB80 /* Provider.swift */; };
 		143975E124EAC93B0006EB80 /* PaymentProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143975E024EAC93B0006EB80 /* PaymentProviderSpec.swift */; };
 		143975E424EAC9FA0006EB80 /* PaymentProvider.json in Resources */ = {isa = PBXBuildFile; fileRef = 143975E324EAC9FA0006EB80 /* PaymentProvider.json */; };
-		1448DA25256E99B300D2A73F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1448DA24256E99B300D2A73F /* Keys.swift */; };
 		1471BE2624E5904100BE1C4D /* AdyenPaymentMethods.json in Resources */ = {isa = PBXBuildFile; fileRef = 1471BE2524E5904100BE1C4D /* AdyenPaymentMethods.json */; };
 		1471BE2924E590B500BE1C4D /* AdyenPaymentMethodsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471BE2824E590B500BE1C4D /* AdyenPaymentMethodsSpec.swift */; };
 		1477E3FC24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477E3FB24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift */; };
@@ -166,6 +165,7 @@
 		147B88A224E3FEAE003F78B8 /* MockAdyenPaymentMethodsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B88A124E3FEAE003F78B8 /* MockAdyenPaymentMethodsInteractor.swift */; };
 		147B88A524E3FF5F003F78B8 /* KarhooAdyenPaymentMethodsInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B88A424E3FF5F003F78B8 /* KarhooAdyenPaymentMethodsInteractorSpec.swift */; };
 		14A4101824D1728200900F10 /* QuotesV2.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A4101724D1728200900F10 /* QuotesV2.json */; };
+		14D7728B25AEFDDB0000C481 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D7728A25AEFDDB0000C481 /* Keys.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
 		2359B45B234251FB008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359B45A234251FA008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift */; };
@@ -669,7 +669,6 @@
 		143975DB24EAC7AB0006EB80 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		143975E024EAC93B0006EB80 /* PaymentProviderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentProviderSpec.swift; sourceTree = "<group>"; };
 		143975E324EAC9FA0006EB80 /* PaymentProvider.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PaymentProvider.json; sourceTree = "<group>"; };
-		1448DA24256E99B300D2A73F /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		1471BE2524E5904100BE1C4D /* AdyenPaymentMethods.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AdyenPaymentMethods.json; sourceTree = "<group>"; };
 		1471BE2824E590B500BE1C4D /* AdyenPaymentMethodsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPaymentMethodsSpec.swift; sourceTree = "<group>"; };
 		1477E3FB24DC5F9800581FC2 /* MockPaymentProviderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPaymentProviderInteractor.swift; sourceTree = "<group>"; };
@@ -678,6 +677,7 @@
 		147B88A124E3FEAE003F78B8 /* MockAdyenPaymentMethodsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAdyenPaymentMethodsInteractor.swift; sourceTree = "<group>"; };
 		147B88A424E3FF5F003F78B8 /* KarhooAdyenPaymentMethodsInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooAdyenPaymentMethodsInteractorSpec.swift; sourceTree = "<group>"; };
 		14A4101724D1728200900F10 /* QuotesV2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QuotesV2.json; sourceTree = "<group>"; };
+		14D7728A25AEFDDB0000C481 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		14E69FE124E1897300133B1F /* AdyenPaymentMethodsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPaymentMethodsRequest.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
@@ -1378,7 +1378,7 @@
 				09A9B2962405901B00823FB0 /* Assets.xcassets */,
 				09A9B2982405901B00823FB0 /* LaunchScreen.storyboard */,
 				09A9B29B2405901B00823FB0 /* Info.plist */,
-				1448DA24256E99B300D2A73F /* Keys.swift */,
+				14D7728A25AEFDDB0000C481 /* Keys.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -3367,7 +3367,7 @@
 				40FBF609240FBB2E007F6A54 /* AuthRequestsTesterViewController.swift in Sources */,
 				09A9B28E2405901900823FB0 /* AppDelegate.swift in Sources */,
 				09A9B2902405901900823FB0 /* SceneDelegate.swift in Sources */,
-				1448DA25256E99B300D2A73F /* Keys.swift in Sources */,
+				14D7728B25AEFDDB0000C481 /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
     private var mockAnalytics: MockAnalyticsService!
     private var mockPaymentService = MockPaymentProviderInteractor()
     private var mockPaymentProviderRequest = MockRequestSender()
+    private var mockGetNonceRequestSender: MockRequestSender!
 
     override func setUp() {
         super.setUp()
@@ -27,12 +28,14 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
         mockUserRequest = MockRequestSender()
         mockUserDataStore = MockUserDataStore()
         mockAnalytics = MockAnalyticsService()
+        mockGetNonceRequestSender = MockRequestSender()
     
         testObject = KarhooAuthLoginInteractor(tokenExchangeRequestSender: mocktokenExchangeRequest,
                                                userInfoSender: mockUserRequest,
                                                userDataStore: mockUserDataStore,
                                                analytics: mockAnalytics,
-                                               paymentProviderRequest: mockPaymentProviderRequest)
+                                               paymentProviderRequest: mockPaymentProviderRequest,
+                                               nonceRequestSender: mockGetNonceRequestSender)
         testObject.set(token: "13123123123123")
     }
 
@@ -59,7 +62,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
         mockUserRequest.triggerSuccessWithDecoded(value: UserInfoMock().set(firstName: "Bob").build())
         
         XCTAssertEqual("123", mockUserDataStore.credentialsToSet?.accessToken)
-        XCTAssertEqual("Bob", mockUserDataStore.updateUser?.firstName)
+        XCTAssertTrue(mockUserDataStore.setCurrentUserCalled)
         XCTAssertEqual(mockAnalytics.eventSent, .ssoUserLogIn)
         XCTAssertNotNil(result!.successValue())
     }
@@ -99,23 +102,80 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
     }
 
     /**
+      * Given: Login successful and the payment provider is braintree
+      * When: Nonce succeeds
+      * Then: User should be updated
+      */
+    func testGetNonceSuccessAfterLogin() {
+        let successNonce = Nonce(nonce: "some_nonce",
+                                cardType: "Visa",
+                                lastFour: "1234")
+
+        triggerSuccessfulAuthLoginAndProfileFetch()
+        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
+
+        XCTAssertTrue(mockGetNonceRequestSender.requestAndDecodeCalled)
+
+        mockGetNonceRequestSender.triggerSuccessWithDecoded(value: successNonce)
+
+        XCTAssertTrue(mockUserDataStore.updateCurrentNonceCalled)
+        XCTAssertEqual("some_nonce", successNonce.nonce)
+    }
+
+    /**
      * Given: Login successful
      * When: provider call succeeds
      * Then: User should be updated
      */
     func testGetPaymentProvider() {
-        var result: Result<UserInfo>?
         let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
 
-        testObject.execute(callback: { result = $0 })
-        mocktokenExchangeRequest.triggerEncodedRequestSuccess(value: AuthTokenMock().set(accessToken: "123").build())
-        mockUserRequest.triggerSuccessWithDecoded(value: UserInfoMock().set(firstName: "Bob").build())
-
+        triggerSuccessfulAuthLoginAndProfileFetch()
 
         mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
 
-        XCTAssertNotNil(result!.successValue())
         XCTAssertEqual(.braintree, mockUserDataStore.updatedPaymentProvider?.provider.type)
+    }
+
+    /**
+     * Given: Login successful and the payment provider is braintree
+     * When: Nonce fails
+     * Then: User should be updated
+     */
+    func testGetNonceFailsAfterSuccessfulLogin() {
+        triggerSuccessfulAuthLoginAndProfileFetch()
+        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
+
+        mockGetNonceRequestSender.triggerFail(error: TestUtil.getRandomError())
+
+        XCTAssertTrue(mockGetNonceRequestSender.requestAndDecodeCalled)
+        XCTAssertTrue(mockUserDataStore.updateCurrentNonceCalled)
+        XCTAssertNil(mockUserDataStore.updateCurrentNonce)
+    }
+
+    /**
+     * Given: Login successful and the payment
+     * When: provider is adyen
+     * Then: get nonce should not be called
+     */
+    func testAdyenDoesNotGetBraintreeNonce() {
+        triggerSuccessfulAuthLoginAndProfileFetch()
+        let paymentProvider = PaymentProvider(provider: Provider(id: "adyen"))
+        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
+
+        mockGetNonceRequestSender.triggerFail(error: TestUtil.getRandomError())
+
+        XCTAssertFalse(mockGetNonceRequestSender.requestAndDecodeCalled)
+        XCTAssertFalse(mockUserDataStore.updateCurrentNonceCalled)
+        XCTAssertNil(mockUserDataStore.updateCurrentNonce)
+    }
+
+    private func triggerSuccessfulAuthLoginAndProfileFetch() {
+        testObject.execute(callback: { (_: Result<UserInfo>) in })
+        mocktokenExchangeRequest.triggerEncodedRequestSuccess(value: AuthTokenMock().set(accessToken: "123").build())
+        mockUserRequest.triggerSuccessWithDecoded(value: UserInfoMock().set(firstName: "Bob").build())
     }
 
 }
