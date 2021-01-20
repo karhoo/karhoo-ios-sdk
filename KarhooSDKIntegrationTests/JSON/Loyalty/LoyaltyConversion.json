@@ -1,0 +1,13 @@
+{
+    "version": "20200312",
+    "rates": [
+        {
+            "currency": "GBP",
+            "points": "114.58"
+        },
+        {
+            "currency": "EUR",
+            "points": "114.58"
+        }
+    ]
+}

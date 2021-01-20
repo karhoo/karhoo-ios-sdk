@@ -12,21 +12,26 @@ public struct VehicleAvailability: KarhooCodableModel {
 
     public let classes: [String]
     public let types: [String]
+    public let tags: [String]
 
     public init(classes: [String] = [],
-                types: [String] = []) {
+                types: [String] = [],
+                tags: [String] = []) {
         self.classes = classes
         self.types = types
+        self.tags = tags
     }
 
     enum CodingKeys: String, CodingKey {
         case classes
         case types
+        case tags
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.classes = (try? container.decode(Array.self, forKey: .classes)) ?? []
         self.types = (try? container.decode(Array.self, forKey: .types)) ?? []
+        self.tags = (try? container.decode(Array.self, forKey: .tags)) ?? []
     }
 }

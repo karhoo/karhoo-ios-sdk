@@ -1,0 +1,8 @@
+{
+    "cancellation_fee": false,
+    "fee": {
+        "currency": "",
+        "type": "",
+        "value": 0
+    }
+}

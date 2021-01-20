@@ -7,6 +7,7 @@ enum APIEndpoint {
     case bookTrip
     case bookTripWithNonce
     case cancelTrip(identifier: String)
+    case cancellationFee(identifier: String)
     case cancelTripFollowCode(followCode: String)
     case trackDriver(identifier: String)
     case trackTrip(identifier: String)
@@ -38,6 +39,8 @@ enum APIEndpoint {
     case adyenPublicKey
     case quoteCoverage
     case verifyQuote(quoteID: String)
+    case loyaltyBalance(identifier: String)
+    case loyaltyConversion(identifier: String)
     
     var path: String {
         switch self {
@@ -72,6 +75,8 @@ enum APIEndpoint {
             return "/bookings/search"
         case .tripStatus(let identifier):
             return "/bookings/\(identifier)/status"
+        case .cancellationFee(let identifier):
+            return "/bookings/\(identifier)/cancel-fee"
         case .getFareDetails(let identifier):
             return "/fares/trip/\(identifier)"
         case .locationInfo:
@@ -123,6 +128,10 @@ enum APIEndpoint {
             return "/quotes/coverage"
         case .verifyQuote(let quoteID):
             return "/quotes/verify/\(quoteID)"
+        case .loyaltyBalance(let identifier):
+            return "/payments/loyalty/programmes/\(identifier)/balance"
+        case .loyaltyConversion(let identifier):
+            return "/payments/loyalty/programmes/\(identifier)/rates"
         }
     }
 
@@ -133,6 +142,7 @@ enum APIEndpoint {
         case .bookTrip: return .post
         case .bookTripWithNonce: return .post
         case .cancelTrip: return .post
+        case .cancellationFee: return .get
         case .cancelTripFollowCode: return .post
         case .trackDriver: return .get
         case .trackTrip: return .get
@@ -164,6 +174,8 @@ enum APIEndpoint {
         case .adyenPublicKey: return .get
         case .quoteCoverage: return .get
         case .verifyQuote: return .get
+        case .loyaltyBalance: return .get
+        case .loyaltyConversion: return .get
         }
     }
 
@@ -181,6 +193,8 @@ enum APIEndpoint {
         case .adyenPublicKey: return "v3"
         case .quoteCoverage: return "v2"
         case .verifyQuote: return "v2"
+        case .loyaltyBalance: return "v3"
+        case .loyaltyConversion: return "v3"
         default: return "v1"
         }
     }

@@ -26,7 +26,6 @@ public struct TripQuote: Codable {
     public let lowPrice: Int
     public let type: QuoteType
     public let vehicleClass: String
-    public let vehicleAttributes: VehicleAttributes
 
     public init(total: Int = 0,
                 currency: String = "",
@@ -37,8 +36,7 @@ public struct TripQuote: Codable {
                 highPrice: Int = 0,
                 lowPrice: Int = 0,
                 type: QuoteType = .estimated,
-                vehicleClass: String = "",
-                vehicleAttributes: VehicleAttributes = VehicleAttributes()) {
+                vehicleClass: String = "") {
         self.total = total
         self.currency = currency
         self.gratuityPercent = gratuityPercent
@@ -49,7 +47,6 @@ public struct TripQuote: Codable {
         self.lowPrice = lowPrice
         self.type = type
         self.vehicleClass = vehicleClass
-        self.vehicleAttributes = vehicleAttributes
     }
 
     enum CodingKeys: String, CodingKey {
@@ -63,7 +60,6 @@ public struct TripQuote: Codable {
         case lowPrice = "low_price"
         case type
         case vehicleClass = "vehicle_class"
-        case vehicleAttributes = "vehicle_attributes"
     }
 
     public init(from decoder: Decoder) throws {
@@ -78,8 +74,6 @@ public struct TripQuote: Codable {
         self.lowPrice = (try? container.decode(Int.self, forKey: .lowPrice)) ?? 0
         self.type = (try? container.decode(QuoteType.self, forKey: .type)) ?? .estimated
         self.vehicleClass = (try? container.decode(String.self, forKey: .vehicleClass)) ?? ""
-        self.vehicleAttributes = (try? container.decode(VehicleAttributes.self, forKey: .vehicleAttributes))
-            ?? VehicleAttributes()
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -94,6 +88,5 @@ public struct TripQuote: Codable {
         try container.encode(lowPrice, forKey: .lowPrice)
         try container.encode(type, forKey: .type)
         try container.encode(vehicleClass, forKey: .vehicleClass)
-        try container.encode(vehicleAttributes, forKey: .vehicleAttributes)
     }
 }

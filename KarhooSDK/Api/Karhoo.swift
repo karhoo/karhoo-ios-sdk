@@ -92,7 +92,17 @@ public final class Karhoo {
         if authService == nil {
             authService = KarhooAuthService()
         }
+        
         return authService!
+    }
+    
+    private static var loyaltyService: LoyaltyService?
+    public static func getLoyaltyService() -> LoyaltyService {
+        if loyaltyService == nil {
+            loyaltyService = KarhooLoyaltyService()
+        }
+        
+        return loyaltyService!
     }
 
     public final class Utils {

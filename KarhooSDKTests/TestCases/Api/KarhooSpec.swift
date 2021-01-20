@@ -113,6 +113,15 @@ class KarhooSpec: XCTestCase {
         let authService = Karhoo.getAuthService()
         XCTAssertNotNil(authService)
     }
+    
+    /**
+     *  When:   Getting a loyalty service
+     *  Then:   It should return an instance of  loyalty service
+     */
+    func testGetLoyaltyService() {
+        let loyaltyService = Karhoo.getLoyaltyService()
+        XCTAssertNotNil(loyaltyService)
+    }
 
     /**
      *  Given:  Trip service has been requested

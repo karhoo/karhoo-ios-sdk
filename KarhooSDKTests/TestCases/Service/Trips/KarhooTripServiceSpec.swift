@@ -7,7 +7,6 @@
 //
 
 import XCTest
-
 @testable import KarhooSDK
 
 final class KarhooTripServiceSpec: XCTestCase {
@@ -16,6 +15,7 @@ final class KarhooTripServiceSpec: XCTestCase {
     private var mockTripBookingInteractor: MockBookingInteractor!
     private var mockCancelTripInteractor: MockCancelTripInteractor!
     private var mockTripSearchInteractor: MockTripSearchInteractor!
+    private var mockCancellationFeeInteractor: MockCancellationFeeInteractor!
 
     private var mocktripPollFactory: MockPollCallFactory!
     private var mocktripStatusPollFactory: MockPollCallFactory!
@@ -34,13 +34,15 @@ final class KarhooTripServiceSpec: XCTestCase {
         mocktripPollFactory = MockPollCallFactory()
         mocktripStatusPollFactory = MockPollCallFactory()
         mockAnalytics = MockAnalyticsService()
+        mockCancellationFeeInteractor = MockCancellationFeeInteractor()
 
         testObject = KarhooTripService(bookingInteractor: mockTripBookingInteractor,
                                        cancelTripInteractor: mockCancelTripInteractor,
                                        tripSearchInteractor: mockTripSearchInteractor,
                                        analytics: mockAnalytics,
                                        tripPollFactory: mocktripPollFactory,
-                                       tripStatusPollFactory: mocktripStatusPollFactory)
+                                       tripStatusPollFactory: mocktripStatusPollFactory,
+                                       cancellationFeeInteractor: mockCancellationFeeInteractor)
     }
 
     /**
@@ -165,4 +167,29 @@ final class KarhooTripServiceSpec: XCTestCase {
         XCTAssertNotNil(mocktripStatusPollFactory.executableSet)
         XCTAssertEqual(expectedTripId, mocktripStatusPollFactory.identifierSet)
     }
+    
+    /**
+     * When: Getting a cancellation fee
+     * Then: Cancellation fee should be called
+     */
+    func testCancellationFeeSuccess() {
+        let expectedTripId = "12345"
+        _ = testObject.cancellationFee(identifier: expectedTripId)
+
+        XCTAssertEqual(expectedTripId, mockCancellationFeeInteractor.identifierSet)
+    }
+    
+    /**
+     * When: Getting a cancellation fee
+     * Then: Cancellation fee should be called
+     */
+    func testCancellationFeeFailure() {
+        let expectedTripId = "12345"
+        _ = testObject.cancellationFee(identifier: expectedTripId)
+        let expectedError = TestUtil.getRandomError()
+        
+        mockCancellationFeeInteractor.triggerFail(error: expectedError)
+        XCTAssertEqual(expectedTripId, mockCancellationFeeInteractor.identifierSet)
+    }
+    
 }

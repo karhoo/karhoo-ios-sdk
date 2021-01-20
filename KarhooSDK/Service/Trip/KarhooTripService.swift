@@ -15,13 +15,15 @@ final class KarhooTripService: TripService {
     private let analytics: AnalyticsService
     private let tripPollFactory: PollCallFactory
     private let tripStatusPollFactory: PollCallFactory
+    private let cancellationFeeInteractor: CancellationFeeInteractor
 
     init(bookingInteractor: BookingInteractor = KarhooBookingInteractor(),
          cancelTripInteractor: CancelTripInteractor = KarhooCancelTripInteractor(),
          tripSearchInteractor: TripSearchInteractor = KarhooTripSearchInteractor(),
          analytics: AnalyticsService = KarhooAnalyticsService(),
          tripPollFactory: PollCallFactory = KarhooPollCallFactory(),
-         tripStatusPollFactory: PollCallFactory = KarhooPollCallFactory()) {
+         tripStatusPollFactory: PollCallFactory = KarhooPollCallFactory(),
+         cancellationFeeInteractor: CancellationFeeInteractor = KarhooCancellationFeeInteractor()) {
 
         self.bookingInteractor = bookingInteractor
         self.cancelTripInteractor = cancelTripInteractor
@@ -29,6 +31,7 @@ final class KarhooTripService: TripService {
         self.tripSearchInteractor = tripSearchInteractor
         self.tripPollFactory = tripPollFactory
         self.tripStatusPollFactory = tripStatusPollFactory
+        self.cancellationFeeInteractor = cancellationFeeInteractor
     }
 
     func book(tripBooking: TripBooking) -> Call<TripInfo> {
@@ -56,5 +59,10 @@ final class KarhooTripService: TripService {
         let interactor = KarhooTripStatusInteractor(tripId: tripId)
         return tripStatusPollFactory.shared(identifier: tripId,
                                             executable: interactor)
+    }
+    
+    func cancellationFee(identifier: String) -> Call<CancellationFee> {
+        cancellationFeeInteractor.set(identifier: identifier)
+        return Call(executable: cancellationFeeInteractor)
     }
 }
