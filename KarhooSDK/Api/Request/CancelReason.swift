@@ -16,4 +16,7 @@ public enum CancelReason: String {
     case etaTooLong = "ETA_TOO_LONG"
     case driverDidntShowUp = "DRIVER_DIDNT_SHOW_UP"
     case otherUserReason = "OTHER_USER_REASON"
+    case foundBetterPrice = "FOUND_BETTER_PRICE"
+    case notCLearMeetingInstructions = "NOT_CLEAR_MEETING_INSTRUCTIONS"
+    case couldNotContactCarrier = "COULD_NOT_CONTACT_CARRIER"
 }

@@ -73,6 +73,26 @@ class KarhooBookingInteractorSpec: XCTestCase {
     }
 
     /**
+     * When: Booking a trip WITH meta data with a trip id field
+     * Then: The correct request and format should be sent
+     */
+    func testRequestFormatWithMetadata() {
+        var tripBooking = TripBooking(quoteId: "some",
+                                      passengers: passengers,
+                                      flightNumber: "312",
+                                      comments: "comment")
+
+        tripBooking.meta = ["trip_id": "1234"]
+
+        testObject.set(tripBooking: tripBooking)
+        testObject.execute(callback: { (_:Result<TripInfo>) in })
+
+        mockBookingRequest.assertRequestSendAndDecoded(endpoint: APIEndpoint.bookTrip,
+                                                       method: .post,
+                                                       payload: tripBooking)
+    }
+
+    /**
      *   Given:  Booking a trip
      *    When:  Request succeeds
      *    Then:  Expected callback should be propogated

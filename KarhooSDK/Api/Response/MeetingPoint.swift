@@ -10,19 +10,23 @@ public struct MeetingPoint: Codable {
     public let position: Position
     public let instructions: String
     public let type: MeetingPointType
+    public let note: String
 
     public init(position: Position = Position(),
                 instructions: String = "",
-                type: MeetingPointType = .notSet) {
+                type: MeetingPointType = .notSet,
+                note: String = "") {
         self.position = position
         self.instructions = instructions
         self.type = type
+        self.note = note
     }
 
     enum CodingKeys: String, CodingKey {
         case position
         case instructions
         case type
+        case note
     }
 
     public init(from decoder: Decoder) throws {
@@ -30,6 +34,7 @@ public struct MeetingPoint: Codable {
         self.position = (try? container.decode(Position.self, forKey: .position)) ?? Position()
         self.instructions = (try? container.decode(String.self, forKey: .instructions)) ?? ""
         self.type = (try? container.decode(MeetingPointType.self, forKey: .type)) ?? .notSet
+        self.note = (try? container.decode(String.self, forKey: .note)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -37,5 +42,6 @@ public struct MeetingPoint: Codable {
         try container.encode(position, forKey: .position)
         try container.encode(instructions, forKey: .instructions)
         try container.encode(type, forKey: .type)
+        try container.encode(note, forKey: .note)
     }
 }

@@ -1,5 +1,5 @@
 {
-   "transaction_id":"aaaa-aaaa-aaaa",
+   "trip_id":"aaaa-aaaa-aaaa",
    "payload":{
       "pspReference":"853598516547275E",
       "resultCode":"Authorised",
