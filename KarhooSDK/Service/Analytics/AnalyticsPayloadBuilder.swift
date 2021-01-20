@@ -43,12 +43,15 @@ final class DefaultAnalyticsPayloadBuilder {
     }
 
     private func addUserPayload() {
+        let authState = Karhoo.configuration.authenticationMethod()
+        payload[AnalyticsConstants.EventNames.guestMode.description] = authState.isGuest()
+        addUserLocationPayload(location: locationProvider.getLastKnownLocation())
+
         guard let user = KarhooUserService().getCurrentUser() else {
             return
         }
 
         payload[AnalyticsConstants.Keys.userId.description] = user.userId
-        addUserLocationPayload(location: locationProvider.getLastKnownLocation())
     }
 
     private func addUserLocationPayload(location: CLLocation?) {
