@@ -166,6 +166,7 @@
 		147B88A524E3FF5F003F78B8 /* KarhooAdyenPaymentMethodsInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B88A424E3FF5F003F78B8 /* KarhooAdyenPaymentMethodsInteractorSpec.swift */; };
 		14A4101824D1728200900F10 /* QuotesV2.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A4101724D1728200900F10 /* QuotesV2.json */; };
 		14D7728B25AEFDDB0000C481 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D7728A25AEFDDB0000C481 /* Keys.swift */; };
+		231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231652D925BADEEA003C449B /* QuoteStatus.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
 		2359B45B234251FB008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359B45A234251FA008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift */; };
@@ -679,6 +680,7 @@
 		14A4101724D1728200900F10 /* QuotesV2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QuotesV2.json; sourceTree = "<group>"; };
 		14D7728A25AEFDDB0000C481 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		14E69FE124E1897300133B1F /* AdyenPaymentMethodsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPaymentMethodsRequest.swift; sourceTree = "<group>"; };
+		231652D925BADEEA003C449B /* QuoteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStatus.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
 		2359B45A234251FA008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooUpdateUserDetailsInteractorSpec.swift; sourceTree = "<group>"; };
@@ -1482,6 +1484,7 @@
 				6FD94A02258BAE4B00B21B8B /* LoyaltyBalance.swift */,
 				6FD542BC258CEA50002EA542 /* LoyaltyConversion.swift */,
 				6FD542C2258CEAA3002EA542 /* LoyaltyRates.swift */,
+				231652D925BADEEA003C449B /* QuoteStatus.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -3464,6 +3467,7 @@
 				4310E4DC1E99395D00625A0E /* WeakReferenceWrapper.swift in Sources */,
 				2359B4602342522E008433A1 /* UpdateUserDetailsInteractor.swift in Sources */,
 				5C62683F252DBA1800AB6CD2 /* AdyenDropInPayload.swift in Sources */,
+				231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */,
 				0970BA6F21136F870015A170 /* Executable.swift in Sources */,
 				400BB94823F308BE00AEAAFD /* AuthLoginInteractor.swift in Sources */,
 				6F69F339255A783500F8DA05 /* QuoteCoverage.swift in Sources */,

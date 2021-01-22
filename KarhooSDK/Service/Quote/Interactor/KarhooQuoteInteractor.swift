@@ -101,7 +101,9 @@ final class KarhooQuoteInteractor: QuoteInteractor {
                                                         toQuotes: filteredQuotes)
         let quotes = Quotes(quoteListId: quoteList.listId,
                             quoteCategories: quoteCategories,
-                            all: filteredQuotes)
+                            all: filteredQuotes,
+                            validity: quoteList.validity,
+                            status: quoteList.status)
 
         callback(.success(result: quotes))
     }
