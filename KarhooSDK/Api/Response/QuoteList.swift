@@ -11,14 +11,14 @@ public struct QuoteList: KarhooCodableModel {
 
     public let quotes: [Quote]
     public let listId: String
-    public let status: String
-    let validity: Int
+    public let status: QuoteStatus
+    public let validity: Int
     public let availability: Availability
 
     internal init(quoteItems: [Quote] = [],
                   quotes: [Quote] = [],
                   listId: String = "",
-                  status: String = "",
+                  status: QuoteStatus = .default,
                   validity: Int = 0,
                   availability: Availability = Availability()) {
         self.listId = listId
@@ -40,7 +40,7 @@ public struct QuoteList: KarhooCodableModel {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.quotes = (try? container.decode([Quote].self, forKey: .quotes)) ?? []
         self.listId = try container.decode(String.self, forKey: .listId)
-        self.status = (try? container.decode(String.self, forKey: .status)) ?? ""
+        self.status = (try? container.decode(QuoteStatus.self, forKey: .status)) ?? .default
         self.validity = (try? container.decode(Int.self, forKey: .validity)) ?? 0
         self.availability = (try? container.decode(Availability.self, forKey: .availability)) ?? Availability()
     }

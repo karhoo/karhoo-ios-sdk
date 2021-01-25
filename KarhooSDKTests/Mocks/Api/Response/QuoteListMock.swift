@@ -15,7 +15,7 @@ final class QuoteListMock {
         self.quoteList = QuoteList()
     }
 
-    func set(status: String) -> QuoteListMock {
+    func set(status: QuoteStatus) -> QuoteListMock {
         createDataForQuoteList(status: status)
         return self
     }
@@ -40,7 +40,7 @@ final class QuoteListMock {
     }
 
     private func createDataForQuoteList(quoteItem: Quote = Quote(),
-                                        status: String? = nil,
+                                        status: QuoteStatus? = .default,
                                         listId: String? = nil,
                                         validity: Int? = nil) {
 
