@@ -23,6 +23,7 @@ final class CancellationFeeInteractorSpec: XCTestCase {
     override func setUp() {
         super.setUp()
 
+        MockSDKConfig.authenticationMethod = .karhooUser
         mockCancellationFeeRequest = MockRequestSender()
         testObject = KarhooCancellationFeeInteractor(requestSender: mockCancellationFeeRequest)
         testObject.set(identifier: identifier)
@@ -30,13 +31,32 @@ final class CancellationFeeInteractorSpec: XCTestCase {
 
     /**
      * When: Making a request to cancellation fee
+     * And: The configuration is for an authorised user
      * Then: Expected method, path and payload should be set
      */
 
-    func testRequestFormat() {
+    func testAuthRequestFormat() {
         testObject.execute(callback: { (_:Result<KarhooVoid>) in  })
 
         let endpoint = APIEndpoint.cancellationFee(identifier: identifier)
+
+        mockCancellationFeeRequest.assertRequestSendAndDecoded(endpoint: endpoint,
+                                                               method: .get,
+                                                               payload: nil)
+    }
+    
+    /**
+     * When: Making a request to cancellation fee
+     * And: The configuration is guest authentication
+     * Then: Expected method, path and payload should be set
+     */
+
+    func testGuestRequestFormat() {
+        MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
+        
+        testObject.execute(callback: { (_:Result<KarhooVoid>) in  })
+
+        let endpoint = APIEndpoint.cancellationFeeFollowCode(followCode: identifier)
 
         mockCancellationFeeRequest.assertRequestSendAndDecoded(endpoint: endpoint,
                                                                method: .get,
