@@ -46,6 +46,15 @@
           "high_minutes": 30,
           "low_minutes": 30
         }
+      },
+      "service_level_agreements": {
+          "free_cancellation": {
+              "type": "string",
+              "minutes": 5
+          },
+          "free_waiting_time": {
+              "minutes": 5
+          }
       }
     },
     {
@@ -73,6 +82,15 @@
           "high_minutes": 2,
           "low_minutes": 2
         }
+      },
+      "service_level_agreements": {
+          "free_cancellation": {
+              "type": "string",
+              "minutes": 5
+          },
+          "free_waiting_time": {
+              "minutes": 5
+          }
       }
     },
     {
@@ -100,6 +118,15 @@
           "high_minutes": 2,
           "low_minutes": 2
         }
+      },
+      "service_level_agreements": {
+          "free_cancellation": {
+              "type": "string",
+              "minutes": 5
+          },
+          "free_waiting_time": {
+              "minutes": 5
+          }
       }
     }
   ],
