@@ -22,3 +22,4 @@ fastlane/.env
 
 # access keys
 Client/Keys.swift
+Package.resolved
