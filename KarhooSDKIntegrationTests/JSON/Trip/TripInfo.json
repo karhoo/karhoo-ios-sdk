@@ -129,5 +129,14 @@
     "last_name": "string",
     "id": "string",
     "email": "string"
+  },
+  "service_level_agreements": {
+      "free_cancellation": {
+          "type": "string",
+          "minutes": 5
+      },
+      "free_waiting_time": {
+          "minutes": 5
+      }
   }
 } 

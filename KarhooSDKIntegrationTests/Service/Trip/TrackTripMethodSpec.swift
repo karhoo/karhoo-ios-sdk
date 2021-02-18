@@ -158,5 +158,12 @@ final class TrackTripMethodSpec: XCTestCase {
         XCTAssertEqual("Saloon", tripQuote.vehicleClass)
         XCTAssertEqual(5, tripQuote.qtaLowMinutes)
         XCTAssertEqual(8, tripQuote.qtaHighMinutes)
+        
+        let serviceAgreementsCancellation = trip.serviceAgreements?.serviceCancellation
+        XCTAssertEqual("string", serviceAgreementsCancellation?.type)
+        XCTAssertEqual(5, serviceAgreementsCancellation?.minutes)
+        
+        let serviceAgreementsWaiting = trip.serviceAgreements?.serviceWaiting
+        XCTAssertEqual(5, serviceAgreementsWaiting?.minutes)
     }
 }

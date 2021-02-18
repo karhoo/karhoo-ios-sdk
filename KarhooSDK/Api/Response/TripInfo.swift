@@ -36,7 +36,7 @@ public struct TripInfo: KarhooCodableModel {
     public let stateDetails: StateDetails?
     public let agent: Agent
     public let cancelledBy: CancelledByPayer
-    
+    public let serviceAgreements: ServiceAgreements?
 
     public init(tripId: String = "",
                 passengers: Passengers = Passengers(),
@@ -60,7 +60,8 @@ public struct TripInfo: KarhooCodableModel {
                 partnerTripID: String = "",
                 stateDetails: StateDetails? = nil,
                 agent: Agent = Agent(),
-                cancelledBy: CancelledByPayer = CancelledByPayer()) {
+                cancelledBy: CancelledByPayer = CancelledByPayer(),
+                serviceAgreements: ServiceAgreements? = nil) {
         self.tripId = tripId
         self.passengers = passengers
         self.displayId = displayId
@@ -84,6 +85,7 @@ public struct TripInfo: KarhooCodableModel {
         self.stateDetails = stateDetails
         self.agent = agent
         self.cancelledBy = cancelledBy
+        self.serviceAgreements = serviceAgreements
     }
 
     public init(from decoder: Decoder) throws {
@@ -112,6 +114,7 @@ public struct TripInfo: KarhooCodableModel {
         self.dateBooked = (try? container.decode(String.self, forKey: .dateBooked)) ?? ""
         self.agent = (try? container.decode(Agent.self, forKey: .agent)) ?? Agent()
         self.cancelledBy = (try? container.decode(CancelledByPayer.self, forKey: .cancelledBy)) ?? CancelledByPayer()
+        self.serviceAgreements = (try? container.decode(ServiceAgreements.self, forKey: .serviceAgreements))
         
         let utcDate = (try? container.decode(String.self, forKey: .dateScheduled))
 
@@ -148,6 +151,7 @@ public struct TripInfo: KarhooCodableModel {
         try container.encode(partnerTripID, forKey: .partnerTripID)
         try container.encode(agent, forKey: .agent)
         try container.encode(cancelledBy, forKey: .cancelledBy)
+        try container.encode(serviceAgreements, forKey: .serviceAgreements)
     }
     
     enum CodingKeys: String, CodingKey {
@@ -174,5 +178,6 @@ public struct TripInfo: KarhooCodableModel {
         case partnerTripID = "partner_trip_id"
         case agent
         case cancelledBy = "cancelled_by"
+        case serviceAgreements = "service_level_agreements"
     }
 }
