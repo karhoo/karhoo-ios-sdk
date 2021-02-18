@@ -177,5 +177,8 @@ final class QuoteSearchMethodSpec: XCTestCase {
         XCTAssertEqual("+447904839920", quote.fleet.phoneNumber)
         XCTAssertEqual(PickUpType.default, quote.pickUpType)
         XCTAssertEqual(.fleet, quote.source)
+        XCTAssertEqual("string", quote.serviceLevelAgreements?.serviceCancellation.type)
+        XCTAssertEqual(5, quote.serviceLevelAgreements?.serviceCancellation.minutes)
+        XCTAssertEqual(5, quote.serviceLevelAgreements?.serviceWaiting.minutes)
     }
 }
