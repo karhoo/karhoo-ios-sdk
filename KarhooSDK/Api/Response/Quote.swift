@@ -18,6 +18,7 @@ public struct Quote: KarhooCodableModel, Equatable {
     public let fleet: FleetInfo
     public let vehicle: QuoteVehicle
     public let price: QuotePrice
+    public let serviceLevelAgreements: ServiceAgreements?
 
     public init(id: String = "",
                 quoteType: QuoteType = .estimated,
@@ -26,7 +27,8 @@ public struct Quote: KarhooCodableModel, Equatable {
                 fleet: FleetInfo = FleetInfo(),
                 vehicle: QuoteVehicle = QuoteVehicle(),
                 price: QuotePrice = QuotePrice(),
-                validity: Int = 0) {
+                validity: Int = 0,
+                serviceLevelAgreements: ServiceAgreements = ServiceAgreements()) {
         self.id = id
         self.fleet = fleet
         self.quoteType = quoteType
@@ -35,6 +37,7 @@ public struct Quote: KarhooCodableModel, Equatable {
         self.vehicle = vehicle
         self.validity = validity
         self.price = price
+        self.serviceLevelAgreements = serviceLevelAgreements
     }
 
     enum CodingKeys: String, CodingKey {
@@ -46,6 +49,7 @@ public struct Quote: KarhooCodableModel, Equatable {
         case vehicle
         case validity
         case price
+        case serviceLevelAgreements = "service_level_agreements"
     }
 
     public init(from decoder: Decoder) throws {
@@ -59,6 +63,7 @@ public struct Quote: KarhooCodableModel, Equatable {
         self.vehicle = (try? container.decode(QuoteVehicle.self, forKey: .vehicle)) ?? QuoteVehicle()
         self.validity = (try? container.decode(Int.self, forKey: .validity)) ?? 0
         self.price = (try? container.decode(QuotePrice.self, forKey: .price)) ?? QuotePrice()
+        self.serviceLevelAgreements = (try? container.decode(ServiceAgreements.self, forKey: .serviceLevelAgreements))
     }
 
     public static func == (lhs: Quote, rhs: Quote) -> Bool {
