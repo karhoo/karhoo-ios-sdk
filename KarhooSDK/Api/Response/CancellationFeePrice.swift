@@ -36,7 +36,7 @@ public struct CancellationFeePrice: KarhooCodableModel {
         self.currency = (try? container.decode(String.self, forKey: .currency)) ?? ""
         self.type = (try? container.decode(String.self, forKey: .type)) ?? ""
         self.value = (try? container.decode(Int.self, forKey: .value)) ?? 0
-        self.decimalValue = Double(value) * 0.01
+        self.decimalValue = Double(value) * Constants.currencyDecimalFactor
     }
 
     public func encode(to encoder: Encoder) throws {

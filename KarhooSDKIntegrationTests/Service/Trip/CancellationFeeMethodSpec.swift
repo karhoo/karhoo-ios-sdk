@@ -35,7 +35,7 @@ final class CancellationFeeMethodSpec: XCTestCase {
             XCTAssertTrue(result.isSuccess())
             XCTAssertEqual(true, result.successValue()?.cancellationFee)
             XCTAssertEqual(100, result.successValue()?.fee.value)
-            XCTAssertEqual(1.00, result.successValue()?.fee.decimalValue)
+            XCTAssertEqual(1, result.successValue()?.fee.decimalValue)
             expectation.fulfill()
         })
 
