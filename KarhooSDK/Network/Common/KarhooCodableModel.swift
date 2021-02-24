@@ -46,3 +46,5 @@ extension KarhooCodableModel {
 }
 
 extension Array: KarhooCodableModel, KarhooRequestModel where Element: KarhooCodableModel {}
+
+struct Constants { static let currencyDecimalFactor = 0.01 }
