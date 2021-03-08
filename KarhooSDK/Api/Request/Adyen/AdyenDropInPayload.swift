@@ -18,6 +18,7 @@ public struct AdyenDropInPayload: KarhooCodableModel {
     public var amount: AdyenAmount = AdyenAmount()
     public var storePaymentMethod: Bool = false
     public var additionalData: [String: Any] = [:]
+    public var browserInfo: AdyenBrowserInfo = AdyenBrowserInfo()
 
     enum CodingKeys: String, CodingKey {
         case paymentMethod
@@ -26,6 +27,7 @@ public struct AdyenDropInPayload: KarhooCodableModel {
         case storePaymentMethod
         case amount
         case additionalData
+        case browserInfo
     }
 
     public init(from decoder: Decoder) throws {
@@ -36,7 +38,7 @@ public struct AdyenDropInPayload: KarhooCodableModel {
         storePaymentMethod = try values.decode(Bool.self, forKey: .storePaymentMethod)
         amount = try values.decode(AdyenAmount.self, forKey: .amount)
         additionalData = try values.decode([String: Any].self, forKey: .additionalData)
-        
+        browserInfo = try values.decode(AdyenBrowserInfo.self, forKey: .browserInfo)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -47,5 +49,6 @@ public struct AdyenDropInPayload: KarhooCodableModel {
         try container.encode(storePaymentMethod, forKey: .storePaymentMethod)
         try container.encode(amount, forKey: .amount)
         try container.encode(additionalData, forKey: .additionalData)
+        try container.encode(browserInfo, forKey: .browserInfo)
     }
 }
