@@ -94,7 +94,7 @@ final class QuoteMock {
         return self
     }
     
-    func set(fleet: FleetInfo) -> QuoteMock {
+    func set(fleet: Fleet) -> QuoteMock {
         create(fleet: fleet)
         return self
     }
@@ -119,7 +119,7 @@ final class QuoteMock {
                         qtaLowMinutes: Int? = nil,
                         termsConditionsUrl: String? = nil,
                         categoryName: String? = nil,
-                        fleet: FleetInfo? = nil,
+                        fleet: Fleet? = nil,
                         vehicle: QuoteVehicle? = nil) {
         let quoteVehicle = QuoteVehicle(vehicleClass: categoryName ?? "",
                                         qta: QuoteQta(highMinutes: qtaHighMinutes ?? 0,
