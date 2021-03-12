@@ -17,7 +17,7 @@ final class KarhooVerifyQuoteInteractorSpec: XCTestCase {
     private var mockVerifyQuoteRequest: MockRequestSender!
     private var mockPayload: VerifyQuotePayload!
     
-    private let mockFleet = FleetInfo(id: "success-quotev2")
+    private let mockFleet = Fleet(id: "success-quotev2")
     private lazy var mockQuote = QuoteMock().set(quoteId: "success-quote").set(categoryName: "foo").set(fleet: mockFleet).build()
 
     override func setUp() {

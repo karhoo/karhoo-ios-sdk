@@ -412,6 +412,7 @@
 		6FED7B9C25794D8A00E95C27 /* CancellationFeeFalse.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FED7B9B25794D8A00E95C27 /* CancellationFeeFalse.json */; };
 		6FED7C42257E741000E95C27 /* Luggage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FED7C41257E741000E95C27 /* Luggage.swift */; };
 		AE4AC99B25F158E9000F9E57 /* AdyenBrowserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4AC99A25F158E9000F9E57 /* AdyenBrowserInfo.swift */; };
+		AE77775B25FACD1A000433BB /* Fleet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77775A25FACD1A000433BB /* Fleet.swift */; };
 		BAA0A0478693DADB025AE19A /* KarhooPasswordResetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0AAD70E6AE0FF8C70BEC1 /* KarhooPasswordResetInteractor.swift */; };
 		BAA0A0D9B4689C44C4517E85 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0AAC1104384B3CDE0FED2 /* Places.swift */; };
 		BAA0A113CE860049AD045890 /* KarhooTripStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A7C9A052655223E880D3 /* KarhooTripStatusInteractor.swift */; };
@@ -931,6 +932,7 @@
 		6FED7B9B25794D8A00E95C27 /* CancellationFeeFalse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CancellationFeeFalse.json; sourceTree = "<group>"; };
 		6FED7C41257E741000E95C27 /* Luggage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luggage.swift; sourceTree = "<group>"; };
 		AE4AC99A25F158E9000F9E57 /* AdyenBrowserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdyenBrowserInfo.swift; sourceTree = "<group>"; };
+		AE77775A25FACD1A000433BB /* Fleet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fleet.swift; sourceTree = "<group>"; };
 		BAA0A0172A18CDF485FF7519 /* KarhooPaymentSDKTokenInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooPaymentSDKTokenInteractor.swift; sourceTree = "<group>"; };
 		BAA0A069D5D958868761AAF7 /* Passengers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Passengers.swift; sourceTree = "<group>"; };
 		BAA0A1DD7F2A93BCD18DD3FE /* PositionExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionExt.swift; sourceTree = "<group>"; };
@@ -1439,7 +1441,9 @@
 				43288A5E1EF3BEB10079506B /* DriverTrackingInfo.swift */,
 				09CA785720EE5ABC00D3BB6F /* Fare.swift */,
 				BAA0A5C6D495C7A6B997BB5E /* FareComponent.swift */,
+				AE77775A25FACD1A000433BB /* Fleet.swift */,
 				BAA0AEEDE0D01BA897FB6ECA /* FleetInfo.swift */,
+				6F11A48625714549003CFE15 /* FleetRating.swift */,
 				5C75D65C208CC84E0065133B /* LocationDetailsAddress.swift */,
 				091A2D0D207D23F600F06E28 /* LocationInfo.swift */,
 				BAA0A3A0B72938FD19C2911A /* MeetingPoint.swift */,
@@ -1461,7 +1465,6 @@
 				5C49849124C0A8E900F646A4 /* QuoteQta.swift */,
 				5C49849324C0A8FA00F646A4 /* QuotePrice.swift */,
 				6F11A47C25713BC2003CFE15 /* NetPrice.swift */,
-				6F11A48625714549003CFE15 /* FleetRating.swift */,
 				FC1B01EC2209D0D20069D7F3 /* QuoteCategory.swift */,
 				BAA0A316925D2F14D6EEEAE6 /* QuoteList.swift */,
 				274217092FA03DAFAD7776E1 /* QuoteListId.swift */,
@@ -3683,6 +3686,7 @@
 				400555712350AEDD008AD78F /* TripFare.swift in Sources */,
 				BAA0A20863C722DEDBD8AB81 /* RequestSender.swift in Sources */,
 				BAA0A6EAF352449EA13B4994 /* KarhooRequestSender.swift in Sources */,
+				AE77775B25FACD1A000433BB /* Fleet.swift in Sources */,
 				6FD94A5D258BC3C200B21B8B /* KarhooLoyaltyBalanceInteractor.swift in Sources */,
 				FC861B2C21107727004CC47A /* KarhooError.swift in Sources */,
 				5C2856CE20E3B127009B9464 /* LocationInfoInteractor.swift in Sources */,

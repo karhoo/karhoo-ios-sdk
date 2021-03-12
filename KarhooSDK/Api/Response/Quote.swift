@@ -15,7 +15,7 @@ public struct Quote: KarhooCodableModel, Equatable {
     public let quoteType: QuoteType
     public let pickUpType: PickUpType
     public let source: QuoteSource
-    public let fleet: FleetInfo
+    public let fleet: Fleet
     public let vehicle: QuoteVehicle
     public let price: QuotePrice
     public let serviceLevelAgreements: ServiceAgreements?
@@ -24,7 +24,7 @@ public struct Quote: KarhooCodableModel, Equatable {
                 quoteType: QuoteType = .estimated,
                 source: QuoteSource = .fleet,
                 pickUpType: PickUpType = .default,
-                fleet: FleetInfo = FleetInfo(),
+                fleet: Fleet = Fleet(),
                 vehicle: QuoteVehicle = QuoteVehicle(),
                 price: QuotePrice = QuotePrice(),
                 validity: Int = 0,
@@ -59,7 +59,7 @@ public struct Quote: KarhooCodableModel, Equatable {
         self.source = (try? container.decode(QuoteSource.self, forKey: .source)) ?? .fleet
 
         self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
-        self.fleet = (try? container.decode(FleetInfo.self, forKey: .fleet)) ?? FleetInfo()
+        self.fleet = (try? container.decode(Fleet.self, forKey: .fleet)) ?? Fleet()
         self.vehicle = (try? container.decode(QuoteVehicle.self, forKey: .vehicle)) ?? QuoteVehicle()
         self.validity = (try? container.decode(Int.self, forKey: .validity)) ?? 0
         self.price = (try? container.decode(QuotePrice.self, forKey: .price)) ?? QuotePrice()
