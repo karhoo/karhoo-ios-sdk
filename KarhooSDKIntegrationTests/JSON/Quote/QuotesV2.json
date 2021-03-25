@@ -49,7 +49,7 @@
       },
       "service_level_agreements": {
           "free_cancellation": {
-              "type": "string",
+              "type": "TimeBeforePickup",
               "minutes": 5
           },
           "free_waiting_time": {

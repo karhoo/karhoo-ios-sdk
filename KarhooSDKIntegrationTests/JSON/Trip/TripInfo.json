@@ -132,8 +132,7 @@
   },
   "service_level_agreements": {
       "free_cancellation": {
-          "type": "string",
-          "minutes": 5
+          "type": "BeforeDriverEnRoute"
       },
       "free_waiting_time": {
           "minutes": 5
