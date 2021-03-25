@@ -8,11 +8,11 @@
 
 import Foundation
 
-public enum ServiceCancellationType: KarhooCodableModel {
+public enum ServiceCancellationType: KarhooCodableModel, Equatable {
 
     case timeBeforePickup
     case beforeDriverEnRoute
-    case other
+    case other(value: String?)
 
     public init(from decoder: Decoder) throws {
         let typeString = try decoder.singleValueContainer().decode(String.self)
@@ -22,7 +22,7 @@ public enum ServiceCancellationType: KarhooCodableModel {
         case "TimeBeforePickup":
             self = .timeBeforePickup
         default:
-            self = .other
+            self = .other(value: typeString)
         }
     }
 
@@ -33,8 +33,8 @@ public enum ServiceCancellationType: KarhooCodableModel {
             try container.encode("BeforeDriverEnRoute")
         case .timeBeforePickup:
             try container.encode("TimeBeforePickup")
-        case .other:
-            try container.encode("")
+        case let .other(value):
+            try container.encode(value)
         }
     }
 }

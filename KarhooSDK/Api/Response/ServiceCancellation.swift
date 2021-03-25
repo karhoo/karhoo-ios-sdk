@@ -13,7 +13,7 @@ public struct ServiceCancellation: KarhooCodableModel {
     public let type: ServiceCancellationType
     public let minutes: Int
     
-    public init(type: ServiceCancellationType = .other,
+    public init(type: ServiceCancellationType = .other(value: nil),
                 minutes: Int = 0) {
         self.type = type
         self.minutes = minutes
@@ -22,7 +22,7 @@ public struct ServiceCancellation: KarhooCodableModel {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.type = (try? container.decode(ServiceCancellationType.self, forKey: .type)) ?? .other
+        self.type = (try? container.decode(ServiceCancellationType.self, forKey: .type)) ?? .other(value: nil)
         self.minutes = (try? container.decode(Int.self, forKey: .minutes)) ?? 0
     }
     
