@@ -12,7 +12,7 @@ import XCTest
 
 class UserDataStoreSpec: XCTestCase {
 
-    private var mockCredentialsParser: MockCredentialsParser!
+    private var mockSecretStore: MockSecretStore!
     private var mockUserDefaults: MockUserDefaults!
     private var mockObserver: MockObserver!
     private var mockBroadcaster: MockBroadcaster!
@@ -21,21 +21,14 @@ class UserDataStoreSpec: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        mockCredentialsParser = MockCredentialsParser()
         mockUserDefaults = MockUserDefaults()
         mockObserver = MockObserver()
         mockBroadcaster = MockBroadcaster()
-
-        testObject = DefaultUserDataStore(persistantStore: mockUserDefaults,
-                                          credentialsParser: mockCredentialsParser,
+        mockSecretStore = MockSecretStore()
+        testObject = DefaultUserDataStore(secretStore: mockSecretStore,
+                                          persistantStore: mockUserDefaults,
                                           broadcaster: mockBroadcaster)
         testObject.add(observer: mockObserver)
-    }
-
-    override func tearDown() {
-        super.tearDown()
-        mockUserDefaults.removeObject(forKey: DefaultUserDataStore.currentUserKey)
-        _ = mockUserDefaults.synchronize()
     }
 
     /**
@@ -61,8 +54,37 @@ class UserDataStoreSpec: XCTestCase {
       * Then: Persistant store should be set
       */
     func testSetCredentials() {
-        testObject.set(credentials: ObjectTestFactory.getRandomCredentials())
-        XCTAssertTrue(mockUserDefaults.setForKeyCalled)
+        let testCredentials = ObjectTestFactory.getRandomCredentials()
+        testObject.set(credentials: testCredentials)
+        XCTAssertEqual(mockSecretStore.secretsForKeysToSave[CredentialsStoreKeys.accessToken.rawValue],
+                       testCredentials.accessToken)
+        XCTAssertEqual(mockSecretStore.secretsForKeysToSave[CredentialsStoreKeys.refreshToken.rawValue],
+                       testCredentials.refreshToken)
+        let expectedExpirationDateString = String(testCredentials.expiryDate!.timeIntervalSince1970)
+        XCTAssertEqual(mockSecretStore.secretsForKeysToSave[CredentialsStoreKeys.expiryDate.rawValue],
+                       expectedExpirationDateString)
+    }
+
+    /**
+      * Given: Credentials are missing the expiration date
+      * When: Setting credentials
+      * Then: The secret store should delete the expiration date from the secret store
+      */
+    func testWhenSettingCredentialsWithoutExpirationDateShouldDeleteTheExpirationDateFromTheSecretStore() {
+        let testCredentials = ObjectTestFactory.getRandomCredentials(expiryDate: nil)
+        testObject.set(credentials: testCredentials)
+        XCTAssertTrue(mockSecretStore.keysToDeleteValuesFor.contains(CredentialsStoreKeys.expiryDate.rawValue))
+    }
+
+    /**
+      * Given: Credentials are missing the refresh token
+      * When: Setting credentials
+      * Then: The secret store should delete the refresh token from the secret store
+      */
+    func testWhenSettingCredentialsWithoutRefreshTokenShouldDeleteTheRefreshTokenFromTheSecretStore() {
+        let testCredentials = ObjectTestFactory.getRandomCredentials(withRefreshToken: false)
+        testObject.set(credentials: testCredentials)
+        XCTAssertTrue(mockSecretStore.keysToDeleteValuesFor.contains(CredentialsStoreKeys.refreshToken.rawValue))
     }
 
     /**
@@ -96,9 +118,72 @@ class UserDataStoreSpec: XCTestCase {
      *  Then:   Nil should be returned
      */
     func testGetNoCredentials() {
-        let credentials = testObject.getCurrentCredentials()
+        mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.accessToken.rawValue] = nil
+        XCTAssertNil(testObject.getCurrentCredentials())
+    }
 
-        XCTAssertNil(credentials)
+    /**
+     *  Given:  There is an access token stored
+     *  When:   Getting the current credentials
+     *  Then:   Should return correct values
+     */
+    func testWhenOnlyAnAccessTokenIsAvailableShouldBePossibleToBuildTheCredentialsObject() {
+        mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.refreshToken.rawValue] = nil
+        mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.expiryDate.rawValue] = nil
+        let credentials = testObject.getCurrentCredentials()
+        XCTAssertEqual(credentials?.accessToken,
+                       mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.accessToken.rawValue])
+        XCTAssertNil(credentials?.refreshToken)
+        XCTAssertNil(credentials?.expiryDate)
+    }
+
+    /**
+     *  Given:  There is an access token stored and a refresh token
+     *  When:   Getting the current credentials
+     *  Then:   Should return correct values
+     */
+    func testWhenAnAccessAndRefreshTokensAreAvailableShouldBePossibleToBuildTheCredentialsObject() {
+        mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.expiryDate.rawValue] = nil
+        let credentials = testObject.getCurrentCredentials()
+        XCTAssertEqual(credentials?.accessToken,
+                       mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.accessToken.rawValue])
+        XCTAssertEqual(credentials?.refreshToken,
+                       mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.refreshToken.rawValue])
+        XCTAssertNil(credentials?.expiryDate)
+    }
+
+    /**
+     *  Given:  There is an access token stored and an expiration date
+     *  When:   Getting the current credentials
+     *  Then:   Should return correct values
+     */
+    func testWhenAnAccessTokenAndExpirationDateAreAvailableShouldBePossibleToBuildTheCredentialsObject() {
+        mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.refreshToken.rawValue] = nil
+        let credentials = testObject.getCurrentCredentials()
+        XCTAssertEqual(credentials?.accessToken,
+                       mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.accessToken.rawValue])
+        let expectedExpirationDateString = mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.expiryDate.rawValue]!!
+        let expectedExpirationDateTimeInterval = TimeInterval(expectedExpirationDateString)!
+        let expectedExpirationDate = Date(timeIntervalSince1970: expectedExpirationDateTimeInterval)
+        XCTAssertEqual(credentials?.expiryDate?.compare(expectedExpirationDate), .orderedSame)
+        XCTAssertNil(credentials?.refreshToken)
+    }
+
+    /**
+     *  Given:  There are all credentials stored
+     *  When:   Getting the current credentials
+     *  Then:   Should return correct values
+     */
+    func testWhenAllCredentialInfoIsAvailableShouldBePossibleToBuildTheCredentialsObject() {
+        let credentials = testObject.getCurrentCredentials()
+        XCTAssertEqual(credentials?.accessToken,
+                       mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.accessToken.rawValue])
+        let expectedExpirationDateString = mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.expiryDate.rawValue]!!
+        let expectedExpirationDateTimeInterval = TimeInterval(expectedExpirationDateString)!
+        let expectedExpirationDate = Date(timeIntervalSince1970: expectedExpirationDateTimeInterval)
+        XCTAssertEqual(credentials?.expiryDate?.compare(expectedExpirationDate), .orderedSame)
+        XCTAssertEqual(credentials?.refreshToken,
+                       mockSecretStore.secretsForKeysToRead[CredentialsStoreKeys.refreshToken.rawValue])
     }
 
     /**
@@ -110,9 +195,7 @@ class UserDataStoreSpec: XCTestCase {
         let newUser = UserInfoMock().set(userId: "some").build()
 
         let newCredentials = ObjectTestFactory.getRandomCredentials()
-        mockCredentialsParser.dataToReturn = ["credentials": "abc"]
 
-        mockCredentialsParser.credentialsToReturn = newCredentials
         testObject.setCurrentUser(user: newUser, credentials: newCredentials)
 
         XCTAssertEqual(newUser, testObject.getCurrentUser())
@@ -130,13 +213,9 @@ class UserDataStoreSpec: XCTestCase {
         let newUser = UserInfoMock().set(userId: "some").build()
 
         let newCredentials = ObjectTestFactory.getRandomCredentials()
-        mockCredentialsParser.dataToReturn = ["some": "data"]
-
         testObject.setCurrentUser(user: newUser, credentials: newCredentials)
 
         XCTAssertEqual(newUser, testObject.getCurrentUser())
-
-        XCTAssert(mockUserDefaults.synchronizeCalled)
 
         XCTAssert(mockObserver.userStateUpdateCalled)
         XCTAssertEqual(newUser, testObject.getCurrentUser())
@@ -152,7 +231,6 @@ class UserDataStoreSpec: XCTestCase {
         testObject.removeCurrentUserAndCredentials()
 
         XCTAssertNil(mockUserDefaults.value(forKey: DefaultUserDataStore.currentUserKey))
-        XCTAssert(mockUserDefaults.synchronizeCalled)
 
         XCTAssert(mockObserver.userStateUpdateCalled)
         XCTAssertNil(mockObserver.userUpdatedTo)
@@ -167,10 +245,36 @@ class UserDataStoreSpec: XCTestCase {
         testObject.removeCurrentUserAndCredentials()
 
         XCTAssertNil(mockUserDefaults.value(forKey: DefaultUserDataStore.currentUserKey))
-        XCTAssert(mockUserDefaults.synchronizeCalled)
 
         XCTAssert(mockObserver.userStateUpdateCalled)
         XCTAssertNil(mockObserver.userUpdatedTo)
+    }
+
+    /**
+     *  When:   Trying to remove the current user and credentials
+     *  Then:   Should remove the access token from the secret store
+     */
+    func testWhenRemovingCurrentUserCredentialsShouldRemoveTheAccessTokenFromSecretStore() {
+        testObject.removeCurrentUserAndCredentials()
+        XCTAssertTrue(mockSecretStore.keysToDeleteValuesFor.contains(CredentialsStoreKeys.accessToken.rawValue))
+    }
+
+    /**
+     *  When:   Trying to remove the current user and credentials
+     *  Then:   Should remove the refresh token from the secret store
+     */
+    func testWhenRemovingCurrentUserCredentialsShouldRemoveTheRefreshTokenFromSecretStore() {
+        testObject.removeCurrentUserAndCredentials()
+        XCTAssertTrue(mockSecretStore.keysToDeleteValuesFor.contains(CredentialsStoreKeys.refreshToken.rawValue))
+    }
+
+    /**
+     *  When:   Trying to remove the current user and credentials
+     *  Then:   Should remove the access token from the secret store
+     */
+    func testWhenRemovingCurrentUserCredentialsShouldRemoveTheExpirationDateFromSecretStore() {
+        testObject.removeCurrentUserAndCredentials()
+        XCTAssertTrue(mockSecretStore.keysToDeleteValuesFor.contains(CredentialsStoreKeys.expiryDate.rawValue))
     }
 
     /**
@@ -313,24 +417,6 @@ class UserDataStoreSpec: XCTestCase {
         XCTAssertTrue(mockObserver.userStateUpdateCalled)
 
         MockSDKConfig.authenticationMethod = .karhooUser
-    }
-}
-
-private class MockCredentialsParser: CredentialsParser {
-    var credentialsToReturn: Credentials?
-    var dataToDecode: [String: Any]?
-
-    var credentialsToCode: Credentials?
-    var dataToReturn: [String: Any]?
-
-    func from(dictionary: [String: Any]?) -> Credentials? {
-        dataToDecode = dictionary
-        return credentialsToReturn
-    }
-
-    func from(credentials: Credentials?) -> [String: Any]? {
-        credentialsToCode = credentials
-        return dataToReturn
     }
 }
 

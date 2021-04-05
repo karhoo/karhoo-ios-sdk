@@ -9,15 +9,15 @@
 import Foundation
 
 final class MockUserDefaults: UserDefaults {
-    var synchronizeCalled = false
-    override func synchronize() -> Bool {
-        synchronizeCalled = true
-        return super.synchronize()
-    }
+    var valuesForKeys = [String: Any?]()
 
     var setForKeyCalled = false
     override func set(_ value: Any?, forKey defaultName: String) {
-        super.set(value, forKey: defaultName)
         setForKeyCalled = true
+        valuesForKeys[defaultName] = value
+    }
+
+    override func value(forKey key: String) -> Any? {
+        return valuesForKeys[key] ?? nil
     }
 }
