@@ -21,7 +21,10 @@ jobs:
             for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
       - run:
           name: Bundle install
-          command: bundle check || bundle install || bundle update fastlane
+          command: bundle check || bundle install
+      - run:
+          name: Update Fastlane
+          command: bundle update fastlane
       - run:
           name: Create Keys.swift
           command: |
