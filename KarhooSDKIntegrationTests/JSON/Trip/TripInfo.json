@@ -129,5 +129,13 @@
     "last_name": "string",
     "id": "string",
     "email": "string"
+  },
+  "service_level_agreements": {
+      "free_cancellation": {
+          "type": "BeforeDriverEnRoute"
+      },
+      "free_waiting_time": {
+          "minutes": 5
+      }
   }
 } 

@@ -23,6 +23,9 @@ jobs:
           name: Bundle install
           command: bundle check || bundle install
       - run:
+          name: Update Fastlane
+          command: bundle update fastlane
+      - run:
           name: Create Keys.swift
           command: |
             echo "import KarhooSDK" > Client/Keys.swift

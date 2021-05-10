@@ -184,5 +184,12 @@ final class BookTripMethodSpec: XCTestCase {
         XCTAssertEqual(8, tripQuote.qtaHighMinutes)
         XCTAssertEqual(2000, tripQuote.highPrice)
         XCTAssertEqual(1000, tripQuote.lowPrice)
+        
+        let serviceAgreementsCancellation = trip.serviceAgreements?.serviceCancellation
+        XCTAssertEqual(.beforeDriverEnRoute, serviceAgreementsCancellation?.type)
+        XCTAssertEqual(0, serviceAgreementsCancellation?.minutes)
+        
+        let serviceAgreementsWaiting = trip.serviceAgreements?.serviceWaiting
+        XCTAssertEqual(5, serviceAgreementsWaiting?.minutes)
     }
 }

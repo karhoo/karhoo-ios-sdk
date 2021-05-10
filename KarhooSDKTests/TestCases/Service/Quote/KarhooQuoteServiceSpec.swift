@@ -32,7 +32,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
     
     let mockCoverageResult = QuoteCoverage(coverage: true)
     
-    static let mockFleet = FleetInfo(id: "success-quotev2")
+    static let mockFleet = Fleet(id: "success-quotev2")
     static let mockQuote = QuoteMock().set(quoteId: "success-quote").set(categoryName: "foo").set(fleet: mockFleet).build()
     let mockQuotesResult = Quotes(quoteListId: "some",
                                   quoteCategories: [QuoteCategory(name: "foo", quotes: [mockQuote])],

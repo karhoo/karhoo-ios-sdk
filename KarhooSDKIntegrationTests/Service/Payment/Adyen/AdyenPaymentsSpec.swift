@@ -15,13 +15,14 @@ final class AdyenPaymentsSpec: XCTestCase {
     
     private var paymentService: PaymentService!
     private let path: String = "/v3/payments/adyen/payments"
+    private let supplyPartnerId = "SPID"
     private var call: Call<AdyenPayments>!
     
     override func setUp() {
         super.setUp()
         
         paymentService = KarhooPaymentService()
-        call = paymentService.adyenPayments(request: AdyenPaymentsRequest())
+        call = paymentService.adyenPayments(request: AdyenPaymentsRequest(supplyPartnerID: supplyPartnerId))
     }
     
     /**

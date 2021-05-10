@@ -44,10 +44,10 @@ public struct QuotePrice: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         intLowPrice = (try? container.decode(Int.self, forKey: .lowPrice)) ?? 0
-        lowPrice = Double(intLowPrice) * 0.01
+        lowPrice = Double(intLowPrice) * Constants.currencyDecimalFactor
         
         intHighPrice = (try? container.decode(Int.self, forKey: .highPrice)) ?? 0
-        highPrice = Double(intHighPrice) * 0.01
+        highPrice = Double(intHighPrice) * Constants.currencyDecimalFactor
         
         net = (try? container.decode(NetPrice.self, forKey: .net)) ?? NetPrice()
         currencyCode = (try? container.decode(String.self, forKey: .currencyCode)) ?? ""  

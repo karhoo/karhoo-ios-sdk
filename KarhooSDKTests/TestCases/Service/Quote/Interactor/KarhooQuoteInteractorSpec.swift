@@ -171,7 +171,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
         let expectedQuote = QuoteMock().set(quoteId: "foo").set(categoryName: "foo").build()
 
         let expectedResult = QuoteListMock().set(quoteListId: "some_id")
-            .set(status: "some_status")
+            .set(status: .progressing)
             .set(validity: 60)
             .add(quoteItem: expectedQuote).build()
 
@@ -251,7 +251,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
         let expectedQuote = QuoteMock().set(quoteId: "foo").set(categoryName: "foo").build()
 
         let expectedResult = QuoteListMock().set(quoteListId: "some_id")
-            .set(status: "some_status")
+            .set(status: .progressing)
             .set(validity: 60)
             .add(quoteItem: expectedQuote).build()
 
@@ -276,7 +276,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
         let expectedQuote = QuoteMock().set(quoteId: "foo").set(categoryName: "foo").set(qtaHighMinutes: 31).build()
 
         let expectedResult = QuoteListMock().set(quoteListId: "some_id")
-            .set(status: "some_status")
+            .set(status: .progressing)
             .set(validity: 60)
             .add(quoteItem: expectedQuote).build()
 
@@ -301,7 +301,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
         let expectedQuote = QuoteMock().set(quoteId: "foo").set(categoryName: "foo").build()
 
         let quotesWithExpiringValidity = QuoteListMock().set(quoteListId: "some_id")
-            .set(status: "some_status")
+            .set(status: .completed)
             .set(validity: 5)
             .add(quoteItem: expectedQuote).build()
 
@@ -312,7 +312,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
         mockQuoteListIdRequest.triggerSuccessWithDecoded(value: QuoteListId(identifier: "some", validityTime: 5))
 
         let validQuoteList = QuoteListMock().set(quoteListId: "some_id")
-            .set(status: "some_status")
+            .set(status: .completed)
             .set(validity: 300)
             .add(quoteItem: expectedQuote).build()
 

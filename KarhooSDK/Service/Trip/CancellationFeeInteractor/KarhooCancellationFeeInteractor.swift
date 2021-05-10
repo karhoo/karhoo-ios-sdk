@@ -23,11 +23,19 @@ final class KarhooCancellationFeeInteractor: CancellationFeeInteractor {
 
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
         requestSender.requestAndDecode(payload: nil,
-                                       endpoint: .cancellationFee(identifier: identifier ?? ""),
+                                       endpoint: endpoint(identifier: identifier ?? ""),
                                        callback: callback)
     }
 
     func cancel() {
         requestSender.cancelNetworkRequest()
+    }
+    
+    private func endpoint(identifier: String) -> APIEndpoint {
+        if Karhoo.configuration.authenticationMethod().isGuest() {
+            return .cancellationFeeFollowCode(followCode: identifier)
+        }
+
+        return .cancellationFee(identifier: identifier)
     }
 }
