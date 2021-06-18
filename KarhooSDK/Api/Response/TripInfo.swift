@@ -28,7 +28,7 @@ public struct TripInfo: KarhooCodableModel {
     /* The time of pick up in UTC. Use origin.timeZoneIdentifier
        to localise the pick up time for the user. */
     public let dateScheduled: Date?
-    public let dateBooked: String
+    public let dateBooked: Date?
 
     public let meetingPoint: MeetingPoint?
     public let partnerTravellerID: String
@@ -45,7 +45,7 @@ public struct TripInfo: KarhooCodableModel {
                 origin: TripLocationDetails = TripLocationDetails(),
                 destination: TripLocationDetails? = nil,
                 dateScheduled: Date? = nil,
-                dateBooked: String = "",
+                dateBooked: Date? = nil,
                 state: TripState = .unknown,
                 quote: TripQuote = TripQuote(),
                 vehicle: Vehicle = Vehicle(),
@@ -111,15 +111,20 @@ public struct TripInfo: KarhooCodableModel {
         self.costCenterReference = (try? container.decode(String.self, forKey: .costCenterReference)) ?? ""
         self.partnerTravellerID = (try? container.decode(String.self, forKey: .partnerTravellerID)) ?? ""
         self.partnerTripID = (try? container.decode(String.self, forKey: .partnerTripID)) ?? ""
-        self.dateBooked = (try? container.decode(String.self, forKey: .dateBooked)) ?? ""
         self.agent = (try? container.decode(Agent.self, forKey: .agent)) ?? Agent()
         self.cancelledBy = (try? container.decode(CancelledByPayer.self, forKey: .cancelledBy)) ?? CancelledByPayer()
         self.serviceAgreements = (try? container.decode(ServiceAgreements.self, forKey: .serviceAgreements))
         
-        let utcDate = (try? container.decode(String.self, forKey: .dateScheduled))
-
-        if let utcDate = utcDate {
-            self.dateScheduled = KarhooNetworkDateFormatter(formatType: .booking).toDate(from: utcDate)
+        let utcDateBooked = (try? container.decode(String.self, forKey: .dateBooked))
+        if let utcDateBooked = utcDateBooked {
+            self.dateBooked = KarhooNetworkDateFormatter(formatType: .booking).toDate(from: utcDateBooked)
+        } else {
+            self.dateBooked = nil
+        }
+        
+        let utcDateScheduled = (try? container.decode(String.self, forKey: .dateScheduled))
+        if let utcDateScheduled = utcDateScheduled {
+            self.dateScheduled = KarhooNetworkDateFormatter(formatType: .booking).toDate(from: utcDateScheduled)
         } else {
             self.dateScheduled = nil
         }
