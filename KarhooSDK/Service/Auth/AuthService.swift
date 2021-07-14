@@ -9,5 +9,6 @@ import Foundation
 
 public protocol AuthService {
     func login(token: String) -> Call<UserInfo>
+    func login(credentials: Credentials?) -> Call<UserInfo>
     func revoke() -> Call<KarhooVoid>
 }

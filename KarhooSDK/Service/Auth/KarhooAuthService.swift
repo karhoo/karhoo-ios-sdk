@@ -22,6 +22,11 @@ final class KarhooAuthService: AuthService {
         authInteractor.set(token: token)
         return Call(executable: authInteractor)
     }
+    
+    func login(credentials: Credentials?) -> Call<UserInfo> {
+        //TODO: Will sort this later.
+        return Call(executable: authInteractor)
+    }
 
      func revoke() -> Call<KarhooVoid> {
         return Call(executable: revokeInteractor)
