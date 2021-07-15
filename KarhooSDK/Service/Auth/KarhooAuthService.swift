@@ -14,8 +14,10 @@ final class KarhooAuthService: AuthService {
     private let revokeInteractor: KarhooExecutable
     
     init(authInteractor: AuthLoginInteractor = KarhooAuthLoginInteractor(),
+         authCredentialsInteractor: AuthLoginWithCredentialsInteractor = KarhooAuthLoginWithCredentialsInteractor(),
          revokeInteractor: KarhooExecutable = KarhoooAuthRevokeInteractor()) {
         self.revokeInteractor = revokeInteractor
+        self.authCredentialsInteractor = authCredentialsInteractor
         self.authInteractor = authInteractor
     }
 
