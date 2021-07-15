@@ -20,11 +20,11 @@ final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsIn
     }
 
     func set(credentials: Credentials?) {
-        <#code#>
+        self.credentials = credentials
     }
     
     func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
-        <#code#>
+        if credentials == nil { return }
     }
     
     func cancel() {
