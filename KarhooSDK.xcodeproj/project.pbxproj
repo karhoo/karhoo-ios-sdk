@@ -166,6 +166,8 @@
 		147B88A524E3FF5F003F78B8 /* KarhooAdyenPaymentMethodsInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B88A424E3FF5F003F78B8 /* KarhooAdyenPaymentMethodsInteractorSpec.swift */; };
 		14A4101824D1728200900F10 /* QuotesV2.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A4101724D1728200900F10 /* QuotesV2.json */; };
 		14D7728B25AEFDDB0000C481 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D7728A25AEFDDB0000C481 /* Keys.swift */; };
+		230FD90126A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD90026A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift */; };
+		230FD90726A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD90626A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift */; };
 		231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231652D925BADEEA003C449B /* QuoteStatus.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
@@ -688,6 +690,8 @@
 		14A4101724D1728200900F10 /* QuotesV2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QuotesV2.json; sourceTree = "<group>"; };
 		14D7728A25AEFDDB0000C481 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		14E69FE124E1897300133B1F /* AdyenPaymentMethodsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPaymentMethodsRequest.swift; sourceTree = "<group>"; };
+		230FD90026A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginWithCredentialsInteractor.swift; sourceTree = "<group>"; };
+		230FD90626A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooAuthLoginWithCredentialsInteractor.swift; sourceTree = "<group>"; };
 		231652D925BADEEA003C449B /* QuoteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStatus.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
@@ -2096,6 +2100,8 @@
 			children = (
 				400BB94723F308BE00AEAAFD /* AuthLoginInteractor.swift */,
 				400BB94A23F308F100AEAAFD /* KarhooAuthLoginInteractor.swift */,
+				230FD90026A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift */,
+				230FD90626A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift */,
 			);
 			path = LoginInteractor;
 			sourceTree = "<group>";
@@ -3496,6 +3502,7 @@
 				312B1AAC1FA097F900BB27CF /* BatteryMonitor.swift in Sources */,
 				AE4AC99B25F158E9000F9E57 /* AdyenBrowserInfo.swift in Sources */,
 				5CC6356E252B57AD00EDD6E3 /* AnyCodable.swift in Sources */,
+				230FD90726A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift in Sources */,
 				5C49849224C0A8E900F646A4 /* QuoteQta.swift in Sources */,
 				312909E21FA0E0C900F5147D /* TimestampFormatter.swift in Sources */,
 				4310E4DB1E99395D00625A0E /* Broadcaster.swift in Sources */,
@@ -3590,6 +3597,7 @@
 				237E0C572347823A00798AA0 /* FareService.swift in Sources */,
 				5CAEC77D24BDA9920008EA50 /* KarhooQuoteInteractor.swift in Sources */,
 				5C1E32A4211F015D00651BB9 /* KarhooVoid.swift in Sources */,
+				230FD90126A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift in Sources */,
 				274212DB927ADC241604D704 /* UserDataStore.swift in Sources */,
 				0970BA7021136F870015A170 /* KarhooPollableExecutor.swift in Sources */,
 				27421B8B6B1B4722C040B399 /* APIEndpoint.swift in Sources */,

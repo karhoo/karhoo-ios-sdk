@@ -10,6 +10,7 @@ import Foundation
 final class KarhooAuthService: AuthService {
 
     private let authInteractor: AuthLoginInteractor
+    private let authCredentialsInteractor: AuthLoginWithCredentialsInteractor
     private let revokeInteractor: KarhooExecutable
     
     init(authInteractor: AuthLoginInteractor = KarhooAuthLoginInteractor(),
@@ -24,8 +25,8 @@ final class KarhooAuthService: AuthService {
     }
     
     func login(credentials: Credentials?) -> Call<UserInfo> {
-        //TODO: Will sort this later.
-        return Call(executable: authInteractor)
+        authCredentialsInteractor.set(credentials: credentials)
+        return Call(executable: authCredentialsInteractor)
     }
 
      func revoke() -> Call<KarhooVoid> {
