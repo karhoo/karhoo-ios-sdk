@@ -37,10 +37,35 @@ final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsIn
     
     func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
         if auth == nil { return }
+        guard let userInfoCallback = callback as? CallbackClosure<UserInfo> else {
+            return
+        }
+        var credentials = userDataStore.getCurrentCredentials()
         
-//        let credentials = authToken.toCredentials()
-//        self?.userDataStore.set(credentials: credentials)
-//        self?.getUserInfo(credentials: credentials, callback: userInfoCallback)
+        if let value = auth {
+            credentials = value.toCredentials()
+        }
+        
+        if let credentials = credentials {
+            self.userDataStore.set(credentials: credentials)
+            self.getUserInfo(credentials: credentials, callback: userInfoCallback)
+        } else {
+            callback(.failure(error: SDKErrorFactory.unexpectedError()))
+        }
+    }
+    
+    private func getUserInfo(credentials: Credentials,
+                             callback: @escaping CallbackClosure<UserInfo>) {
+        userInfoSender.requestAndDecode(payload: nil,
+                                        endpoint: .authUserInfo) { [weak self](result: Result<UserInfo>) in
+                                            switch result {
+                                            case .success(let user):
+                                                self?.didLogin(user: user, credentials: credentials)
+                                                callback(.success(result: user))
+                                            case .failure(let error):
+                                                callback(.failure(error: error))
+                                            }
+        }
     }
     
     func cancel() {

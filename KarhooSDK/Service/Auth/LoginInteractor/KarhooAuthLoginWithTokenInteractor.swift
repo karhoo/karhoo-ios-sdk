@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class KarhooAuthLoginInteractor: AuthLoginInteractor {
+final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
     
     private var token: String?
     private let tokenExchangeRequestSender: RequestSender

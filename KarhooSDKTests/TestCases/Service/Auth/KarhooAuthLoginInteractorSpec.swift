@@ -11,7 +11,7 @@ import XCTest
 
 final class KarhooAuthLoginInteractorSpec: XCTestCase {
 
-    private var testObject: KarhooAuthLoginInteractor!
+    private var testObject: KarhooAuthLoginWithTokenInteractor!
     private var mocktokenExchangeRequest: MockRequestSender!
     private var mockUserRequest: MockRequestSender!
     private var mockUserDataStore: MockUserDataStore!
@@ -30,7 +30,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
         mockAnalytics = MockAnalyticsService()
         mockGetNonceRequestSender = MockRequestSender()
     
-        testObject = KarhooAuthLoginInteractor(tokenExchangeRequestSender: mocktokenExchangeRequest,
+        testObject = KarhooAuthLoginWithTokenInteractor(tokenExchangeRequestSender: mocktokenExchangeRequest,
                                                userInfoSender: mockUserRequest,
                                                userDataStore: mockUserDataStore,
                                                analytics: mockAnalytics,

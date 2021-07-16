@@ -9,11 +9,11 @@ import Foundation
 
 final class KarhooAuthService: AuthService {
 
-    private let authInteractor: AuthLoginInteractor
+    private let authInteractor: AuthLoginWithTokenInteractor
     private let authCredentialsInteractor: AuthLoginWithCredentialsInteractor
     private let revokeInteractor: KarhooExecutable
     
-    init(authInteractor: AuthLoginInteractor = KarhooAuthLoginInteractor(),
+    init(authInteractor: AuthLoginWithTokenInteractor = KarhooAuthLoginWithTokenInteractor(),
          authCredentialsInteractor: AuthLoginWithCredentialsInteractor = KarhooAuthLoginWithCredentialsInteractor(),
          revokeInteractor: KarhooExecutable = KarhoooAuthRevokeInteractor()) {
         self.revokeInteractor = revokeInteractor
