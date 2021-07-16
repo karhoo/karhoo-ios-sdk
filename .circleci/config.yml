@@ -12,8 +12,8 @@ jobs:
     resource_class: medium
     steps:
       - add_ssh_keys:
-        fingerprints:
-          - "4c:67:bc:5b:c7:9a:d2:93:b5:99:c3:57:60:4f:52:95"
+          fingerprints:
+            - "4c:67:bc:5b:c7:9a:d2:93:b5:99:c3:57:60:4f:52:95"
       - checkout
       - run:
           name: Enable private repo cloning from GIT for Swift Package Manager
