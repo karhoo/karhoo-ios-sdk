@@ -10,20 +10,17 @@ import Foundation
 final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsInteractor {
     
     private var auth: AuthToken?
-    private let credentialsRequestSender: RequestSender
     private let userInfoSender: RequestSender
     private let userDataStore: UserDataStore
     private let analytics: AnalyticsService
     private let paymentProviderRequest: RequestSender
     private let nonceRequestSender: RequestSender
     
-    init(credentialsRequestSender: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
-         userInfoSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+    init(userInfoSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          userDataStore: UserDataStore = DefaultUserDataStore(),
          analytics: AnalyticsService = KarhooAnalyticsService(),
          paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
-        self.credentialsRequestSender = credentialsRequestSender
         self.userInfoSender = userInfoSender
         self.userDataStore = userDataStore
         self.analytics = analytics
@@ -69,7 +66,6 @@ final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsIn
     }
     
     func cancel() {
-        credentialsRequestSender.cancelNetworkRequest()
         userInfoSender.cancelNetworkRequest()
     }
     
