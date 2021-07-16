@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol AuthLoginInteractor: KarhooExecutable {
+public protocol AuthLoginWithTokenInteractor: KarhooExecutable {
     func set(token: String)
 }

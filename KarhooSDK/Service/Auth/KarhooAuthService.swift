@@ -9,18 +9,26 @@ import Foundation
 
 final class KarhooAuthService: AuthService {
 
-    private let authInteractor: AuthLoginInteractor
+    private let authInteractor: AuthLoginWithTokenInteractor
+    private let authCredentialsInteractor: AuthLoginWithCredentialsInteractor
     private let revokeInteractor: KarhooExecutable
     
-    init(authInteractor: AuthLoginInteractor = KarhooAuthLoginInteractor(),
+    init(authInteractor: AuthLoginWithTokenInteractor = KarhooAuthLoginWithTokenInteractor(),
+         authCredentialsInteractor: AuthLoginWithCredentialsInteractor = KarhooAuthLoginWithCredentialsInteractor(),
          revokeInteractor: KarhooExecutable = KarhoooAuthRevokeInteractor()) {
         self.revokeInteractor = revokeInteractor
+        self.authCredentialsInteractor = authCredentialsInteractor
         self.authInteractor = authInteractor
     }
 
     func login(token: String) -> Call<UserInfo> {
         authInteractor.set(token: token)
         return Call(executable: authInteractor)
+    }
+    
+    func login(authToken: AuthToken?) -> Call<UserInfo> {
+        authCredentialsInteractor.set(auth: authToken)
+        return Call(executable: authCredentialsInteractor)
     }
 
      func revoke() -> Call<KarhooVoid> {

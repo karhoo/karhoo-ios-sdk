@@ -7,7 +7,7 @@ import Foundation
 
 typealias AuthTokenKeys = AuthToken.CodingKeys
 
-struct AuthToken: KarhooCodableModel {
+public struct AuthToken: KarhooCodableModel {
 
     var accessToken: String
     var expiresIn: Int
@@ -31,7 +31,7 @@ struct AuthToken: KarhooCodableModel {
         self.refreshExpiresIn = refreshExpiresIn
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.accessToken = (try? container.decode(String.self, forKey: .accessToken)) ?? ""
         self.expiresIn = (try? container.decode(Int.self, forKey: .expiresIn)) ?? 0
@@ -39,7 +39,7 @@ struct AuthToken: KarhooCodableModel {
         self.refreshExpiresIn = (try? container.decode(Int.self, forKey: .refreshExpiresIn)) ?? 0
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(accessToken, forKey: .accessToken)
         try container.encode(expiresIn, forKey: .expiresIn)
