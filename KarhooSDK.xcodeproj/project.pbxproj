@@ -168,7 +168,7 @@
 		14D7728B25AEFDDB0000C481 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D7728A25AEFDDB0000C481 /* Keys.swift */; };
 		230FD90126A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD90026A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift */; };
 		230FD90726A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD90626A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift */; };
-		230FD91926A18B04009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD91826A18B04009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift */; };
+		230FD92B26A18C76009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD91826A18B04009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift */; };
 		231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231652D925BADEEA003C449B /* QuoteStatus.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
@@ -3855,7 +3855,7 @@
 				274211D129AC87080586E523 /* DriverTrackingInfoMock.swift in Sources */,
 				FCBD67B9211DDD8E005AA332 /* MockInteractor.swift in Sources */,
 				5CA2CE422343510E000AEC1E /* OrganisationMock.swift in Sources */,
-				230FD91926A18B04009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift in Sources */,
+				230FD92B26A18C76009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift in Sources */,
 				233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */,
 				6F69F365255AB91B00F8DA05 /* QuoteCoverageMock.swift in Sources */,
 				27421AAB7F1B71B7D55D5B6D /* QuoteMock.swift in Sources */,

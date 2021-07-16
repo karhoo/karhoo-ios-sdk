@@ -33,7 +33,6 @@ final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsIn
     }
     
     func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
-        if auth == nil { return }
         guard let userInfoCallback = callback as? CallbackClosure<UserInfo> else {
             return
         }
