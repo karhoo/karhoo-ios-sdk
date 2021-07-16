@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol AuthLoginWithCredentialsInteractor: KarhooExecutable {
-    func set(credentials: Credentials?)
+    func set(auth: AuthToken?)
 }

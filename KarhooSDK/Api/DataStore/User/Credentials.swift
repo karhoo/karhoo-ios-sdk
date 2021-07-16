@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Credentials {
+struct Credentials {
     let accessToken: String
     let expiryDate: Date?
     let refreshToken: String?

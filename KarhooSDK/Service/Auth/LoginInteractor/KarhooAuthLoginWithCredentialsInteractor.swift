@@ -9,7 +9,7 @@ import Foundation
 
 final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsInteractor {
     
-    private var credentials: Credentials?
+    private var auth: AuthToken?
     private let credentialsRequestSender: RequestSender
     private let userInfoSender: RequestSender
     private let userDataStore: UserDataStore
@@ -31,16 +31,16 @@ final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsIn
         self.nonceRequestSender = nonceRequestSender
     }
 
-    func set(credentials: Credentials?) {
-        self.credentials = credentials
+    func set(auth: AuthToken?) {
+        self.auth = auth
     }
     
     func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
-        if credentials == nil { return }
-        guard let userInfoCallback = callback as? CallbackClosure<UserInfo> else {
-            return
-        }
-        //TODO: Figuring how how to sort this
+        if auth == nil { return }
+        
+//        let credentials = authToken.toCredentials()
+//        self?.userDataStore.set(credentials: credentials)
+//        self?.getUserInfo(credentials: credentials, callback: userInfoCallback)
     }
     
     func cancel() {

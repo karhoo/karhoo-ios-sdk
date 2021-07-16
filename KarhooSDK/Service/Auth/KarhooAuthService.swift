@@ -26,8 +26,8 @@ final class KarhooAuthService: AuthService {
         return Call(executable: authInteractor)
     }
     
-    func login(credentials: Credentials?) -> Call<UserInfo> {
-        authCredentialsInteractor.set(credentials: credentials)
+    func login(authToken: AuthToken?) -> Call<UserInfo> {
+        authCredentialsInteractor.set(auth: authToken)
         return Call(executable: authCredentialsInteractor)
     }
 
