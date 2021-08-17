@@ -21,7 +21,7 @@ public struct AuthToken: KarhooCodableModel {
         case refreshExpiresIn = "refresh_expires_in"
     }
 
-    init(accessToken: String = "",
+    public init(accessToken: String = "",
          expiresIn: Int = 0,
          refreshToken: String = "",
          refreshExpiresIn: Int = 0) {
