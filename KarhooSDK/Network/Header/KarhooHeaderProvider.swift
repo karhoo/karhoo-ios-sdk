@@ -47,7 +47,8 @@ class KarhooHeaderProvider: HeaderProvider {
         case .login,
              .karhooUserTokenRefresh,
              .register,
-             .passwordReset:
+             .passwordReset,
+             .authRefresh:
             return headers
         default:
             if let token = accessTokenProvider.accessToken?.token {
