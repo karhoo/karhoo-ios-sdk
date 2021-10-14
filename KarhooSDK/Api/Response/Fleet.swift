@@ -35,7 +35,6 @@ public struct Fleet: Codable {
         self.termsConditionsUrl = termsConditionsUrl
         self.capability = capability
         self.rating = rating
-        
     }
 
     enum CodingKeys: String, CodingKey {
