@@ -44,7 +44,7 @@ public struct Fleet: Codable {
         case description
         case phoneNumber = "phone_number"
         case termsConditionsUrl = "terms_conditions_url"
-        case capability
+        case capability = "capabilities"
         case rating
     }
 

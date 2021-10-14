@@ -114,7 +114,8 @@ final class JsonHttpClient: HttpClient {
 
         switch endpoint {
         case .authRevoke,
-             .authTokenExchange:
+             .authTokenExchange,
+             .authRefresh:
             headers = headerProvider.headersWithFormEncodedType(headers: &headers)
             headers = headerProvider.headersWithAcceptJSONType(headers: &headers)
         default:
