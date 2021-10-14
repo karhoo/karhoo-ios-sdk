@@ -46,7 +46,6 @@ public struct Fleet: Codable {
         case termsConditionsUrl = "terms_conditions_url"
         case capability = "capabilities"
         case rating
-        
     }
 
     public init(from decoder: Decoder) throws {
