@@ -61,6 +61,8 @@ public enum KarhooErrorType {
     case couldNotBookTripCouldNotBookTripAsAgent
     case couldNotBookTripCouldNotBookTripAsTraveller
     case couldNotBookTripQuoteNoLongerAvailable
+    case couldNotBookTripWithSelectedDMS
+    case couldNotBookTripQuotePriceIncreased
 
     // K5xxx Availability
     case noAvailabilityInRequestedArea
@@ -130,6 +132,8 @@ extension KarhooErrorType {
         case "K4014": self = .couldNotBookTripCouldNotBookTripAsAgent
         case "K4015": self = .couldNotBookTripCouldNotBookTripAsTraveller
         case "K4018": self = .couldNotBookTripQuoteNoLongerAvailable
+        case "K4020": self = .couldNotBookTripWithSelectedDMS
+        case "K2025": self = .couldNotBookTripQuotePriceIncreased
 
         // K5xxx Availability
         case "K5001": self = .couldNotGetEstimates
