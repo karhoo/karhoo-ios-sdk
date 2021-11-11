@@ -16,6 +16,7 @@ public struct TripBooking: KarhooCodableModel, Equatable {
     public let trainNumber: String?
     public let trainTime: String?
     public var paymentNonce: String?
+    public var loyaltyNonce: String?
     public var comments: String?
     public let partnerTripID: String?
     public let costCenterReference: String?
@@ -29,6 +30,7 @@ public struct TripBooking: KarhooCodableModel, Equatable {
                 trainNumber: String? = nil,
                 trainTime: String? = nil,
                 paymentNonce: String? = nil,
+                loyaltyNonce: String? = nil,
                 comments: String? = nil,
                 partnerTripID: String? = nil,
                 costCenterReference: String? = nil,
@@ -41,6 +43,7 @@ public struct TripBooking: KarhooCodableModel, Equatable {
         self.trainNumber = trainNumber
         self.trainTime = trainTime
         self.paymentNonce = paymentNonce
+        self.loyaltyNonce = loyaltyNonce
         self.comments = comments
         self.partnerTripID = partnerTripID
         self.costCenterReference = costCenterReference
@@ -57,6 +60,7 @@ public struct TripBooking: KarhooCodableModel, Equatable {
         case trainNumber = "train_number"
         case trainTime = "train_time"
         case paymentNonce = "payment_nonce"
+        case loyaltyNonce = "loyalty_nonce"
         case partnerTripID = "partner_trip_id"
         case costCenterReference = "cost_center_reference"
         case loyaltyProgrammeID = "loyalty_programme"
@@ -72,6 +76,7 @@ public struct TripBooking: KarhooCodableModel, Equatable {
         trainNumber = try values.decode(String.self, forKey: .trainNumber)
         trainTime = try values.decode(String.self, forKey: .trainTime)
         paymentNonce = try values.decode(String.self, forKey: .paymentNonce)
+        loyaltyNonce = try values.decode(String.self, forKey: .loyaltyNonce)
         comments = try values.decode(String.self, forKey: .comments)
         partnerTripID = try values.decode(String.self, forKey: .partnerTripID)
         costCenterReference = try values.decode(String.self, forKey: .costCenterReference)
@@ -88,6 +93,7 @@ public struct TripBooking: KarhooCodableModel, Equatable {
         try container.encode(trainNumber, forKey: .trainNumber)
         try container.encode(trainTime, forKey: .trainTime)
         try container.encode(paymentNonce, forKey: .paymentNonce)
+        try container.encode(loyaltyNonce, forKey: .loyaltyNonce)
         try container.encode(comments, forKey: .comments)
         try container.encode(partnerTripID, forKey: .partnerTripID)
         try container.encode(costCenterReference, forKey: .costCenterReference)
