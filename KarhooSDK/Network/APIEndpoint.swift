@@ -40,6 +40,10 @@ enum APIEndpoint {
     case adyenPublicKey
     case quoteCoverage
     case verifyQuote(quoteID: String)
+    case loyaltyStatus(identifier: String)
+    case loyaltyBurn(identifier: String)
+    case loyaltyEarn(identifier: String)
+    case loyaltyPreAuth(identifier: String)
     case loyaltyBalance(identifier: String)
     case loyaltyConversion(identifier: String)
     
@@ -131,6 +135,14 @@ enum APIEndpoint {
             return "/quotes/coverage"
         case .verifyQuote(let quoteID):
             return "/quotes/verify/\(quoteID)"
+        case .loyaltyStatus(let identifier):
+            return "/loyalty-\(identifier)/status"
+        case .loyaltyBurn(let identifier):
+            return "/loyalty-\(identifier)/exrates/{cur}/burnpoints?amount=TBD"
+        case .loyaltyEarn(let identifier):
+            return "/loyalty-\(identifier)/exrates/{cur}/earnpoints?total_amount=TBD&burn_points=TBD"
+        case .loyaltyPreAuth(let identifier):
+            return "/loyalty-\(identifier)/pre-auth"
         case .loyaltyBalance(let identifier):
             return "/payments/loyalty/programmes/\(identifier)/balance"
         case .loyaltyConversion(let identifier):
@@ -178,6 +190,10 @@ enum APIEndpoint {
         case .adyenPublicKey: return .get
         case .quoteCoverage: return .get
         case .verifyQuote: return .get
+        case .loyaltyStatus: return .get
+        case .loyaltyBurn: return .get
+        case .loyaltyEarn: return .get
+        case .loyaltyPreAuth: return .post
         case .loyaltyBalance: return .get
         case .loyaltyConversion: return .get
         }
