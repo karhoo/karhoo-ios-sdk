@@ -173,6 +173,8 @@
 		23163625274276E40082EE9B /* LoyaltyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23163624274276E40082EE9B /* LoyaltyPoints.swift */; };
 		2316362727445BA50082EE9B /* LoyaltyNonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362627445BA50082EE9B /* LoyaltyNonce.swift */; };
 		2316362927445E970082EE9B /* LoyaltyPreAuthPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362827445E970082EE9B /* LoyaltyPreAuthPayload.swift */; };
+		2316362C2744610E0082EE9B /* LoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362B2744610E0082EE9B /* LoyaltyStatusInteractor.swift */; };
+		2316362E274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362D274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift */; };
 		231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231652D925BADEEA003C449B /* QuoteStatus.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
@@ -702,6 +704,8 @@
 		23163624274276E40082EE9B /* LoyaltyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyPoints.swift; sourceTree = "<group>"; };
 		2316362627445BA50082EE9B /* LoyaltyNonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyNonce.swift; sourceTree = "<group>"; };
 		2316362827445E970082EE9B /* LoyaltyPreAuthPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyPreAuthPayload.swift; sourceTree = "<group>"; };
+		2316362B2744610E0082EE9B /* LoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
+		2316362D274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
 		231652D925BADEEA003C449B /* QuoteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStatus.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
@@ -1896,6 +1900,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2316362A274460C90082EE9B /* LoyaltyStatus */ = {
+			isa = PBXGroup;
+			children = (
+				2316362B2744610E0082EE9B /* LoyaltyStatusInteractor.swift */,
+				2316362D274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift */,
+			);
+			path = LoyaltyStatus;
+			sourceTree = "<group>";
+		};
 		233DB46523433EC200BCBC3F /* UpdateUserDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -2780,6 +2793,7 @@
 		6FD94A08258BAFF600B21B8B /* Loyalty */ = {
 			isa = PBXGroup;
 			children = (
+				2316362A274460C90082EE9B /* LoyaltyStatus */,
 				6FD542C8258CED9E002EA542 /* LoyaltyConversion */,
 				6FD94A15258BB1E500B21B8B /* LoyaltyBalance */,
 				6FD94A16258BB20B00B21B8B /* LoyaltyService.swift */,
@@ -3563,6 +3577,7 @@
 				095A03C72333B115007D805E /* UIConfigProvider.swift in Sources */,
 				091BE6EC2086562900BA34D0 /* Position.swift in Sources */,
 				6FD94A1D258BB2AC00B21B8B /* KarhooLoyaltyService.swift in Sources */,
+				2316362E274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift in Sources */,
 				23163623274274330082EE9B /* LoyaltyStatus.swift in Sources */,
 				FCD4DA5720F37FB2007D4374 /* AvailabilitySearch.swift in Sources */,
 				099AF2F920F8BA0000A2AA57 /* TripState.swift in Sources */,
@@ -3647,6 +3662,7 @@
 				BAA0A599E1EB8C3F8C2F8821 /* PassengerDetails.swift in Sources */,
 				6FED7B3C2576873200E95C27 /* CancellationFeePrice.swift in Sources */,
 				095A03BE2333AF4A007D805E /* UIConfigInteractor.swift in Sources */,
+				2316362C2744610E0082EE9B /* LoyaltyStatusInteractor.swift in Sources */,
 				BAA0A3A43066DD0F628543FE /* FleetInfo.swift in Sources */,
 				FCBD67B3211C9CBD005AA332 /* LoginInteractor.swift in Sources */,
 				099DFC6C223BEDF800401542 /* AddPaymentDetailsPayload.swift in Sources */,
