@@ -12,13 +12,19 @@ final class KarhooLoyaltyService: LoyaltyService {
     private let loyaltyBalanceInteractor: LoyaltyBalanceInteractor
     private let loyaltyConversionInteractor: LoyaltyConversionInteractor
     private let loyaltyStatusInteractor: LoyaltyStatusInteractor
+    private let loyaltyBurnInteractor: LoyaltyBurnInteractor
+    private let loyaltyEarnInteractor: LoyaltyEarnInteractor
     
     init(loyaltyBalanceInteractor: LoyaltyBalanceInteractor = KarhooLoyaltyBalanceInteractor(),
          loyaltyConversionInteractor: LoyaltyConversionInteractor = KarhooLoyaltyConversionInteractor(),
-         loyaltyStatusInteractor: LoyaltyStatusInteractor = KarhooLoyaltyStatusInteractor()) {
+         loyaltyStatusInteractor: LoyaltyStatusInteractor = KarhooLoyaltyStatusInteractor(),
+         loyaltyBurnInteractor: LoyaltyBurnInteractor = KarhooLoyaltyBurnInteractor(),
+         loyaltyEarnInteractor: LoyaltyEarnInteractor = KarhooLoyaltyEarnInteractor()) {
         self.loyaltyBalanceInteractor = loyaltyBalanceInteractor
         self.loyaltyConversionInteractor = loyaltyConversionInteractor
         self.loyaltyStatusInteractor = loyaltyStatusInteractor
+        self.loyaltyBurnInteractor = loyaltyBurnInteractor
+        self.loyaltyEarnInteractor = loyaltyEarnInteractor
     }
     
     func getLoyaltyBalance(identifier: String) -> Call<LoyaltyBalance> {
@@ -34,5 +40,20 @@ final class KarhooLoyaltyService: LoyaltyService {
     func getLoyaltyStatus(identifier: String) -> Call<LoyaltyStatus> {
         loyaltyStatusInteractor.set(identifier: identifier)
         return Call(executable: loyaltyStatusInteractor)
+    }
+    
+    func getLoyaltyBurn(identifier: String, currency: String, amount: Int) -> Call<LoyaltyPoints> {
+        loyaltyBurnInteractor.set(identifier: identifier,
+                                  currency: currency,
+                                  amount: amount)
+        return Call(executable: loyaltyBurnInteractor)
+    }
+    
+    func geyLoyaltyEarn(identifier: String, currency: String, amount: Int, points: Int) -> Call<LoyaltyPoints> {
+        loyaltyEarnInteractor.set(identifier: identifier,
+                                  currency: currency,
+                                  amount: amount,
+                                  points: points)
+        return Call(executable: loyaltyEarnInteractor)
     }
 }
