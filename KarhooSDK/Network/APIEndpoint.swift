@@ -41,8 +41,8 @@ enum APIEndpoint {
     case quoteCoverage
     case verifyQuote(quoteID: String)
     case loyaltyStatus(identifier: String)
-    case loyaltyBurn(identifier: String, points: LoyaltyPoints)
-    case loyaltyEarn(identifier: String, points: LoyaltyPoints, balance: LoyaltyStatus)
+    case loyaltyBurn(identifier: String, currency: String, amount: Int)
+    case loyaltyEarn(identifier: String, currency: String, amount: Int, points: Int)
     case loyaltyPreAuth(identifier: String)
     case loyaltyBalance(identifier: String)
     case loyaltyConversion(identifier: String)
@@ -137,10 +137,10 @@ enum APIEndpoint {
             return "/quotes/verify/\(quoteID)"
         case .loyaltyStatus(let identifier):
             return "/loyalty-\(identifier)/status"
-        case .loyaltyBurn(let identifier, let points):
-            return "/loyalty-\(identifier)/exrates/{cur}/burnpoints?amount=\(points.points)"
-        case .loyaltyEarn(let identifier, let points, let balance):
-            return "/loyalty-\(identifier)/exrates/{cur}/earnpoints?total_amount=\(balance.balance)&burn_points=\(points.points)"
+        case .loyaltyBurn(let identifier, let currency, let amount):
+            return "/loyalty-\(identifier)/exrates/\(currency)/burnpoints?amount=\(amount)"
+        case .loyaltyEarn(let identifier, let currency, let amount, let points):
+            return "/loyalty-\(identifier)/exrates/\(currency)/earnpoints?total_amount=\(amount)&burn_points=\(points)"
         case .loyaltyPreAuth(let identifier):
             return "/loyalty-\(identifier)/pre-auth"
         case .loyaltyBalance(let identifier):

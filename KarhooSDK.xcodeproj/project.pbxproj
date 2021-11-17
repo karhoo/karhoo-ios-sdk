@@ -1909,6 +1909,20 @@
 			path = LoyaltyStatus;
 			sourceTree = "<group>";
 		};
+		2316362F2745050B0082EE9B /* LoyaltyBurn */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoyaltyBurn;
+			sourceTree = "<group>";
+		};
+		231636302745051C0082EE9B /* LoyaltyEarn */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoyaltyEarn;
+			sourceTree = "<group>";
+		};
 		233DB46523433EC200BCBC3F /* UpdateUserDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -2793,6 +2807,8 @@
 		6FD94A08258BAFF600B21B8B /* Loyalty */ = {
 			isa = PBXGroup;
 			children = (
+				231636302745051C0082EE9B /* LoyaltyEarn */,
+				2316362F2745050B0082EE9B /* LoyaltyBurn */,
 				2316362A274460C90082EE9B /* LoyaltyStatus */,
 				6FD542C8258CED9E002EA542 /* LoyaltyConversion */,
 				6FD94A15258BB1E500B21B8B /* LoyaltyBalance */,
