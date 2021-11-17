@@ -175,6 +175,8 @@
 		2316362927445E970082EE9B /* LoyaltyPreAuthPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362827445E970082EE9B /* LoyaltyPreAuthPayload.swift */; };
 		2316362C2744610E0082EE9B /* LoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362B2744610E0082EE9B /* LoyaltyStatusInteractor.swift */; };
 		2316362E274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362D274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift */; };
+		23163632274573040082EE9B /* LoyaltyBurnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23163631274573040082EE9B /* LoyaltyBurnInteractor.swift */; };
+		23163634274573910082EE9B /* KarhooLoyaltyBurnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23163633274573910082EE9B /* KarhooLoyaltyBurnInteractor.swift */; };
 		231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231652D925BADEEA003C449B /* QuoteStatus.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
@@ -706,6 +708,8 @@
 		2316362827445E970082EE9B /* LoyaltyPreAuthPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyPreAuthPayload.swift; sourceTree = "<group>"; };
 		2316362B2744610E0082EE9B /* LoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
 		2316362D274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
+		23163631274573040082EE9B /* LoyaltyBurnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyBurnInteractor.swift; sourceTree = "<group>"; };
+		23163633274573910082EE9B /* KarhooLoyaltyBurnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyBurnInteractor.swift; sourceTree = "<group>"; };
 		231652D925BADEEA003C449B /* QuoteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStatus.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
@@ -1912,6 +1916,8 @@
 		2316362F2745050B0082EE9B /* LoyaltyBurn */ = {
 			isa = PBXGroup;
 			children = (
+				23163631274573040082EE9B /* LoyaltyBurnInteractor.swift */,
+				23163633274573910082EE9B /* KarhooLoyaltyBurnInteractor.swift */,
 			);
 			path = LoyaltyBurn;
 			sourceTree = "<group>";
@@ -3570,6 +3576,7 @@
 				4371C59D1EB0E7F70059429D /* AnalyticsProvider.swift in Sources */,
 				0900D34B20D2B1920082D1E8 /* RefreshTokenError.swift in Sources */,
 				43F9399E1F3C85A300914E18 /* KarhooURLSessionSender.swift in Sources */,
+				23163632274573040082EE9B /* LoyaltyBurnInteractor.swift in Sources */,
 				5CA2CE45234368B7000AEC1E /* UISettings.swift in Sources */,
 				313DC2F020221FCF00D9DD1B /* QuoteType.swift in Sources */,
 				5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */,
@@ -3691,6 +3698,7 @@
 				147B889F24E3F537003F78B8 /* KarhooAdyenPaymentMethodsInteractor.swift in Sources */,
 				095A03D02333BABD007D805E /* KarhooUIConfigProvider.swift in Sources */,
 				BAA0A9B82B56E7732880DF88 /* PositionExt.swift in Sources */,
+				23163634274573910082EE9B /* KarhooLoyaltyBurnInteractor.swift in Sources */,
 				BAA0A0D9B4689C44C4517E85 /* Places.swift in Sources */,
 				BAA0A33C16B003E2D9F99AB3 /* PoiType.swift in Sources */,
 				FC8F474F2154F9D6007841FB /* ObserverBroadcaster.swift in Sources */,
