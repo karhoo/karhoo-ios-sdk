@@ -11,11 +11,14 @@ import Foundation
 final class KarhooLoyaltyService: LoyaltyService {
     private let loyaltyBalanceInteractor: LoyaltyBalanceInteractor
     private let loyaltyConversionInteractor: LoyaltyConversionInteractor
+    private let loyaltyStatusInteractor: LoyaltyStatusInteractor
     
     init(loyaltyBalanceInteractor: LoyaltyBalanceInteractor = KarhooLoyaltyBalanceInteractor(),
-         loyaltyConversionInteractor: LoyaltyConversionInteractor = KarhooLoyaltyConversionInteractor()) {
+         loyaltyConversionInteractor: LoyaltyConversionInteractor = KarhooLoyaltyConversionInteractor(),
+         loyaltyStatusInteractor: LoyaltyStatusInteractor = KarhooLoyaltyStatusInteractor()) {
         self.loyaltyBalanceInteractor = loyaltyBalanceInteractor
         self.loyaltyConversionInteractor = loyaltyConversionInteractor
+        self.loyaltyStatusInteractor = loyaltyStatusInteractor
     }
     
     func getLoyaltyBalance(identifier: String) -> Call<LoyaltyBalance> {
@@ -26,5 +29,10 @@ final class KarhooLoyaltyService: LoyaltyService {
     func getLoyaltyConversion(identifier: String) -> Call<LoyaltyConversion> {
         loyaltyConversionInteractor.set(identifier: identifier)
         return Call(executable: loyaltyConversionInteractor)
+    }
+    
+    func getLoyaltyStatus(identifier: String) -> Call<LoyaltyStatus> {
+        loyaltyStatusInteractor.set(identifier: identifier)
+        return Call(executable: loyaltyStatusInteractor)
     }
 }

@@ -12,4 +12,6 @@ public protocol LoyaltyService {
     func getLoyaltyBalance(identifier: String) -> Call<LoyaltyBalance>
     
     func getLoyaltyConversion(identifier: String) -> Call<LoyaltyConversion>
+    
+    func getLoyaltyStatus(identifier: String) -> Call<LoyaltyStatus>
 }
