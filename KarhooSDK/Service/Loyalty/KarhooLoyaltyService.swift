@@ -14,17 +14,20 @@ final class KarhooLoyaltyService: LoyaltyService {
     private let loyaltyStatusInteractor: LoyaltyStatusInteractor
     private let loyaltyBurnInteractor: LoyaltyBurnInteractor
     private let loyaltyEarnInteractor: LoyaltyEarnInteractor
+    private let loyaltyPreAuthInteractor: LoyaltyPreAuthInteractor
     
     init(loyaltyBalanceInteractor: LoyaltyBalanceInteractor = KarhooLoyaltyBalanceInteractor(),
          loyaltyConversionInteractor: LoyaltyConversionInteractor = KarhooLoyaltyConversionInteractor(),
          loyaltyStatusInteractor: LoyaltyStatusInteractor = KarhooLoyaltyStatusInteractor(),
          loyaltyBurnInteractor: LoyaltyBurnInteractor = KarhooLoyaltyBurnInteractor(),
-         loyaltyEarnInteractor: LoyaltyEarnInteractor = KarhooLoyaltyEarnInteractor()) {
+         loyaltyEarnInteractor: LoyaltyEarnInteractor = KarhooLoyaltyEarnInteractor(),
+         loyaltyPreAuthInteractor: LoyaltyPreAuthInteractor = KarhooLoyaltyPreAuthInteractor()) {
         self.loyaltyBalanceInteractor = loyaltyBalanceInteractor
         self.loyaltyConversionInteractor = loyaltyConversionInteractor
         self.loyaltyStatusInteractor = loyaltyStatusInteractor
         self.loyaltyBurnInteractor = loyaltyBurnInteractor
         self.loyaltyEarnInteractor = loyaltyEarnInteractor
+        self.loyaltyPreAuthInteractor = loyaltyPreAuthInteractor
     }
     
     func getLoyaltyBalance(identifier: String) -> Call<LoyaltyBalance> {
@@ -49,11 +52,16 @@ final class KarhooLoyaltyService: LoyaltyService {
         return Call(executable: loyaltyBurnInteractor)
     }
     
-    func geyLoyaltyEarn(identifier: String, currency: String, amount: Int, points: Int) -> Call<LoyaltyPoints> {
+    func getLoyaltyEarn(identifier: String, currency: String, amount: Int, points: Int) -> Call<LoyaltyPoints> {
         loyaltyEarnInteractor.set(identifier: identifier,
                                   currency: currency,
                                   amount: amount,
                                   points: points)
         return Call(executable: loyaltyEarnInteractor)
+    }
+    
+    func getLoyaltyPreAuth(identifier: String) -> Call<LoyaltyPreAuthPayload> {
+        loyaltyPreAuthInteractor.set(identifier: identifier)
+        return Call(executable: loyaltyPreAuthInteractor)
     }
 }
