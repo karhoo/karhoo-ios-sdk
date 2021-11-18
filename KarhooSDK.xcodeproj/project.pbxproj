@@ -181,6 +181,9 @@
 		231636382745752A0082EE9B /* KarhooLoyaltyEarnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231636372745752A0082EE9B /* KarhooLoyaltyEarnInteractor.swift */; };
 		2316363B274666800082EE9B /* LoyaltyPreAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316363A274666800082EE9B /* LoyaltyPreAuthInteractor.swift */; };
 		2316363D274666CF0082EE9B /* KarhooLoyaltyPreAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316363C274666CF0082EE9B /* KarhooLoyaltyPreAuthInteractor.swift */; };
+		2316363F274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316363E274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift */; };
+		2316364127466A680082EE9B /* MockLoyaltyBurnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */; };
+		2316364327466B300082EE9B /* MockLoyaltyEarnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */; };
 		231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231652D925BADEEA003C449B /* QuoteStatus.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
@@ -718,6 +721,9 @@
 		231636372745752A0082EE9B /* KarhooLoyaltyEarnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyEarnInteractor.swift; sourceTree = "<group>"; };
 		2316363A274666800082EE9B /* LoyaltyPreAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyPreAuthInteractor.swift; sourceTree = "<group>"; };
 		2316363C274666CF0082EE9B /* KarhooLoyaltyPreAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyPreAuthInteractor.swift; sourceTree = "<group>"; };
+		2316363E274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
+		2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyBurnInteractor.swift; sourceTree = "<group>"; };
+		2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyEarnInteractor.swift; sourceTree = "<group>"; };
 		231652D925BADEEA003C449B /* QuoteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStatus.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
@@ -2868,6 +2874,9 @@
 			children = (
 				6FD94A2E258BB71C00B21B8B /* MockLoyaltyBalanceInteractor.swift */,
 				6FD542D5258D06A0002EA542 /* MockLoyaltyConversionInteractor.swift */,
+				2316363E274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift */,
+				2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */,
+				2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */,
 			);
 			path = Loyalty;
 			sourceTree = "<group>";
@@ -3800,6 +3809,7 @@
 				432D47871ECC31940085DBBE /* KarhooLogoutInteractorSpec.swift in Sources */,
 				4371C5C11EB0E8070059429D /* AnalyticsServiceSpec.swift in Sources */,
 				4322B48C1E69A57B002108D5 /* MockAnalyticsService.swift in Sources */,
+				2316364127466A680082EE9B /* MockLoyaltyBurnInteractor.swift in Sources */,
 				091CAE3E20D7A81F005F1DB6 /* MockURLSessionSender.swift in Sources */,
 				31FC37FF1F459A780012A57E /* DefaultAuthTokenSpec.swift in Sources */,
 				09811A1E20D7C12D001DB06F /* MockCancelTripInteractor.swift in Sources */,
@@ -3857,6 +3867,7 @@
 				095A03D22333C119007D805E /* KarhooUIConfigProviderSpec.swift in Sources */,
 				0981F6CF20CFDA9B00BF7FB5 /* KarhooRequestSenderSpec.swift in Sources */,
 				094C1F7F20B2C956001FFE7F /* MockNetworkDateFormatter.swift in Sources */,
+				2316363F274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift in Sources */,
 				0970BA802114671A0015A170 /* KarhooObservableSpec.swift in Sources */,
 				090670E820A4787600CAFA86 /* KarhooPaymentSDKTokenInteractorSpec.swift in Sources */,
 				FCD32FEF20DAA33A0044BB64 /* KarhooTripsListInteractorSpec.swift in Sources */,
@@ -3878,6 +3889,7 @@
 				6FED7B842579393100E95C27 /* MockCancellationFeeInteractor.swift in Sources */,
 				3150CE311F9F7D8E00DE6D62 /* MockCLLocationManager.swift in Sources */,
 				2359B45B234251FB008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift in Sources */,
+				2316364327466B300082EE9B /* MockLoyaltyEarnInteractor.swift in Sources */,
 				09430E4F224109D6009846A6 /* UnitTestSetup.swift in Sources */,
 				0981F6D520CFE1B300BF7FB5 /* MockLoginInteractor.swift in Sources */,
 				6F19F2582510B21100E1F771 /* KarhooAdyenPublicKeyInteractorSpec.swift in Sources */,
