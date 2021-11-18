@@ -184,6 +184,7 @@
 		2316363F274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316363E274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift */; };
 		2316364127466A680082EE9B /* MockLoyaltyBurnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */; };
 		2316364327466B300082EE9B /* MockLoyaltyEarnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */; };
+		2316364527466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364427466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift */; };
 		231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231652D925BADEEA003C449B /* QuoteStatus.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
@@ -724,6 +725,7 @@
 		2316363E274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
 		2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyBurnInteractor.swift; sourceTree = "<group>"; };
 		2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyEarnInteractor.swift; sourceTree = "<group>"; };
+		2316364427466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyPreAuthInteractor.swift; sourceTree = "<group>"; };
 		231652D925BADEEA003C449B /* QuoteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStatus.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
@@ -2877,6 +2879,7 @@
 				2316363E274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift */,
 				2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */,
 				2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */,
+				2316364427466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift */,
 			);
 			path = Loyalty;
 			sourceTree = "<group>";
@@ -3945,6 +3948,7 @@
 				0981F6CD20CEEB1000BF7FB5 /* AuthTokenMock.swift in Sources */,
 				FC8F475321555025007841FB /* MockObserverBroadcaster.swift in Sources */,
 				274211D129AC87080586E523 /* DriverTrackingInfoMock.swift in Sources */,
+				2316364527466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift in Sources */,
 				FCBD67B9211DDD8E005AA332 /* MockInteractor.swift in Sources */,
 				5CA2CE422343510E000AEC1E /* OrganisationMock.swift in Sources */,
 				230FD92B26A18C76009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift in Sources */,
