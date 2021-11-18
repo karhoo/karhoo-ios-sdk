@@ -29,6 +29,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
     private let loyaltyStatusMock = LoyaltyStatus(balance: 1000, canBurn: false, canEarn: true)
     private let loyaltyPointsMock = LoyaltyPoints(points: 10)
     private let loyaltyPreAuthPayloadMock = LoyaltyPreAuthPayload(currency: "GBP", points: 100, flexpay: false, membership: "123A")
+    private let loyaltyNonceMock = LoyaltyNonce(loyaltyNonce: "123A")
     
     override func setUp() {
         super.setUp()
@@ -184,23 +185,20 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
     }
     
     func testLoyaltyPreAuthSuccess() {
-        let call = testObject.getLoyaltyPreAuth(identifier: identifier)
+        let call = testObject.getLoyaltyPreAuth(preAuthPayload: loyaltyPreAuthPayloadMock)
         
-        var result: Result<LoyaltyPreAuthPayload>?
+        var result: Result<LoyaltyNonce>?
         call.execute(callback: { result = $0 })
         
-        mockLoyaltyPreAuthInteractor.triggerSuccess(result: loyaltyPreAuthPayloadMock)
+        mockLoyaltyPreAuthInteractor.triggerSuccess(result: loyaltyNonceMock)
         
-        XCTAssertEqual("GBP", result?.successValue()?.currency)
-        XCTAssertEqual(100, result?.successValue()?.points)
-        XCTAssertEqual(false, result?.successValue()?.flexpay)
-        XCTAssertEqual("123A", result?.successValue()?.membership)
+        XCTAssertEqual("123A", result?.successValue()?.loyaltyNonce)
     }
     
     func testLoyaltyPreAuthFail() {
-        let call = testObject.getLoyaltyPreAuth(identifier: identifier)
+        let call = testObject.getLoyaltyPreAuth(preAuthPayload: loyaltyPreAuthPayloadMock)
 
-        var result: Result<LoyaltyPreAuthPayload>?
+        var result: Result<LoyaltyNonce>?
         call.execute(callback: { result = $0 })
 
         let expectedError = TestUtil.getRandomError()

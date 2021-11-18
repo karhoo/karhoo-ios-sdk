@@ -11,11 +11,11 @@ import Foundation
 
 final class MockLoyaltyPreAuthInteractor: LoyaltyPreAuthInteractor, MockInteractor {
     
-    var callbackSet: CallbackClosure<LoyaltyPreAuthPayload>?
+    var callbackSet: CallbackClosure<LoyaltyNonce>?
     var cancelCalled = false
     
-    var identifierSet: String?
-    func set(identifier: String) {
-        identifierSet = identifier
+    var preAuthPayload: LoyaltyPreAuthPayload?
+    func set(loyaltyPreAuth: LoyaltyPreAuthPayload) {
+        preAuthPayload = loyaltyPreAuth
     }
 }
