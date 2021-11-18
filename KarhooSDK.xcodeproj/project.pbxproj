@@ -185,6 +185,13 @@
 		2316364127466A680082EE9B /* MockLoyaltyBurnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */; };
 		2316364327466B300082EE9B /* MockLoyaltyEarnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */; };
 		2316364527466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364427466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift */; };
+		2316364D27469AC50082EE9B /* LoyaltyNonce.json in Resources */ = {isa = PBXBuildFile; fileRef = 2316364C27469AC50082EE9B /* LoyaltyNonce.json */; };
+		2316364F27469B3D0082EE9B /* LoyaltyStatus.json in Resources */ = {isa = PBXBuildFile; fileRef = 2316364E27469B3D0082EE9B /* LoyaltyStatus.json */; };
+		2316365127469C360082EE9B /* LoyaltyStatusMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316365027469C360082EE9B /* LoyaltyStatusMethodSpec.swift */; };
+		2316365327469DEA0082EE9B /* LoyaltyPoints.json in Resources */ = {isa = PBXBuildFile; fileRef = 2316365227469DEA0082EE9B /* LoyaltyPoints.json */; };
+		2316365527469E290082EE9B /* LoyaltyPreAuthPayload.json in Resources */ = {isa = PBXBuildFile; fileRef = 2316365427469E290082EE9B /* LoyaltyPreAuthPayload.json */; };
+		2316365727469F180082EE9B /* LoyaltyBurnMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316365627469F180082EE9B /* LoyaltyBurnMethodSpec.swift */; };
+		2316365927469F250082EE9B /* LoyaltyEarnMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316365827469F250082EE9B /* LoyaltyEarnMethodSpec.swift */; };
 		231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231652D925BADEEA003C449B /* QuoteStatus.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
@@ -726,6 +733,13 @@
 		2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyBurnInteractor.swift; sourceTree = "<group>"; };
 		2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyEarnInteractor.swift; sourceTree = "<group>"; };
 		2316364427466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyPreAuthInteractor.swift; sourceTree = "<group>"; };
+		2316364C27469AC50082EE9B /* LoyaltyNonce.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoyaltyNonce.json; sourceTree = "<group>"; };
+		2316364E27469B3D0082EE9B /* LoyaltyStatus.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoyaltyStatus.json; sourceTree = "<group>"; };
+		2316365027469C360082EE9B /* LoyaltyStatusMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyStatusMethodSpec.swift; sourceTree = "<group>"; };
+		2316365227469DEA0082EE9B /* LoyaltyPoints.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoyaltyPoints.json; sourceTree = "<group>"; };
+		2316365427469E290082EE9B /* LoyaltyPreAuthPayload.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoyaltyPreAuthPayload.json; sourceTree = "<group>"; };
+		2316365627469F180082EE9B /* LoyaltyBurnMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyBurnMethodSpec.swift; sourceTree = "<group>"; };
+		2316365827469F250082EE9B /* LoyaltyEarnMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyEarnMethodSpec.swift; sourceTree = "<group>"; };
 		231652D925BADEEA003C449B /* QuoteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStatus.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
@@ -2806,6 +2820,9 @@
 			children = (
 				6FD5426E258CCD4B002EA542 /* LoyaltyBalanceMethodSpec.swift */,
 				6FD542F0258D16AC002EA542 /* LoyaltyConversionMethodSpec.swift */,
+				2316365027469C360082EE9B /* LoyaltyStatusMethodSpec.swift */,
+				2316365627469F180082EE9B /* LoyaltyBurnMethodSpec.swift */,
+				2316365827469F250082EE9B /* LoyaltyEarnMethodSpec.swift */,
 			);
 			path = Loyalty;
 			sourceTree = "<group>";
@@ -2813,9 +2830,13 @@
 		6FD5427C258CD0C0002EA542 /* Loyalty */ = {
 			isa = PBXGroup;
 			children = (
+				2316364C27469AC50082EE9B /* LoyaltyNonce.json */,
 				6FD54288258CD243002EA542 /* LoyaltyBalanceFalse.json */,
 				6FD5427E258CD106002EA542 /* LoyaltyBalanceTrue.json */,
 				6FD542F6258D1729002EA542 /* LoyaltyConversion.json */,
+				2316364E27469B3D0082EE9B /* LoyaltyStatus.json */,
+				2316365227469DEA0082EE9B /* LoyaltyPoints.json */,
+				2316365427469E290082EE9B /* LoyaltyPreAuthPayload.json */,
 			);
 			path = Loyalty;
 			sourceTree = "<group>";
@@ -3426,12 +3447,14 @@
 				6FED7B9C25794D8A00E95C27 /* CancellationFeeFalse.json in Resources */,
 				6FD54289258CD243002EA542 /* LoyaltyBalanceFalse.json in Resources */,
 				6F19F25C2510B7BE00E1F771 /* AdyenPublicKey.json in Resources */,
+				2316364D27469AC50082EE9B /* LoyaltyNonce.json in Resources */,
 				09F8AC06214FE6DF00E293B7 /* AuthToken.json in Resources */,
 				FC1202472146A7CA00161081 /* Error.json in Resources */,
 				09B204BC2141366C00063632 /* InvalidData.json in Resources */,
 				09F8ABFD214FB61100E293B7 /* PaymentSDKToken.json in Resources */,
 				09EE81F021528791004B2B09 /* QuoteListId.json in Resources */,
 				1471BE2624E5904100BE1C4D /* AdyenPaymentMethods.json in Resources */,
+				2316365327469DEA0082EE9B /* LoyaltyPoints.json in Resources */,
 				6F69F3A1255C0FD000F8DA05 /* QuoteCoverageError.json in Resources */,
 				09F8ABE9214A9B1500E293B7 /* DriverTracking.json in Resources */,
 				09F8AC07214FE6DF00E293B7 /* AuthorisedUserInfo.json in Resources */,
@@ -3443,7 +3466,9 @@
 				4032BD1223FC491500C2409B /* AuthExchangeToken.json in Resources */,
 				09F8ABF8214BF69400E293B7 /* Places.json in Resources */,
 				09F79E4B223ABD5B00D5B0B8 /* GetNonce.json in Resources */,
+				2316364F27469B3D0082EE9B /* LoyaltyStatus.json in Resources */,
 				FC1202452146A4F000161081 /* Empty.json in Resources */,
+				2316365527469E290082EE9B /* LoyaltyPreAuthPayload.json in Resources */,
 				6F69F397255C0AF200F8DA05 /* QuoteCoverage.json in Resources */,
 				143975E424EAC9FA0006EB80 /* PaymentProvider.json in Resources */,
 				4032BD1023FC47B600C2409B /* AuthUserInfo.json in Resources */,
@@ -3492,11 +3517,14 @@
 				095A03DE2333D926007D805E /* UIConfigMethodSpec.swift in Sources */,
 				5C0A612B24FE80BC00AD4C8B /* QuoteSearchMethodSpec.swift in Sources */,
 				FC12025D215129DC00161081 /* TrackTripMethodSpec.swift in Sources */,
+				2316365927469F250082EE9B /* LoyaltyEarnMethodSpec.swift in Sources */,
 				098C91F92147CDC500F02DE3 /* GeneralErrorSpec.swift in Sources */,
 				FC120253214BF82400161081 /* ReverseGeocodeMethodSpec.swift in Sources */,
+				2316365727469F180082EE9B /* LoyaltyBurnMethodSpec.swift in Sources */,
 				098D524F23FB14FA00059086 /* AuthLoginMethodSpec.swift in Sources */,
 				099613712408359A00C8C88E /* RevokeMethodSpec.swift in Sources */,
 				6FA6201224F7C4E700C1DF48 /* AdyenPaymentsSpec.swift in Sources */,
+				2316365127469C360082EE9B /* LoyaltyStatusMethodSpec.swift in Sources */,
 				0916BB67235DEA580064A5D6 /* MockSDKConfig.swift in Sources */,
 				097D472721512D5E008D8D94 /* TripSearchMethodSpec.swift in Sources */,
 				09F90F912150FA2C003BC867 /* PasswordResetMethodSpec.swift in Sources */,
