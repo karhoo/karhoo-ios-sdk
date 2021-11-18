@@ -33,7 +33,7 @@ final class KarhooLoyaltyPreAuthInteractor: LoyaltyPreAuthInteractor {
                               endpoint: endpoint(identifier: identifier ?? ""),
                               callback: { result in
                                 guard result.successValue(orErrorCallback: callback) != nil,
-                                    let resultValue = KarhooVoid() as? T else { return }
+                                    let resultValue = LoyaltyNonce() as? T else { return }
                                     callback(Result.success(result: resultValue))
         })
     }
