@@ -60,8 +60,8 @@ final class KarhooLoyaltyService: LoyaltyService {
         return Call(executable: loyaltyEarnInteractor)
     }
     
-    func getLoyaltyPreAuth(preAuthPayload: LoyaltyPreAuthPayload) -> Call<LoyaltyNonce> {
-        loyaltyPreAuthInteractor.set(loyaltyPreAuth: preAuthPayload)
+    func getLoyaltyPreAuth(preAuthRequest: LoyaltyPreAuth) -> Call<LoyaltyNonce> {
+        loyaltyPreAuthInteractor.set(loyaltyPreAuth: preAuthRequest)
         return Call(executable: loyaltyPreAuthInteractor)
     }
 }

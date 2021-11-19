@@ -28,7 +28,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
     private let loyaltyBalanceMock = LoyaltyBalance(points: 10, burnable: false)
     private let loyaltyStatusMock = LoyaltyStatus(balance: 1000, canBurn: false, canEarn: true)
     private let loyaltyPointsMock = LoyaltyPoints(points: 10)
-    private let loyaltyPreAuthPayloadMock = LoyaltyPreAuthPayload(currency: "GBP", points: 100, flexpay: false, membership: "123A")
+    private let loyaltyPreAuthMock = LoyaltyPreAuth(identifier: "123A", currency: "GBP", points: 100, flexpay: false, membership: "123A")
     private let loyaltyNonceMock = LoyaltyNonce(loyaltyNonce: "123A")
     
     override func setUp() {
@@ -185,7 +185,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
     }
     
     func testLoyaltyPreAuthSuccess() {
-        let call = testObject.getLoyaltyPreAuth(preAuthPayload: loyaltyPreAuthPayloadMock)
+        let call = testObject.getLoyaltyPreAuth(preAuthRequest: loyaltyPreAuthMock)
         
         var result: Result<LoyaltyNonce>?
         call.execute(callback: { result = $0 })
@@ -196,7 +196,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
     }
     
     func testLoyaltyPreAuthFail() {
-        let call = testObject.getLoyaltyPreAuth(preAuthPayload: loyaltyPreAuthPayloadMock)
+        let call = testObject.getLoyaltyPreAuth(preAuthRequest: loyaltyPreAuthMock)
 
         var result: Result<LoyaltyNonce>?
         call.execute(callback: { result = $0 })

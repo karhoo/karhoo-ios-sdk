@@ -9,5 +9,5 @@
 import Foundation
 
 protocol LoyaltyPreAuthInteractor: KarhooExecutable {
-    func set(loyaltyPreAuth: LoyaltyPreAuthPayload)
+    func set(loyaltyPreAuth: LoyaltyPreAuth)
 }

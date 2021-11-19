@@ -14,8 +14,8 @@ final class MockLoyaltyPreAuthInteractor: LoyaltyPreAuthInteractor, MockInteract
     var callbackSet: CallbackClosure<LoyaltyNonce>?
     var cancelCalled = false
     
-    var preAuthPayload: LoyaltyPreAuthPayload?
-    func set(loyaltyPreAuth: LoyaltyPreAuthPayload) {
-        preAuthPayload = loyaltyPreAuth
+    var preAuthRequest: LoyaltyPreAuth?
+    func set(loyaltyPreAuth: LoyaltyPreAuth) {
+        preAuthRequest = loyaltyPreAuth
     }
 }
