@@ -162,7 +162,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
     }
     
     func testLoyaltyEarnSuccess() {
-        let call = testObject.getLoyaltyEarn(identifier: identifier, currency: currency, amount: amount, points: points)
+        let call = testObject.getLoyaltyEarn(identifier: identifier, currency: currency, amount: amount, burnPoints: points)
         
         var result: Result<LoyaltyPoints>?
         call.execute(callback: { result = $0 })
@@ -173,7 +173,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
     }
     
     func testLoyaltyEarnFail() {
-        let call = testObject.getLoyaltyEarn(identifier: identifier, currency: currency, amount: amount, points: points)
+        let call = testObject.getLoyaltyEarn(identifier: identifier, currency: currency, amount: amount, burnPoints: points)
 
         var result: Result<LoyaltyPoints>?
         call.execute(callback: { result = $0 })
