@@ -190,6 +190,7 @@
 		2316365327469DEA0082EE9B /* LoyaltyPoints.json in Resources */ = {isa = PBXBuildFile; fileRef = 2316365227469DEA0082EE9B /* LoyaltyPoints.json */; };
 		2316365527469E290082EE9B /* LoyaltyPreAuthPayload.json in Resources */ = {isa = PBXBuildFile; fileRef = 2316365427469E290082EE9B /* LoyaltyPreAuthPayload.json */; };
 		231636622747BFF60082EE9B /* LoyaltyPreAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231636612747BFF60082EE9B /* LoyaltyPreAuth.swift */; };
+		2316366A274BC3CA0082EE9B /* KarhooLoyaltyStatusInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23163669274BC3CA0082EE9B /* KarhooLoyaltyStatusInteractorSpec.swift */; };
 		231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231652D925BADEEA003C449B /* QuoteStatus.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
@@ -736,6 +737,7 @@
 		2316365227469DEA0082EE9B /* LoyaltyPoints.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoyaltyPoints.json; sourceTree = "<group>"; };
 		2316365427469E290082EE9B /* LoyaltyPreAuthPayload.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoyaltyPreAuthPayload.json; sourceTree = "<group>"; };
 		231636612747BFF60082EE9B /* LoyaltyPreAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyPreAuth.swift; sourceTree = "<group>"; };
+		23163669274BC3CA0082EE9B /* KarhooLoyaltyStatusInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyStatusInteractorSpec.swift; sourceTree = "<group>"; };
 		231652D925BADEEA003C449B /* QuoteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStatus.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
@@ -1966,6 +1968,14 @@
 			path = LoyaltyPreAuth;
 			sourceTree = "<group>";
 		};
+		23163668274BC3AF0082EE9B /* LoyaltyStatus */ = {
+			isa = PBXGroup;
+			children = (
+				23163669274BC3CA0082EE9B /* KarhooLoyaltyStatusInteractorSpec.swift */,
+			);
+			path = LoyaltyStatus;
+			sourceTree = "<group>";
+		};
 		233DB46523433EC200BCBC3F /* UpdateUserDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -2879,6 +2889,7 @@
 		6FD94A22258BB43300B21B8B /* Loyalty */ = {
 			isa = PBXGroup;
 			children = (
+				23163668274BC3AF0082EE9B /* LoyaltyStatus */,
 				6FD542DB258D06DD002EA542 /* LoyaltyConversion */,
 				6FD94A38258BBE5E00B21B8B /* LoyaltyBalance */,
 				6FD94A23258BB46300B21B8B /* KarhooLoyaltyServiceSpec.swift */,
@@ -3867,6 +3878,7 @@
 				31005DA71FCEE699006D2A7D /* RequestTesting.swift in Sources */,
 				43584E931EE5993700B4DFAB /* KarhooTripServiceSpec.swift in Sources */,
 				31904CDA200380A400BA7402 /* MockAccessTokenProvider.swift in Sources */,
+				2316366A274BC3CA0082EE9B /* KarhooLoyaltyStatusInteractorSpec.swift in Sources */,
 				4371C5BE1EB0E8070059429D /* KarhooAddressServiceSpec.swift in Sources */,
 				317610EE1FD84CD200D2DB75 /* KarhooNetworkDateFormatterSpec.swift in Sources */,
 				096A2C2D208F676000C7B7D0 /* PositionExtSpec.swift in Sources */,
