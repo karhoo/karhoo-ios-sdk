@@ -26,8 +26,12 @@ final class KarhooLoyaltyBurnInteractor: LoyaltyBurnInteractor {
     }
     
     func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
+        guard let currency = self.currency else {
+            return
+        }
+        
         requestSender.requestAndDecode(payload: nil,
-                                       endpoint: .loyaltyBurn(identifier: identifier ?? "", currency: currency ?? "", amount: amount ?? 0),
+                                       endpoint: .loyaltyBurn(identifier: identifier ?? "", currency: currency, amount: amount ?? 0),
                                        callback: callback)
     }
     
