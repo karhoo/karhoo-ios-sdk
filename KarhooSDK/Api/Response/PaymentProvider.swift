@@ -9,10 +9,10 @@ import Foundation
 
 public struct PaymentProvider : KarhooCodableModel {
     public let provider: Provider
-    public let loyaltyProgammes: [LoyaltyProgramme]
+    public let loyaltyProgammes: LoyaltyProgramme
 
     public init(provider: Provider = Provider(),
-                loyaltyProgammes: [LoyaltyProgramme] = []) {
+                loyaltyProgammes: LoyaltyProgramme = LoyaltyProgramme()) {
         self.provider = provider
         self.loyaltyProgammes = loyaltyProgammes
     }
@@ -21,7 +21,7 @@ public struct PaymentProvider : KarhooCodableModel {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.provider = (try? container.decode(Provider.self, forKey: .provider)) ?? Provider()
-        self.loyaltyProgammes = (try? container.decode([LoyaltyProgramme].self, forKey: .loyaltyProgammes)) ?? []
+        self.loyaltyProgammes = (try? container.decode(LoyaltyProgramme.self, forKey: .loyaltyProgammes)) ?? LoyaltyProgramme()
     }
     
     enum CodingKeys: String, CodingKey {
