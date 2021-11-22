@@ -17,7 +17,7 @@ public protocol LoyaltyService {
     
     func getLoyaltyBurn(identifier: String, currency: String, amount: Int) -> Call<LoyaltyPoints>
     
-    func getLoyaltyEarn(identifier: String, currency: String, amount: Int, points: Int) -> Call<LoyaltyPoints>
+    func getLoyaltyEarn(identifier: String, currency: String, amount: Int, burnPoints: Int) -> Call<LoyaltyPoints>
     
     func getLoyaltyPreAuth(preAuthRequest: LoyaltyPreAuth) -> Call<LoyaltyNonce>
 }

@@ -52,11 +52,11 @@ final class KarhooLoyaltyService: LoyaltyService {
         return Call(executable: loyaltyBurnInteractor)
     }
     
-    func getLoyaltyEarn(identifier: String, currency: String, amount: Int, points: Int) -> Call<LoyaltyPoints> {
+    func getLoyaltyEarn(identifier: String, currency: String, amount: Int, burnPoints: Int) -> Call<LoyaltyPoints> {
         loyaltyEarnInteractor.set(identifier: identifier,
                                   currency: currency,
                                   amount: amount,
-                                  points: points)
+                                  burnPoints: burnPoints)
         return Call(executable: loyaltyEarnInteractor)
     }
     

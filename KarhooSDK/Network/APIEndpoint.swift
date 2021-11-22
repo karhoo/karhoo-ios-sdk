@@ -42,7 +42,7 @@ enum APIEndpoint {
     case verifyQuote(quoteID: String)
     case loyaltyStatus(identifier: String)
     case loyaltyBurn(identifier: String, currency: String, amount: Int)
-    case loyaltyEarn(identifier: String, currency: String, amount: Int, points: Int)
+    case loyaltyEarn(identifier: String, currency: String, amount: Int, burnPoints: Int)
     case loyaltyPreAuth(identifier: String)
     case loyaltyBalance(identifier: String)
     case loyaltyConversion(identifier: String)
@@ -139,8 +139,8 @@ enum APIEndpoint {
             return "/loyalty-\(identifier)/status"
         case .loyaltyBurn(let identifier, let currency, let amount):
             return "/loyalty-\(identifier)/exrates/\(currency)/burnpoints?amount=\(amount)"
-        case .loyaltyEarn(let identifier, let currency, let amount, let points):
-            return "/loyalty-\(identifier)/exrates/\(currency)/earnpoints?total_amount=\(amount)&burn_points=\(points)"
+        case .loyaltyEarn(let identifier, let currency, let amount, let burnPoints):
+            return "/loyalty-\(identifier)/exrates/\(currency)/earnpoints?total_amount=\(amount)&burn_points=\(burnPoints)"
         case .loyaltyPreAuth(let identifier):
             return "/loyalty-\(identifier)/pre-auth"
         case .loyaltyBalance(let identifier):

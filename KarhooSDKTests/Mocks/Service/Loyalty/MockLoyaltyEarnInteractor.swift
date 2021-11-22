@@ -17,11 +17,12 @@ final class MockLoyaltyEarnInteractor: LoyaltyEarnInteractor, MockInteractor {
     var identifierSet: String?
     var currencySet: String?
     var amountSet: Int?
-    var pointsSet: Int?
-    func set(identifier: String, currency: String, amount: Int, points: Int) {
+    var burnPointsSet: Int?
+    
+    func set(identifier: String, currency: String, amount: Int, burnPoints: Int) {
         identifierSet = identifier
         currencySet = currency
         amountSet = amount
-        pointsSet = points
+        burnPointsSet = burnPoints
     }
 }

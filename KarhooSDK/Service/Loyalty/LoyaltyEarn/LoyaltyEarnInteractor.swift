@@ -9,5 +9,5 @@
 import Foundation
 
 protocol LoyaltyEarnInteractor: KarhooExecutable {
-    func set(identifier: String, currency: String, amount: Int, points: Int)
+    func set(identifier: String, currency: String, amount: Int, burnPoints: Int)
 }
