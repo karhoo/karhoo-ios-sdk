@@ -51,11 +51,13 @@ enum APIEndpoint {
         switch self {
         case .custom(let path, _):
             return path
+            
         case .loyaltyStatus( _),
                 .loyaltyBurn( _, _, _),
                 .loyaltyEarn( _, _, _, _),
                 .loyaltyPreAuth( _):
             return relativePath
+            
         default:
             return "/\(version)\(relativePath)"
         }
