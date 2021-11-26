@@ -10,11 +10,14 @@ import Foundation
 final class KarhooPaymentProviderInteractor: PaymentProviderInteractor {
     
     private let paymentProviderRequestSender: RequestSender
+    private let loyaltyProviderRequestSender: RequestSender
     private let userDataStore: UserDataStore
     
     init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+         loyaltyProviderRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          userDataStore: UserDataStore = DefaultUserDataStore()) {
         self.paymentProviderRequestSender = requestSender
+        self.loyaltyProviderRequestSender = loyaltyProviderRequestSender
         self.userDataStore = userDataStore
     }
 
@@ -22,14 +25,27 @@ final class KarhooPaymentProviderInteractor: PaymentProviderInteractor {
         paymentProviderRequestSender.requestAndDecode(payload: nil,
                                                       endpoint: .paymentProvider,
                                                       callback: { [weak self] (result: Result<PaymentProvider>) in
-                                                        self?.persistProvider(result)
-
-                                                        guard let providerCallback = callback as? CallbackClosure<PaymentProvider> else {
-                                                            callback(Result.failure(error: SDKErrorFactory.unexpectedError()))
-                                                            return
-                                                        }
-
-                                                        providerCallback(result)
+            self?.persistProvider(result)
+            guard let providerCallback = callback as? CallbackClosure<PaymentProvider>
+            else {
+                callback(Result.failure(error: SDKErrorFactory.unexpectedError()))
+                return
+                
+            }
+            
+            guard let self = self
+            else {
+                return providerCallback(result)
+            }
+            
+            if let program = result.successValue()?.loyaltyProgamme,
+               !program.id.isEmpty {
+                LoyaltyUtils.updateLoyaltyStatusFor(paymentProvider: result.successValue(),
+                                                    userDataStore: self.userDataStore,
+                                                    loyaltyProviderRequest: self.loyaltyProviderRequestSender)
+            }
+            
+            providerCallback(result)
         })
     }
 

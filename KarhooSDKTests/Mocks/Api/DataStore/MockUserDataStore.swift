@@ -17,6 +17,8 @@ class MockUserDataStore: UserDataStore {
 
     var credentialsToReturn: Credentials?
     var storedCredentials: Credentials?
+    
+    var loyaltyStatus: LoyaltyStatus?
 
     func getCurrentUser() -> UserInfo? {
         return userToReturn
@@ -70,5 +72,13 @@ class MockUserDataStore: UserDataStore {
     private(set) var updatedPaymentProvider: PaymentProvider?
     func updatePaymentProvider(paymentProvider: PaymentProvider?) {
         self.updatedPaymentProvider = paymentProvider
+    }
+    
+    func updateLoyaltyStatus(status: LoyaltyStatus) {
+        self.loyaltyStatus = status
+    }
+    
+    func getLoyaltyStatusFor(paymentProvider: PaymentProvider) -> LoyaltyStatus? {
+        return loyaltyStatus
     }
 }
