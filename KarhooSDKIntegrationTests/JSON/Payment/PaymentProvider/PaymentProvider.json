@@ -1,9 +1,5 @@
 {
   "provider": {
     "id": "Adyen"
-  },
-  "loyalty_programme": {
-      "id": "ATest",
-      "name:": "ATest Loyalty Programme"
   }
 }
