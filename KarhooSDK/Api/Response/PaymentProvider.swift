@@ -31,6 +31,6 @@ public struct PaymentProvider : KarhooCodableModel {
     enum CodingKeys: String, CodingKey {
         case provider
         case loyaltyProgammes = "loyalty_programmes"
-        case loyaltyProgamme = "loyalty_program"
+        case loyaltyProgamme = "loyalty_programme"
     }
 }
