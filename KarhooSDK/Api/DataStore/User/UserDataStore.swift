@@ -19,7 +19,7 @@ protocol UserDataStore {
     func set(credentials: Credentials)
     func add(observer: UserStateObserver)
     func remove(observer: UserStateObserver)
-    func getLoyaltyStatusFor(paymentProvider: PaymentProvider) -> LoyaltyStatus?
+    func getLoyaltyStatusFor(loyaltyId: String) -> LoyaltyStatus?
     func updateLoyaltyStatus(status: LoyaltyStatus)
 }
 
@@ -215,8 +215,13 @@ final class DefaultUserDataStore: UserDataStore {
         persistantStore.set(encodedStatus, forKey: key)
     }
     
-    func getLoyaltyStatusFor(paymentProvider: PaymentProvider) -> LoyaltyStatus? {
-        let key = getLoyaltyStatusKeyFor(loyaltyId: paymentProvider.loyaltyProgamme.id)
+    func getLoyaltyStatusFor(loyaltyId: String) -> LoyaltyStatus? {
+        guard !loyaltyId.isEmpty
+        else {
+            return nil
+        }
+        
+        let key = getLoyaltyStatusKeyFor(loyaltyId: loyaltyId)
         
         guard let rawData = persistantStore.value(forKey: key) as? Data else {
             return nil

@@ -15,7 +15,7 @@ class LoyaltyUtils {
                                        loyaltyProviderRequest: RequestSender) {
         guard let paymentProvider = paymentProvider,
               !paymentProvider.loyaltyProgamme.id.isEmpty,
-              userDataStore.getLoyaltyStatusFor(paymentProvider: paymentProvider) == nil
+              userDataStore.getLoyaltyStatusFor(loyaltyId: paymentProvider.loyaltyProgamme.id) == nil
         else {
             return
         }
