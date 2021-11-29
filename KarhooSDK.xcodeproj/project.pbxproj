@@ -361,6 +361,7 @@
 		5CC6356E252B57AD00EDD6E3 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6356D252B57AD00EDD6E3 /* AnyCodable.swift */; };
 		5CDD26D424BF4EA900436F01 /* VehicleAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */; };
 		5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */; };
+		6BAAE62D275538D00058B46E /* MockLoyaltyRefreshCurrentStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAAE62C275538D00058B46E /* MockLoyaltyRefreshCurrentStatusInteractor.swift */; };
 		6BB9405227512AB600478ABD /* LoyaltyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB9405127512AB600478ABD /* LoyaltyUtils.swift */; };
 		6BB940582754F85600478ABD /* RefreshCurrentLoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB940572754F85600478ABD /* RefreshCurrentLoyaltyStatusInteractor.swift */; };
 		6BB9405A2754F89F00478ABD /* KarhooRefreshCurrentLoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB940592754F89F00478ABD /* KarhooRefreshCurrentLoyaltyStatusInteractor.swift */; };
@@ -912,6 +913,7 @@
 		5CC6356D252B57AD00EDD6E3 /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
 		5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAvailability.swift; sourceTree = "<group>"; };
 		5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteRequestPoint.swift; sourceTree = "<group>"; };
+		6BAAE62C275538D00058B46E /* MockLoyaltyRefreshCurrentStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyRefreshCurrentStatusInteractor.swift; sourceTree = "<group>"; };
 		6BB9405127512AB600478ABD /* LoyaltyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyUtils.swift; sourceTree = "<group>"; };
 		6BB940572754F85600478ABD /* RefreshCurrentLoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshCurrentLoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
 		6BB940592754F89F00478ABD /* KarhooRefreshCurrentLoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooRefreshCurrentLoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
@@ -2915,6 +2917,7 @@
 				2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */,
 				2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */,
 				2316364427466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift */,
+				6BAAE62C275538D00058B46E /* MockLoyaltyRefreshCurrentStatusInteractor.swift */,
 			);
 			path = Loyalty;
 			sourceTree = "<group>";
@@ -3878,6 +3881,7 @@
 				0981F6C720CEC27A00BF7FB5 /* MockRequestSender.swift in Sources */,
 				4310E4711E9928C800625A0E /* MockBroadcaster.swift in Sources */,
 				09F79E41223A63DA00D5B0B8 /* NonceRequestPayload.swift in Sources */,
+				6BAAE62D275538D00058B46E /* MockLoyaltyRefreshCurrentStatusInteractor.swift in Sources */,
 				09820E7220D7F60100782530 /* UserRegistrationMock.swift in Sources */,
 				095A03E02333DFCB007D805E /* MockUIConfigInteractor.swift in Sources */,
 				6F9A9E602565277800B50753 /* KarhooVerifyQuoteInteractorSpec.swift in Sources */,

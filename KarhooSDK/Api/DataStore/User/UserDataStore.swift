@@ -20,7 +20,7 @@ protocol UserDataStore {
     func add(observer: UserStateObserver)
     func remove(observer: UserStateObserver)
     func getLoyaltyStatusFor(loyaltyId: String) -> LoyaltyStatus?
-    func updateLoyaltyStatus(status: LoyaltyStatus)
+    func updateLoyaltyStatus(status: LoyaltyStatus, forLoyaltyId id: String)
 }
 
 private let staticBroadcaster = Broadcaster<AnyObject>()
@@ -202,10 +202,8 @@ final class DefaultUserDataStore: UserDataStore {
         return guestUser
     }
     
-    func updateLoyaltyStatus(status: LoyaltyStatus) {
-        guard let user = getCurrentUser(),
-              let id = user.paymentProvider?.loyaltyProgamme.id,
-              !id.isEmpty
+    func updateLoyaltyStatus(status: LoyaltyStatus, forLoyaltyId id: String) {
+        guard !id.isEmpty
         else {
             return
         }

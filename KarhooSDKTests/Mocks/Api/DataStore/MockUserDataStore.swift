@@ -74,7 +74,7 @@ class MockUserDataStore: UserDataStore {
         self.updatedPaymentProvider = paymentProvider
     }
     
-    func updateLoyaltyStatus(status: LoyaltyStatus) {
+    func updateLoyaltyStatus(status: LoyaltyStatus, forLoyaltyId: String) {
         self.loyaltyStatus = status
     }
     

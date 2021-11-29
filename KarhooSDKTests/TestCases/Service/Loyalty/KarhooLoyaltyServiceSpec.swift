@@ -18,6 +18,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
     private var mockLoyaltyBurnInteractor: MockLoyaltyBurnInteractor!
     private var mockLoyaltyEarnInteractor: MockLoyaltyEarnInteractor!
     private var mockLoyaltyPreAuthInteractor: MockLoyaltyPreAuthInteractor!
+    private var mockLoyaltyRefreshCurrentStatusInteractor: MockLoyaltyRefreshCurrentStatusInteractor!
     
     private let identifier = "some_id"
     private let currency = "GBP"
@@ -40,12 +41,14 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         mockLoyaltyBurnInteractor = MockLoyaltyBurnInteractor()
         mockLoyaltyEarnInteractor = MockLoyaltyEarnInteractor()
         mockLoyaltyPreAuthInteractor = MockLoyaltyPreAuthInteractor()
+        mockLoyaltyRefreshCurrentStatusInteractor = MockLoyaltyRefreshCurrentStatusInteractor()
         testObject = KarhooLoyaltyService(loyaltyBalanceInteractor: mockLoyaltyBalanceInteractor,
                                           loyaltyConversionInteractor: mockLoyaltyConversionInteractor,
                                           loyaltyStatusInteractor: mockLoyaltyStatusInteractor,
                                           loyaltyBurnInteractor: mockLoyaltyBurnInteractor,
                                           loyaltyEarnInteractor: mockLoyaltyEarnInteractor,
-                                          loyaltyPreAuthInteractor: mockLoyaltyPreAuthInteractor)
+                                          loyaltyPreAuthInteractor: mockLoyaltyPreAuthInteractor,
+                                          loyaltyRefreshCurrentStatusInteractor: mockLoyaltyRefreshCurrentStatusInteractor)
     }
     
     /**
@@ -204,6 +207,31 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockLoyaltyPreAuthInteractor.triggerFail(error: expectedError)
 
+        XCTAssert(expectedError.equals(result?.errorValue()))
+    }
+    
+    func testLoyaltyRefreshStatusSuccess() {
+        let call = testObject.refreshCurrentLoyaltyStatus(identifier: identifier)
+        
+        var result: Result<LoyaltyStatus>?
+        call.execute(callback: { result = $0 })
+        
+        mockLoyaltyRefreshCurrentStatusInteractor.triggerSuccess(result: loyaltyStatusMock)
+        
+        XCTAssertEqual(1000, result?.successValue()?.balance)
+        XCTAssertEqual(false, result?.successValue()?.canBurn)
+        XCTAssertEqual(true, result?.successValue()?.canEarn)
+    }
+    
+    func testLoyaltyRefreshStatusFail() {
+        let call = testObject.refreshCurrentLoyaltyStatus(identifier: identifier)
+        
+        var result: Result<LoyaltyStatus>?
+        call.execute(callback: { result = $0 })
+        
+        let expectedError = TestUtil.getRandomError()
+        mockLoyaltyRefreshCurrentStatusInteractor.triggerFail(error: expectedError)
+        
         XCTAssert(expectedError.equals(result?.errorValue()))
     }
 }

@@ -25,12 +25,19 @@ final class KarhooRefreshCurrentLoyaltyStatusInteractor: RefreshCurrentLoyaltySt
     }
     
     func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
+        guard let identifier = identifier
+        else {
+            let error = KarhooSDKError(code: "K0002", message: "Invalid request. Missing loyalty identifier")
+            callback(.failure(error: error))
+            return
+        }
+        
         requestSender.requestAndDecode(payload: nil,
-                                       endpoint: .loyaltyStatus(identifier: identifier ?? ""),
+                                       endpoint: .loyaltyStatus(identifier: identifier),
                                        callback: { [weak self] (result: Result<T>) in
             if let statusResult = result as? Result<LoyaltyStatus>,
                let status = statusResult.successValue() {
-                self?.userDataStore.updateLoyaltyStatus(status: status)
+                self?.userDataStore.updateLoyaltyStatus(status: status, forLoyaltyId: identifier)
             }
             
             callback(result)

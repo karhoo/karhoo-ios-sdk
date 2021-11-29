@@ -21,13 +21,14 @@ class LoyaltyUtils {
         }
         
         loyaltyProviderRequest.requestAndDecode(payload: nil,
-                                                endpoint: .loyaltyStatus(identifier: paymentProvider.loyaltyProgamme.id)) { (result: Result<LoyaltyStatus>) in
+                                                endpoint: .loyaltyStatus(identifier: paymentProvider.loyaltyProgamme.id),
+                                                callback: { (result: Result<LoyaltyStatus>) in
             guard let status = result.successValue()
             else {
                 return
             }
             
-            userDataStore.updateLoyaltyStatus(status: status)
-        }
+            userDataStore.updateLoyaltyStatus(status: status, forLoyaltyId: paymentProvider.loyaltyProgamme.id)
+        })
     }
 }
