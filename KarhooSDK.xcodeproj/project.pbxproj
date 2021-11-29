@@ -362,6 +362,8 @@
 		5CDD26D424BF4EA900436F01 /* VehicleAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */; };
 		5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */; };
 		6BB9405227512AB600478ABD /* LoyaltyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB9405127512AB600478ABD /* LoyaltyUtils.swift */; };
+		6BB940582754F85600478ABD /* RefreshCurrentLoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB940572754F85600478ABD /* RefreshCurrentLoyaltyStatusInteractor.swift */; };
+		6BB9405A2754F89F00478ABD /* KarhooRefreshCurrentLoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB940592754F89F00478ABD /* KarhooRefreshCurrentLoyaltyStatusInteractor.swift */; };
 		6F11A47D25713BC2003CFE15 /* NetPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F11A47C25713BC2003CFE15 /* NetPrice.swift */; };
 		6F11A48725714549003CFE15 /* FleetRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F11A48625714549003CFE15 /* FleetRating.swift */; };
 		6F19F24C250FB13600E1F771 /* AdyenPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19F24B250FB13600E1F771 /* AdyenPublicKey.swift */; };
@@ -911,6 +913,8 @@
 		5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAvailability.swift; sourceTree = "<group>"; };
 		5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteRequestPoint.swift; sourceTree = "<group>"; };
 		6BB9405127512AB600478ABD /* LoyaltyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyUtils.swift; sourceTree = "<group>"; };
+		6BB940572754F85600478ABD /* RefreshCurrentLoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshCurrentLoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
+		6BB940592754F89F00478ABD /* KarhooRefreshCurrentLoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooRefreshCurrentLoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
 		6F11A47C25713BC2003CFE15 /* NetPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetPrice.swift; sourceTree = "<group>"; };
 		6F11A48625714549003CFE15 /* FleetRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetRating.swift; sourceTree = "<group>"; };
 		6F19F24B250FB13600E1F771 /* AdyenPublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPublicKey.swift; sourceTree = "<group>"; };
@@ -1939,6 +1943,8 @@
 			children = (
 				2316362B2744610E0082EE9B /* LoyaltyStatusInteractor.swift */,
 				2316362D274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift */,
+				6BB940572754F85600478ABD /* RefreshCurrentLoyaltyStatusInteractor.swift */,
+				6BB940592754F89F00478ABD /* KarhooRefreshCurrentLoyaltyStatusInteractor.swift */,
 			);
 			path = LoyaltyStatus;
 			sourceTree = "<group>";
@@ -3634,6 +3640,7 @@
 				6F19F24C250FB13600E1F771 /* AdyenPublicKey.swift in Sources */,
 				4371C59C1EB0E7F70059429D /* KarhooAnalyticsService.swift in Sources */,
 				43D251B61F45C76E005ECB85 /* ReachabilityWrapper.swift in Sources */,
+				6BB940582754F85600478ABD /* RefreshCurrentLoyaltyStatusInteractor.swift in Sources */,
 				142CB39224DC2F5C0065149C /* PaymentProviderInteractor.swift in Sources */,
 				6F9A9E4425641B0C00B50753 /* VerifyQuoteInteractor.swift in Sources */,
 				43F9399F1F3C85A300914E18 /* HttpClient.swift in Sources */,
@@ -3744,6 +3751,7 @@
 				BAA0A3538DD38C00232154EB /* MeetingPoint.swift in Sources */,
 				274217F5C000E1C615D797C9 /* Categories.swift in Sources */,
 				FC57F943212EEC56009193CB /* TripUpdateInteractor.swift in Sources */,
+				6BB9405A2754F89F00478ABD /* KarhooRefreshCurrentLoyaltyStatusInteractor.swift in Sources */,
 				274219FB67E45564E6C421C7 /* QuoteListId.swift in Sources */,
 				2742125CDD868E90FDAED0B4 /* UserInfo.swift in Sources */,
 				0970BA7221136F870015A170 /* KarhooCall.swift in Sources */,
