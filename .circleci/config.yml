@@ -3,13 +3,13 @@ version: 2.1
 jobs:
   build-and-test:
     macos:
-      xcode: 12.0.0
+      xcode: 12.2.0
     working_directory: /Users/distiller/project/KarhooSDK.xcodeproj
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: unit_tests_integration_tests
     shell: /bin/bash --login -eo pipefail
-    resource_class: xlarge
+    resource_class: medium
     steps:
       - checkout
       - run: sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
