@@ -19,7 +19,7 @@ jobs:
           name: Set Ruby Version
           command: |
            echo 'chruby ruby-2.7.2' >> ~/.bash_profile
-           gem install bundler:2.2.7
+           gem install bundler:2.2.15
       - restore_cache:
           name: Restore cache - Load installed gems from cache if possible -
           keys:
