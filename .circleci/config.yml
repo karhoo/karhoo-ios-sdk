@@ -12,12 +12,10 @@ jobs:
     resource_class: medium
     steps:
       - checkout
-      - run:
-          name: Enable private repo cloning from GIT for Swift Package Manager
-          command: |
-            sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
-            for ip in $(dig @8.8.8.8 bitbucket.org +short); do ssh-keyscan bitbucket.org,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
-            for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
+      - run: sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
+      - run: rm ~/.ssh/id_rsa || true
+      - run: for ip in $(dig @8.8.8.8 bitbucket.org +short); do ssh-keyscan bitbucket.org,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true 
+      - run: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
       - run:
           name: Bundle install
           command: bundle check || bundle install
