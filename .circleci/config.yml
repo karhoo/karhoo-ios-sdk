@@ -9,7 +9,7 @@ jobs:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: unit_tests_integration_tests
     shell: /bin/bash --login -eo pipefail
-    resource_class: medium
+    resource_class: xlarge
     steps:
       - checkout
       - run: sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
