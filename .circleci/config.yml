@@ -31,6 +31,7 @@ jobs:
           command: |
            bundle config set --local path 'vendor/bundle'
            bundle check || bundle install
+           bundle update fastlane
       - save_cache:
           name: Save cache - Save installed gems from previous step -
           key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
@@ -55,7 +56,6 @@ jobs:
       - run:
           name: fastlane
           command: |
-            bundle update fastlane
             bundle exec fastlane $FASTLANE_LANE
       - run:
           name: Fastlane Xcov report
