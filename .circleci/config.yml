@@ -19,6 +19,7 @@ jobs:
           name: Set Ruby Version
           command: |
            echo 'chruby ruby-2.7.2' >> ~/.bash_profile
+           bundle install
            gem install bundler:2.2.15
       - restore_cache:
           name: Restore cache - Load installed gems from cache if possible -
@@ -31,7 +32,6 @@ jobs:
           command: |
            bundle config set --local path 'vendor/bundle'
            bundle check || bundle install
-           bundle update fastlane
       - save_cache:
           name: Save cache - Save installed gems from previous step -
           key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
