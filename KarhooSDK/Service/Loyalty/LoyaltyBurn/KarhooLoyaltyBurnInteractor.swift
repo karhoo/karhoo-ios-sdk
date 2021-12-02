@@ -27,6 +27,8 @@ final class KarhooLoyaltyBurnInteractor: LoyaltyBurnInteractor {
     
     func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
         guard let currency = self.currency else {
+            let error = KarhooSDKError(code: "K0002", message: "Invalid request. Missing currency")
+            callback(.failure(error: error))
             return
         }
         

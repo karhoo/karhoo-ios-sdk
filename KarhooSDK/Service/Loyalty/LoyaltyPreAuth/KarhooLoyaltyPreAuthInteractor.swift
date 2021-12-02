@@ -23,7 +23,9 @@ final class KarhooLoyaltyPreAuthInteractor: LoyaltyPreAuthInteractor {
     
     func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
         guard let preAuthRequest = self.preAuthRequest else {
-            return
+            let error = KarhooSDKError(code: "K0002", message: "Invalid request. Preauth failed.")
+            callback(.failure(error: error))
+            return 
         }
         
         let payload = LoyaltyPreAuthPayload(currency: preAuthRequest.currency, points: preAuthRequest.points, flexpay: preAuthRequest.flexpay, membership: preAuthRequest.membership)
