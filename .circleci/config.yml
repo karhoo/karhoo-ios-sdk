@@ -1,4 +1,4 @@
-# .circleci/config.yml
+# Network SDK .circleci/config.yml
 version: 2.1
 jobs:
   build-and-test:
