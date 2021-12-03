@@ -1,9 +1,9 @@
-# .circleci/config.yml
+# Network SDK .circleci/config.yml
 version: 2.1
 jobs:
   build-and-test:
     macos:
-      xcode: 12.0.0
+      xcode: 12.5.1
     working_directory: /Users/distiller/project/KarhooSDK.xcodeproj
     environment:
       FL_OUTPUT_DIR: output
@@ -12,16 +12,31 @@ jobs:
     resource_class: medium
     steps:
       - checkout
+      - run: sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
+      - run: for ip in $(dig @8.8.8.8 bitbucket.org +short); do ssh-keyscan bitbucket.org,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true 
+      - run: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
       - run:
-          name: Enable private repo cloning from GIT for Swift Package Manager
+          name: Set Ruby Version
           command: |
-            sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
-            rm ~/.ssh/id_rsa || true
-            for ip in $(dig @8.8.8.8 bitbucket.org +short); do ssh-keyscan bitbucket.org,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
-            for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
+           echo 'chruby ruby-2.7.2' >> ~/.bash_profile
+           bundle install
+           gem install bundler:2.2.15
+      - restore_cache:
+          name: Restore cache - Load installed gems from cache if possible -
+          keys:
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}
+            - gem-cache-v1
       - run:
-          name: Bundle install
-          command: bundle check || bundle install
+          name: Install Gemfile for Fastlane
+          command: |
+           bundle config set --local path 'vendor/bundle'
+           bundle check || bundle install
+      - save_cache:
+          name: Save cache - Save installed gems from previous step -
+          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run:
           name: Update Fastlane
           command: bundle update fastlane
@@ -40,7 +55,8 @@ jobs:
             echo "return .karhooUser }}" >> Client/Keys.swift
       - run:
           name: fastlane
-          command: bundle exec fastlane $FASTLANE_LANE
+          command: |
+            bundle exec fastlane $FASTLANE_LANE
       - run:
           name: Fastlane Xcov report
           command: bundle exec fastlane ios XcovReport
@@ -51,7 +67,7 @@ jobs:
 
   adhoc:
     macos:
-      xcode: 12.0.0
+      xcode: 12.5.1
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: adhoc
