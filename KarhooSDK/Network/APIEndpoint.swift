@@ -40,6 +40,10 @@ enum APIEndpoint {
     case adyenPublicKey
     case quoteCoverage
     case verifyQuote(quoteID: String)
+    case loyaltyStatus(identifier: String)
+    case loyaltyBurn(identifier: String, currency: String, amount: Int)
+    case loyaltyEarn(identifier: String, currency: String, amount: Int, burnPoints: Int)
+    case loyaltyPreAuth(identifier: String)
     case loyaltyBalance(identifier: String)
     case loyaltyConversion(identifier: String)
     
@@ -47,6 +51,11 @@ enum APIEndpoint {
         switch self {
         case .custom(let path, _):
             return path
+        case .loyaltyStatus( _),
+                .loyaltyBurn( _, _, _),
+                .loyaltyEarn( _, _, _, _),
+                .loyaltyPreAuth( _):
+            return relativePath
         default:
             return "/\(version)\(relativePath)"
         }
@@ -131,6 +140,14 @@ enum APIEndpoint {
             return "/quotes/coverage"
         case .verifyQuote(let quoteID):
             return "/quotes/verify/\(quoteID)"
+        case .loyaltyStatus(let identifier):
+            return "/loyalty-\(identifier)/status"
+        case .loyaltyBurn(let identifier, let currency, let amount):
+            return "/loyalty-\(identifier)/exrates/\(currency)/burnpoints?amount=\(amount)"
+        case .loyaltyEarn(let identifier, let currency, let amount, let burnPoints):
+            return "/loyalty-\(identifier)/exrates/\(currency)/earnpoints?total_amount=\(amount)&burn_points=\(burnPoints)"
+        case .loyaltyPreAuth(let identifier):
+            return "/loyalty-\(identifier)/pre-auth"
         case .loyaltyBalance(let identifier):
             return "/payments/loyalty/programmes/\(identifier)/balance"
         case .loyaltyConversion(let identifier):
@@ -178,6 +195,10 @@ enum APIEndpoint {
         case .adyenPublicKey: return .get
         case .quoteCoverage: return .get
         case .verifyQuote: return .get
+        case .loyaltyStatus: return .get
+        case .loyaltyBurn: return .get
+        case .loyaltyEarn: return .get
+        case .loyaltyPreAuth: return .post
         case .loyaltyBalance: return .get
         case .loyaltyConversion: return .get
         }

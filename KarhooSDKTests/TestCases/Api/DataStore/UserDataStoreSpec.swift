@@ -418,6 +418,41 @@ class UserDataStoreSpec: XCTestCase {
 
         MockSDKConfig.authenticationMethod = .karhooUser
     }
+    
+    /**
+     * When: Updating the status for a loyalty program
+     * Then: That status should be retrived from the persistent store
+     */
+    func testUpdateLoyaltyStatusForLoyaltyId() {
+        let loyaltyId = TestUtil.getRandomString()
+        let balance = TestUtil.getRandomInt()
+        testObject.updateLoyaltyStatus(status: LoyaltyStatus(balance: balance, canBurn: true, canEarn: false), forLoyaltyId: loyaltyId)
+        let status = testObject.getLoyaltyStatusFor(loyaltyId: loyaltyId)
+        
+        XCTAssertNotNil(status)
+        XCTAssertEqual(status?.balance, balance)
+    }
+    
+    /**
+     * Given: The status was not persisted for a given loyalty id
+     * Then: No status should  be retrived from the persistent store
+     */
+    func testGetLoyaltyStatusForLoyaltyIdForUnexistingLoyaltyId() {
+        let loyaltyId = TestUtil.getRandomString()
+        let status = testObject.getLoyaltyStatusFor(loyaltyId: loyaltyId)
+        
+        XCTAssertNil(status)
+    }
+    
+    /**
+     * Given: The loyalty id is an empty string
+     * Then: No status should  be retrived from the persistent store
+     */
+    func testGetLoyaltyStatusForLoyaltyIdForEmptyLoyaltyId() {
+        let status = testObject.getLoyaltyStatusFor(loyaltyId: "")
+        
+        XCTAssertNil(status)
+    }
 }
 
 private class MockObserver: UserStateObserver {
