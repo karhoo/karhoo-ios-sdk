@@ -18,6 +18,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
     private var mockLoyaltyBurnInteractor: MockLoyaltyBurnInteractor!
     private var mockLoyaltyEarnInteractor: MockLoyaltyEarnInteractor!
     private var mockLoyaltyPreAuthInteractor: MockLoyaltyPreAuthInteractor!
+    private var mockUserDataStore: MockUserDataStore!
     
     private let identifier = "some_id"
     private let currency = "GBP"
@@ -34,13 +35,15 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        mockUserDataStore = MockUserDataStore()
         mockLoyaltyBalanceInteractor = MockLoyaltyBalanceInteractor()
         mockLoyaltyConversionInteractor = MockLoyaltyConversionInteractor()
         mockLoyaltyStatusInteractor = MockLoyaltyStatusInteractor()
         mockLoyaltyBurnInteractor = MockLoyaltyBurnInteractor()
         mockLoyaltyEarnInteractor = MockLoyaltyEarnInteractor()
         mockLoyaltyPreAuthInteractor = MockLoyaltyPreAuthInteractor()
-        testObject = KarhooLoyaltyService(loyaltyBalanceInteractor: mockLoyaltyBalanceInteractor,
+        testObject = KarhooLoyaltyService(userDataStore: mockUserDataStore,
+                                          loyaltyBalanceInteractor: mockLoyaltyBalanceInteractor,
                                           loyaltyConversionInteractor: mockLoyaltyConversionInteractor,
                                           loyaltyStatusInteractor: mockLoyaltyStatusInteractor,
                                           loyaltyBurnInteractor: mockLoyaltyBurnInteractor,

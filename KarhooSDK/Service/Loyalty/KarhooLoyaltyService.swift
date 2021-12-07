@@ -9,6 +9,7 @@
 import Foundation
 
 final class KarhooLoyaltyService: LoyaltyService {
+    private let userDataStore: UserDataStore
     private let loyaltyBalanceInteractor: LoyaltyBalanceInteractor
     private let loyaltyConversionInteractor: LoyaltyConversionInteractor
     private let loyaltyStatusInteractor: LoyaltyStatusInteractor
@@ -16,12 +17,14 @@ final class KarhooLoyaltyService: LoyaltyService {
     private let loyaltyEarnInteractor: LoyaltyEarnInteractor
     private let loyaltyPreAuthInteractor: LoyaltyPreAuthInteractor
     
-    init(loyaltyBalanceInteractor: LoyaltyBalanceInteractor = KarhooLoyaltyBalanceInteractor(),
+    init(userDataStore: UserDataStore = DefaultUserDataStore(),
+         loyaltyBalanceInteractor: LoyaltyBalanceInteractor = KarhooLoyaltyBalanceInteractor(),
          loyaltyConversionInteractor: LoyaltyConversionInteractor = KarhooLoyaltyConversionInteractor(),
          loyaltyStatusInteractor: LoyaltyStatusInteractor = KarhooLoyaltyStatusInteractor(),
          loyaltyBurnInteractor: LoyaltyBurnInteractor = KarhooLoyaltyBurnInteractor(),
          loyaltyEarnInteractor: LoyaltyEarnInteractor = KarhooLoyaltyEarnInteractor(),
          loyaltyPreAuthInteractor: LoyaltyPreAuthInteractor = KarhooLoyaltyPreAuthInteractor()) {
+        self.userDataStore = userDataStore
         self.loyaltyBalanceInteractor = loyaltyBalanceInteractor
         self.loyaltyConversionInteractor = loyaltyConversionInteractor
         self.loyaltyStatusInteractor = loyaltyStatusInteractor
@@ -63,5 +66,9 @@ final class KarhooLoyaltyService: LoyaltyService {
     func getLoyaltyPreAuth(preAuthRequest: LoyaltyPreAuth) -> Call<LoyaltyNonce> {
         loyaltyPreAuthInteractor.set(loyaltyPreAuth: preAuthRequest)
         return Call(executable: loyaltyPreAuthInteractor)
+    }
+    
+    func getCurrentLoyaltyStatus(identifier: String) -> LoyaltyStatus? {
+        return userDataStore.getLoyaltyStatusFor(loyaltyId: identifier)
     }
 }

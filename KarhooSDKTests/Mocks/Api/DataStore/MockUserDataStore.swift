@@ -11,12 +11,14 @@ import Foundation
 @testable import KarhooSDK
 
 class MockUserDataStore: UserDataStore {
-
+    
     var userToReturn: UserInfo?
     var storedUser: UserInfo?
 
     var credentialsToReturn: Credentials?
     var storedCredentials: Credentials?
+    
+    var loyaltyStatus: LoyaltyStatus?
 
     func getCurrentUser() -> UserInfo? {
         return userToReturn
@@ -70,5 +72,17 @@ class MockUserDataStore: UserDataStore {
     private(set) var updatedPaymentProvider: PaymentProvider?
     func updatePaymentProvider(paymentProvider: PaymentProvider?) {
         self.updatedPaymentProvider = paymentProvider
+    }
+    
+    func updateLoyaltyStatus(status: LoyaltyStatus, forLoyaltyId: String) {
+        self.loyaltyStatus = status
+    }
+    
+    func getLoyaltyStatusFor(paymentProvider: PaymentProvider) -> LoyaltyStatus? {
+        return loyaltyStatus
+    }
+    
+    func getLoyaltyStatusFor(loyaltyId: String) -> LoyaltyStatus? {
+        return loyaltyStatus
     }
 }
