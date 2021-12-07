@@ -22,6 +22,4 @@ public protocol LoyaltyService {
     func getLoyaltyPreAuth(preAuthRequest: LoyaltyPreAuth) -> Call<LoyaltyNonce>
     
     func getCurrentLoyaltyStatus(identifier: String) -> LoyaltyStatus?
-    
-    func refreshCurrentLoyaltyStatus(identifier: String) -> Call<LoyaltyStatus>
 }

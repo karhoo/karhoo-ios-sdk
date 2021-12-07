@@ -12,9 +12,12 @@ final class KarhooLoyaltyStatusInteractor: LoyaltyStatusInteractor {
     
     private let requestSender: RequestSender
     private var identifier: String?
+    private let userDataStore: UserDataStore
     
-    init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
+    init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+         userDataStore: UserDataStore = DefaultUserDataStore()) {
         self.requestSender = requestSender
+        self.userDataStore = userDataStore
     }
     
     func set(identifier: String) {
@@ -22,9 +25,23 @@ final class KarhooLoyaltyStatusInteractor: LoyaltyStatusInteractor {
     }
     
     func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
+        guard let identifier = identifier
+        else {
+            let error = KarhooSDKError(code: "K0002", message: "Invalid request. Missing loyalty identifier")
+            callback(.failure(error: error))
+            return
+        }
+        
         requestSender.requestAndDecode(payload: nil,
-                                       endpoint: .loyaltyStatus(identifier: identifier ?? ""),
-                                       callback: callback)
+                                       endpoint: .loyaltyStatus(identifier: identifier),
+                                       callback: { [weak self] (result: Result<T>) in
+            if let statusResult = result as? Result<LoyaltyStatus>,
+               let status = statusResult.successValue() {
+                self?.userDataStore.updateLoyaltyStatus(status: status, forLoyaltyId: identifier)
+            }
+            
+            callback(result)
+        })
     }
     
     func cancel() {

@@ -16,7 +16,6 @@ final class KarhooLoyaltyService: LoyaltyService {
     private let loyaltyBurnInteractor: LoyaltyBurnInteractor
     private let loyaltyEarnInteractor: LoyaltyEarnInteractor
     private let loyaltyPreAuthInteractor: LoyaltyPreAuthInteractor
-    private let loyaltyRefreshCurrentStatusInteractor: RefreshCurrentLoyaltyStatusInteractor
     
     init(userDataStore: UserDataStore = DefaultUserDataStore(),
          loyaltyBalanceInteractor: LoyaltyBalanceInteractor = KarhooLoyaltyBalanceInteractor(),
@@ -24,8 +23,7 @@ final class KarhooLoyaltyService: LoyaltyService {
          loyaltyStatusInteractor: LoyaltyStatusInteractor = KarhooLoyaltyStatusInteractor(),
          loyaltyBurnInteractor: LoyaltyBurnInteractor = KarhooLoyaltyBurnInteractor(),
          loyaltyEarnInteractor: LoyaltyEarnInteractor = KarhooLoyaltyEarnInteractor(),
-         loyaltyPreAuthInteractor: LoyaltyPreAuthInteractor = KarhooLoyaltyPreAuthInteractor(),
-         loyaltyRefreshCurrentStatusInteractor: RefreshCurrentLoyaltyStatusInteractor = KarhooRefreshCurrentLoyaltyStatusInteractor()) {
+         loyaltyPreAuthInteractor: LoyaltyPreAuthInteractor = KarhooLoyaltyPreAuthInteractor()) {
         self.userDataStore = userDataStore
         self.loyaltyBalanceInteractor = loyaltyBalanceInteractor
         self.loyaltyConversionInteractor = loyaltyConversionInteractor
@@ -33,7 +31,6 @@ final class KarhooLoyaltyService: LoyaltyService {
         self.loyaltyBurnInteractor = loyaltyBurnInteractor
         self.loyaltyEarnInteractor = loyaltyEarnInteractor
         self.loyaltyPreAuthInteractor = loyaltyPreAuthInteractor
-        self.loyaltyRefreshCurrentStatusInteractor = loyaltyRefreshCurrentStatusInteractor
     }
     
     func getLoyaltyBalance(identifier: String) -> Call<LoyaltyBalance> {
@@ -73,10 +70,5 @@ final class KarhooLoyaltyService: LoyaltyService {
     
     func getCurrentLoyaltyStatus(identifier: String) -> LoyaltyStatus? {
         return userDataStore.getLoyaltyStatusFor(loyaltyId: identifier)
-    }
-    
-    func refreshCurrentLoyaltyStatus(identifier: String) -> Call<LoyaltyStatus> {
-        loyaltyRefreshCurrentStatusInteractor.set(identifier: identifier)
-        return Call(executable: loyaltyRefreshCurrentStatusInteractor)
     }
 }
