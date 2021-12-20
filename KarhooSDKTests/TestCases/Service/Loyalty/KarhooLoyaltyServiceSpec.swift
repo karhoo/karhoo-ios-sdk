@@ -195,7 +195,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         
         mockLoyaltyPreAuthInteractor.triggerSuccess(result: loyaltyNonceMock)
         
-        XCTAssertEqual("123A", result?.successValue()?.loyaltyNonce)
+        XCTAssertEqual("123A", result?.successValue()?.nonce)
     }
     
     func testLoyaltyPreAuthFail() {
