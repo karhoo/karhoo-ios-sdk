@@ -10,10 +10,10 @@ import Foundation
 
 public struct LoyaltyNonce: KarhooCodableModel {
     
-    public let loyaltyNonce: String
+    public let nonce: String
     
     public init(loyaltyNonce: String = "") {
-        self.loyaltyNonce = loyaltyNonce
+        self.nonce = loyaltyNonce
     }
     
     enum CodingKeys: String, CodingKey {
@@ -22,11 +22,11 @@ public struct LoyaltyNonce: KarhooCodableModel {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.loyaltyNonce = (try? container.decode(String.self, forKey: .nonce)) ?? ""
+        self.nonce = (try? container.decode(String.self, forKey: .nonce)) ?? ""
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(loyaltyNonce, forKey: .nonce)
+        try container.encode(nonce, forKey: .nonce)
     }
 }
