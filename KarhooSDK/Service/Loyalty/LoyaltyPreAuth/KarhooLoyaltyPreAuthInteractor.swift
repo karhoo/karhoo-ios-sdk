@@ -21,22 +21,21 @@ final class KarhooLoyaltyPreAuthInteractor: LoyaltyPreAuthInteractor {
         self.preAuthRequest = loyaltyPreAuth
     }
     
-    func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
+    func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
         guard let preAuthRequest = self.preAuthRequest else {
             let error = KarhooSDKError(code: "K0002", message: "Invalid request. Preauth failed.")
             callback(.failure(error: error))
             return 
         }
         
-        let payload = LoyaltyPreAuthPayload(currency: preAuthRequest.currency, points: preAuthRequest.points, flexpay: preAuthRequest.flexpay, membership: preAuthRequest.membership)
+        let payload = LoyaltyPreAuthPayload(currency: preAuthRequest.currency,
+                                            points: preAuthRequest.points,
+                                            flexpay: preAuthRequest.flexpay,
+                                            membership: preAuthRequest.membership)
         
-        requestSender.request(payload: payload,
-                              endpoint: endpoint(identifier: preAuthRequest.identifier),
-                              callback: { result in
-                                guard let resultValue = result.successValue(orErrorCallback: callback) as? T
-                                else { return }
-                                    callback(Result.success(result: resultValue))
-        })
+        requestSender.requestAndDecode(payload: payload,
+                                       endpoint: .loyaltyPreAuth(identifier: preAuthRequest.identifier),
+                                       callback: callback)
     }
     
     func cancel() {
