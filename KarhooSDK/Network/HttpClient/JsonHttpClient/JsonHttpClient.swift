@@ -89,8 +89,8 @@ final class JsonHttpClient: HttpClient {
         
         analyticsService.send(eventName: .requestFails, payload: error != nil ? [AnalyticsConstants.Keys.requestError.rawValue: error.debugDescription,
                                                                                  AnalyticsConstants.Keys.requestUrl.rawValue: requestUrl] : [AnalyticsConstants.Keys.requestUrl.rawValue: requestUrl])
-                if let error = response.decodeError() {
-            if error.code.isEmpty {
+        if let error = response.decodeError() {
+            if error.code.isEmpty, error.slug.isEmpty {
                 completion(Result.failure(error: SDKErrorFactory.unexpectedError()))
             } else {
                 completion(Result.failure(error: error))

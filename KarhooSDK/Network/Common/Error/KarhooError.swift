@@ -29,7 +29,8 @@ extension KarhooError {
     public func equals(_ error: KarhooError?) -> Bool {
         return self.code == error?.code &&
                self.message == error?.message &&
-               self.userMessage == error?.userMessage
+               self.userMessage == error?.userMessage &&
+               self.slug == error?.slug
     }
 
     public var type: KarhooErrorType {
