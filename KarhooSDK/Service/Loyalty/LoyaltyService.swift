@@ -12,4 +12,14 @@ public protocol LoyaltyService {
     func getLoyaltyBalance(identifier: String) -> Call<LoyaltyBalance>
     
     func getLoyaltyConversion(identifier: String) -> Call<LoyaltyConversion>
+    
+    func getLoyaltyStatus(identifier: String) -> Call<LoyaltyStatus>
+    
+    func getLoyaltyBurn(identifier: String, currency: String, amount: Int) -> Call<LoyaltyPoints>
+    
+    func getLoyaltyEarn(identifier: String, currency: String, amount: Int, burnPoints: Int) -> Call<LoyaltyPoints>
+    
+    func getLoyaltyPreAuth(preAuthRequest: LoyaltyPreAuth) -> Call<LoyaltyNonce>
+    
+    func getCurrentLoyaltyStatus(identifier: String) -> LoyaltyStatus?
 }

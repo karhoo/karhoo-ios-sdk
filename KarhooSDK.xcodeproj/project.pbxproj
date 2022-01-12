@@ -169,6 +169,28 @@
 		230FD90126A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD90026A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift */; };
 		230FD90726A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD90626A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift */; };
 		230FD92B26A18C76009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD91826A18B04009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift */; };
+		23163623274274330082EE9B /* LoyaltyStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23163622274274330082EE9B /* LoyaltyStatus.swift */; };
+		23163625274276E40082EE9B /* LoyaltyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23163624274276E40082EE9B /* LoyaltyPoints.swift */; };
+		2316362727445BA50082EE9B /* LoyaltyNonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362627445BA50082EE9B /* LoyaltyNonce.swift */; };
+		2316362927445E970082EE9B /* LoyaltyPreAuthPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362827445E970082EE9B /* LoyaltyPreAuthPayload.swift */; };
+		2316362C2744610E0082EE9B /* LoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362B2744610E0082EE9B /* LoyaltyStatusInteractor.swift */; };
+		2316362E274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316362D274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift */; };
+		23163632274573040082EE9B /* LoyaltyBurnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23163631274573040082EE9B /* LoyaltyBurnInteractor.swift */; };
+		23163634274573910082EE9B /* KarhooLoyaltyBurnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23163633274573910082EE9B /* KarhooLoyaltyBurnInteractor.swift */; };
+		23163636274574EC0082EE9B /* LoyaltyEarnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23163635274574EC0082EE9B /* LoyaltyEarnInteractor.swift */; };
+		231636382745752A0082EE9B /* KarhooLoyaltyEarnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231636372745752A0082EE9B /* KarhooLoyaltyEarnInteractor.swift */; };
+		2316363B274666800082EE9B /* LoyaltyPreAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316363A274666800082EE9B /* LoyaltyPreAuthInteractor.swift */; };
+		2316363D274666CF0082EE9B /* KarhooLoyaltyPreAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316363C274666CF0082EE9B /* KarhooLoyaltyPreAuthInteractor.swift */; };
+		2316363F274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316363E274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift */; };
+		2316364127466A680082EE9B /* MockLoyaltyBurnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */; };
+		2316364327466B300082EE9B /* MockLoyaltyEarnInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */; };
+		2316364527466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316364427466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift */; };
+		2316364D27469AC50082EE9B /* LoyaltyNonce.json in Resources */ = {isa = PBXBuildFile; fileRef = 2316364C27469AC50082EE9B /* LoyaltyNonce.json */; };
+		2316364F27469B3D0082EE9B /* LoyaltyStatus.json in Resources */ = {isa = PBXBuildFile; fileRef = 2316364E27469B3D0082EE9B /* LoyaltyStatus.json */; };
+		2316365327469DEA0082EE9B /* LoyaltyPoints.json in Resources */ = {isa = PBXBuildFile; fileRef = 2316365227469DEA0082EE9B /* LoyaltyPoints.json */; };
+		2316365527469E290082EE9B /* LoyaltyPreAuthPayload.json in Resources */ = {isa = PBXBuildFile; fileRef = 2316365427469E290082EE9B /* LoyaltyPreAuthPayload.json */; };
+		231636622747BFF60082EE9B /* LoyaltyPreAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231636612747BFF60082EE9B /* LoyaltyPreAuth.swift */; };
+		2316366A274BC3CA0082EE9B /* KarhooLoyaltyStatusInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23163669274BC3CA0082EE9B /* KarhooLoyaltyStatusInteractorSpec.swift */; };
 		231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231652D925BADEEA003C449B /* QuoteStatus.swift */; };
 		233DB46723433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */; };
 		233DB46923433F0400BCBC3F /* UserUpdateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DB46823433F0400BCBC3F /* UserUpdateMock.swift */; };
@@ -339,6 +361,7 @@
 		5CC6356E252B57AD00EDD6E3 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6356D252B57AD00EDD6E3 /* AnyCodable.swift */; };
 		5CDD26D424BF4EA900436F01 /* VehicleAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */; };
 		5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */; };
+		6BB9405227512AB600478ABD /* LoyaltyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB9405127512AB600478ABD /* LoyaltyUtils.swift */; };
 		6F11A47D25713BC2003CFE15 /* NetPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F11A47C25713BC2003CFE15 /* NetPrice.swift */; };
 		6F11A48725714549003CFE15 /* FleetRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F11A48625714549003CFE15 /* FleetRating.swift */; };
 		6F19F24C250FB13600E1F771 /* AdyenPublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F19F24B250FB13600E1F771 /* AdyenPublicKey.swift */; };
@@ -694,6 +717,28 @@
 		230FD90026A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginWithCredentialsInteractor.swift; sourceTree = "<group>"; };
 		230FD90626A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooAuthLoginWithCredentialsInteractor.swift; sourceTree = "<group>"; };
 		230FD91826A18B04009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooAuthLoginWithCredentialsSpec.swift; sourceTree = "<group>"; };
+		23163622274274330082EE9B /* LoyaltyStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyStatus.swift; sourceTree = "<group>"; };
+		23163624274276E40082EE9B /* LoyaltyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyPoints.swift; sourceTree = "<group>"; };
+		2316362627445BA50082EE9B /* LoyaltyNonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyNonce.swift; sourceTree = "<group>"; };
+		2316362827445E970082EE9B /* LoyaltyPreAuthPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyPreAuthPayload.swift; sourceTree = "<group>"; };
+		2316362B2744610E0082EE9B /* LoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
+		2316362D274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
+		23163631274573040082EE9B /* LoyaltyBurnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyBurnInteractor.swift; sourceTree = "<group>"; };
+		23163633274573910082EE9B /* KarhooLoyaltyBurnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyBurnInteractor.swift; sourceTree = "<group>"; };
+		23163635274574EC0082EE9B /* LoyaltyEarnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyEarnInteractor.swift; sourceTree = "<group>"; };
+		231636372745752A0082EE9B /* KarhooLoyaltyEarnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyEarnInteractor.swift; sourceTree = "<group>"; };
+		2316363A274666800082EE9B /* LoyaltyPreAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyPreAuthInteractor.swift; sourceTree = "<group>"; };
+		2316363C274666CF0082EE9B /* KarhooLoyaltyPreAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyPreAuthInteractor.swift; sourceTree = "<group>"; };
+		2316363E274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyStatusInteractor.swift; sourceTree = "<group>"; };
+		2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyBurnInteractor.swift; sourceTree = "<group>"; };
+		2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyEarnInteractor.swift; sourceTree = "<group>"; };
+		2316364427466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoyaltyPreAuthInteractor.swift; sourceTree = "<group>"; };
+		2316364C27469AC50082EE9B /* LoyaltyNonce.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoyaltyNonce.json; sourceTree = "<group>"; };
+		2316364E27469B3D0082EE9B /* LoyaltyStatus.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoyaltyStatus.json; sourceTree = "<group>"; };
+		2316365227469DEA0082EE9B /* LoyaltyPoints.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoyaltyPoints.json; sourceTree = "<group>"; };
+		2316365427469E290082EE9B /* LoyaltyPreAuthPayload.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoyaltyPreAuthPayload.json; sourceTree = "<group>"; };
+		231636612747BFF60082EE9B /* LoyaltyPreAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyPreAuth.swift; sourceTree = "<group>"; };
+		23163669274BC3CA0082EE9B /* KarhooLoyaltyStatusInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooLoyaltyStatusInteractorSpec.swift; sourceTree = "<group>"; };
 		231652D925BADEEA003C449B /* QuoteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteStatus.swift; sourceTree = "<group>"; };
 		233DB46623433EC200BCBC3F /* MockUpdateUserDetailsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUpdateUserDetailsInteractor.swift; sourceTree = "<group>"; };
 		233DB46823433F0400BCBC3F /* UserUpdateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUpdateMock.swift; sourceTree = "<group>"; };
@@ -865,6 +910,7 @@
 		5CC6356D252B57AD00EDD6E3 /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
 		5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAvailability.swift; sourceTree = "<group>"; };
 		5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteRequestPoint.swift; sourceTree = "<group>"; };
+		6BB9405127512AB600478ABD /* LoyaltyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyUtils.swift; sourceTree = "<group>"; };
 		6F11A47C25713BC2003CFE15 /* NetPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetPrice.swift; sourceTree = "<group>"; };
 		6F11A48625714549003CFE15 /* FleetRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetRating.swift; sourceTree = "<group>"; };
 		6F19F24B250FB13600E1F771 /* AdyenPublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPublicKey.swift; sourceTree = "<group>"; };
@@ -1513,6 +1559,9 @@
 				27421AB287B1A33F00AC4119 /* UserInfo.swift */,
 				313DC2DC20221D0100D9DD1B /* Vehicle.swift */,
 				5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */,
+				23163622274274330082EE9B /* LoyaltyStatus.swift */,
+				23163624274276E40082EE9B /* LoyaltyPoints.swift */,
+				2316362627445BA50082EE9B /* LoyaltyNonce.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -1885,6 +1934,50 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2316362A274460C90082EE9B /* LoyaltyStatus */ = {
+			isa = PBXGroup;
+			children = (
+				2316362B2744610E0082EE9B /* LoyaltyStatusInteractor.swift */,
+				2316362D274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift */,
+			);
+			path = LoyaltyStatus;
+			sourceTree = "<group>";
+		};
+		2316362F2745050B0082EE9B /* LoyaltyBurn */ = {
+			isa = PBXGroup;
+			children = (
+				23163631274573040082EE9B /* LoyaltyBurnInteractor.swift */,
+				23163633274573910082EE9B /* KarhooLoyaltyBurnInteractor.swift */,
+			);
+			path = LoyaltyBurn;
+			sourceTree = "<group>";
+		};
+		231636302745051C0082EE9B /* LoyaltyEarn */ = {
+			isa = PBXGroup;
+			children = (
+				23163635274574EC0082EE9B /* LoyaltyEarnInteractor.swift */,
+				231636372745752A0082EE9B /* KarhooLoyaltyEarnInteractor.swift */,
+			);
+			path = LoyaltyEarn;
+			sourceTree = "<group>";
+		};
+		23163639274666680082EE9B /* LoyaltyPreAuth */ = {
+			isa = PBXGroup;
+			children = (
+				2316363A274666800082EE9B /* LoyaltyPreAuthInteractor.swift */,
+				2316363C274666CF0082EE9B /* KarhooLoyaltyPreAuthInteractor.swift */,
+			);
+			path = LoyaltyPreAuth;
+			sourceTree = "<group>";
+		};
+		23163668274BC3AF0082EE9B /* LoyaltyStatus */ = {
+			isa = PBXGroup;
+			children = (
+				23163669274BC3CA0082EE9B /* KarhooLoyaltyStatusInteractorSpec.swift */,
+			);
+			path = LoyaltyStatus;
+			sourceTree = "<group>";
+		};
 		233DB46523433EC200BCBC3F /* UpdateUserDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -2029,6 +2122,8 @@
 				FCD32FEC20DAA1470044BB64 /* TripsRequestPayload.swift */,
 				6F69F33E255A7AEC00F8DA05 /* QuoteCoverageRequest.swift */,
 				6F9A9E3D25641A7B00B50753 /* VerifyQuotePayload.swift */,
+				2316362827445E970082EE9B /* LoyaltyPreAuthPayload.swift */,
+				231636612747BFF60082EE9B /* LoyaltyPreAuth.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -2741,9 +2836,13 @@
 		6FD5427C258CD0C0002EA542 /* Loyalty */ = {
 			isa = PBXGroup;
 			children = (
+				2316364C27469AC50082EE9B /* LoyaltyNonce.json */,
 				6FD54288258CD243002EA542 /* LoyaltyBalanceFalse.json */,
 				6FD5427E258CD106002EA542 /* LoyaltyBalanceTrue.json */,
 				6FD542F6258D1729002EA542 /* LoyaltyConversion.json */,
+				2316364E27469B3D0082EE9B /* LoyaltyStatus.json */,
+				2316365227469DEA0082EE9B /* LoyaltyPoints.json */,
+				2316365427469E290082EE9B /* LoyaltyPreAuthPayload.json */,
 			);
 			path = Loyalty;
 			sourceTree = "<group>";
@@ -2768,10 +2867,15 @@
 		6FD94A08258BAFF600B21B8B /* Loyalty */ = {
 			isa = PBXGroup;
 			children = (
+				23163639274666680082EE9B /* LoyaltyPreAuth */,
+				231636302745051C0082EE9B /* LoyaltyEarn */,
+				2316362F2745050B0082EE9B /* LoyaltyBurn */,
+				2316362A274460C90082EE9B /* LoyaltyStatus */,
 				6FD542C8258CED9E002EA542 /* LoyaltyConversion */,
 				6FD94A15258BB1E500B21B8B /* LoyaltyBalance */,
 				6FD94A16258BB20B00B21B8B /* LoyaltyService.swift */,
 				6FD94A1C258BB2AC00B21B8B /* KarhooLoyaltyService.swift */,
+				6BB9405127512AB600478ABD /* LoyaltyUtils.swift */,
 			);
 			path = Loyalty;
 			sourceTree = "<group>";
@@ -2788,6 +2892,7 @@
 		6FD94A22258BB43300B21B8B /* Loyalty */ = {
 			isa = PBXGroup;
 			children = (
+				23163668274BC3AF0082EE9B /* LoyaltyStatus */,
 				6FD542DB258D06DD002EA542 /* LoyaltyConversion */,
 				6FD94A38258BBE5E00B21B8B /* LoyaltyBalance */,
 				6FD94A23258BB46300B21B8B /* KarhooLoyaltyServiceSpec.swift */,
@@ -2800,6 +2905,10 @@
 			children = (
 				6FD94A2E258BB71C00B21B8B /* MockLoyaltyBalanceInteractor.swift */,
 				6FD542D5258D06A0002EA542 /* MockLoyaltyConversionInteractor.swift */,
+				2316363E274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift */,
+				2316364027466A680082EE9B /* MockLoyaltyBurnInteractor.swift */,
+				2316364227466B300082EE9B /* MockLoyaltyEarnInteractor.swift */,
+				2316364427466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift */,
 			);
 			path = Loyalty;
 			sourceTree = "<group>";
@@ -3346,12 +3455,14 @@
 				6FED7B9C25794D8A00E95C27 /* CancellationFeeFalse.json in Resources */,
 				6FD54289258CD243002EA542 /* LoyaltyBalanceFalse.json in Resources */,
 				6F19F25C2510B7BE00E1F771 /* AdyenPublicKey.json in Resources */,
+				2316364D27469AC50082EE9B /* LoyaltyNonce.json in Resources */,
 				09F8AC06214FE6DF00E293B7 /* AuthToken.json in Resources */,
 				FC1202472146A7CA00161081 /* Error.json in Resources */,
 				09B204BC2141366C00063632 /* InvalidData.json in Resources */,
 				09F8ABFD214FB61100E293B7 /* PaymentSDKToken.json in Resources */,
 				09EE81F021528791004B2B09 /* QuoteListId.json in Resources */,
 				1471BE2624E5904100BE1C4D /* AdyenPaymentMethods.json in Resources */,
+				2316365327469DEA0082EE9B /* LoyaltyPoints.json in Resources */,
 				6F69F3A1255C0FD000F8DA05 /* QuoteCoverageError.json in Resources */,
 				09F8ABE9214A9B1500E293B7 /* DriverTracking.json in Resources */,
 				09F8AC07214FE6DF00E293B7 /* AuthorisedUserInfo.json in Resources */,
@@ -3363,7 +3474,9 @@
 				4032BD1223FC491500C2409B /* AuthExchangeToken.json in Resources */,
 				09F8ABF8214BF69400E293B7 /* Places.json in Resources */,
 				09F79E4B223ABD5B00D5B0B8 /* GetNonce.json in Resources */,
+				2316364F27469B3D0082EE9B /* LoyaltyStatus.json in Resources */,
 				FC1202452146A4F000161081 /* Empty.json in Resources */,
+				2316365527469E290082EE9B /* LoyaltyPreAuthPayload.json in Resources */,
 				6F69F397255C0AF200F8DA05 /* QuoteCoverage.json in Resources */,
 				143975E424EAC9FA0006EB80 /* PaymentProvider.json in Resources */,
 				4032BD1023FC47B600C2409B /* AuthUserInfo.json in Resources */,
@@ -3480,6 +3593,7 @@
 				43F939A11F3C85A300914E18 /* Json.swift in Sources */,
 				097BF2B72358710400BBE418 /* KarhooSDKConfiguration.swift in Sources */,
 				237E0C59234782B400798AA0 /* KarhooFareService.swift in Sources */,
+				231636622747BFF60082EE9B /* LoyaltyPreAuth.swift in Sources */,
 				432D478A1ECC80E10085DBBE /* Result.swift in Sources */,
 				6FA6200024F5536C00C1DF48 /* AdyenPayments.swift in Sources */,
 				09811A1820D7BB8C001DB06F /* CancelTripRequestPayload.swift in Sources */,
@@ -3497,6 +3611,7 @@
 				5C62683F252DBA1800AB6CD2 /* AdyenDropInPayload.swift in Sources */,
 				231652DA25BADEEA003C449B /* QuoteStatus.swift in Sources */,
 				0970BA6F21136F870015A170 /* Executable.swift in Sources */,
+				6BB9405227512AB600478ABD /* LoyaltyUtils.swift in Sources */,
 				400BB94823F308BE00AEAAFD /* AuthLoginWithTokenInteractor.swift in Sources */,
 				6F69F339255A783500F8DA05 /* QuoteCoverage.swift in Sources */,
 				FCBD67B5211C9CE6005AA332 /* PasswordResetInteractor.swift in Sources */,
@@ -3507,6 +3622,7 @@
 				5CC6356E252B57AD00EDD6E3 /* AnyCodable.swift in Sources */,
 				230FD90726A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift in Sources */,
 				5C49849224C0A8E900F646A4 /* QuoteQta.swift in Sources */,
+				2316362927445E970082EE9B /* LoyaltyPreAuthPayload.swift in Sources */,
 				312909E21FA0E0C900F5147D /* TimestampFormatter.swift in Sources */,
 				4310E4DB1E99395D00625A0E /* Broadcaster.swift in Sources */,
 				6FED7B36257686DF00E95C27 /* CancellationFee.swift in Sources */,
@@ -3527,6 +3643,7 @@
 				4371C59D1EB0E7F70059429D /* AnalyticsProvider.swift in Sources */,
 				0900D34B20D2B1920082D1E8 /* RefreshTokenError.swift in Sources */,
 				43F9399E1F3C85A300914E18 /* KarhooURLSessionSender.swift in Sources */,
+				23163632274573040082EE9B /* LoyaltyBurnInteractor.swift in Sources */,
 				5CA2CE45234368B7000AEC1E /* UISettings.swift in Sources */,
 				313DC2F020221FCF00D9DD1B /* QuoteType.swift in Sources */,
 				5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */,
@@ -3550,6 +3667,8 @@
 				095A03C72333B115007D805E /* UIConfigProvider.swift in Sources */,
 				091BE6EC2086562900BA34D0 /* Position.swift in Sources */,
 				6FD94A1D258BB2AC00B21B8B /* KarhooLoyaltyService.swift in Sources */,
+				2316362E274461530082EE9B /* KarhooLoyaltyStatusInteractor.swift in Sources */,
+				23163623274274330082EE9B /* LoyaltyStatus.swift in Sources */,
 				FCD4DA5720F37FB2007D4374 /* AvailabilitySearch.swift in Sources */,
 				099AF2F920F8BA0000A2AA57 /* TripState.swift in Sources */,
 				A1FFA76A261B5AB9004E4732 /* KeychainSecretStore.swift in Sources */,
@@ -3607,6 +3726,8 @@
 				400BB94623F3066500AEAAFD /* KarhooAuthService.swift in Sources */,
 				0970BA7321136F870015A170 /* KarhooObservable.swift in Sources */,
 				5C813E67250FB40A0060A9A9 /* AdyenPaymentMethodsRequest.swift in Sources */,
+				2316363D274666CF0082EE9B /* KarhooLoyaltyPreAuthInteractor.swift in Sources */,
+				23163636274574EC0082EE9B /* LoyaltyEarnInteractor.swift in Sources */,
 				5C49849024C0A89F00F646A4 /* QuoteVehicle.swift in Sources */,
 				6FED7B4D2577D0C200E95C27 /* KarhooCancellationFeeInteractor.swift in Sources */,
 				09A56DFC20922D5C00891F02 /* MeetingPointType.swift in Sources */,
@@ -3633,6 +3754,7 @@
 				BAA0A599E1EB8C3F8C2F8821 /* PassengerDetails.swift in Sources */,
 				6FED7B3C2576873200E95C27 /* CancellationFeePrice.swift in Sources */,
 				095A03BE2333AF4A007D805E /* UIConfigInteractor.swift in Sources */,
+				2316362C2744610E0082EE9B /* LoyaltyStatusInteractor.swift in Sources */,
 				BAA0A3A43066DD0F628543FE /* FleetInfo.swift in Sources */,
 				FCBD67B3211C9CBD005AA332 /* LoginInteractor.swift in Sources */,
 				099DFC6C223BEDF800401542 /* AddPaymentDetailsPayload.swift in Sources */,
@@ -3642,9 +3764,11 @@
 				6FD94A03258BAE4B00B21B8B /* LoyaltyBalance.swift in Sources */,
 				FCD32FED20DAA1470044BB64 /* TripsRequestPayload.swift in Sources */,
 				09928D4920EFAB9300B9F462 /* Quotes.swift in Sources */,
+				231636382745752A0082EE9B /* KarhooLoyaltyEarnInteractor.swift in Sources */,
 				147B889F24E3F537003F78B8 /* KarhooAdyenPaymentMethodsInteractor.swift in Sources */,
 				095A03D02333BABD007D805E /* KarhooUIConfigProvider.swift in Sources */,
 				BAA0A9B82B56E7732880DF88 /* PositionExt.swift in Sources */,
+				23163634274573910082EE9B /* KarhooLoyaltyBurnInteractor.swift in Sources */,
 				BAA0A0D9B4689C44C4517E85 /* Places.swift in Sources */,
 				BAA0A33C16B003E2D9F99AB3 /* PoiType.swift in Sources */,
 				FC8F474F2154F9D6007841FB /* ObserverBroadcaster.swift in Sources */,
@@ -3653,6 +3777,7 @@
 				BAA0A52F9D9380CE153EA7C6 /* PaymentSDKToken.swift in Sources */,
 				FC2EE934212425F6001B36D2 /* SDKErrorFactory.swift in Sources */,
 				09D0757520D826A700F75E32 /* KarhooLogoutInteractor.swift in Sources */,
+				23163625274276E40082EE9B /* LoyaltyPoints.swift in Sources */,
 				FC1B01ED2209D0D20069D7F3 /* QuoteCategory.swift in Sources */,
 				FC321EE020F8D54E00B2C3CD /* DriverTrackingService.swift in Sources */,
 				BAA0ABF896D0A71FBF3482B7 /* PaymentSDKTokenInteractor.swift in Sources */,
@@ -3674,8 +3799,10 @@
 				BAA0A99196851950BE007EC3 /* BookingInteractor.swift in Sources */,
 				FCC17D792118984B00A25B87 /* KarhooPollCallFactory.swift in Sources */,
 				FCD32FEB20DA9C5F0044BB64 /* KarhooTripSearchInteractor.swift in Sources */,
+				2316363B274666800082EE9B /* LoyaltyPreAuthInteractor.swift in Sources */,
 				0981F6C920CEC3DE00BF7FB5 /* KarhooLoginInteractor.swift in Sources */,
 				0900D34920D2B17B0082D1E8 /* RefreshTokenInteractor.swift in Sources */,
+				2316362727445BA50082EE9B /* LoyaltyNonce.swift in Sources */,
 				09D293C222C530170051C455 /* QuoteSource.swift in Sources */,
 				6FA4EA58257FA8D800173DAE /* Direction.swift in Sources */,
 				094B449E2285AC66002D2506 /* PaymentSDKTokenPayload.swift in Sources */,
@@ -3720,6 +3847,7 @@
 				432D47871ECC31940085DBBE /* KarhooLogoutInteractorSpec.swift in Sources */,
 				4371C5C11EB0E8070059429D /* AnalyticsServiceSpec.swift in Sources */,
 				4322B48C1E69A57B002108D5 /* MockAnalyticsService.swift in Sources */,
+				2316364127466A680082EE9B /* MockLoyaltyBurnInteractor.swift in Sources */,
 				091CAE3E20D7A81F005F1DB6 /* MockURLSessionSender.swift in Sources */,
 				31FC37FF1F459A780012A57E /* DefaultAuthTokenSpec.swift in Sources */,
 				09811A1E20D7C12D001DB06F /* MockCancelTripInteractor.swift in Sources */,
@@ -3754,6 +3882,7 @@
 				31005DA71FCEE699006D2A7D /* RequestTesting.swift in Sources */,
 				43584E931EE5993700B4DFAB /* KarhooTripServiceSpec.swift in Sources */,
 				31904CDA200380A400BA7402 /* MockAccessTokenProvider.swift in Sources */,
+				2316366A274BC3CA0082EE9B /* KarhooLoyaltyStatusInteractorSpec.swift in Sources */,
 				4371C5BE1EB0E8070059429D /* KarhooAddressServiceSpec.swift in Sources */,
 				317610EE1FD84CD200D2DB75 /* KarhooNetworkDateFormatterSpec.swift in Sources */,
 				096A2C2D208F676000C7B7D0 /* PositionExtSpec.swift in Sources */,
@@ -3777,6 +3906,7 @@
 				095A03D22333C119007D805E /* KarhooUIConfigProviderSpec.swift in Sources */,
 				0981F6CF20CFDA9B00BF7FB5 /* KarhooRequestSenderSpec.swift in Sources */,
 				094C1F7F20B2C956001FFE7F /* MockNetworkDateFormatter.swift in Sources */,
+				2316363F274669CB0082EE9B /* MockLoyaltyStatusInteractor.swift in Sources */,
 				0970BA802114671A0015A170 /* KarhooObservableSpec.swift in Sources */,
 				090670E820A4787600CAFA86 /* KarhooPaymentSDKTokenInteractorSpec.swift in Sources */,
 				FCD32FEF20DAA33A0044BB64 /* KarhooTripsListInteractorSpec.swift in Sources */,
@@ -3798,6 +3928,7 @@
 				6FED7B842579393100E95C27 /* MockCancellationFeeInteractor.swift in Sources */,
 				3150CE311F9F7D8E00DE6D62 /* MockCLLocationManager.swift in Sources */,
 				2359B45B234251FB008433A1 /* KarhooUpdateUserDetailsInteractorSpec.swift in Sources */,
+				2316364327466B300082EE9B /* MockLoyaltyEarnInteractor.swift in Sources */,
 				09430E4F224109D6009846A6 /* UnitTestSetup.swift in Sources */,
 				0981F6D520CFE1B300BF7FB5 /* MockLoginInteractor.swift in Sources */,
 				6F19F2582510B21100E1F771 /* KarhooAdyenPublicKeyInteractorSpec.swift in Sources */,
@@ -3853,6 +3984,7 @@
 				0981F6CD20CEEB1000BF7FB5 /* AuthTokenMock.swift in Sources */,
 				FC8F475321555025007841FB /* MockObserverBroadcaster.swift in Sources */,
 				274211D129AC87080586E523 /* DriverTrackingInfoMock.swift in Sources */,
+				2316364527466BD40082EE9B /* MockLoyaltyPreAuthInteractor.swift in Sources */,
 				FCBD67B9211DDD8E005AA332 /* MockInteractor.swift in Sources */,
 				5CA2CE422343510E000AEC1E /* OrganisationMock.swift in Sources */,
 				230FD92B26A18C76009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift in Sources */,
@@ -4146,7 +4278,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4170,7 +4302,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.5.4;
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.KarhooSDK;
@@ -4191,7 +4323,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4215,7 +4347,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.5.4;
 				MODULEMAP_PRIVATE_FILE = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.KarhooSDK;

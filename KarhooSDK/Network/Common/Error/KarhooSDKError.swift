@@ -13,19 +13,23 @@ struct KarhooSDKError: KarhooError, KarhooCodableModel {
     let message: String
     let userMessage: String
     var statusCode: Int = 0
+    var slug: String
 
     init(code: String,
          message: String,
-         userMessage: String? = nil) {
+         userMessage: String? = nil,
+         slug: String? = nil) {
         self.code = code
         self.message = message
         self.userMessage = userMessage ?? message
+        self.slug = slug ?? ""
     }
 
     enum CodingKeys: String, CodingKey {
         case code
         case message
         case userMessage
+        case slug
     }
 
     public init(from decoder: Decoder) throws {
@@ -37,6 +41,7 @@ struct KarhooSDKError: KarhooError, KarhooCodableModel {
 
         self.message = message
         self.userMessage = userMessage ?? message
+        self.slug = (try? container.decode(String.self, forKey: .slug)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -45,5 +50,6 @@ struct KarhooSDKError: KarhooError, KarhooCodableModel {
         try container.encode(code, forKey: .code)
         try container.encode(message, forKey: .message)
         try container.encode(userMessage, forKey: .userMessage)
+        try container.encode(slug, forKey: .slug)
     }
 }

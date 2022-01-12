@@ -17,6 +17,7 @@ final class KarhooAuthLoginWithCredentialsSpec: XCTestCase {
     private var mockAnalytics: MockAnalyticsService!
     private var mockPaymentService = MockPaymentProviderInteractor()
     private var mockPaymentProviderRequest = MockRequestSender()
+    private var mockLoyaltyProviderRequest = MockRequestSender()
     private var mockGetNonceRequestSender: MockRequestSender!
     
     override func setUp() {
@@ -32,6 +33,7 @@ final class KarhooAuthLoginWithCredentialsSpec: XCTestCase {
                                                               userDataStore: mockUserDataStore,
                                                               analytics: mockAnalytics,
                                                               paymentProviderRequest: mockPaymentProviderRequest,
+                                                              loyaltyProviderRequest: mockLoyaltyProviderRequest,
                                                               nonceRequestSender: mockGetNonceRequestSender)
         testObject.set(auth: AuthToken(accessToken: "123123123", expiresIn: 5, refreshToken: "123123123", refreshExpiresIn: 5))
     }
@@ -129,6 +131,23 @@ final class KarhooAuthLoginWithCredentialsSpec: XCTestCase {
         mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
 
         XCTAssertEqual(.braintree, mockUserDataStore.updatedPaymentProvider?.provider.type)
+    }
+    
+    /**
+     * Given: Login successful
+     * When: provider call succeeds
+     * Then: loyalty status should be updated
+     */
+    func testLoyaltyStatusIsUpdated() {
+        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"), loyaltyProgamme: LoyaltyProgramme(id: "some", name: TestUtil.getRandomString()))
+        let loyaltyStatus = LoyaltyStatus(balance: TestUtil.getRandomInt(), canBurn: false, canEarn: true)
+
+        triggerSuccessfulAuthLoginAndProfileFetch()
+
+        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
+        mockLoyaltyProviderRequest.triggerSuccessWithDecoded(value: loyaltyStatus)
+
+        XCTAssertEqual("some", mockUserDataStore.updatedPaymentProvider?.loyaltyProgamme.id)
     }
 
     /**

@@ -15,6 +15,7 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
     private let userDataStore: UserDataStore
     private let analytics: AnalyticsService
     private let paymentProviderRequest: RequestSender
+    private let loyaltyProviderRequest: RequestSender
     private let nonceRequestSender: RequestSender
 
     init(tokenExchangeRequestSender: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
@@ -22,12 +23,14 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
          userDataStore: UserDataStore = DefaultUserDataStore(),
          analytics: AnalyticsService = KarhooAnalyticsService(),
          paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
+         loyaltyProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
         self.tokenExchangeRequestSender = tokenExchangeRequestSender
         self.userInfoSender = userInfoSender
         self.userDataStore = userDataStore
         self.analytics = analytics
         self.paymentProviderRequest = paymentProviderRequest
+        self.loyaltyProviderRequest = loyaltyProviderRequest
         self.nonceRequestSender = nonceRequestSender
     }
     
@@ -96,12 +99,19 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
         paymentProviderRequest.requestAndDecode(payload: nil,
                                                 endpoint: .paymentProvider,
                                                 callback: { [weak self] (result: Result<PaymentProvider>) in
-                                                    let paymentProvider = result.successValue()
-                                                    self?.userDataStore.updatePaymentProvider(paymentProvider: paymentProvider)
-                                                    if paymentProvider?.provider.type == .braintree {
-                                                        self?.updateUserNonce(user: user)
-                                                    }
-                                                })
+            
+            let paymentProvider = result.successValue()
+            self?.userDataStore.updatePaymentProvider(paymentProvider: paymentProvider)
+            if paymentProvider?.provider.type == .braintree {
+                self?.updateUserNonce(user: user)
+            }
+                                                    
+            guard let self = self else { return }
+            
+            LoyaltyUtils.updateLoyaltyStatusFor(paymentProvider: paymentProvider,
+                                                userDataStore: self.userDataStore,
+                                                loyaltyProviderRequest: self.loyaltyProviderRequest)
+        })
     }
     
     private func updateUserNonce(user: UserInfo) {
