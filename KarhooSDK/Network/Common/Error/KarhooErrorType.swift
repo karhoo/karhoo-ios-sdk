@@ -61,6 +61,8 @@ public enum KarhooErrorType {
     case couldNotBookTripCouldNotBookTripAsAgent
     case couldNotBookTripCouldNotBookTripAsTraveller
     case couldNotBookTripQuoteNoLongerAvailable
+    case couldNotBookTripWithSelectedDMS
+    case couldNotBookTripQuotePriceIncreased
 
     // K5xxx Availability
     case noAvailabilityInRequestedArea
@@ -73,6 +75,13 @@ public enum KarhooErrorType {
     case couldNotFindDefaultCard
     case failedToGenerateNonce
     case failedToCallMoneyService
+    
+    // No code
+    case loyaltyCustomerNotAllowedToBurnPoints
+    case loyaltyIncomingCustomerPointsExceedBalance
+    case emptyCurrency
+    case unknownCurrency
+    case internalServerError
 }
 
 extension KarhooErrorType {
@@ -130,6 +139,8 @@ extension KarhooErrorType {
         case "K4014": self = .couldNotBookTripCouldNotBookTripAsAgent
         case "K4015": self = .couldNotBookTripCouldNotBookTripAsTraveller
         case "K4018": self = .couldNotBookTripQuoteNoLongerAvailable
+        case "K4020": self = .couldNotBookTripWithSelectedDMS
+        case "K2025": self = .couldNotBookTripQuotePriceIncreased
 
         // K5xxx Availability
         case "K5001": self = .couldNotGetEstimates
@@ -143,7 +154,16 @@ extension KarhooErrorType {
         case "KP005": self = .failedToGenerateNonce
         case "P0002": self = .failedToCallMoneyService
 
-        default: self = .unknownError
+        default:
+            switch error.slug {
+            case "customer-not-allowed-to-burn-points": self = .loyaltyCustomerNotAllowedToBurnPoints
+            case "incoming-customer-points-exceed-balance": self = .loyaltyIncomingCustomerPointsExceedBalance
+            case "empty-currency": self = .emptyCurrency
+            case "unknown-currency": self = .unknownCurrency
+            case "internal-error": self = .internalServerError
+                
+            default: self = .unknownError
+            }
         }
     }
 }

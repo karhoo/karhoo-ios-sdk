@@ -19,6 +19,8 @@ protocol UserDataStore {
     func set(credentials: Credentials)
     func add(observer: UserStateObserver)
     func remove(observer: UserStateObserver)
+    func getLoyaltyStatusFor(loyaltyId: String) -> LoyaltyStatus?
+    func updateLoyaltyStatus(status: LoyaltyStatus, forLoyaltyId id: String)
 }
 
 private let staticBroadcaster = Broadcaster<AnyObject>()
@@ -26,6 +28,7 @@ private let staticBroadcaster = Broadcaster<AnyObject>()
 final class DefaultUserDataStore: UserDataStore {
 
     static let currentUserKey = "currentUser"
+    static let currentLoyaltyStatusKey = "currentLoyaltyStatus"
 
     private let secretStore: SecretStore
     private let persistantStore: UserDefaults
@@ -197,5 +200,37 @@ final class DefaultUserDataStore: UserDataStore {
         }
 
         return guestUser
+    }
+    
+    func updateLoyaltyStatus(status: LoyaltyStatus, forLoyaltyId id: String) {
+        guard !id.isEmpty
+        else {
+            return
+        }
+        
+        let key = getLoyaltyStatusKeyFor(loyaltyId: id)
+        let encodedStatus = status.encode()
+        persistantStore.set(encodedStatus, forKey: key)
+    }
+    
+    func getLoyaltyStatusFor(loyaltyId: String) -> LoyaltyStatus? {
+        guard !loyaltyId.isEmpty
+        else {
+            return nil
+        }
+        
+        let key = getLoyaltyStatusKeyFor(loyaltyId: loyaltyId)
+        
+        guard let rawData = persistantStore.value(forKey: key) as? Data else {
+            return nil
+        }
+        
+        let status = try? JSONDecoder().decode(LoyaltyStatus.self, from: rawData)
+        return status
+    }
+    
+    private func getLoyaltyStatusKeyFor(loyaltyId: String) -> String {
+        let key = "\(DefaultUserDataStore.currentLoyaltyStatusKey)_\(loyaltyId)"
+        return key
     }
 }
