@@ -79,7 +79,6 @@ public enum AnalyticsConstants {
         case contactFleetClicked = "RIDES_UPCOMING_CONTACT_FLEET_CLICKED"
         case ridesUpcomingContactDriverClicked = "RIDES_UPCOMING_CONTACT_DRIVER_CLICKED"
         case trackingContactDriverClicked = "VEHICLE_TRACKING_SCREEN_CONTACT_DRIVER_CLICKED"
-
         public var description: String {
             return rawValue
         }
