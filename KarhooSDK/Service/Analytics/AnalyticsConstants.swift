@@ -66,6 +66,20 @@ public enum AnalyticsConstants {
         case ssoUserLogIn = "sso_user_logged_in"
         case requestFails = "request_error"
 
+        case bookingScreenOpened = "RIDE_PLANNING_SCREEN"
+        case quoteListOpened = "QUOTE_LIST_SCREEN"
+        case checkoutOpened = "CHECKOUT_SCREEN"
+        case checkoutBookingRequested = "CHECKOUT_BOOKING_REQUESTED"
+        case paymentSucceed = "PAYMENT_CONFIRMED"
+        case paymentFailed = "PAYMENT_REFUSED_OR_REJECTED"
+        case trackTripOpened = "VEHICLE_TRACKING_SCREEN"
+        case ridesPastTripsOpened = "RIDES_PAST_LIST"
+        case ridesUpcomingTripsOpened = "RIDES_UPCOMING_LIST"
+        case ridesUpcomingTrackTripClicked = "RIDES_UPCOMING_VEHICLE_TRACKING_CLICKED"
+        case ridesUpcomingContactFleetClicked = "RIDES_UPCOMING_CONTACT_FLEET_CLICKED"
+        case ridesUpcomingContactDriverClicked = "RIDES_UPCOMING_CONTACT_DRIVER_CLICKED"
+        case trackingContactDriverClicked = "VEHICLE_TRACKING_SCREEN_CONTACT_DRIVER_CLICKED"
+        
         public var description: String {
             return rawValue
         }
