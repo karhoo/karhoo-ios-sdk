@@ -38,15 +38,15 @@ final class QuoteSearchMethodSpec: XCTestCase {
         pollCall.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
             self.assertSuccess(quote: result.successValue()?.all[0])
-
-            XCTAssertEqual(6, result.successValue()?.quoteCategories.count)
-            XCTAssertEqual(2, result.successValue()?.quotes(for: "Saloon").count)
-            XCTAssertEqual(1, result.successValue()?.quotes(for: "Taxi").count)
+            XCTAssertEqual(4, result.successValue()?.quoteCategories.count)
+            XCTAssertEqual(0, result.successValue()?.quotes(for: "Saloon").count)
+            XCTAssertEqual(0, result.successValue()?.quotes(for: "Taxi").count)
             XCTAssertEqual(0, result.successValue()?.quotes(for: "MPV").count)
             XCTAssertEqual(0, result.successValue()?.quotes(for: "Exec").count)
             XCTAssertEqual(0, result.successValue()?.quotes(for: "Electric").count)
             XCTAssertEqual(0, result.successValue()?.quotes(for: "Moto").count)
-
+            XCTAssertEqual(1, result.successValue()?.quotes(for: "moto").count)
+            XCTAssertEqual(2, result.successValue()?.quotes(for: "standard").count)
             expectation.fulfill()
         })
 
@@ -56,7 +56,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
     /**
      * Given: Searching for quotes
      * When: QuotesListId fails (no availability)
-     * Then: Expected error should be propogated
+     * Then: Expected error should be propagated
      */
     func testQuoteListIdRequestErrorResponse() {
         NetworkStub.errorResponse(path: quoteListIdPath, responseData: RawKarhooErrorFactory.buildError(code: "K3002"))
@@ -129,7 +129,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
       * Given: Polling for quotes
       * When: The first execution succeeds
       * And: The second execution fails
-      * Then: correct results should be propogated
+      * Then: correct results should be propagated
       */
     func testQuoteSearchPolling() {
         NetworkStub.successResponse(jsonFile: "QuoteListId.json", path: quoteListIdPath)
