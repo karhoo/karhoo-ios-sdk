@@ -22,7 +22,7 @@ final class KarhooAdyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor {
     }
 
     func set(paymentProviderAPIVersion: String) {
-        self.paymentProviderAPIVersion = paymentProviderAPIVersion
+        self.paymentProviderAPIVersion = "v68" // paymentProviderAPIVersion
     }
 
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
