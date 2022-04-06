@@ -9,11 +9,14 @@ import Foundation
 
 public struct PaymentProvider : KarhooCodableModel {
     public let provider: Provider
+    public let version: String
     public let loyaltyProgamme: LoyaltyProgramme
 
     public init(provider: Provider = Provider(),
+                version: String = "v51",
                 loyaltyProgamme: LoyaltyProgramme = LoyaltyProgramme()) {
         self.provider = provider
+        self.version = version
         self.loyaltyProgamme = loyaltyProgamme
     }
     
@@ -21,11 +24,13 @@ public struct PaymentProvider : KarhooCodableModel {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.provider = (try? container.decode(Provider.self, forKey: .provider)) ?? Provider()
+        self.version = (try? container.decodeIfPresent(String.self, forKey: .version)) ?? "-1"
         self.loyaltyProgamme = (try? container.decode(LoyaltyProgramme.self, forKey: .loyaltyProgamme)) ?? LoyaltyProgramme()
     }
     
     enum CodingKeys: String, CodingKey {
         case provider
+        case version
         case loyaltyProgamme = "loyalty_programme"
     }
 }
