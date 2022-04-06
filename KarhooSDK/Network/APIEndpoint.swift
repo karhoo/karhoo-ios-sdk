@@ -196,6 +196,7 @@ enum APIEndpoint {
         case .adyenPayments: return .post
         case .adyenPaymentsDetails: return .post
         case .adyenPublicKey: return .get
+        case .adyenClientKey: return .get
         case .quoteCoverage: return .get
         case .verifyQuote: return .get
         case .loyaltyStatus: return .get

@@ -28,7 +28,7 @@ final class KarhooPaymentService: PaymentService {
          adyenPaymentsInteractor: AdyenPaymentsInteractor = KarhooAdyenPaymentsInteractor(),
          adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor = KarhooAdyenPaymentsDetailsInteractor(),
          adyenPublicKeyInteractor: AdyenPublicKeyInteractor = KarhooAdyenPublicKeyInteractor(),
-         adyenClientKeyInteractor: AdyenClientKeyInteractor = AdyenClientKeyInteractor()){
+         adyenClientKeyInteractor: AdyenClientKeyInteractor = KarhooAdyenClientKeyInteractor()){
         self.paymentSDKTokenInteractor = tokenInteractor
         self.getNonceInteractor = getNonceInteractor
         self.addPaymentDetailsInteractor = addPaymentDetailsInteractor

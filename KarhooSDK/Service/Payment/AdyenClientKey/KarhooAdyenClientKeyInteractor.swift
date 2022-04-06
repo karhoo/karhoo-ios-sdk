@@ -5,7 +5,7 @@
 
 import Foundation
 
-final class KarhooAdyenClientKeyInteractor: AdyenPublicKeyInteractor {
+final class KarhooAdyenClientKeyInteractor: AdyenClientKeyInteractor {
 
     private let adyenClientKeyRequestSender: RequestSender
 
