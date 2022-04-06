@@ -10,6 +10,7 @@ import Foundation
 
 final class KarhooPaymentService: PaymentService {
 
+    private let userDataStore: UserDataStore
     private let paymentSDKTokenInteractor: PaymentSDKTokenInteractor
     private let getNonceInteractor: GetNonceInteractor
     private let addPaymentDetailsInteractor: AddPaymentDetailsInteractor
@@ -19,14 +20,22 @@ final class KarhooPaymentService: PaymentService {
     private let adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor
     private let adyenPublicKeyInteractor: AdyenPublicKeyInteractor
 
-    init(tokenInteractor: PaymentSDKTokenInteractor = KarhooPaymentSDKTokenInteractor(),
-         getNonceInteractor: GetNonceInteractor = KarhooGetNonceInteractor(),
-         addPaymentDetailsInteractor: AddPaymentDetailsInteractor = KarhooAddPaymentDetailsInteractor(),
-         paymentProviderInteractor: PaymentProviderInteractor = KarhooPaymentProviderInteractor(),
-         adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor = KarhooAdyenPaymentMethodsInteractor(),
-         adyenPaymentsInteractor: AdyenPaymentsInteractor = KarhooAdyenPaymentsInteractor(),
-         adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor = KarhooAdyenPaymentsDetailsInteractor(),
-         adyenPublicKeyInteractor: AdyenPublicKeyInteractor = KarhooAdyenPublicKeyInteractor()){
+    private lazy var paymentAPIVersion: String = {
+        userDataStore.getCurrentUser()?.paymentProvider?.version ?? "v51"
+    }()
+
+    init(
+        userDataStore: UserDataStore = DefaultUserDataStore(),
+        tokenInteractor: PaymentSDKTokenInteractor = KarhooPaymentSDKTokenInteractor(),
+        getNonceInteractor: GetNonceInteractor = KarhooGetNonceInteractor(),
+        addPaymentDetailsInteractor: AddPaymentDetailsInteractor = KarhooAddPaymentDetailsInteractor(),
+        paymentProviderInteractor: PaymentProviderInteractor = KarhooPaymentProviderInteractor(),
+        adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor = KarhooAdyenPaymentMethodsInteractor(),
+        adyenPaymentsInteractor: AdyenPaymentsInteractor = KarhooAdyenPaymentsInteractor(),
+        adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor = KarhooAdyenPaymentsDetailsInteractor(),
+        adyenPublicKeyInteractor: AdyenPublicKeyInteractor = KarhooAdyenPublicKeyInteractor()
+    ) {
+        self.userDataStore = userDataStore
         self.paymentSDKTokenInteractor = tokenInteractor
         self.getNonceInteractor = getNonceInteractor
         self.addPaymentDetailsInteractor = addPaymentDetailsInteractor
@@ -58,16 +67,18 @@ final class KarhooPaymentService: PaymentService {
     
     func adyenPaymentMethods(request: AdyenPaymentMethodsRequest) -> Call<DecodableData> {
         adyenPaymentMethodsInteractor.set(request: request)
+        adyenPaymentMethodsInteractor.set(paymentProviderAPIVersion: paymentAPIVersion)
         return Call(executable: adyenPaymentMethodsInteractor)
     }
     
     func adyenPayments(request: AdyenPaymentsRequest) -> Call<AdyenPayments> {
         adyenPaymentsInteractor.set(request: request)
+        adyenPaymentsInteractor.set(paymentProviderAPIVersion: paymentAPIVersion)
         return Call(executable: adyenPaymentsInteractor)
     }
     
     func getAdyenPaymentDetails(paymentDetails: PaymentsDetailsRequestPayload) -> Call<DecodableData> {
-        adyenPaymentsDetailsInteractor.set(paymentsDetails: paymentDetails)
+        adyenPaymentsDetailsInteractor.set(paymentsDetails: paymentDetails, paymentProviderAPIVersion: paymentAPIVersion)
         return Call(executable: adyenPaymentsDetailsInteractor)
     }
     

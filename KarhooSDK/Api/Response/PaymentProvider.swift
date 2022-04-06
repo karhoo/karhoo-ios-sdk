@@ -24,7 +24,7 @@ public struct PaymentProvider : KarhooCodableModel {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.provider = (try? container.decode(Provider.self, forKey: .provider)) ?? Provider()
-        self.version = (try? container.decodeIfPresent(String.self, forKey: .version)) ?? "-1"
+        self.version = (try? container.decodeIfPresent(String.self, forKey: .version)) ?? "v51"
         self.loyaltyProgamme = (try? container.decode(LoyaltyProgramme.self, forKey: .loyaltyProgamme)) ?? LoyaltyProgramme()
     }
     

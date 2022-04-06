@@ -11,6 +11,7 @@ import Foundation
 final class KarhooAdyenPaymentsInteractor: AdyenPaymentsInteractor {
     
     private let adyenPaymentsRequestSender: RequestSender
+    private var paymentProviderAPIVersion: String?
     private var request: AdyenPaymentsRequest?
 
     init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
@@ -20,9 +21,20 @@ final class KarhooAdyenPaymentsInteractor: AdyenPaymentsInteractor {
     func set(request: AdyenPaymentsRequest) {
         self.request = request
     }
-    
+
+    func set(paymentProviderAPIVersion: String) {
+        self.paymentProviderAPIVersion = paymentProviderAPIVersion
+    }
+
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
-        adyenPaymentsRequestSender.requestAndDecode(payload: request, endpoint: .adyenPayments, callback: callback)
+        guard let paymentProviderAPIVersion = paymentProviderAPIVersion else {
+            return
+        }
+        adyenPaymentsRequestSender.requestAndDecode(
+            payload: request,
+            endpoint: .adyenPayments(paymentAPIVersion: paymentProviderAPIVersion),
+            callback: callback
+        )
     }
 
     func cancel() {

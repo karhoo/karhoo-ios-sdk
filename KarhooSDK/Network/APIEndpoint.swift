@@ -34,9 +34,9 @@ enum APIEndpoint {
     case authUserInfo
     case authRefresh
     case paymentProvider
-    case adyenPaymentMethods
-    case adyenPayments
-    case adyenPaymentsDetails
+    case adyenPaymentMethods(paymentAPIVersion: String)
+    case adyenPayments(paymentAPIVersion: String)
+    case adyenPaymentsDetails(paymentAPIVersion: String)
     case adyenPublicKey
     case quoteCoverage
     case verifyQuote(quoteID: String)
@@ -128,12 +128,12 @@ enum APIEndpoint {
             return "/oauth/v2/token"
         case .paymentProvider:
             return "/payments/providers"
-        case .adyenPaymentMethods:
-            return "/payments/adyen/payments-methods"
-        case .adyenPayments:
-            return "/payments/adyen/payments"
-        case .adyenPaymentsDetails:
-            return "/payments/adyen/payments-details"
+        case .adyenPaymentMethods(let paymentAPIVersion):
+            return "/payments/adyen/\(paymentAPIVersion)/payments-methods"
+        case .adyenPayments(let paymentAPIVersion):
+            return "/payments/adyen/\(paymentAPIVersion)/payments"
+        case .adyenPaymentsDetails(let paymentAPIVersion):
+            return "/payments/adyen/\(paymentAPIVersion)/payments-details"
         case .adyenPublicKey:
             return "/payments/adyen/public-key"
         case .quoteCoverage:
