@@ -17,16 +17,16 @@ public struct KarhooAdyenAPIVersionProvider: AdyenAPIVersionProvider {
 
     func getVersion() -> String {
         let version = userDataStore.getCurrentUser()?.paymentProvider?.version
-        return "/v68"
-//        switch version {
-//        case nil: return ""
-//        case "v51": return ""
-//        case "": return ""
-//        default:
-//            if let version = version {
-//                return "/\(version)"
-//            }
-//            return ""
-//        }
+
+        switch version {
+        case nil: return ""
+        case "v51": return ""
+        case "": return ""
+        default:
+            if let version = version {
+                return "/\(version)"
+            }
+            return ""
+        }
     }
 }
