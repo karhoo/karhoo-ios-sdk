@@ -19,8 +19,8 @@ public struct KarhooAdyenAPIVersionProvider: AdyenAPIVersionProvider {
         let version = userDataStore.getCurrentUser()?.paymentProvider?.version
         
         switch version {
-        case nil: return "/"
-        case "v51": return "/"
+        case nil: return ""
+        case "v51": return ""
         default: return "/\(version ?? "")"
         }
     }

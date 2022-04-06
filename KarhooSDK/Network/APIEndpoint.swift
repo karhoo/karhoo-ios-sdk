@@ -56,13 +56,6 @@ enum APIEndpoint {
                 .loyaltyEarn( _, _, _, _),
                 .loyaltyPreAuth( _):
             return relativePath
-//        case .adyenPayments(let paymentApiVersion),
-//                .adyenPaymentMethods(let paymentApiVersion),
-//                .adyenPaymentsDetails(let paymentApiVersion):
-//            switch paymentApiVersion {
-//            case "v51": return "/\(version)\(relativePath)"
-//            default: return "/\(version)\(relativePath)"
-//            }
         default:
             return "/\(version)\(relativePath)"
         }
