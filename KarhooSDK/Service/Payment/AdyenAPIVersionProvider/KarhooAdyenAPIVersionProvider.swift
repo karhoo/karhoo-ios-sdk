@@ -21,7 +21,12 @@ public struct KarhooAdyenAPIVersionProvider: AdyenAPIVersionProvider {
         switch version {
         case nil: return ""
         case "v51": return ""
-        default: return "/\(version ?? "")"
+        case "": return ""
+        default:
+            if let version = version {
+                return "/\(version)"
+            }
+            return ""
         }
     }
 }
