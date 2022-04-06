@@ -10,32 +10,31 @@ import Foundation
 final class KarhooAdyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor {
 
     private let adyenPaymentMethodsRequestSender: RequestSender
-    private var paymentProviderAPIVersion: String?
+    private let adyenApiVersionProvider: AdyenAPIVersionProvider
     private var request: AdyenPaymentMethodsRequest?
 
-    init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
+    init(
+        requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+        adyenApiVersionProvider: AdyenAPIVersionProvider = KarhooAdyenAPIVersionProvider()
+    ) {
         self.adyenPaymentMethodsRequestSender = requestSender
+        self.adyenApiVersionProvider = adyenApiVersionProvider
     }
 
     func set(request: AdyenPaymentMethodsRequest) {
         self.request = request
     }
 
-    func set(paymentProviderAPIVersion: String) {
-        self.paymentProviderAPIVersion = "v68" // paymentProviderAPIVersion
-    }
-
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
         guard
-            let dataCallback = callback as? CallbackClosure<DecodableData>,
-            let paymentProviderAPIVersion = paymentProviderAPIVersion
+            let dataCallback = callback as? CallbackClosure<DecodableData>
         else {
             return
         }
 
         adyenPaymentMethodsRequestSender.request(
             payload: request,
-            endpoint: .adyenPaymentMethods(paymentAPIVersion: paymentProviderAPIVersion),
+            endpoint: .adyenPaymentMethods(paymentAPIVersion: adyenApiVersionProvider.getVersion()),
             callback: { [weak self] result in
                 self?.handle(result, interactorCallback: dataCallback)
             })

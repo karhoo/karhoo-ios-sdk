@@ -11,28 +11,29 @@ import Foundation
 final class KarhooAdyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor {
     
     private let adyenPaymentsDetailsRequestSender: RequestSender
-    private var paymentProviderAPIVersion: String?
+    private let adyenApiVersionProvider: AdyenAPIVersionProvider
     private var paymentsDetails: PaymentsDetailsRequestPayload?
     
-    init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
+    init(
+        requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+        adyenApiVersionProvider: AdyenAPIVersionProvider = KarhooAdyenAPIVersionProvider()
+    ) {
         self.adyenPaymentsDetailsRequestSender = requestSender
+        self.adyenApiVersionProvider = adyenApiVersionProvider
     }
     
-    func set(paymentsDetails: PaymentsDetailsRequestPayload, paymentProviderAPIVersion: String) {
+    func set(paymentsDetails: PaymentsDetailsRequestPayload) {
         self.paymentsDetails = paymentsDetails
     }
     
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
-        guard
-            let dataCallback = callback as? CallbackClosure<DecodableData>,
-            let paymentProviderAPIVersion = paymentProviderAPIVersion
-        else {
+        guard let dataCallback = callback as? CallbackClosure<DecodableData> else {
             return
         }
 
         adyenPaymentsDetailsRequestSender.request(
             payload: paymentsDetails,
-            endpoint: .adyenPaymentsDetails(paymentAPIVersion: paymentProviderAPIVersion),
+            endpoint: .adyenPaymentsDetails(paymentAPIVersion: adyenApiVersionProvider.getVersion()),
             callback: { [weak self] result in
                 self?.handle(result,
                              interactorCallback: dataCallback)

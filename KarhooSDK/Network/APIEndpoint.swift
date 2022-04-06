@@ -56,6 +56,13 @@ enum APIEndpoint {
                 .loyaltyEarn( _, _, _, _),
                 .loyaltyPreAuth( _):
             return relativePath
+//        case .adyenPayments(let paymentApiVersion),
+//                .adyenPaymentMethods(let paymentApiVersion),
+//                .adyenPaymentsDetails(let paymentApiVersion):
+//            switch paymentApiVersion {
+//            case "v51": return "/\(version)\(relativePath)"
+//            default: return "/\(version)\(relativePath)"
+//            }
         default:
             return "/\(version)\(relativePath)"
         }
@@ -129,11 +136,11 @@ enum APIEndpoint {
         case .paymentProvider:
             return "/payments/providers"
         case .adyenPaymentMethods(let paymentAPIVersion):
-            return "/payments/adyen/\(paymentAPIVersion)/payments-methods"
+            return "/payments/adyen\(paymentAPIVersion)/payments-methods"
         case .adyenPayments(let paymentAPIVersion):
-            return "/payments/adyen/\(paymentAPIVersion)/payments"
+            return "/payments/adyen\(paymentAPIVersion)/payments"
         case .adyenPaymentsDetails(let paymentAPIVersion):
-            return "/payments/adyen/\(paymentAPIVersion)/payments-details"
+            return "/payments/adyen\(paymentAPIVersion)/payments-details"
         case .adyenPublicKey:
             return "/payments/adyen/public-key"
         case .quoteCoverage:
