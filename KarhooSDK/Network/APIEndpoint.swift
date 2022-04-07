@@ -38,6 +38,7 @@ enum APIEndpoint {
     case adyenPayments
     case adyenPaymentsDetails
     case adyenPublicKey
+    case adyenClientKey
     case quoteCoverage
     case verifyQuote(quoteID: String)
     case loyaltyStatus(identifier: String)
@@ -136,6 +137,8 @@ enum APIEndpoint {
             return "/payments/adyen/payments-details"
         case .adyenPublicKey:
             return "/payments/adyen/public-key"
+        case .adyenClientKey:
+            return "/payments/adyen/client-key"
         case .quoteCoverage:
             return "/quotes/coverage"
         case .verifyQuote(let quoteID):
@@ -193,6 +196,7 @@ enum APIEndpoint {
         case .adyenPayments: return .post
         case .adyenPaymentsDetails: return .post
         case .adyenPublicKey: return .get
+        case .adyenClientKey: return .get
         case .quoteCoverage: return .get
         case .verifyQuote: return .get
         case .loyaltyStatus: return .get
@@ -216,6 +220,7 @@ enum APIEndpoint {
         case .adyenPayments: return "v3"
         case .adyenPaymentsDetails: return "v3"
         case .adyenPublicKey: return "v3"
+        case .adyenClientKey: return "v3"
         case .quoteCoverage: return "v2"
         case .verifyQuote: return "v2"
         case .loyaltyBalance: return "v3"

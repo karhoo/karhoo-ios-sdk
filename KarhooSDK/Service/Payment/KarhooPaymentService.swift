@@ -18,6 +18,7 @@ final class KarhooPaymentService: PaymentService {
     private let adyenPaymentsInteractor: AdyenPaymentsInteractor
     private let adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor
     private let adyenPublicKeyInteractor: AdyenPublicKeyInteractor
+    private let adyenClientKeyInteractor: AdyenClientKeyInteractor
 
     init(tokenInteractor: PaymentSDKTokenInteractor = KarhooPaymentSDKTokenInteractor(),
          getNonceInteractor: GetNonceInteractor = KarhooGetNonceInteractor(),
@@ -26,7 +27,8 @@ final class KarhooPaymentService: PaymentService {
          adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor = KarhooAdyenPaymentMethodsInteractor(),
          adyenPaymentsInteractor: AdyenPaymentsInteractor = KarhooAdyenPaymentsInteractor(),
          adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor = KarhooAdyenPaymentsDetailsInteractor(),
-         adyenPublicKeyInteractor: AdyenPublicKeyInteractor = KarhooAdyenPublicKeyInteractor()){
+         adyenPublicKeyInteractor: AdyenPublicKeyInteractor = KarhooAdyenPublicKeyInteractor(),
+         adyenClientKeyInteractor: AdyenClientKeyInteractor = KarhooAdyenClientKeyInteractor()){
         self.paymentSDKTokenInteractor = tokenInteractor
         self.getNonceInteractor = getNonceInteractor
         self.addPaymentDetailsInteractor = addPaymentDetailsInteractor
@@ -35,6 +37,7 @@ final class KarhooPaymentService: PaymentService {
         self.adyenPaymentsInteractor = adyenPaymentsInteractor
         self.adyenPaymentsDetailsInteractor = adyenPaymentsDetailsInteractor
         self.adyenPublicKeyInteractor = adyenPublicKeyInteractor
+        self.adyenClientKeyInteractor = adyenClientKeyInteractor
     }
 
     func initialisePaymentSDK(paymentSDKTokenPayload: PaymentSDKTokenPayload) -> Call<PaymentSDKToken> {
@@ -73,5 +76,9 @@ final class KarhooPaymentService: PaymentService {
     
     func getAdyenPublicKey() -> Call<AdyenPublicKey> {
         return Call(executable: adyenPublicKeyInteractor)
+    }
+
+    func getAdyenClientKey() -> Call<AdyenClientKey> {
+        Call(executable: adyenClientKeyInteractor)
     }
 }
