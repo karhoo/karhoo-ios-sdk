@@ -165,7 +165,6 @@
 		147B88A224E3FEAE003F78B8 /* MockAdyenPaymentMethodsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B88A124E3FEAE003F78B8 /* MockAdyenPaymentMethodsInteractor.swift */; };
 		147B88A524E3FF5F003F78B8 /* KarhooAdyenPaymentMethodsInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B88A424E3FF5F003F78B8 /* KarhooAdyenPaymentMethodsInteractorSpec.swift */; };
 		14A4101824D1728200900F10 /* QuotesV2.json in Resources */ = {isa = PBXBuildFile; fileRef = 14A4101724D1728200900F10 /* QuotesV2.json */; };
-		14D7728B25AEFDDB0000C481 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D7728A25AEFDDB0000C481 /* Keys.swift */; };
 		230FD90126A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD90026A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift */; };
 		230FD90726A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD90626A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift */; };
 		230FD92B26A18C76009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230FD91826A18B04009BDCFA /* KarhooAuthLoginWithCredentialsSpec.swift */; };
@@ -363,6 +362,10 @@
 		5CC6356E252B57AD00EDD6E3 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6356D252B57AD00EDD6E3 /* AnyCodable.swift */; };
 		5CDD26D424BF4EA900436F01 /* VehicleAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */; };
 		5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */; };
+		5D4800F516E293EA22604A94 /* AdyenClientKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D480980D478A06806E93B05 /* AdyenClientKey.swift */; };
+		5D4806EC519AFE12A3209A98 /* KarhooAdyenClientKeyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D480E1AF062F866A3A657C2 /* KarhooAdyenClientKeyInteractor.swift */; };
+		5D480A8C78D7C81F253BC00C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D480EA12F7236874F815CF5 /* Keys.swift */; };
+		5D480AB4657DBF0AB356D2C6 /* AdyenClientKeyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D48053897A118D887CD6495 /* AdyenClientKeyInteractor.swift */; };
 		6BB9405227512AB600478ABD /* LoyaltyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB9405127512AB600478ABD /* LoyaltyUtils.swift */; };
 		6F11A47D25713BC2003CFE15 /* NetPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F11A47C25713BC2003CFE15 /* NetPrice.swift */; };
 		6F11A48725714549003CFE15 /* FleetRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F11A48625714549003CFE15 /* FleetRating.swift */; };
@@ -714,7 +717,6 @@
 		147B88A124E3FEAE003F78B8 /* MockAdyenPaymentMethodsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAdyenPaymentMethodsInteractor.swift; sourceTree = "<group>"; };
 		147B88A424E3FF5F003F78B8 /* KarhooAdyenPaymentMethodsInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooAdyenPaymentMethodsInteractorSpec.swift; sourceTree = "<group>"; };
 		14A4101724D1728200900F10 /* QuotesV2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = QuotesV2.json; sourceTree = "<group>"; };
-		14D7728A25AEFDDB0000C481 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		14E69FE124E1897300133B1F /* AdyenPaymentMethodsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdyenPaymentMethodsRequest.swift; sourceTree = "<group>"; };
 		230FD90026A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLoginWithCredentialsInteractor.swift; sourceTree = "<group>"; };
 		230FD90626A03EE1009BDCFA /* KarhooAuthLoginWithCredentialsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooAuthLoginWithCredentialsInteractor.swift; sourceTree = "<group>"; };
@@ -914,6 +916,10 @@
 		5CC6356D252B57AD00EDD6E3 /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
 		5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAvailability.swift; sourceTree = "<group>"; };
 		5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteRequestPoint.swift; sourceTree = "<group>"; };
+		5D48053897A118D887CD6495 /* AdyenClientKeyInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdyenClientKeyInteractor.swift; sourceTree = "<group>"; };
+		5D480980D478A06806E93B05 /* AdyenClientKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdyenClientKey.swift; sourceTree = "<group>"; };
+		5D480E1AF062F866A3A657C2 /* KarhooAdyenClientKeyInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooAdyenClientKeyInteractor.swift; sourceTree = "<group>"; };
+		5D480EA12F7236874F815CF5 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		6BB9405127512AB600478ABD /* LoyaltyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyUtils.swift; sourceTree = "<group>"; };
 		6F11A47C25713BC2003CFE15 /* NetPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetPrice.swift; sourceTree = "<group>"; };
 		6F11A48625714549003CFE15 /* FleetRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetRating.swift; sourceTree = "<group>"; };
@@ -1453,7 +1459,7 @@
 				09A9B2962405901B00823FB0 /* Assets.xcassets */,
 				09A9B2982405901B00823FB0 /* LaunchScreen.storyboard */,
 				09A9B29B2405901B00823FB0 /* Info.plist */,
-				14D7728A25AEFDDB0000C481 /* Keys.swift */,
+				5D480EA12F7236874F815CF5 /* Keys.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -1923,6 +1929,7 @@
 			children = (
 				6F19F24B250FB13600E1F771 /* AdyenPublicKey.swift */,
 				6FA6200224F6666700C1DF48 /* AdyenPayments */,
+				5D480980D478A06806E93B05 /* AdyenClientKey.swift */,
 			);
 			path = Adyen;
 			sourceTree = "<group>";
@@ -2563,6 +2570,7 @@
 				09F79E322239520D00D5B0B8 /* GetNonceInteractor */,
 				09C1A2382107367C004B6406 /* PaymentSDKTokenInteractor */,
 				5C224EAD223DC9E000C1CFCE /* AddPaymentDetailsInteractor */,
+				5D48020A021CA0A84591A4DC /* AdyenClientKey */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -2763,6 +2771,15 @@
 				434B58421E434E5F009E8FB8 /* MockUserDataStore.swift */,
 			);
 			path = DataStore;
+			sourceTree = "<group>";
+		};
+		5D48020A021CA0A84591A4DC /* AdyenClientKey */ = {
+			isa = PBXGroup;
+			children = (
+				5D48053897A118D887CD6495 /* AdyenClientKeyInteractor.swift */,
+				5D480E1AF062F866A3A657C2 /* KarhooAdyenClientKeyInteractor.swift */,
+			);
+			path = AdyenClientKey;
 			sourceTree = "<group>";
 		};
 		6F09978124FFAD4A009877DB /* Adyen */ = {
@@ -3425,8 +3442,8 @@
 			);
 			mainGroup = 4387A6371E3BAF6D0024FD55;
 			packageReferences = (
-				5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */,
-				5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift.git" */,
 				5C4252EF2518F72200CCCB5D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
 			);
 			productRefGroup = 4387A6421E3BAF6D0024FD55 /* Products */;
@@ -3522,7 +3539,7 @@
 				40FBF609240FBB2E007F6A54 /* AuthRequestsTesterViewController.swift in Sources */,
 				09A9B28E2405901900823FB0 /* AppDelegate.swift in Sources */,
 				09A9B2902405901900823FB0 /* SceneDelegate.swift in Sources */,
-				14D7728B25AEFDDB0000C481 /* Keys.swift in Sources */,
+				5D480A8C78D7C81F253BC00C /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3852,6 +3869,9 @@
 				143975DC24EAC7AB0006EB80 /* Provider.swift in Sources */,
 				6FD542C3258CEAA3002EA542 /* LoyaltyRates.swift in Sources */,
 				095A03BB2333ADC2007D805E /* KarhooConfigService.swift in Sources */,
+				5D4800F516E293EA22604A94 /* AdyenClientKey.swift in Sources */,
+				5D480AB4657DBF0AB356D2C6 /* AdyenClientKeyInteractor.swift in Sources */,
+				5D4806EC519AFE12A3209A98 /* KarhooAdyenClientKeyInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4490,7 +4510,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */ = {
+		5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -4498,7 +4518,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+		5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
 			requirement = {
@@ -4519,12 +4539,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		5C4252B42518F32A00CCCB5D /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */;
+			package = 5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
 		};
 		5C4252BA2518F37600CCCB5D /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			package = 5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift.git" */;
 			productName = KeychainSwift;
 		};
 		5C4253322519068400CCCB5D /* OHHTTPStubsSwift */ = {
