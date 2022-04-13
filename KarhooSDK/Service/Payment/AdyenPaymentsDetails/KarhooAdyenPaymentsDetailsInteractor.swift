@@ -11,10 +11,15 @@ import Foundation
 final class KarhooAdyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor {
     
     private let adyenPaymentsDetailsRequestSender: RequestSender
+    private let adyenApiVersionProvider: AdyenAPIVersionProvider
     private var paymentsDetails: PaymentsDetailsRequestPayload?
     
-    init(requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
+    init(
+        requestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+        adyenApiVersionProvider: AdyenAPIVersionProvider = KarhooAdyenAPIVersionProvider()
+    ) {
         self.adyenPaymentsDetailsRequestSender = requestSender
+        self.adyenApiVersionProvider = adyenApiVersionProvider
     }
     
     func set(paymentsDetails: PaymentsDetailsRequestPayload) {
@@ -26,12 +31,13 @@ final class KarhooAdyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor
             return
         }
 
-        adyenPaymentsDetailsRequestSender.request(payload: paymentsDetails,
-                                                  endpoint: .adyenPaymentsDetails,
-                                                  callback: { [weak self] result in
-                                                    self?.handle(result,
-                                                                 interactorCallback: dataCallback)
-                                                  })
+        adyenPaymentsDetailsRequestSender.request(
+            payload: paymentsDetails,
+            endpoint: .adyenPaymentsDetails(paymentAPIVersion: adyenApiVersionProvider.getVersion()),
+            callback: { [weak self] result in
+                self?.handle(result,
+                             interactorCallback: dataCallback)
+            })
     }
     
     func cancel() {
