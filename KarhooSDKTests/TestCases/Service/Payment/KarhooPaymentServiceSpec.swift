@@ -169,7 +169,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
             executeResult = result
         })
 
-        mockPaymentProviderInteractor.triggerSuccess(result: PaymentProvider(provider: Provider(id: "braintree"), version: "v68"))
+        mockPaymentProviderInteractor.triggerSuccess(result: PaymentProvider(provider: Provider(id: "braintree")))
 
         XCTAssertEqual(executeResult?.successValue()?.provider.type, .braintree)
     }
