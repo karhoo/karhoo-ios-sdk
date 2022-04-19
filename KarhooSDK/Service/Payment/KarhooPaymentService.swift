@@ -20,15 +20,17 @@ final class KarhooPaymentService: PaymentService {
     private let adyenPublicKeyInteractor: AdyenPublicKeyInteractor
     private let adyenClientKeyInteractor: AdyenClientKeyInteractor
 
-    init(tokenInteractor: PaymentSDKTokenInteractor = KarhooPaymentSDKTokenInteractor(),
-         getNonceInteractor: GetNonceInteractor = KarhooGetNonceInteractor(),
-         addPaymentDetailsInteractor: AddPaymentDetailsInteractor = KarhooAddPaymentDetailsInteractor(),
-         paymentProviderInteractor: PaymentProviderInteractor = KarhooPaymentProviderInteractor(),
-         adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor = KarhooAdyenPaymentMethodsInteractor(),
-         adyenPaymentsInteractor: AdyenPaymentsInteractor = KarhooAdyenPaymentsInteractor(),
-         adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor = KarhooAdyenPaymentsDetailsInteractor(),
-         adyenPublicKeyInteractor: AdyenPublicKeyInteractor = KarhooAdyenPublicKeyInteractor(),
-         adyenClientKeyInteractor: AdyenClientKeyInteractor = KarhooAdyenClientKeyInteractor()){
+    init(
+        tokenInteractor: PaymentSDKTokenInteractor = KarhooPaymentSDKTokenInteractor(),
+        getNonceInteractor: GetNonceInteractor = KarhooGetNonceInteractor(),
+        addPaymentDetailsInteractor: AddPaymentDetailsInteractor = KarhooAddPaymentDetailsInteractor(),
+        paymentProviderInteractor: PaymentProviderInteractor = KarhooPaymentProviderInteractor(),
+        adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor = KarhooAdyenPaymentMethodsInteractor(),
+        adyenPaymentsInteractor: AdyenPaymentsInteractor = KarhooAdyenPaymentsInteractor(),
+        adyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor = KarhooAdyenPaymentsDetailsInteractor(),
+        adyenPublicKeyInteractor: AdyenPublicKeyInteractor = KarhooAdyenPublicKeyInteractor(),
+        adyenClientKeyInteractor: AdyenClientKeyInteractor = KarhooAdyenClientKeyInteractor()
+    ) {
         self.paymentSDKTokenInteractor = tokenInteractor
         self.getNonceInteractor = getNonceInteractor
         self.addPaymentDetailsInteractor = addPaymentDetailsInteractor

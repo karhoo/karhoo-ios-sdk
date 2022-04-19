@@ -29,7 +29,7 @@ final class KarhooAdyenPaymentsInteractorSpec: XCTestCase {
      */
     func testRequestFormat() {
         testObject.execute(callback: { ( _: Result<AdyenPayments>) in})
-        mockRequestSender.assertRequestSendAndDecoded(endpoint: .adyenPayments,
+        mockRequestSender.assertRequestSendAndDecoded(endpoint: .adyenPayments(paymentAPIVersion: ""),
                                                       method: .post,
                                                       payload: nil)
     }
