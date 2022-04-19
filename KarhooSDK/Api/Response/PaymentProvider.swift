@@ -13,7 +13,7 @@ public struct PaymentProvider : KarhooCodableModel {
     public let loyaltyProgamme: LoyaltyProgramme
 
     public init(provider: Provider = Provider(),
-                version: String = "v51",
+                version: String,
                 loyaltyProgamme: LoyaltyProgramme = LoyaltyProgramme()) {
         self.provider = provider
         self.version = version
@@ -24,7 +24,7 @@ public struct PaymentProvider : KarhooCodableModel {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.provider = (try? container.decode(Provider.self, forKey: .provider)) ?? Provider()
-        self.version = (try? container.decodeIfPresent(String.self, forKey: .version)) ?? "v51"
+        self.version = provider.version
         self.loyaltyProgamme = (try? container.decode(LoyaltyProgramme.self, forKey: .loyaltyProgamme)) ?? LoyaltyProgramme()
     }
     

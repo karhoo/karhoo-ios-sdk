@@ -13,6 +13,7 @@ public enum PaymentProviderType {
 
 public struct Provider: KarhooCodableModel {
     public let id: String
+    public let version: String
 
     public var type: PaymentProviderType {
         switch self.id.lowercased() {
@@ -22,17 +23,20 @@ public struct Provider: KarhooCodableModel {
         }
     }
 
-    public init(id: String = "") {
+    public init(id: String = "", version: String = "") {
         self.id = id
+        self.version = version
     }
     
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
+        self.version = (try? container.decode(String.self, forKey: .version)) ?? "v51"
     }
     
     enum CodingKeys: String, CodingKey {
         case id
+        case version
     }
 }
