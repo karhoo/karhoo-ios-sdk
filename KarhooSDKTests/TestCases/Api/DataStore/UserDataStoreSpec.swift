@@ -311,7 +311,7 @@ class UserDataStoreSpec: XCTestCase {
 
         XCTAssertNil(user?.paymentProvider)
 
-        let newPaymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+        let newPaymentProvider = PaymentProvider(provider: Provider(id: "braintree"), version: "v68")
         testObject.updatePaymentProvider(paymentProvider: newPaymentProvider)
 
         XCTAssertEqual(testObject.getCurrentUser()?.paymentProvider?.provider.type, .braintree)
@@ -367,7 +367,7 @@ class UserDataStoreSpec: XCTestCase {
     func testUpdateUserRetainsUserNonce() {
         let currentUserData = UserInfoMock().set(userId: "nonceUser")
             .set(nonce: Nonce(nonce: "some"))
-            .set(paymentProvider: PaymentProvider(provider: Provider(id: "123")))
+            .set(paymentProvider: PaymentProvider(provider: Provider(id: "123"), version: "v68"))
             .build()
 
         var newUserUpdate = UserInfoMock().set(userId: "nonceUser").build()
@@ -409,7 +409,7 @@ class UserDataStoreSpec: XCTestCase {
 
         XCTAssertNil(user?.paymentProvider)
 
-        let newPaymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+        let newPaymentProvider = PaymentProvider(provider: Provider(id: "braintree"), version: "v68")
         testObject.updatePaymentProvider(paymentProvider: newPaymentProvider)
 
         XCTAssertEqual(testObject.getCurrentUser()?.paymentProvider?.provider.type, .braintree)

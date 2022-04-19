@@ -46,7 +46,7 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
      * And: payment provider should be persisted to user data store
      */
     func testPaymentProviderSuccess() {
-        let expectedResponse = PaymentProvider(provider: Provider(id: "braintree"))
+        let expectedResponse = PaymentProvider(provider: Provider(id: "braintree"), version: "v68")
         var expectedResult: Result<PaymentProvider>?
         
         testObject.execute(callback: { expectedResult = $0})

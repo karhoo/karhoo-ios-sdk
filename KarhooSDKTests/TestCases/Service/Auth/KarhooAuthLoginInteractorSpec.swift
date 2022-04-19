@@ -114,7 +114,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
                                 lastFour: "1234")
 
         triggerSuccessfulAuthLoginAndProfileFetch()
-        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"), version: "v68")
         mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
 
         XCTAssertTrue(mockGetNonceRequestSender.requestAndDecodeCalled)
@@ -131,7 +131,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
      * Then: User should be updated
      */
     func testGetPaymentProvider() {
-        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"), version: "v68")
 
         triggerSuccessfulAuthLoginAndProfileFetch()
 
@@ -146,7 +146,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
      * Then: loyalty status should be updated
      */
     func testLoyaltyStatusIsUpdated() {
-        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"), loyaltyProgamme: LoyaltyProgramme(id: "some", name: TestUtil.getRandomString()))
+        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"), version: "v68", loyaltyProgamme: LoyaltyProgramme(id: "some", name: TestUtil.getRandomString()))
         let loyaltyStatus = LoyaltyStatus(balance: TestUtil.getRandomInt(), canBurn: false, canEarn: true)
 
         triggerSuccessfulAuthLoginAndProfileFetch()
@@ -164,7 +164,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
      */
     func testGetNonceFailsAfterSuccessfulLogin() {
         triggerSuccessfulAuthLoginAndProfileFetch()
-        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
+        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"), version: "v68")
         mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
 
         mockGetNonceRequestSender.triggerFail(error: TestUtil.getRandomError())
@@ -181,7 +181,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
      */
     func testAdyenDoesNotGetBraintreeNonce() {
         triggerSuccessfulAuthLoginAndProfileFetch()
-        let paymentProvider = PaymentProvider(provider: Provider(id: "adyen"))
+        let paymentProvider = PaymentProvider(provider: Provider(id: "adyen"), version: "v68")
         mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
 
         mockGetNonceRequestSender.triggerFail(error: TestUtil.getRandomError())
