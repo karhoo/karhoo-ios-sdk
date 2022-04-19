@@ -34,10 +34,11 @@ enum APIEndpoint {
     case authUserInfo
     case authRefresh
     case paymentProvider
-    case adyenPaymentMethods
-    case adyenPayments
-    case adyenPaymentsDetails
+    case adyenPaymentMethods(paymentAPIVersion: String)
+    case adyenPayments(paymentAPIVersion: String)
+    case adyenPaymentsDetails(paymentAPIVersion: String)
     case adyenPublicKey
+    case adyenClientKey
     case quoteCoverage
     case verifyQuote(quoteID: String)
     case loyaltyStatus(identifier: String)
@@ -128,14 +129,16 @@ enum APIEndpoint {
             return "/oauth/v2/token"
         case .paymentProvider:
             return "/payments/providers"
-        case .adyenPaymentMethods:
-            return "/payments/adyen/payments-methods"
-        case .adyenPayments:
-            return "/payments/adyen/payments"
-        case .adyenPaymentsDetails:
-            return "/payments/adyen/payments-details"
+        case .adyenPaymentMethods(let paymentAPIVersion):
+            return "/payments/adyen\(paymentAPIVersion)/payments-methods"
+        case .adyenPayments(let paymentAPIVersion):
+            return "/payments/adyen\(paymentAPIVersion)/payments"
+        case .adyenPaymentsDetails(let paymentAPIVersion):
+            return "/payments/adyen\(paymentAPIVersion)/payments-details"
         case .adyenPublicKey:
             return "/payments/adyen/public-key"
+        case .adyenClientKey:
+            return "/payments/adyen/client-key"
         case .quoteCoverage:
             return "/quotes/coverage"
         case .verifyQuote(let quoteID):
@@ -193,6 +196,7 @@ enum APIEndpoint {
         case .adyenPayments: return .post
         case .adyenPaymentsDetails: return .post
         case .adyenPublicKey: return .get
+        case .adyenClientKey: return .get
         case .quoteCoverage: return .get
         case .verifyQuote: return .get
         case .loyaltyStatus: return .get
@@ -216,6 +220,7 @@ enum APIEndpoint {
         case .adyenPayments: return "v3"
         case .adyenPaymentsDetails: return "v3"
         case .adyenPublicKey: return "v3"
+        case .adyenClientKey: return "v3"
         case .quoteCoverage: return "v2"
         case .verifyQuote: return "v2"
         case .loyaltyBalance: return "v3"
