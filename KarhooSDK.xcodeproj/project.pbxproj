@@ -3442,8 +3442,8 @@
 			);
 			mainGroup = 4387A6371E3BAF6D0024FD55;
 			packageReferences = (
-				5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */,
-				5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift.git" */,
 				5C4252EF2518F72200CCCB5D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
 			);
 			productRefGroup = 4387A6421E3BAF6D0024FD55 /* Products */;
@@ -4510,7 +4510,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */ = {
+		5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -4518,7 +4518,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+		5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
 			requirement = {
@@ -4539,12 +4539,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		5C4252B42518F32A00CCCB5D /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */;
+			package = 5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
 		};
 		5C4252BA2518F37600CCCB5D /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			package = 5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift.git" */;
 			productName = KeychainSwift;
 		};
 		5C4253322519068400CCCB5D /* OHHTTPStubsSwift */ = {
