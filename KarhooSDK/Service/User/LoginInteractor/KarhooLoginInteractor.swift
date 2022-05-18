@@ -129,11 +129,7 @@ final class KarhooLoginInteractor: LoginInteractor {
                                                 endpoint: .paymentProvider,
                                                 callback: { [weak self] (result: Result<PaymentProvider>) in
             self?.userDataStore.updatePaymentProvider(paymentProvider: result.successValue())
-            
-            if result.successValue()?.provider.type == .braintree {
-                self?.updateUserNonce(user: user)
-            }
-            
+            self?.updateUserNonce(user: user)
             guard let self = self else { return }
             
             LoyaltyUtils.updateLoyaltyStatusFor(paymentProvider: result.successValue(),

@@ -167,23 +167,6 @@ final class KarhooAuthLoginWithCredentialsSpec: XCTestCase {
         XCTAssertNil(mockUserDataStore.updateCurrentNonce)
     }
 
-    /**
-     * Given: Login successful and the payment
-     * When: provider is adyen
-     * Then: get nonce should not be called
-     */
-    func testAdyenDoesNotGetBraintreeNonce() {
-        triggerSuccessfulAuthLoginAndProfileFetch()
-        let paymentProvider = PaymentProvider(provider: Provider(id: "adyen"))
-        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
-
-        mockGetNonceRequestSender.triggerFail(error: TestUtil.getRandomError())
-
-        XCTAssertFalse(mockGetNonceRequestSender.requestAndDecodeCalled)
-        XCTAssertFalse(mockUserDataStore.updateCurrentNonceCalled)
-        XCTAssertNil(mockUserDataStore.updateCurrentNonce)
-    }
-
     private func triggerSuccessfulAuthLoginAndProfileFetch() {
         testObject.execute(callback: { (_: Result<UserInfo>) in })
         mockUserRequest.triggerSuccessWithDecoded(value: UserInfoMock().set(firstName: "Bob").build())
