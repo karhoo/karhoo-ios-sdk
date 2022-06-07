@@ -97,7 +97,7 @@ final class KarhooQuoteInteractor: QuoteInteractor {
         }
 
         let filteredQuotes = quoteList.quotes.filter { $0.vehicle.qta.highMinutes <= filterRidesWithETA }
-        let quoteCategories = CategoryQuoteMapper().map(categories: quoteList.availability.vehicles.classes,
+        let quoteCategories = CategoryQuoteMapper().map(categories: quoteList.availability.vehicles.types,
                                                         toQuotes: filteredQuotes)
         let quotes = Quotes(quoteListId: quoteList.listId,
                             quoteCategories: quoteCategories,

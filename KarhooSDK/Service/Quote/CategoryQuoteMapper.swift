@@ -14,12 +14,12 @@ struct CategoryQuoteMapper {
         var categoriesToMap: [String] = categories.uniqueArray()
 
         if categories.isEmpty {
-            categoriesToMap = quotes.map { $0.vehicle.vehicleClass }.uniqueArray()
+            categoriesToMap = quotes.map { $0.vehicle.type }.uniqueArray()
         }
 
         return categoriesToMap.map { category in
             let quotes = quotes.filter {
-                let name = $0.vehicle.vehicleClass
+                let name = $0.vehicle.type
                 return name.lowercased() == category.lowercased()
             }
             

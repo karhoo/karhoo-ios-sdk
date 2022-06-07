@@ -102,10 +102,7 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
             
             let paymentProvider = result.successValue()
             self?.userDataStore.updatePaymentProvider(paymentProvider: paymentProvider)
-            if paymentProvider?.provider.type == .braintree {
-                self?.updateUserNonce(user: user)
-            }
-                                                    
+            self?.updateUserNonce(user: user)                                                    
             guard let self = self else { return }
             
             LoyaltyUtils.updateLoyaltyStatusFor(paymentProvider: paymentProvider,

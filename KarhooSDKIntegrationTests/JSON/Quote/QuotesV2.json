@@ -10,9 +10,11 @@
         "Electric"
       ],
       "types": [
-          "electric",
+          "moto",
           "standard",
-          "mpv"]
+          "mpv",
+          "bus"
+      ]
     }
   },
   "id": "1762fe84-cb53-11ea-994d-52087d195d90",
@@ -37,7 +39,6 @@
       "quote_type": "ESTIMATED",
       "source": "FLEET",
       "vehicle": {
-        "type": "standard",
         "class": "Saloon",
         "tags": [
             "electric", "taxi"
@@ -45,7 +46,8 @@
         "qta": {
           "high_minutes": 30,
           "low_minutes": 30
-        }
+        },
+        "type": "moto"
       },
       "service_level_agreements": {
           "free_cancellation": {
@@ -81,7 +83,8 @@
         "qta": {
           "high_minutes": 2,
           "low_minutes": 2
-        }
+        },
+        "type": "standard"
       },
       "service_level_agreements": {
           "free_cancellation": {
@@ -117,7 +120,8 @@
         "qta": {
           "high_minutes": 2,
           "low_minutes": 2
-        }
+        },
+        "type": "standard"
       },
       "service_level_agreements": {
           "free_cancellation": {
