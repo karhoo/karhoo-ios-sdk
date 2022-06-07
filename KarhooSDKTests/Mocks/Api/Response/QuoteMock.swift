@@ -121,7 +121,7 @@ final class QuoteMock {
                         categoryName: String? = nil,
                         fleet: Fleet? = nil,
                         vehicle: QuoteVehicle? = nil) {
-        let quoteVehicle = QuoteVehicle(vehicleClass: categoryName ?? "",
+        let quoteVehicle = QuoteVehicle(type: categoryName ?? "",
                                         qta: QuoteQta(highMinutes: qtaHighMinutes ?? 0,
                                                       lowMinutes: qtaLowMinutes ?? 0))
         self.quote = Quote(

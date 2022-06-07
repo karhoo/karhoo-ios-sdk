@@ -48,7 +48,7 @@ final class UIConfigMethod: XCTestCase {
 
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            XCTAssertFalse(result.successValue()!.hidden)
+            XCTAssertFalse(result.successValue()?.hidden ?? false)
 
             expectation.fulfill()
         })
