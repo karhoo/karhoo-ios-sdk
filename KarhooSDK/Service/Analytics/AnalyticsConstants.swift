@@ -37,8 +37,8 @@ public enum AnalyticsConstants {
         case pickupReverseGeocodeRequested = "pickup_reverse_geocode_requested"
         case pickupReverseGeocodeResponded = "pickup_reverse_geocode_responded"
         case preebookTimeSet = "preebook_time_set"
-        case userCardRegistered = "user_card_registered"
-        case userCardRegistrationFailed = "user_card_registration_failed"
+        case userCardRegistered = "user_card_registered" // ??
+        case userCardRegistrationFailed = "user_card_registration_failed" // ??
         case tripCancellationAttempted = "trip_cancellation_attempted_by_user"
         case tripCancellationInitiatedByUser = "trip_cancellation_initiated_by_user"
         case categorySelected = "vehicle_type_selected"
@@ -69,9 +69,6 @@ public enum AnalyticsConstants {
         case bookingScreenOpened = "RIDE_PLANNING_SCREEN"
         case quoteListOpened = "QUOTE_LIST_SCREEN"
         case checkoutOpened = "CHECKOUT_SCREEN"
-        case checkoutBookingRequested = "CHECKOUT_BOOKING_REQUESTED"
-        case paymentSucceed = "PAYMENT_CONFIRMED"
-        case paymentFailed = "PAYMENT_REFUSED_OR_REJECTED"
         case trackTripOpened = "VEHICLE_TRACKING_SCREEN"
         case ridesPastTripsOpened = "RIDES_PAST_LIST"
         case ridesUpcomingTripsOpened = "RIDES_UPCOMING_LIST"
@@ -79,9 +76,25 @@ public enum AnalyticsConstants {
         case ridesUpcomingContactFleetClicked = "RIDES_UPCOMING_CONTACT_FLEET_CLICKED"
         case ridesUpcomingContactDriverClicked = "RIDES_UPCOMING_CONTACT_DRIVER_CLICKED"
         case trackingContactDriverClicked = "VEHICLE_TRACKING_SCREEN_CONTACT_DRIVER_CLICKED"
-        
+
+        // PAYMENT STATUS
+        case paymentSucceed = "BOOKING_PAYMENT_SUCCESS"
+        case paymentFailed = "BOOKING_PAYMENT_FAILED"
+
+        // BOOKING
+        case checkoutBookingRequested = "BOOKING_REQUESTED"
+
+        // LOYALTY STATUS
+        case loyaltyStatusRequested = "LOYALTY_STATUS_REQUESTED"
+        case loyaltyPreauthSuccess = "LOYALTY_PREAUTH_SUCCESS"
+        case loyaltyPreauthFailed = "LOYALTY_PREAUTH_FAILED"
+
+        // CARD AUTHORISATION STATUS
+        case cardAuthorisationFailed = "CARD_AUTHORISATION_FAILED"
+        case cardAuthorisationSuccess = "CARD_AUTHORISATION_SUCCESS"
+
         public var description: String {
-            return rawValue
+            rawValue
         }
     }
 
@@ -121,7 +134,7 @@ public enum AnalyticsConstants {
         case isPrebook = "isPrebook"
 
         var description: String {
-            return rawValue
+            rawValue
         }
     }
 }
