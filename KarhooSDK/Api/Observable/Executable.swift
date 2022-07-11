@@ -12,3 +12,9 @@ public protocol KarhooExecutable {
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>)
     func cancel()
 }
+
+
+public protocol KarhooExecutableWithCorrelationId {
+    func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosureWithCorrelationId<T>)
+    func cancel()
+}

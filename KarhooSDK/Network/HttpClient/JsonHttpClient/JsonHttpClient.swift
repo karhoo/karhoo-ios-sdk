@@ -43,6 +43,28 @@ final class JsonHttpClient: HttpClient {
     }
 
     @discardableResult
+    func sendRequestWithCorrelationId(endpoint: APIEndpoint,
+                     data: Data? = nil,
+                     urlComponents: URLComponents? = nil,
+                     completion: @escaping CallbackClosureWithCorrelationId<HttpResponse>) -> NetworkRequest? {
+
+        let headers: HttpHeaders = addRelativeHeaders(endpoint: endpoint)
+
+        do {
+            let url = absoluteUrl(endpoint: endpoint)
+            var request: URLRequest
+
+            request = try requestBuilder.request(method: endpoint.method, url: url, headers: headers, data: data)
+
+            return urlSessionSender.send(request: request) { data, response, error in
+                self.handleWithCorrelationId(response: response, data: data, error: error, correlationId: request.allHTTPHeaderFields?[HeaderConstants.correlationId], completion: completion)
+            }
+        } catch {
+            return nil
+        }
+    }
+
+    @discardableResult
     func sendRequest(endpoint: APIEndpoint, data: Data?, urlComponents: URLComponents? = nil, completion: @escaping CallbackClosure<HttpResponse>) -> NetworkRequest? {
         let headers: HttpHeaders = addRelativeHeaders(endpoint: endpoint)
 
@@ -81,6 +103,29 @@ final class JsonHttpClient: HttpClient {
         completion(Result.success(result: httpResponse))
     }
 
+    private func handleWithCorrelationId(
+        response: URLResponse?,
+        data: Data?, error: Error?,
+        correlationId: String?,
+        completion: CallbackClosureWithCorrelationId<HttpResponse>
+    ) {
+        let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
+        let httpResponse = HttpResponse(code: statusCode, data: data ?? Data())
+
+        guard error == nil &&
+                  isValid(statusCode: statusCode) else {
+            handleErrorWithCorrelationId(requestUrl: response?.url?.absoluteString ?? "",
+                statusCode: statusCode,
+                response: httpResponse,
+                error: error,
+                correlationId: correlationId,
+                completion: completion)
+            return
+        }
+
+        completion(ResultWithCorrelationId.success(result: httpResponse, correlationId: correlationId))
+    }
+
     func handleError(requestUrl: String,
                      statusCode: Int,
                      response: HttpResponse,
@@ -98,6 +143,27 @@ final class JsonHttpClient: HttpClient {
         } else {
             let httpError = HTTPError(statusCode: statusCode, error: error as NSError?)
             completion(Result.failure(error: httpError))
+        }
+    }
+    
+    func handleErrorWithCorrelationId(requestUrl: String,
+                     statusCode: Int,
+                     response: HttpResponse,
+                     error: Error?,
+                     correlationId: String?,
+                     completion: CallbackClosureWithCorrelationId<HttpResponse>) {
+        
+        analyticsService.send(eventName: .requestFails, payload: error != nil ? [AnalyticsConstants.Keys.requestError.rawValue: error.debugDescription,
+                                                                                 AnalyticsConstants.Keys.requestUrl.rawValue: requestUrl] : [AnalyticsConstants.Keys.requestUrl.rawValue: requestUrl])
+        if let error = response.decodeError() {
+            if error.code.isEmpty, error.slug.isEmpty {
+                completion(ResultWithCorrelationId.failure(error: SDKErrorFactory.unexpectedError(), correlationId: correlationId))
+            } else {
+                completion(ResultWithCorrelationId.failure(error: error, correlationId: correlationId))
+            }
+        } else {
+            let httpError = HTTPError(statusCode: statusCode, error: error as NSError?)
+            completion(ResultWithCorrelationId.failure(error: httpError, correlationId: correlationId))
         }
     }
 

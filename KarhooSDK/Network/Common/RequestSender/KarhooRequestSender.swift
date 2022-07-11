@@ -23,12 +23,29 @@ final class KarhooRequestSender: RequestSender {
                                                 completion: callback)
     }
 
+    func requestWithCorrelationId(payload: KarhooRequestModel?,
+                 endpoint: APIEndpoint,
+                 callback: @escaping CallbackClosureWithCorrelationId<HttpResponse>) {
+        networkRequest = httpClient.sendRequestWithCorrelationId(endpoint: endpoint,
+            data: payload?.encode(),
+            urlComponents: nil,
+            completion: callback)
+    }
+
     func requestAndDecode<T: KarhooCodableModel>(payload: KarhooRequestModel?,
                                                  endpoint: APIEndpoint,
                                                  callback: @escaping CallbackClosure<T>) {
         request(payload: payload,
                 endpoint: endpoint) { [weak self] response in
             self?.handler(response: response, callback: callback)
+        }
+    }
+
+    func requestAndDecode<T: KarhooCodableModel>(payload: KarhooRequestModel?,
+                                                 endpoint: APIEndpoint,
+                                                 callback: @escaping CallbackClosureWithCorrelationId<T>) {
+        requestWithCorrelationId(payload: payload, endpoint: endpoint) { [weak self] response in
+            self?.handlerWithCorrelationId(response: response, callback: callback)
         }
     }
 
@@ -49,6 +66,18 @@ final class KarhooRequestSender: RequestSender {
                 callback(.failure(error: error))
             } else {
                 callback(.failure(error: SDKErrorFactory.unexpectedError()))
+            }
+        }
+    }
+
+    private func handlerWithCorrelationId<T: KarhooCodableModel>(response: ResultWithCorrelationId<HttpResponse>, callback: @escaping CallbackClosureWithCorrelationId<T>) {
+        if let value = response.successValue()?.decodeData(ofType: T.self) {
+            callback(.success(result: value, correlationId: response.correlationId()))
+        } else {
+            if let error = response.errorValue() {
+                callback(.failure(error: error, correlationId: response.correlationId()))
+            } else {
+                callback(.failure(error: SDKErrorFactory.unexpectedError(), correlationId: response.correlationId()))
             }
         }
     }

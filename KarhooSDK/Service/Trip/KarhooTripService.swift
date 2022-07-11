@@ -34,9 +34,9 @@ final class KarhooTripService: TripService {
         self.cancellationFeeInteractor = cancellationFeeInteractor
     }
 
-    func book(tripBooking: TripBooking) -> Call<TripInfo> {
+    func book(tripBooking: TripBooking) -> CallWithCorrelationId<TripInfo> {
         bookingInteractor.set(tripBooking: tripBooking)
-        return Call(executable: bookingInteractor)
+        return CallWithCorrelationId(executable: bookingInteractor)
     }
 
     func cancel(tripCancellation: TripCancellation) -> Call<KarhooVoid> {

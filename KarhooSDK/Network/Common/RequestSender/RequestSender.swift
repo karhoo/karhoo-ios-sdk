@@ -14,6 +14,10 @@ protocol RequestSender {
                                                  endpoint: APIEndpoint,
                                                  callback: @escaping CallbackClosure<T>)
 
+    func requestAndDecode<T: KarhooCodableModel>(payload: KarhooRequestModel?,
+                                                 endpoint: APIEndpoint,
+                                                 callback: @escaping CallbackClosureWithCorrelationId<T>)
+
     func encodedRequest<T: KarhooCodableModel>(endpoint: APIEndpoint,
                                                body: URLComponents?,
                                                callback: @escaping CallbackClosure<T>)

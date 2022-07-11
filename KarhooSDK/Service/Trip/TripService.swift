@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol TripService {
-    func book(tripBooking: TripBooking) -> Call<TripInfo>
+    func book(tripBooking: TripBooking) -> CallWithCorrelationId<TripInfo>
 
     func cancel(tripCancellation: TripCancellation) -> Call<KarhooVoid>
 

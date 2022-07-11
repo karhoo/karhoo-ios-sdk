@@ -363,6 +363,7 @@
 		5CDD26D424BF4EA900436F01 /* VehicleAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */; };
 		5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */; };
 		5D4800F516E293EA22604A94 /* AdyenClientKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D480980D478A06806E93B05 /* AdyenClientKey.swift */; };
+		5D480420A6D3B150DF16A696 /* ResultWithCorrelationId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4806DE798817F1849C2AF7 /* ResultWithCorrelationId.swift */; };
 		5D4806EC519AFE12A3209A98 /* KarhooAdyenClientKeyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D480E1AF062F866A3A657C2 /* KarhooAdyenClientKeyInteractor.swift */; };
 		5D480A8C78D7C81F253BC00C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D480EA12F7236874F815CF5 /* Keys.swift */; };
 		5D480AB4657DBF0AB356D2C6 /* AdyenClientKeyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D48053897A118D887CD6495 /* AdyenClientKeyInteractor.swift */; };
@@ -917,6 +918,7 @@
 		5CDD26D324BF4EA900436F01 /* VehicleAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAvailability.swift; sourceTree = "<group>"; };
 		5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteRequestPoint.swift; sourceTree = "<group>"; };
 		5D48053897A118D887CD6495 /* AdyenClientKeyInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdyenClientKeyInteractor.swift; sourceTree = "<group>"; };
+		5D4806DE798817F1849C2AF7 /* ResultWithCorrelationId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultWithCorrelationId.swift; sourceTree = "<group>"; };
 		5D480980D478A06806E93B05 /* AdyenClientKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdyenClientKey.swift; sourceTree = "<group>"; };
 		5D480E1AF062F866A3A657C2 /* KarhooAdyenClientKeyInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooAdyenClientKeyInteractor.swift; sourceTree = "<group>"; };
 		5D480EA12F7236874F815CF5 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
@@ -1593,6 +1595,7 @@
 				312B1AAB1FA097F900BB27CF /* BatteryMonitor.swift */,
 				31EC3F601F9E4C24008CD637 /* DeviceIdentifierProvider.swift */,
 				312B1AAD1FA0982800BB27CF /* NetworkConnectionTypeProvider.swift */,
+				5D4806DE798817F1849C2AF7 /* ResultWithCorrelationId.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -3442,8 +3445,8 @@
 			);
 			mainGroup = 4387A6371E3BAF6D0024FD55;
 			packageReferences = (
-				5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */,
-				5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift.git" */,
 				5C4252EF2518F72200CCCB5D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
 			);
 			productRefGroup = 4387A6421E3BAF6D0024FD55 /* Products */;
@@ -3872,6 +3875,7 @@
 				5D4800F516E293EA22604A94 /* AdyenClientKey.swift in Sources */,
 				5D480AB4657DBF0AB356D2C6 /* AdyenClientKeyInteractor.swift in Sources */,
 				5D4806EC519AFE12A3209A98 /* KarhooAdyenClientKeyInteractor.swift in Sources */,
+				5D480420A6D3B150DF16A696 /* ResultWithCorrelationId.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4510,7 +4514,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */ = {
+		5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -4518,7 +4522,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+		5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
 			requirement = {
@@ -4539,12 +4543,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		5C4252B42518F32A00CCCB5D /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability" */;
+			package = 5C4252B32518F32A00CCCB5D /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
 		};
 		5C4252BA2518F37600CCCB5D /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			package = 5C4252B92518F37600CCCB5D /* XCRemoteSwiftPackageReference "keychain-swift.git" */;
 			productName = KeychainSwift;
 		};
 		5C4253322519068400CCCB5D /* OHHTTPStubsSwift */ = {

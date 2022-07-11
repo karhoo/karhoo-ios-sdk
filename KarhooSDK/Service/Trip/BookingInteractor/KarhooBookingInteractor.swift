@@ -21,7 +21,7 @@ final class KarhooBookingInteractor: BookingInteractor {
         self.tripBooking = tripBooking
     }
 
-    func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
+    func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosureWithCorrelationId<T>) {
         guard let tripBooking = self.tripBooking else {
             return
         }

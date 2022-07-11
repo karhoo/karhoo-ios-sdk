@@ -53,6 +53,17 @@ final class TokenRefreshingHttpClient: HttpClient {
         }
     }
     
+    // this method is not required in this client
+    func sendRequestWithCorrelationId(
+        endpoint: APIEndpoint,
+        data: Data?,
+        urlComponents: URLComponents?,
+//        correlationId: String?,
+        completion: @escaping CallbackClosureWithCorrelationId<HttpResponse>
+    ) -> NetworkRequest? {
+        return nil
+    }
+    
     private func logUserOut() {
         dataStore.removeCurrentUserAndCredentials()
     }

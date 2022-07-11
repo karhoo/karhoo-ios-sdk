@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol BookingInteractor: KarhooExecutable {
+protocol BookingInteractor: KarhooExecutableWithCorrelationId {
     func set(tripBooking: TripBooking)
 }
