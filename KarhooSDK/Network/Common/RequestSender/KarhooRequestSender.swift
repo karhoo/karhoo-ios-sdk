@@ -43,12 +43,12 @@ final class KarhooRequestSender: RequestSender {
 
     private func handler<T: KarhooCodableModel>(response: Result<HttpResponse>, callback: @escaping CallbackClosure<T>) {
         if let value = response.successValue()?.decodeData(ofType: T.self) {
-            callback(.success(result: value))
+            callback(.success(result: value, correlationId: response.correlationId()))
         } else {
             if let error = response.errorValue() {
-                callback(.failure(error: error))
+                callback(.failure(error: error, correlationId: response.correlationId()))
             } else {
-                callback(.failure(error: SDKErrorFactory.unexpectedError()))
+                callback(.failure(error: SDKErrorFactory.unexpectedError(), correlationId: response.correlationId()))
             }
         }
     }
