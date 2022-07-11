@@ -24,7 +24,7 @@ final class KarhooTripUpdateInteractor: TripUpdateInteractor {
                                        endpoint: endpoint(),
                                        callback: { [weak self] (result: Result<TripInfo>) in
                                         switch result {
-                                        case .success(var response):
+                                        case .success(var response, _):
                                             self?.addFollowCodeToResponse(&response)
 
                                             guard let trip = response as? T else {
@@ -32,7 +32,7 @@ final class KarhooTripUpdateInteractor: TripUpdateInteractor {
                                             }
 
                                             callback(.success(result: trip))
-                                        case .failure(let error):
+                                        case .failure(let error, _):
                                             callback(.failure(error: error))
                                         }
         })

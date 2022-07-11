@@ -67,10 +67,10 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
         userInfoSender.requestAndDecode(payload: nil,
                                         endpoint: .authUserInfo) { [weak self](result: Result<UserInfo>) in
                                             switch result {
-                                            case .success(let user):
+                                            case .success(let user, _):
                                                 self?.didLogin(user: user, credentials: credentials)
                                                 callback(.success(result: user))
-                                            case .failure(let error):
+                                            case .failure(let error, _):
                                                 callback(.failure(error: error))
                                             }
         }

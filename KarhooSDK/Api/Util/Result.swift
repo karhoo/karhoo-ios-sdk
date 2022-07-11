@@ -9,12 +9,12 @@
 import Foundation
 
 public enum Result<T> {
-    case success(result: T)
-    case failure(error: KarhooError?)
+    case success(result: T, correlationId: String? = nil)
+    case failure(error: KarhooError?, correlationId: String? = nil)
 
     public func errorValue() -> KarhooError? {
         switch self {
-        case .failure(let error):
+        case .failure(let error, _):
             return error
 
         default:
@@ -24,7 +24,7 @@ public enum Result<T> {
 
     public func successValue() -> T? {
         switch self {
-        case .success(let result):
+        case .success(let result, _):
             return result
 
         default:
@@ -41,12 +41,21 @@ public enum Result<T> {
             return false
         }
     }
+    
+    public func correlationId() -> String? {
+        switch self {
+        case .success(_, let correlationId):
+            return correlationId
+        case .failure(_, let correlationId):
+            return correlationId
+        }
+    }
 
     public func successValue<E>(orErrorCallback: CallbackClosure<E>) -> T? {
         switch self {
-        case .success(let result):
+        case .success(let result, _):
             return result
-        case .failure(let error):
+        case .failure(let error, _):
             orErrorCallback(.failure(error: error))
             return nil
         }
