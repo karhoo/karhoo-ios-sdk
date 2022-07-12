@@ -41,16 +41,16 @@ final class KarhooUpdateUserDetailsInteractor: UpdaterUserDetailsInteractor {
                                        endpoint: APIEndpoint.userProfileUpdate(identifier: userId),
                                        callback: { [weak self] (result: Result<UserInfo>) in
                                         switch result {
-                                        case .success(var user, _):
-                                            self?.userDataStore.updateUser(user: &user)
+                                        case .success(var result):
+                                            self?.userDataStore.updateUser(user: &result.result)
                                             self?.analyticsService.send(eventName: .userProfileUpdateSuccess)
-                                            guard let result = user as? T else {
+                                            guard let user = result.result as? T else {
                                                 return
                                             }
-                                            callback(.success(result: result))
-                                        case .failure(let error, _):
+                                            callback(.success(result: user))
+                                        case .failure(let error):
                                             self?.analyticsService.send(eventName: .userProfleUpdateFailed)
-                                            callback(.failure(error: error))
+                                            callback(.failure(error: error.error))
                                         }
         })
     }

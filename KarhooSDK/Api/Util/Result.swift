@@ -24,8 +24,8 @@ public enum Result<T> {
 
     public func successValue() -> T? {
         switch self {
-        case .success(let result, _):
-            return result
+        case .success(let result):
+            return result.result
 
         default:
             return nil
@@ -44,19 +44,19 @@ public enum Result<T> {
     
     public func correlationId() -> String? {
         switch self {
-        case .success(_, let correlationId):
-            return correlationId
-        case .failure(_, let correlationId):
-            return correlationId
+        case .success(let result):
+            return result.correlationId
+        case .failure(let error):
+            return error.correlationId
         }
     }
 
     public func successValue<E>(orErrorCallback: CallbackClosure<E>) -> T? {
         switch self {
-        case .success(let result, _):
-            return result
-        case .failure(let error, _):
-            orErrorCallback(.failure(error: error))
+        case .success(let result):
+            return result.result
+        case .failure(let error):
+            orErrorCallback(.failure(error: error.error))
             return nil
         }
     }
