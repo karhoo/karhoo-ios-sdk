@@ -12,7 +12,7 @@ public enum ResultWithCorrelationId<T> {
 
     public func errorValue() -> KarhooError? {
         switch self {
-        case .failure(let error, let correlationId):
+        case .failure(let error, _):
             return error
         default:
             return nil
@@ -21,7 +21,7 @@ public enum ResultWithCorrelationId<T> {
 
     public func successValue() -> T? {
         switch self {
-        case .success(let result, let correlationId):
+        case .success(let result, _):
             return result
         default:
             return nil
@@ -30,9 +30,9 @@ public enum ResultWithCorrelationId<T> {
 
     public func correlationId() -> String? {
         switch self {
-        case .success(let result, let correlationId):
+        case .success(_, let correlationId):
             return correlationId
-        case .failure(let error, let correlationId):
+        case .failure(_, let correlationId):
             return correlationId
         }
     }
@@ -49,7 +49,7 @@ public enum ResultWithCorrelationId<T> {
 
     public func successValue<E>(orErrorCallback: CallbackClosureWithCorrelationId<E>) -> T? {
         switch self {
-        case .success(let result, let correlationId):
+        case .success(let result, _):
             return result
         case .failure(let error, let correlationId):
             orErrorCallback(.failure(error: error, correlationId: correlationId))

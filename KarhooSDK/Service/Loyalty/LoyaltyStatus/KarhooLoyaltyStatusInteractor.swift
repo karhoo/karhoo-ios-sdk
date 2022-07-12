@@ -24,18 +24,18 @@ final class KarhooLoyaltyStatusInteractor: LoyaltyStatusInteractor {
         self.identifier = identifier
     }
     
-    func execute<T>(callback: @escaping CallbackClosure<T>) where T : KarhooCodableModel {
+    func execute<T>(callback: @escaping CallbackClosureWithCorrelationId<T>) where T : KarhooCodableModel {
         guard let identifier = identifier
         else {
             let error = KarhooSDKError(code: "K0002", message: "Invalid request. Missing loyalty identifier")
-            callback(.failure(error: error))
+            callback(.failure(error: error, correlationId: nil))
             return
         }
         
         requestSender.requestAndDecode(payload: nil,
                                        endpoint: .loyaltyStatus(identifier: identifier),
-                                       callback: { [weak self] (result: Result<T>) in
-            if let statusResult = result as? Result<LoyaltyStatus>,
+                                       callback: { [weak self] (result: ResultWithCorrelationId<T>) in
+            if let statusResult = result as? ResultWithCorrelationId<LoyaltyStatus>,
                let status = statusResult.successValue() {
                 self?.userDataStore.updateLoyaltyStatus(status: status, forLoyaltyId: identifier)
             }

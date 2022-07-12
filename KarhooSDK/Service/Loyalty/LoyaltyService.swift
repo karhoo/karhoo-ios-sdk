@@ -13,7 +13,7 @@ public protocol LoyaltyService {
     
     func getLoyaltyConversion(identifier: String) -> Call<LoyaltyConversion>
     
-    func getLoyaltyStatus(identifier: String) -> Call<LoyaltyStatus>
+    func getLoyaltyStatus(identifier: String) -> CallWithCorrelationId<LoyaltyStatus>
     
     func getLoyaltyBurn(identifier: String, currency: String, amount: Int) -> Call<LoyaltyPoints>
     

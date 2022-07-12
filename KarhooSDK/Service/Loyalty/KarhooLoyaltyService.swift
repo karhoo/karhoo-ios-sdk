@@ -43,9 +43,9 @@ final class KarhooLoyaltyService: LoyaltyService {
         return Call(executable: loyaltyConversionInteractor)
     }
     
-    func getLoyaltyStatus(identifier: String) -> Call<LoyaltyStatus> {
+    func getLoyaltyStatus(identifier: String) -> CallWithCorrelationId<LoyaltyStatus> {
         loyaltyStatusInteractor.set(identifier: identifier)
-        return Call(executable: loyaltyStatusInteractor)
+        return CallWithCorrelationId(executable: loyaltyStatusInteractor)
     }
     
     func getLoyaltyBurn(identifier: String, currency: String, amount: Int) -> Call<LoyaltyPoints> {

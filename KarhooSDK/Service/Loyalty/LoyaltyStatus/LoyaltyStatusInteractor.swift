@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol LoyaltyStatusInteractor: KarhooExecutable {
+protocol LoyaltyStatusInteractor: KarhooExecutableWithCorrelationId {
     func set(identifier: String)
 }
