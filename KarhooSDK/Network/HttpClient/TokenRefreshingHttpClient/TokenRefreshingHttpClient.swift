@@ -61,8 +61,29 @@ final class TokenRefreshingHttpClient: HttpClient {
 //        correlationId: String?,
         completion: @escaping CallbackClosureWithCorrelationId<HttpResponse>
     ) -> NetworkRequest? {
-        return nil
-    }
+        if refreshTokenProvider.tokenNeedsRefreshing() == true {
+            return refreshTokenChainWithRequest(endpoint: endpoint,
+                                                data: data,
+                                                completion: completion)
+        } else {
+            let completion: CallbackClosureWithCorrelationId<HttpResponse> = { [weak self] result in
+                
+                if result.errorValue()?.isUnauthorizedError() == true {
+                    self?.refreshTokenChainWithRequest(endpoint: endpoint,
+                                                       data: data,
+                                                       completion: completion)
+                } else {
+                    completion(result)
+                }
+            }
+            
+            return httpClient.sendRequestWithCorrelationId(endpoint: endpoint,
+                                          data: data,
+                                          urlComponents: nil,
+                                          completion: completion)
+        }
+        
+            }
     
     private func logUserOut() {
         dataStore.removeCurrentUserAndCredentials()
@@ -92,6 +113,39 @@ final class TokenRefreshingHttpClient: HttpClient {
             }
             
             requestWrapper.realRequest = self?.httpClient.sendRequest(endpoint: endpoint,
+                                                                      data: data,
+                                                                      urlComponents: nil,
+                                                                      completion: { result in
+                                                                        completion(result)
+            })
+        }
+        return requestWrapper
+    }
+    
+    @discardableResult
+    private func refreshTokenChainWithRequest(endpoint: APIEndpoint,
+                                              data: Data?,
+                                              completion: @escaping CallbackClosureWithCorrelationId<HttpResponse>) -> NetworkRequest? {
+        let requestWrapper = AsyncNetworkRequestWrapper()
+        
+        refreshTokenProvider.refreshTokenWithCorrelationId { [weak self] result in
+            
+            guard requestWrapper.cancelled == false else {
+                return
+            }
+            
+            if let error = result.errorValue(), error.isConnectionError() == true {
+                completion(ResultWithCorrelationId.failure(error: error, correlationId: result.correlationId()))
+                return
+            }
+            
+            if let error = result.errorValue() {
+                self?.logUserOut()
+                completion(ResultWithCorrelationId.failure(error: error, correlationId: result.correlationId()))
+                return
+            }
+            
+            requestWrapper.realRequest = self?.httpClient.sendRequestWithCorrelationId(endpoint: endpoint,
                                                                       data: data,
                                                                       urlComponents: nil,
                                                                       completion: { result in

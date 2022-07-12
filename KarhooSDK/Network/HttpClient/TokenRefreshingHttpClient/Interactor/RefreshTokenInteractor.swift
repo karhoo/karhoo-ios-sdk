@@ -12,4 +12,5 @@ protocol RefreshTokenInteractor {
     func tokenNeedsRefreshing() -> Bool
 
     func refreshToken(completion: @escaping (Result<Bool>) -> Void)
+    func refreshTokenWithCorrelationId(completion: @escaping (ResultWithCorrelationId<Bool>) -> Void)
 }

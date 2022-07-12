@@ -13,6 +13,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     private let dataStore: UserDataStore
     private let refreshTokenRequest: RequestSender
     private var callback: ((Result<Bool>) -> Void)?
+    private var callbackWithCorrelationId: ((ResultWithCorrelationId<Bool>) -> Void)?
 
     init(dataStore: UserDataStore = DefaultUserDataStore(),
          refreshTokenRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared)) {
@@ -58,6 +59,38 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
             })
         }
     }
+    
+    func refreshTokenWithCorrelationId(completion: @escaping (ResultWithCorrelationId<Bool>) -> Void) {
+        self.callbackWithCorrelationId = completion
+
+        guard tokenNeedsRefreshing() else {
+            completion(ResultWithCorrelationId.success(result: false, correlationId: nil))
+            return
+        }
+
+        guard let refreshToken = dataStore.getCurrentCredentials()?.refreshToken else {
+            completion(ResultWithCorrelationId.failure(error: RefreshTokenError.noRefreshToken, correlationId: nil))
+            return
+        }
+
+        switch Karhoo.configuration.authenticationMethod() {
+        case .guest:
+            completion(ResultWithCorrelationId.success(result: false,  correlationId: nil))
+        case .karhooUser:
+            let refreshPayload = RefreshTokenRequestPayload(refreshToken: refreshToken)
+            refreshTokenRequest.requestAndDecode(payload: refreshPayload,
+                                                 endpoint: .karhooUserTokenRefresh,
+                                                 callback: { [weak self] (result: ResultWithCorrelationId<AuthToken>) in
+                                                    self?.handleRefreshRequest(result: result)
+            })
+        case .tokenExchange:
+            refreshTokenRequest.encodedRequest(endpoint: .authRefresh,
+                                               body: authRefreshUrlComponents(),
+                                               callback: { [weak self] (result: Result<AuthToken>) in
+                                                self?.handleRefreshRequest(result: result)
+            })
+        }
+    }
 
     private func authRefreshUrlComponents() -> URLComponents {
         var urlComponents = URLComponents()
@@ -81,6 +114,20 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
         } else if let error = result.errorValue() {
             callback?(Result.failure(error: error))
+        }
+    }
+    
+    private func handleRefreshRequest(result: ResultWithCorrelationId<AuthToken>) {
+        if let token = result.successValue() {
+            guard self.tokenNeedsRefreshing() == true else {
+                callbackWithCorrelationId?(ResultWithCorrelationId.success(result: false, correlationId: result.correlationId()))
+                return
+            }
+
+            self.saveToDataStore(token: token)
+
+        } else if let error = result.errorValue() {
+            callbackWithCorrelationId?(ResultWithCorrelationId.failure(error: error, correlationId: result.correlationId()))
         }
     }
 
