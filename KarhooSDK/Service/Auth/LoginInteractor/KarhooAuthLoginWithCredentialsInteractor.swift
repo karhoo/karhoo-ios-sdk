@@ -84,7 +84,9 @@ final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsIn
                                                 callback: { [weak self] (result: Result<PaymentProvider>) in
             let paymentProvider = result.successValue()
             self?.userDataStore.updatePaymentProvider(paymentProvider: paymentProvider)
-            self?.updateUserNonce(user: user)
+            if result.successValue()?.provider.type == .braintree {
+                self?.updateUserNonce(user: user)
+            }
             guard let self = self else { return }
             LoyaltyUtils.updateLoyaltyStatusFor(paymentProvider: paymentProvider,
                                                 userDataStore: self.userDataStore,
