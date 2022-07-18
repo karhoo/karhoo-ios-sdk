@@ -131,6 +131,13 @@ private extension JsonHttpClient {
     func absoluteUrl(endpoint: APIEndpoint) -> URL {
         let environmentDetails = KarhooEnvironmentDetails(environment: Karhoo.configuration.environment())
 
+        guard endpoint != .vehicleRules else {
+            guard let url = URL(string: endpoint.relativePath) else {
+                fatalError(urlMalformedException)
+            }
+            return url
+        }
+
         switch Karhoo.configuration.authenticationMethod() {
         case .guest:
             guard let guestModeUrl = URL(string: environmentDetails.guestHost + endpoint.path) else {
@@ -151,12 +158,6 @@ private extension JsonHttpClient {
             }
             
             return authServiceUrl
-            
-        case .vehicleRules:
-            guard let url = URL(string: endpoint.path) else {
-                fatalError(urlMalformedException)
-            }
-            return url
         default:
             guard let url = URL(string: environmentDetails.host + endpoint.path) else {
                 fatalError(urlMalformedException)

@@ -52,7 +52,7 @@ public struct VehicleRules: Codable, KarhooCodableModel {
     let rules: [VehicleRule]
 
     enum CodingKeys: String, CodingKey {
-        case rules = "mapping"
+        case rules = "mappings"
     }
 }
 
