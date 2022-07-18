@@ -146,12 +146,17 @@ private extension JsonHttpClient {
              .authTokenExchange,
              .authUserInfo,
              .authRefresh:
-        guard let authServiceUrl = URL(string: environmentDetails.authHost + endpoint.relativePath) else {
-            fatalError(urlMalformedException)
-        }
-
-        return authServiceUrl
-
+            guard let authServiceUrl = URL(string: environmentDetails.authHost + endpoint.relativePath) else {
+                fatalError(urlMalformedException)
+            }
+            
+            return authServiceUrl
+            
+        case .vehicleRules:
+            guard let url = URL(string: endpoint.path) else {
+                fatalError(urlMalformedException)
+            }
+            return url
         default:
             guard let url = URL(string: environmentDetails.host + endpoint.path) else {
                 fatalError(urlMalformedException)
