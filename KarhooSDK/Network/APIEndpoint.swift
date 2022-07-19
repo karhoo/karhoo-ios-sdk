@@ -225,7 +225,7 @@ enum APIEndpoint {
         case .adyenPaymentsDetails: return "v3"
         case .adyenPublicKey: return "v3"
         case .adyenClientKey: return "v3"
-        case .quoteCoverage: assertionFailure(); return "v2"
+        case .quoteCoverage: return "v2"
         case .vehicleRules: return ""
         case .verifyQuote: return "v2"
         case .loyaltyBalance: return "v3"
