@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class KarhooQuoteService: QuoteService {
+final public class KarhooQuoteService: QuoteService {
 
     private let quoteInteractor: QuoteInteractor
     private let coverageInteractor: QuoteCoverageInteractor
@@ -27,23 +27,23 @@ final class KarhooQuoteService: QuoteService {
         self.vehicleRulesInteractor = vehicleRulesInteractor
     }
 
-    func quotes(quoteSearch: QuoteSearch) -> PollCall<Quotes> {
+    public func quotes(quoteSearch: QuoteSearch) -> PollCall<Quotes> {
         quoteInteractor.set(quoteSearch: quoteSearch)
         let pollExecutor = PollExecutor(executable: quoteInteractor)
         return PollCall(pollExecutor: pollExecutor)
     }
     
-    func coverage(coverageRequest: QuoteCoverageRequest) -> Call<QuoteCoverage> {
+    public func coverage(coverageRequest: QuoteCoverageRequest) -> Call<QuoteCoverage> {
         coverageInteractor.set(coverageRequest: coverageRequest)
         return Call(executable: coverageInteractor)
     }
     
-    func verifyQuote(verifyQuotePayload: VerifyQuotePayload) -> Call<Quote> {
+    public func verifyQuote(verifyQuotePayload: VerifyQuotePayload) -> Call<Quote> {
         verifyQuoteInteractor.set(verifyQuotePayload: verifyQuotePayload)
         return Call(executable: verifyQuoteInteractor)
     }
 
-    func getVehiclesRules() -> Call<VehicleRules> {
+    public func getVehiclesRules() -> Call<VehicleRules> {
         return Call(executable: vehicleRulesInteractor)
     }
 }

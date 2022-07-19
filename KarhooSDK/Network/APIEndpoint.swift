@@ -1,6 +1,6 @@
 import Foundation
 
-enum APIEndpoint {
+public enum APIEndpoint {
 
     case quoteListId
     case quotes(identifier: String)

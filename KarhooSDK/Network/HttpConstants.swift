@@ -3,7 +3,7 @@ import Foundation
 public typealias HttpHeaders = [String: String]
 typealias HttpStatusCode = Int
 
-struct HttpResponse {
+public struct HttpResponse {
     let code: HttpStatusCode
     let data: Data
 
@@ -39,7 +39,7 @@ enum HttpStatus: Int {
     case serverError = 500
 }
 
-enum HttpMethod: String {
+public enum HttpMethod: String {
     case get = "GET"
     case post = "POST"
     case delete = "DELETE"

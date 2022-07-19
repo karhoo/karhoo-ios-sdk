@@ -4,7 +4,7 @@ import Foundation
  *  This class does not refresh JWT token automatically.
  *  Use TokenRefreshingJsonHttpClient outside of login/registration
  */
-final class JsonHttpClient: HttpClient {
+final  public class JsonHttpClient: HttpClient {
     
     private var urlSessionSender: URLSessionSender
     private let requestBuilder = JsonHttpRequestBuilder()
@@ -43,7 +43,7 @@ final class JsonHttpClient: HttpClient {
     }
 
     @discardableResult
-    func sendRequest(endpoint: APIEndpoint, data: Data?, urlComponents: URLComponents? = nil, completion: @escaping CallbackClosure<HttpResponse>) -> NetworkRequest? {
+    public func sendRequest(endpoint: APIEndpoint, data: Data?, urlComponents: URLComponents? = nil, completion: @escaping CallbackClosure<HttpResponse>) -> NetworkRequest? {
         let headers: HttpHeaders = addRelativeHeaders(endpoint: endpoint)
 
         do {
