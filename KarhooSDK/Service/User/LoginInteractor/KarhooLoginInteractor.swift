@@ -16,25 +16,21 @@ final class KarhooLoginInteractor: LoginInteractor {
     private let loginRequestSender: RequestSender
     private let profileRequestSender: RequestSender
     private let userDataStore: UserDataStore
-    private let nonceRequestSender: RequestSender
-    private let paymentProviderRequest: RequestSender
-    private let loyaltyProviderRequest: RequestSender
     private let authorizedUserRoles = ["TRIP_ADMIN", "MOBILE_USER"]
+    private let paymentProviderUpdater: PaymentProviderUpdater
 
     init(userDataStore: UserDataStore = DefaultUserDataStore(),
          loginRequestSender: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          profileRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          analytics: AnalyticsService = KarhooAnalyticsService(),
          nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
-         paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
-         loyaltyProviderRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared)) {
+         paymentProviderUpdater: PaymentProviderUpdater = KarhooPaymentProviderUpdater()
+    ) {
         self.analytics = analytics
         self.userDataStore = userDataStore
         self.loginRequestSender = loginRequestSender
         self.profileRequestSender = profileRequestSender
-        self.nonceRequestSender = nonceRequestSender
-        self.paymentProviderRequest = paymentProviderRequest
-        self.loyaltyProviderRequest = loyaltyProviderRequest
+        self.paymentProviderUpdater = paymentProviderUpdater
     }
 
     func set(userLogin: UserLogin) {
@@ -120,32 +116,7 @@ final class KarhooLoginInteractor: LoginInteractor {
 
         analytics.send(eventName: .userLoggedIn)
         userDataStore.setCurrentUser(user: user, credentials: credentials)
-        updatePaymentProvider(user: user)
+        paymentProviderUpdater.updatePaymentProvider(user: user)
         callback(.success(result: result))
-    }
-
-    private func updatePaymentProvider(user: UserInfo) {
-        paymentProviderRequest.requestAndDecode(payload: nil,
-                                                endpoint: .paymentProvider,
-                                                callback: { [weak self] (result: Result<PaymentProvider>) in
-            self?.userDataStore.updatePaymentProvider(paymentProvider: result.successValue())
-            if result.successValue()?.provider.type == .braintree {
-                self?.updateUserNonce(user: user)
-            }
-            guard let self = self else { return }
-            LoyaltyUtils.updateLoyaltyStatusFor(paymentProvider: result.successValue(),
-                                                userDataStore: self.userDataStore,
-                                                loyaltyProviderRequest: self.loyaltyProviderRequest)
-        })
-    }
-
-    private func updateUserNonce(user: UserInfo) {
-        let payload = NonceRequestPayload(payer: Payer(user: user),
-                                          organisationId: user.organisations.first?.id ?? "")
-
-        nonceRequestSender.requestAndDecode(payload: payload,
-                                            endpoint: .getNonce) { [weak self] (result: Result<Nonce>) in
-                                                self?.userDataStore.updateCurrentUserNonce(nonce: result.successValue())
-        }
     }
 }
