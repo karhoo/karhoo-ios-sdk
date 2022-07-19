@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Karhoo.set(configuration: SDKConfig())
+        Karhoo.getQuoteService().getVehiclesRules().execute { result in
+            print(result)
+        }
         return true
     }
 

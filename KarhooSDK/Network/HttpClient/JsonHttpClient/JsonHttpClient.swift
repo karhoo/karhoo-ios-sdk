@@ -118,6 +118,8 @@ final  public class JsonHttpClient: HttpClient {
              .authRefresh:
             headers = headerProvider.headersWithFormEncodedType(headers: &headers)
             headers = headerProvider.headersWithAcceptJSONType(headers: &headers)
+        case .vehicleRules:
+            break
         default:
             headers = headerProvider.headersWithAuthorization(headers: &headers, endpoint: endpoint)
             headers = headerProvider.headersWithCorrelationId(headers: &headers, endpoint: endpoint)
