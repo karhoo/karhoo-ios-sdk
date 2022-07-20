@@ -78,8 +78,8 @@ public enum AnalyticsConstants {
         case trackingContactDriverClicked = "VEHICLE_TRACKING_SCREEN_CONTACT_DRIVER_CLICKED"
 
         // PAYMENT STATUS
-        case paymentSucceed = "BOOKING_PAYMENT_SUCCESS"
-        case paymentFailed = "BOOKING_PAYMENT_FAILED"
+        case bookingSucceed = "BOOKING_SUCCESS"
+        case bookingFailure = "BOOKING_FAILED"
 
         // BOOKING
         case checkoutBookingRequested = "BOOKING_REQUESTED"
@@ -90,7 +90,7 @@ public enum AnalyticsConstants {
         case loyaltyPreauthFailed = "LOYALTY_PREAUTH_FAILED"
 
         // CARD AUTHORISATION STATUS
-        case cardAuthorisationFailed = "CARD_AUTHORISATION_FAILED"
+        case cardAuthorisationFailure = "CARD_AUTHORISATION_FAILURE"
         case cardAuthorisationSuccess = "CARD_AUTHORISATION_SUCCESS"
 
         public var description: String {
@@ -132,6 +132,7 @@ public enum AnalyticsConstants {
         case destinationLongitude = "destinationLongitude"
         case destinationAddress = "destinationAddress"
         case isPrebook = "isPrebook"
+        case paymentMethodUsed = "paymentMethodUsed"
 
         var description: String {
             rawValue
