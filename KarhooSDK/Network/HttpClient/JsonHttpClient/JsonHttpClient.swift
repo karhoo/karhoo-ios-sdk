@@ -118,7 +118,7 @@ final class JsonHttpClient: HttpClient {
              .authRefresh:
             headers = headerProvider.headersWithFormEncodedType(headers: &headers)
             headers = headerProvider.headersWithAcceptJSONType(headers: &headers)
-        case .vehicleRules:
+        case .vehicleImageRules:
             break
         default:
             headers = headerProvider.headersWithAuthorization(headers: &headers, endpoint: endpoint)
@@ -133,7 +133,7 @@ private extension JsonHttpClient {
     func absoluteUrl(endpoint: APIEndpoint) -> URL {
         let environmentDetails = KarhooEnvironmentDetails(environment: Karhoo.configuration.environment())
 
-        guard endpoint != .vehicleRules else {
+        guard endpoint != .vehicleImageRules else {
             guard let url = URL(string: endpoint.relativePath) else {
                 fatalError(urlMalformedException)
             }

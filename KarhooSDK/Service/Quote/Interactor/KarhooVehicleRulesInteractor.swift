@@ -19,7 +19,7 @@ final class KarhooVehicleRulesInteractor: VehicleRulesInteractor {
        
         requestSender.requestAndDecode(
             payload: nil,
-            endpoint: .vehicleRules,
+            endpoint: .vehicleImageRules,
             callback: callback
         )
     }

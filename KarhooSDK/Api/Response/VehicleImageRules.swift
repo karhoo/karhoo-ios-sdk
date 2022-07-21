@@ -8,15 +8,15 @@
 
 import Foundation
 
-public struct VehicleRules: Codable, KarhooCodableModel {
-    public let rules: [VehicleRule]
+public struct VehicleImageRules: Codable, KarhooCodableModel {
+    public let rules: [VehicleImageRule]
 
     enum CodingKeys: String, CodingKey {
         case rules = "mappings"
     }
 }
 
-public struct VehicleRule: Codable {
+public struct VehicleImageRule: Codable {
     public let type: String
     public let tags: [String]
     public let imagePath: String

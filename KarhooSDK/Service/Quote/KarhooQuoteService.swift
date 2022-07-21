@@ -43,7 +43,7 @@ final class KarhooQuoteService: QuoteService {
         return Call(executable: verifyQuoteInteractor)
     }
 
-    func getVehiclesRules() -> Call<VehicleRules> {
+    func getVehicleImageRules() -> Call<VehicleImageRules> {
         return Call(executable: vehicleRulesInteractor)
     }
 }
