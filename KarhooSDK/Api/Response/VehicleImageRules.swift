@@ -17,12 +17,31 @@ public struct VehicleImageRules: Codable, KarhooCodableModel {
 }
 
 public struct VehicleImageRule: Codable {
+    
+    private static let fallbackRuleValue = "*"
+
+    public enum RuleType {
+        /// Rule that should be used in a first place. Vehicle should mach type and it's tags list should be same as tags enlisted in a rule.
+        case specific
+        /// Rule default for given vehicle type. If vehicle does not required tags, this rule should be used.
+        case typeDefault
+        /// Rule that is general fallback if any other rule doesn't mach given vehicle.
+        case fallback
+    }
     public let type: String
     public let tags: [String]
     public let imagePath: String
 
-    /// Default rule. Should be used as fallback other rules do not mach.
-    public var isDefault: Bool { type == "*"}
+    /// How a rule should be treated by front ent system.
+    public var ruleType: RuleType {
+        if type == VehicleImageRule.fallbackRuleValue {
+            return .fallback
+        } else if tags.isEmpty == true {
+            return .typeDefault
+        } else {
+            return .specific
+        }
+    }
 
     enum CodingKeys: String, CodingKey {
         case type
