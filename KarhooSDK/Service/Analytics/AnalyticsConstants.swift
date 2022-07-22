@@ -87,7 +87,7 @@ public enum AnalyticsConstants {
         // LOYALTY STATUS
         case loyaltyStatusRequested = "LOYALTY_STATUS_REQUESTED"
         case loyaltyPreauthSuccess = "LOYALTY_PREAUTH_SUCCESS"
-        case loyaltyPreauthFailed = "LOYALTY_PREAUTH_FAILED"
+        case loyaltyPreauthFailure = "LOYALTY_PREAUTH_FAILURE"
 
         // CARD AUTHORISATION STATUS
         case cardAuthorisationFailure = "CARD_AUTHORISATION_FAILURE"
