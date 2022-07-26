@@ -21,9 +21,9 @@ public struct VehicleImageRule: Codable {
     private static let fallbackRuleValue = "*"
 
     public enum RuleType {
-        /// Rule that should be used in a first place. Vehicle should mach type and it's tags list should be same as tags enlisted in a rule.
+        /// Rule that should be used when the vehicle type and tags match perfectly the ones in the quote.
         case specific
-        /// Rule default for given vehicle type. If vehicle does not required tags, this rule should be used.
+        /// Default rule for a given vehicle type. If the quote does not contain vehicle tags, then this rule should be used.
         case typeDefault
         /// Rule that is general fallback if any other rule doesn't mach given vehicle.
         case fallback
