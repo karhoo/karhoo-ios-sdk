@@ -13,13 +13,18 @@ final class KarhooQuoteService: QuoteService {
     private let quoteInteractor: QuoteInteractor
     private let coverageInteractor: QuoteCoverageInteractor
     private let verifyQuoteInteractor: VerifyQuoteInteractor
+    private let vehicleRulesInteractor: VehicleRulesInteractor
 
-    init(quoteInteractor: QuoteInteractor = KarhooQuoteInteractor(),
-         coverageInteractor: QuoteCoverageInteractor = KarhooQuoteCoverageInteractor(),
-         verifyQuoteInteractor: VerifyQuoteInteractor = KarhooVerifyQuoteInteractor()) {
+    init(
+        quoteInteractor: QuoteInteractor = KarhooQuoteInteractor(),
+        coverageInteractor: QuoteCoverageInteractor = KarhooQuoteCoverageInteractor(),
+        verifyQuoteInteractor: VerifyQuoteInteractor = KarhooVerifyQuoteInteractor(),
+        vehicleRulesInteractor: VehicleRulesInteractor = KarhooVehicleRulesInteractor()
+    ) {
         self.quoteInteractor = quoteInteractor
         self.coverageInteractor = coverageInteractor
         self.verifyQuoteInteractor = verifyQuoteInteractor
+        self.vehicleRulesInteractor = vehicleRulesInteractor
     }
 
     func quotes(quoteSearch: QuoteSearch) -> PollCall<Quotes> {
@@ -36,5 +41,9 @@ final class KarhooQuoteService: QuoteService {
     func verifyQuote(verifyQuotePayload: VerifyQuotePayload) -> Call<Quote> {
         verifyQuoteInteractor.set(verifyQuotePayload: verifyQuotePayload)
         return Call(executable: verifyQuoteInteractor)
+    }
+
+    func getVehicleImageRules() -> Call<VehicleImageRules> {
+        return Call(executable: vehicleRulesInteractor)
     }
 }

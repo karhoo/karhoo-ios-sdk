@@ -118,6 +118,8 @@ final class JsonHttpClient: HttpClient {
              .authRefresh:
             headers = headerProvider.headersWithFormEncodedType(headers: &headers)
             headers = headerProvider.headersWithAcceptJSONType(headers: &headers)
+        case .vehicleImageRules:
+            break
         default:
             headers = headerProvider.headersWithAuthorization(headers: &headers, endpoint: endpoint)
             headers = headerProvider.headersWithCorrelationId(headers: &headers, endpoint: endpoint)
@@ -129,6 +131,12 @@ final class JsonHttpClient: HttpClient {
 private extension JsonHttpClient {
     
     func absoluteUrl(endpoint: APIEndpoint) -> URL {
+        guard endpoint != .vehicleImageRules else {
+            guard let url = URL(string: endpoint.relativePath) else {
+                fatalError(urlMalformedException)
+            }
+            return url
+        }
         let environmentDetails = KarhooEnvironmentDetails(environment: Karhoo.configuration.environment())
 
         switch Karhoo.configuration.authenticationMethod() {
@@ -146,12 +154,11 @@ private extension JsonHttpClient {
              .authTokenExchange,
              .authUserInfo,
              .authRefresh:
-        guard let authServiceUrl = URL(string: environmentDetails.authHost + endpoint.relativePath) else {
-            fatalError(urlMalformedException)
-        }
-
-        return authServiceUrl
-
+            guard let authServiceUrl = URL(string: environmentDetails.authHost + endpoint.relativePath) else {
+                fatalError(urlMalformedException)
+            }
+            
+            return authServiceUrl
         default:
             guard let url = URL(string: environmentDetails.host + endpoint.path) else {
                 fatalError(urlMalformedException)
