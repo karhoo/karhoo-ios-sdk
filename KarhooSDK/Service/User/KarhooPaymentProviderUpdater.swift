@@ -16,7 +16,7 @@ class KarhooPaymentProviderUpdater: PaymentProviderUpdater {
         nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
         paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
         loyaltyProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared)
-) {
+    ) {
         self.userDataStore = userDataStore
         self.nonceRequestSender = nonceRequestSender
         self.paymentProviderRequest = paymentProviderRequest
@@ -34,16 +34,20 @@ class KarhooPaymentProviderUpdater: PaymentProviderUpdater {
                     self?.updateUserNonce(user: user)
                 }
                 guard let self = self else { return }
-                LoyaltyUtils.updateLoyaltyStatusFor(paymentProvider: paymentProvider,
+                LoyaltyUtils.updateLoyaltyStatusFor(
+                    paymentProvider: paymentProvider,
                     userDataStore: self.userDataStore,
-                    loyaltyProviderRequest: self.loyaltyProviderRequest)
+                    loyaltyProviderRequest: self.loyaltyProviderRequest
+                )
             }
         )
     }
 
     private func updateUserNonce(user: UserInfo) {
-        let payload = NonceRequestPayload(payer: Payer(user: user),
-            organisationId: user.organisations.first?.id ?? "")
+        let payload = NonceRequestPayload(
+            payer: Payer(user: user),
+            organisationId: user.organisations.first?.id ?? ""
+        )
 
         nonceRequestSender.requestAndDecode(payload: payload,
             endpoint: .getNonce) { [weak self] (result: Result<Nonce>) in
