@@ -12,7 +12,12 @@ public enum Result<T> {
     case success(result: T, correlationId: String? = nil)
     case failure(error: KarhooError?, correlationId: String? = nil)
 
+    @available(*, deprecated, message: "errorValue() is deprecated and will be removed in next SDK version. getErrorValue() should be used instead")
     public func errorValue() -> KarhooError? {
+        getErrorValue()
+    }
+
+    public func getErrorValue() -> KarhooError? {
         switch self {
         case .failure(let error, _):
             return error
@@ -22,7 +27,12 @@ public enum Result<T> {
         }
     }
 
+    @available(*, deprecated, message: "successValue() is deprecated and will be removed in next SDK version. getSuccessValue() should be used instead")
     public func successValue() -> T? {
+        getSuccessValue()
+    }
+
+    public func getSuccessValue() -> T? {
         switch self {
         case .success(let result):
             return result.result
@@ -42,7 +52,7 @@ public enum Result<T> {
         }
     }
     
-    public func correlationId() -> String? {
+    public func getCorrelationId() -> String? {
         switch self {
         case .success(let result):
             return result.correlationId
@@ -51,7 +61,12 @@ public enum Result<T> {
         }
     }
 
+    @available(*, deprecated, message: "successValue(orErrorCallback:) is deprecated and will be removed in next SDK version. getSuccessValue(orErrorCallback:) should be used instead")
     public func successValue<E>(orErrorCallback: CallbackClosure<E>) -> T? {
+        getSuccessValue(orErrorCallback: orErrorCallback)
+    }
+
+    public func getSuccessValue<E>(orErrorCallback: CallbackClosure<E>) -> T? {
         switch self {
         case .success(let result):
             return result.result
