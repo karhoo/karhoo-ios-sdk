@@ -4,6 +4,6 @@
 
 import Foundation
 
-protocol PaymentProviderUpdater {
+protocol PaymentProviderUpdateHandler: AnyObject {
     func updatePaymentProvider(user: UserInfo)
 }

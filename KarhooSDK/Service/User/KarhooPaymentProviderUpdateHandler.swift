@@ -4,7 +4,7 @@
 
 import Foundation
 
-class KarhooPaymentProviderUpdater: PaymentProviderUpdater {
+class KarhooPaymentProviderUpdateHandler: PaymentProviderUpdateHandler {
 
     private let userDataStore: UserDataStore
     private let nonceRequestSender: RequestSender
@@ -29,11 +29,11 @@ class KarhooPaymentProviderUpdater: PaymentProviderUpdater {
             endpoint: .paymentProvider,
             callback: { [weak self] (result: Result<PaymentProvider>) in
                 let paymentProvider = result.successValue()
-                self?.userDataStore.updatePaymentProvider(paymentProvider: paymentProvider)
-                if result.successValue()?.provider.type == .braintree {
-                    self?.updateUserNonce(user: user)
-                }
                 guard let self = self else { return }
+                self.userDataStore.updatePaymentProvider(paymentProvider: paymentProvider)
+                if result.successValue()?.provider.type == .braintree {
+                    self.updateUserNonce(user: user)
+                }
                 LoyaltyUtils.updateLoyaltyStatusFor(
                     paymentProvider: paymentProvider,
                     userDataStore: self.userDataStore,
@@ -49,8 +49,10 @@ class KarhooPaymentProviderUpdater: PaymentProviderUpdater {
             organisationId: user.organisations.first?.id ?? ""
         )
 
-        nonceRequestSender.requestAndDecode(payload: payload,
-            endpoint: .getNonce) { [weak self] (result: Result<Nonce>) in
+        nonceRequestSender.requestAndDecode(
+            payload: payload,
+            endpoint: .getNonce
+        ) { [weak self] (result: Result<Nonce>) in
             self?.userDataStore.updateCurrentUserNonce(nonce: result.successValue())
         }
     }

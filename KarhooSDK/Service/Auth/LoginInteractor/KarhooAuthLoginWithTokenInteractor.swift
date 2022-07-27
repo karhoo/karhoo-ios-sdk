@@ -14,19 +14,19 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
     private let userInfoSender: RequestSender
     private let userDataStore: UserDataStore
     private let analytics: AnalyticsService
-    private let paymentProviderUpdater: PaymentProviderUpdater
+    private let paymentProviderUpdateHandler: PaymentProviderUpdateHandler
 
     init(tokenExchangeRequestSender: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          userInfoSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          userDataStore: UserDataStore = DefaultUserDataStore(),
          analytics: AnalyticsService = KarhooAnalyticsService(),
-         paymentProviderUpdater: PaymentProviderUpdater = KarhooPaymentProviderUpdater()
+         paymentProviderUpdateHandler: PaymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler()
     ) {
         self.tokenExchangeRequestSender = tokenExchangeRequestSender
         self.userInfoSender = userInfoSender
         self.userDataStore = userDataStore
         self.analytics = analytics
-        self.paymentProviderUpdater = paymentProviderUpdater
+        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler
     }
     
     func cancel() {
@@ -74,7 +74,7 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
     private func didLogin(user: UserInfo,
                           credentials: Credentials) {
         userDataStore.setCurrentUser(user: user, credentials: credentials)
-        paymentProviderUpdater.updatePaymentProvider(user: user)
+        paymentProviderUpdateHandler.updatePaymentProvider(user: user)
         analytics.send(eventName: .ssoUserLogIn)
     }
     

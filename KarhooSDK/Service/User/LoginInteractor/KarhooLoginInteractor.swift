@@ -17,20 +17,20 @@ final class KarhooLoginInteractor: LoginInteractor {
     private let profileRequestSender: RequestSender
     private let userDataStore: UserDataStore
     private let authorizedUserRoles = ["TRIP_ADMIN", "MOBILE_USER"]
-    private let paymentProviderUpdater: PaymentProviderUpdater
+    private let paymentProviderUpdateHandler: PaymentProviderUpdateHandler
 
     init(userDataStore: UserDataStore = DefaultUserDataStore(),
          loginRequestSender: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          profileRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          analytics: AnalyticsService = KarhooAnalyticsService(),
          nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
-         paymentProviderUpdater: PaymentProviderUpdater = KarhooPaymentProviderUpdater()
+         paymentProviderUpdateHandler: PaymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler()
     ) {
         self.analytics = analytics
         self.userDataStore = userDataStore
         self.loginRequestSender = loginRequestSender
         self.profileRequestSender = profileRequestSender
-        self.paymentProviderUpdater = paymentProviderUpdater
+        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler
     }
 
     func set(userLogin: UserLogin) {
@@ -116,7 +116,7 @@ final class KarhooLoginInteractor: LoginInteractor {
 
         analytics.send(eventName: .userLoggedIn)
         userDataStore.setCurrentUser(user: user, credentials: credentials)
-        paymentProviderUpdater.updatePaymentProvider(user: user)
+        paymentProviderUpdateHandler.updatePaymentProvider(user: user)
         callback(.success(result: result))
     }
 }

@@ -440,8 +440,8 @@
 		6FED7B9225794AAC00E95C27 /* CancellationFee.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FED7B9125794AAC00E95C27 /* CancellationFee.json */; };
 		6FED7B9C25794D8A00E95C27 /* CancellationFeeFalse.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FED7B9B25794D8A00E95C27 /* CancellationFeeFalse.json */; };
 		6FED7C42257E741000E95C27 /* Luggage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FED7C41257E741000E95C27 /* Luggage.swift */; };
-		7B28E006288688D400F6FDAE /* KarhooPaymentProviderUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdater.swift */; };
-		7B28E008288688E300F6FDAE /* PaymentProviderUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E007288688E300F6FDAE /* PaymentProviderUpdater.swift */; };
+		7B28E006288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */; };
+		7B28E008288688E300F6FDAE /* PaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */; };
 		7B28E00A2886891300F6FDAE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E0092886891300F6FDAE /* Keys.swift */; };
 		A10F03D6260CA199005743F4 /* ServiceCancellationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F03D5260CA199005743F4 /* ServiceCancellationType.swift */; };
 		A1F3C05A261B7C44003CE2CD /* MockSecretStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3C059261B7C44003CE2CD /* MockSecretStore.swift */; };
@@ -997,8 +997,8 @@
 		6FED7B9125794AAC00E95C27 /* CancellationFee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CancellationFee.json; sourceTree = "<group>"; };
 		6FED7B9B25794D8A00E95C27 /* CancellationFeeFalse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CancellationFeeFalse.json; sourceTree = "<group>"; };
 		6FED7C41257E741000E95C27 /* Luggage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luggage.swift; sourceTree = "<group>"; };
-		7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KarhooPaymentProviderUpdater.swift; path = KarhooSDK/Service/User/KarhooPaymentProviderUpdater.swift; sourceTree = SOURCE_ROOT; };
-		7B28E007288688E300F6FDAE /* PaymentProviderUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProviderUpdater.swift; path = KarhooSDK/Service/User/PaymentProviderUpdater.swift; sourceTree = SOURCE_ROOT; };
+		7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KarhooPaymentProviderUpdateHandler.swift; path = KarhooSDK/Service/User/KarhooPaymentProviderUpdateHandler.swift; sourceTree = SOURCE_ROOT; };
+		7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProviderUpdateHandler.swift; path = KarhooSDK/Service/User/PaymentProviderUpdateHandler.swift; sourceTree = SOURCE_ROOT; };
 		7B28E0092886891300F6FDAE /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A10F03D5260CA199005743F4 /* ServiceCancellationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCancellationType.swift; sourceTree = "<group>"; };
 		A1F3C059261B7C44003CE2CD /* MockSecretStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSecretStore.swift; sourceTree = "<group>"; };
@@ -2988,8 +2988,8 @@
 		7B28E004288688B600F6FDAE /* PaymentProviderUpdater */ = {
 			isa = PBXGroup;
 			children = (
-				7B28E007288688E300F6FDAE /* PaymentProviderUpdater.swift */,
-				7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdater.swift */,
+				7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */,
+				7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */,
 			);
 			path = PaymentProviderUpdater;
 			sourceTree = "<group>";
@@ -3741,7 +3741,7 @@
 				43D395CA1ECF9F5B00499E8F /* KarhooPaymentService.swift in Sources */,
 				FC8EB5C9216507B7009DC8DE /* TripQuote.swift in Sources */,
 				317610EC1FD84B1E00D2DB75 /* KarhooNetworkDateFormatter.swift in Sources */,
-				7B28E008288688E300F6FDAE /* PaymentProviderUpdater.swift in Sources */,
+				7B28E008288688E300F6FDAE /* PaymentProviderUpdateHandler.swift in Sources */,
 				FCBD67B7211C9D7E005AA332 /* RegisterInteractor.swift in Sources */,
 				142CB38B24DC290A0065149C /* LoyaltyProgramme.swift in Sources */,
 				5C224EAF223DCA9900C1CFCE /* AddPaymentDetailsInteractor.swift in Sources */,
@@ -3829,7 +3829,7 @@
 				BAA0A52F9D9380CE153EA7C6 /* PaymentSDKToken.swift in Sources */,
 				FC2EE934212425F6001B36D2 /* SDKErrorFactory.swift in Sources */,
 				09D0757520D826A700F75E32 /* KarhooLogoutInteractor.swift in Sources */,
-				7B28E006288688D400F6FDAE /* KarhooPaymentProviderUpdater.swift in Sources */,
+				7B28E006288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift in Sources */,
 				23163625274276E40082EE9B /* LoyaltyPoints.swift in Sources */,
 				FC1B01ED2209D0D20069D7F3 /* QuoteCategory.swift in Sources */,
 				FC321EE020F8D54E00B2C3CD /* DriverTrackingService.swift in Sources */,
