@@ -15,22 +15,32 @@ final class KarhooLoginInteractor: LoginInteractor {
     private let analytics: AnalyticsService
     private let loginRequestSender: RequestSender
     private let profileRequestSender: RequestSender
+    private let nonceRequestSender: RequestSender
+    private let paymentProviderRequest: RequestSender
     private let userDataStore: UserDataStore
     private let authorizedUserRoles = ["TRIP_ADMIN", "MOBILE_USER"]
     private let paymentProviderUpdateHandler: PaymentProviderUpdateHandler
+    
 
     init(userDataStore: UserDataStore = DefaultUserDataStore(),
          loginRequestSender: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          profileRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          analytics: AnalyticsService = KarhooAnalyticsService(),
          nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
-         paymentProviderUpdateHandler: PaymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler()
+         paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+         paymentProviderUpdateHandler: PaymentProviderUpdateHandler? = nil
     ) {
         self.analytics = analytics
         self.userDataStore = userDataStore
         self.loginRequestSender = loginRequestSender
         self.profileRequestSender = profileRequestSender
-        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler
+        self.nonceRequestSender = nonceRequestSender
+        self.paymentProviderRequest = paymentProviderRequest
+        if paymentProviderUpdateHandler != nil {
+            self.paymentProviderUpdateHandler = paymentProviderUpdateHandler!
+        } else {
+            self.paymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
+        }
     }
 
     func set(userLogin: UserLogin) {

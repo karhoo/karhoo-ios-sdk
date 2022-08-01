@@ -12,21 +12,31 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
     private var token: String?
     private let tokenExchangeRequestSender: RequestSender
     private let userInfoSender: RequestSender
+    private let nonceRequestSender: RequestSender
+    private let paymentProviderRequest: RequestSender
     private let userDataStore: UserDataStore
     private let analytics: AnalyticsService
     private let paymentProviderUpdateHandler: PaymentProviderUpdateHandler
 
     init(tokenExchangeRequestSender: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          userInfoSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+         paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
+         nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          userDataStore: UserDataStore = DefaultUserDataStore(),
          analytics: AnalyticsService = KarhooAnalyticsService(),
-         paymentProviderUpdateHandler: PaymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler()
+         paymentProviderUpdateHandler: PaymentProviderUpdateHandler? = nil
     ) {
         self.tokenExchangeRequestSender = tokenExchangeRequestSender
         self.userInfoSender = userInfoSender
+        self.paymentProviderRequest = paymentProviderRequest
+        self.nonceRequestSender = nonceRequestSender
         self.userDataStore = userDataStore
         self.analytics = analytics
-        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler
+        if paymentProviderUpdateHandler != nil {
+            self.paymentProviderUpdateHandler = paymentProviderUpdateHandler!
+        } else {
+            self.paymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
+        }
     }
     
     func cancel() {

@@ -21,12 +21,16 @@ final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsIn
          paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          loyaltyProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
-         paymentProviderUpdateHandler: PaymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler()
+         paymentProviderUpdateHandler: PaymentProviderUpdateHandler? = nil
     ) {
         self.userInfoSender = userInfoSender
         self.userDataStore = userDataStore
         self.analytics = analytics
-        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler
+        if paymentProviderUpdateHandler != nil {
+            self.paymentProviderUpdateHandler = paymentProviderUpdateHandler!
+        } else {
+            self.paymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
+        }
     }
 
     func set(auth: AuthToken?) {

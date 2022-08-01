@@ -13,8 +13,8 @@ class KarhooPaymentProviderUpdateHandler: PaymentProviderUpdateHandler {
 
     init(
         userDataStore: UserDataStore = DefaultUserDataStore(),
-        nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
-        paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+        nonceRequestSender: RequestSender,
+        paymentProviderRequest: RequestSender,
         loyaltyProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared)
     ) {
         self.userDataStore = userDataStore
