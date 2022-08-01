@@ -32,11 +32,7 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
         self.nonceRequestSender = nonceRequestSender
         self.userDataStore = userDataStore
         self.analytics = analytics
-        if paymentProviderUpdateHandler != nil {
-            self.paymentProviderUpdateHandler = paymentProviderUpdateHandler!
-        } else {
-            self.paymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
-        }
+        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler ?? KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
     }
     
     func cancel() {

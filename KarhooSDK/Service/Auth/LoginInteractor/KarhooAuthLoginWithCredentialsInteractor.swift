@@ -26,11 +26,7 @@ final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsIn
         self.userInfoSender = userInfoSender
         self.userDataStore = userDataStore
         self.analytics = analytics
-        if paymentProviderUpdateHandler != nil {
-            self.paymentProviderUpdateHandler = paymentProviderUpdateHandler!
-        } else {
-            self.paymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
-        }
+        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler ?? KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
     }
 
     func set(auth: AuthToken?) {

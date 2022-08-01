@@ -36,11 +36,7 @@ final class KarhooLoginInteractor: LoginInteractor {
         self.profileRequestSender = profileRequestSender
         self.nonceRequestSender = nonceRequestSender
         self.paymentProviderRequest = paymentProviderRequest
-        if paymentProviderUpdateHandler != nil {
-            self.paymentProviderUpdateHandler = paymentProviderUpdateHandler!
-        } else {
-            self.paymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
-        }
+        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler ?? KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
     }
 
     func set(userLogin: UserLogin) {
