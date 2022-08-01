@@ -78,8 +78,8 @@ public enum AnalyticsConstants {
         case trackingContactDriverClicked = "VEHICLE_TRACKING_SCREEN_CONTACT_DRIVER_CLICKED"
 
         // PAYMENT STATUS
-        case bookingSucceed = "BOOKING_SUCCESS"
-        case bookingFailure = "BOOKING_FAILED"
+        case bookingSuccess = "BOOKING_SUCCESS"
+        case bookingFailure = "BOOKING_FAILURE"
 
         // BOOKING
         case checkoutBookingRequested = "BOOKING_REQUESTED"
