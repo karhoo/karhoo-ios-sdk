@@ -37,8 +37,8 @@ public enum AnalyticsConstants {
         case pickupReverseGeocodeRequested = "pickup_reverse_geocode_requested"
         case pickupReverseGeocodeResponded = "pickup_reverse_geocode_responded"
         case preebookTimeSet = "preebook_time_set"
-        case userCardRegistered = "user_card_registered" // ??
-        case userCardRegistrationFailed = "user_card_registration_failed" // ??
+        case userCardRegistered = "user_card_registered"
+        case userCardRegistrationFailed = "user_card_registration_failed"
         case tripCancellationAttempted = "trip_cancellation_attempted_by_user"
         case tripCancellationInitiatedByUser = "trip_cancellation_initiated_by_user"
         case categorySelected = "vehicle_type_selected"
