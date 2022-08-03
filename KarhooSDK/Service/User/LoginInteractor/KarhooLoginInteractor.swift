@@ -28,6 +28,7 @@ final class KarhooLoginInteractor: LoginInteractor {
          analytics: AnalyticsService = KarhooAnalyticsService(),
          nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+         loyaltyProviderRequest: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          paymentProviderUpdateHandler: PaymentProviderUpdateHandler? = nil
     ) {
         self.analytics = analytics
@@ -36,7 +37,12 @@ final class KarhooLoginInteractor: LoginInteractor {
         self.profileRequestSender = profileRequestSender
         self.nonceRequestSender = nonceRequestSender
         self.paymentProviderRequest = paymentProviderRequest
-        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler ?? KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
+        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler ??
+            KarhooPaymentProviderUpdateHandler(
+                nonceRequestSender: nonceRequestSender,
+                paymentProviderRequest: paymentProviderRequest,
+                loyaltyProviderRequest: loyaltyProviderRequest
+            )
     }
 
     func set(userLogin: UserLogin) {

@@ -22,6 +22,7 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
          userInfoSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
          paymentProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          nonceRequestSender: RequestSender = KarhooRequestSender(httpClient: TokenRefreshingHttpClient.shared),
+         loyaltyProviderRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
          userDataStore: UserDataStore = DefaultUserDataStore(),
          analytics: AnalyticsService = KarhooAnalyticsService(),
          paymentProviderUpdateHandler: PaymentProviderUpdateHandler? = nil
@@ -32,7 +33,12 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
         self.nonceRequestSender = nonceRequestSender
         self.userDataStore = userDataStore
         self.analytics = analytics
-        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler ?? KarhooPaymentProviderUpdateHandler(nonceRequestSender: nonceRequestSender, paymentProviderRequest: paymentProviderRequest)
+        self.paymentProviderUpdateHandler = paymentProviderUpdateHandler ??
+            KarhooPaymentProviderUpdateHandler(
+                nonceRequestSender: nonceRequestSender,
+                paymentProviderRequest: paymentProviderRequest,
+                loyaltyProviderRequest: loyaltyProviderRequest
+            )
     }
     
     func cancel() {
