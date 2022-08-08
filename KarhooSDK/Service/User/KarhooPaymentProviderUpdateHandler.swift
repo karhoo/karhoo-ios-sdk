@@ -4,7 +4,7 @@
 
 import Foundation
 
-class KarhooPaymentProviderUpdateHandler: PaymentProviderUpdateHandler {
+public class KarhooPaymentProviderUpdateHandler: PaymentProviderUpdateHandler {
 
     private let userDataStore: UserDataStore
     private let nonceRequestSender: RequestSender
@@ -23,7 +23,7 @@ class KarhooPaymentProviderUpdateHandler: PaymentProviderUpdateHandler {
         self.loyaltyProviderRequest = loyaltyProviderRequest
     }
 
-    func updatePaymentProvider(user: UserInfo) {
+    public func updatePaymentProvider(user: UserInfo) {
         paymentProviderRequest.requestAndDecode(
             payload: nil,
             endpoint: .paymentProvider,
