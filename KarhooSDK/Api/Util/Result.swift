@@ -9,12 +9,17 @@
 import Foundation
 
 public enum Result<T> {
-    case success(result: T)
-    case failure(error: KarhooError?)
+    case success(result: T, correlationId: String? = nil)
+    case failure(error: KarhooError?, correlationId: String? = nil)
 
+    @available(*, deprecated, message: "errorValue() is deprecated and will be removed in next SDK version. getErrorValue() should be used instead")
     public func errorValue() -> KarhooError? {
+        getErrorValue()
+    }
+
+    public func getErrorValue() -> KarhooError? {
         switch self {
-        case .failure(let error):
+        case .failure(let error, _):
             return error
 
         default:
@@ -22,10 +27,15 @@ public enum Result<T> {
         }
     }
 
+    @available(*, deprecated, message: "successValue() is deprecated and will be removed in next SDK version. getSuccessValue() should be used instead")
     public func successValue() -> T? {
+        getSuccessValue()
+    }
+
+    public func getSuccessValue() -> T? {
         switch self {
         case .success(let result):
-            return result
+            return result.result
 
         default:
             return nil
@@ -41,13 +51,27 @@ public enum Result<T> {
             return false
         }
     }
-
-    public func successValue<E>(orErrorCallback: CallbackClosure<E>) -> T? {
+    
+    public func getCorrelationId() -> String? {
         switch self {
         case .success(let result):
-            return result
+            return result.correlationId
         case .failure(let error):
-            orErrorCallback(.failure(error: error))
+            return error.correlationId
+        }
+    }
+
+    @available(*, deprecated, message: "successValue(orErrorCallback:) is deprecated and will be removed in next SDK version. getSuccessValue(orErrorCallback:) should be used instead")
+    public func successValue<E>(orErrorCallback: CallbackClosure<E>) -> T? {
+        getSuccessValue(orErrorCallback: orErrorCallback)
+    }
+
+    public func getSuccessValue<E>(orErrorCallback: CallbackClosure<E>) -> T? {
+        switch self {
+        case .success(let result):
+            return result.result
+        case .failure(let error):
+            orErrorCallback(.failure(error: error.error))
             return nil
         }
     }

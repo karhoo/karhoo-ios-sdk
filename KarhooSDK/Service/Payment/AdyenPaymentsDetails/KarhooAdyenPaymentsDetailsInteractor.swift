@@ -48,9 +48,9 @@ final class KarhooAdyenPaymentsDetailsInteractor: AdyenPaymentsDetailsInteractor
                         interactorCallback: CallbackClosure<DecodableData>) {
         switch response {
         case .failure(let error):
-            interactorCallback(.failure(error: error))
+            interactorCallback(.failure(error: error.error))
         case .success(let response):
-            interactorCallback(.success(result: DecodableData(data: response.data)))
+            interactorCallback(.success(result: DecodableData(data: response.result.data)))
         }
     }
 }

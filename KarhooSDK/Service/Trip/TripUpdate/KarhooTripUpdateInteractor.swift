@@ -25,15 +25,15 @@ final class KarhooTripUpdateInteractor: TripUpdateInteractor {
                                        callback: { [weak self] (result: Result<TripInfo>) in
                                         switch result {
                                         case .success(var response):
-                                            self?.addFollowCodeToResponse(&response)
+                                            self?.addFollowCodeToResponse(&response.result)
 
-                                            guard let trip = response as? T else {
+                                            guard let trip = response.result as? T else {
                                                 return
                                             }
 
                                             callback(.success(result: trip))
                                         case .failure(let error):
-                                            callback(.failure(error: error))
+                                            callback(.failure(error: error.error))
                                         }
         })
     }
