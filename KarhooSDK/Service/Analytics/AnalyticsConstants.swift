@@ -69,9 +69,6 @@ public enum AnalyticsConstants {
         case bookingScreenOpened = "RIDE_PLANNING_SCREEN"
         case quoteListOpened = "QUOTE_LIST_SCREEN"
         case checkoutOpened = "CHECKOUT_SCREEN"
-        case checkoutBookingRequested = "CHECKOUT_BOOKING_REQUESTED"
-        case paymentSucceed = "PAYMENT_CONFIRMED"
-        case paymentFailed = "PAYMENT_REFUSED_OR_REJECTED"
         case trackTripOpened = "VEHICLE_TRACKING_SCREEN"
         case ridesPastTripsOpened = "RIDES_PAST_LIST"
         case ridesUpcomingTripsOpened = "RIDES_UPCOMING_LIST"
@@ -79,9 +76,25 @@ public enum AnalyticsConstants {
         case ridesUpcomingContactFleetClicked = "RIDES_UPCOMING_CONTACT_FLEET_CLICKED"
         case ridesUpcomingContactDriverClicked = "RIDES_UPCOMING_CONTACT_DRIVER_CLICKED"
         case trackingContactDriverClicked = "VEHICLE_TRACKING_SCREEN_CONTACT_DRIVER_CLICKED"
-        
+
+        // PAYMENT STATUS
+        case bookingSuccess = "BOOKING_SUCCESS"
+        case bookingFailure = "BOOKING_FAILURE"
+
+        // BOOKING
+        case checkoutBookingRequested = "BOOKING_REQUESTED"
+
+        // LOYALTY STATUS
+        case loyaltyStatusRequested = "LOYALTY_STATUS_REQUESTED"
+        case loyaltyPreauthSuccess = "LOYALTY_PREAUTH_SUCCESS"
+        case loyaltyPreauthFailure = "LOYALTY_PREAUTH_FAILURE"
+
+        // CARD AUTHORISATION STATUS
+        case cardAuthorisationFailure = "CARD_AUTHORISATION_FAILURE"
+        case cardAuthorisationSuccess = "CARD_AUTHORISATION_SUCCESS"
+
         public var description: String {
-            return rawValue
+            rawValue
         }
     }
 
@@ -119,9 +132,10 @@ public enum AnalyticsConstants {
         case destinationLongitude = "destinationLongitude"
         case destinationAddress = "destinationAddress"
         case isPrebook = "isPrebook"
+        case paymentMethodUsed = "paymentMethodUsed"
 
         var description: String {
-            return rawValue
+            rawValue
         }
     }
 }

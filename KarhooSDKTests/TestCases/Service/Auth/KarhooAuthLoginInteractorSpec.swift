@@ -31,13 +31,19 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
         mockAnalytics = MockAnalyticsService()
         mockGetNonceRequestSender = MockRequestSender()
     
-        testObject = KarhooAuthLoginWithTokenInteractor(tokenExchangeRequestSender: mocktokenExchangeRequest,
-                                                        userInfoSender: mockUserRequest,
-                                                        userDataStore: mockUserDataStore,
-                                                        analytics: mockAnalytics,
-                                                        paymentProviderRequest: mockPaymentProviderRequest,
-                                                        loyaltyProviderRequest: mockLoyaltyProviderRequest,
-                                                        nonceRequestSender: mockGetNonceRequestSender)
+        let mockPaymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler(
+            userDataStore: mockUserDataStore,
+            nonceRequestSender: mockGetNonceRequestSender,
+            paymentProviderRequest: mockPaymentProviderRequest,
+            loyaltyProviderRequest: mockLoyaltyProviderRequest
+        )
+        testObject = KarhooAuthLoginWithTokenInteractor(
+            tokenExchangeRequestSender: mocktokenExchangeRequest,
+            userInfoSender: mockUserRequest,
+            userDataStore: mockUserDataStore,
+            analytics: mockAnalytics,
+            paymentProviderUpdateHandler: mockPaymentProviderUpdateHandler
+        )
         testObject.set(token: "13123123123123")
     }
 

@@ -30,13 +30,20 @@ class KarhooLoginInteractorSpec: XCTestCase {
         mockUserDataStore = MockUserDataStore()
         mockGetNonceRequestSender = MockRequestSender()
 
-        testObject = KarhooLoginInteractor(userDataStore: mockUserDataStore,
-                                           loginRequestSender: mockLoginRequestSender,
-                                           profileRequestSender: mockProfileRequestSender,
-                                           analytics: mockAnalytics,
-                                           nonceRequestSender: mockGetNonceRequestSender,
-                                           paymentProviderRequest: mockPaymentProviderRequest,
-                                           loyaltyProviderRequest: mockLoyaltyProviderRequest)
+        let mockPaymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler(
+            userDataStore: mockUserDataStore,
+            nonceRequestSender: mockGetNonceRequestSender,
+            paymentProviderRequest: mockPaymentProviderRequest,
+            loyaltyProviderRequest: mockLoyaltyProviderRequest
+        )
+        testObject = KarhooLoginInteractor(
+            userDataStore: mockUserDataStore,
+            loginRequestSender: mockLoginRequestSender,
+            profileRequestSender: mockProfileRequestSender,
+            analytics: mockAnalytics,
+            nonceRequestSender: mockGetNonceRequestSender,
+            paymentProviderUpdateHandler: mockPaymentProviderUpdateHandler
+        )
     }
 
     /**

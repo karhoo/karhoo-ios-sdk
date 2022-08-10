@@ -35,7 +35,13 @@ final class JsonHttpClient: HttpClient {
             request = try requestBuilder.request(method: endpoint.method, url: url, headers: headers, data: data)
 
             return urlSessionSender.send(request: request) { data, response, error in
-                self.handle(response: response, data: data, error: error, completion: completion)
+                self.handle(
+                    response: response,
+                    data: data,
+                    error: error,
+                    correlationId: request.allHTTPHeaderFields?[HeaderConstants.correlationId],
+                    completion: completion
+                )
             }
         } catch {
             return nil
@@ -56,15 +62,25 @@ final class JsonHttpClient: HttpClient {
                                                  urlComponents: urlComponents)
 
             return urlSessionSender.send(request: request) { data, response, error in
-                self.handle(response: response, data: data, error: error, completion: completion)
+                self.handle(
+                    response: response,
+                    data: data,
+                    error: error,
+                    correlationId: request.allHTTPHeaderFields?[HeaderConstants.correlationId],
+                    completion: completion
+                )
             }
         } catch {
             return nil
         }
     }
 
-    private func handle(response: URLResponse?, data: Data?, error: Error?,
-                        completion: CallbackClosure<HttpResponse>) {
+    private func handle(
+        response: URLResponse?,
+        data: Data?,
+        error: Error?,
+        correlationId: String?,
+        completion: CallbackClosure<HttpResponse>) {
         let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
         let httpResponse = HttpResponse(code: statusCode, data: data ?? Data())
         
@@ -74,30 +90,32 @@ final class JsonHttpClient: HttpClient {
                             statusCode: statusCode,
                             response: httpResponse,
                             error: error,
+                            correlationId: correlationId,
                             completion: completion)
             return
         }
 
-        completion(Result.success(result: httpResponse))
+            completion(Result.success(result: httpResponse, correlationId: correlationId))
     }
 
     func handleError(requestUrl: String,
                      statusCode: Int,
                      response: HttpResponse,
                      error: Error?,
+                     correlationId: String?,
                      completion: CallbackClosure<HttpResponse>) {
         
         analyticsService.send(eventName: .requestFails, payload: error != nil ? [AnalyticsConstants.Keys.requestError.rawValue: error.debugDescription,
                                                                                  AnalyticsConstants.Keys.requestUrl.rawValue: requestUrl] : [AnalyticsConstants.Keys.requestUrl.rawValue: requestUrl])
         if let error = response.decodeError() {
             if error.code.isEmpty, error.slug.isEmpty {
-                completion(Result.failure(error: SDKErrorFactory.unexpectedError()))
+                completion(Result.failure(error: SDKErrorFactory.unexpectedError(), correlationId: correlationId))
             } else {
-                completion(Result.failure(error: error))
+                completion(Result.failure(error: error, correlationId: correlationId))
             }
         } else {
             let httpError = HTTPError(statusCode: statusCode, error: error as NSError?)
-            completion(Result.failure(error: httpError))
+            completion(Result.failure(error: httpError, correlationId: correlationId))
         }
     }
 
@@ -118,6 +136,8 @@ final class JsonHttpClient: HttpClient {
              .authRefresh:
             headers = headerProvider.headersWithFormEncodedType(headers: &headers)
             headers = headerProvider.headersWithAcceptJSONType(headers: &headers)
+        case .vehicleImageRules:
+            break
         default:
             headers = headerProvider.headersWithAuthorization(headers: &headers, endpoint: endpoint)
             headers = headerProvider.headersWithCorrelationId(headers: &headers, endpoint: endpoint)
@@ -129,6 +149,12 @@ final class JsonHttpClient: HttpClient {
 private extension JsonHttpClient {
     
     func absoluteUrl(endpoint: APIEndpoint) -> URL {
+        guard endpoint != .vehicleImageRules else {
+            guard let url = URL(string: endpoint.relativePath) else {
+                fatalError(urlMalformedException)
+            }
+            return url
+        }
         let environmentDetails = KarhooEnvironmentDetails(environment: Karhoo.configuration.environment())
 
         switch Karhoo.configuration.authenticationMethod() {
@@ -146,12 +172,11 @@ private extension JsonHttpClient {
              .authTokenExchange,
              .authUserInfo,
              .authRefresh:
-        guard let authServiceUrl = URL(string: environmentDetails.authHost + endpoint.relativePath) else {
-            fatalError(urlMalformedException)
-        }
-
-        return authServiceUrl
-
+            guard let authServiceUrl = URL(string: environmentDetails.authHost + endpoint.relativePath) else {
+                fatalError(urlMalformedException)
+            }
+            
+            return authServiceUrl
         default:
             guard let url = URL(string: environmentDetails.host + endpoint.path) else {
                 fatalError(urlMalformedException)

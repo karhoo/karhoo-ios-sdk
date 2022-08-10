@@ -40,6 +40,7 @@ enum APIEndpoint {
     case adyenPublicKey
     case adyenClientKey
     case quoteCoverage
+    case vehicleImageRules
     case verifyQuote(quoteID: String)
     case loyaltyStatus(identifier: String)
     case loyaltyBurn(identifier: String, currency: String, amount: Int)
@@ -141,6 +142,8 @@ enum APIEndpoint {
             return "/payments/adyen/client-key"
         case .quoteCoverage:
             return "/quotes/coverage"
+        case .vehicleImageRules:
+            return "https://cdn.karhoo.com/s/images/vehicles/config.json"
         case .verifyQuote(let quoteID):
             return "/quotes/verify/\(quoteID)"
         case .loyaltyStatus(let identifier):
@@ -198,6 +201,7 @@ enum APIEndpoint {
         case .adyenPublicKey: return .get
         case .adyenClientKey: return .get
         case .quoteCoverage: return .get
+        case .vehicleImageRules: return .get
         case .verifyQuote: return .get
         case .loyaltyStatus: return .get
         case .loyaltyBurn: return .get
@@ -222,6 +226,7 @@ enum APIEndpoint {
         case .adyenPublicKey: return "v3"
         case .adyenClientKey: return "v3"
         case .quoteCoverage: return "v2"
+        case .vehicleImageRules: return ""
         case .verifyQuote: return "v2"
         case .loyaltyBalance: return "v3"
         case .loyaltyConversion: return "v3"

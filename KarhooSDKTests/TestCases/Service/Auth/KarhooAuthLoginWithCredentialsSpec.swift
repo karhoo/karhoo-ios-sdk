@@ -29,12 +29,21 @@ final class KarhooAuthLoginWithCredentialsSpec: XCTestCase {
         mockAnalytics = MockAnalyticsService()
         mockGetNonceRequestSender = MockRequestSender()
         
-        testObject = KarhooAuthLoginWithCredentialsInteractor(userInfoSender: mockUserRequest,
-                                                              userDataStore: mockUserDataStore,
-                                                              analytics: mockAnalytics,
-                                                              paymentProviderRequest: mockPaymentProviderRequest,
-                                                              loyaltyProviderRequest: mockLoyaltyProviderRequest,
-                                                              nonceRequestSender: mockGetNonceRequestSender)
+        let mockPaymentProviderUpdateHandler = KarhooPaymentProviderUpdateHandler(
+            userDataStore: mockUserDataStore,
+            nonceRequestSender: mockGetNonceRequestSender,
+            paymentProviderRequest: mockPaymentProviderRequest,
+            loyaltyProviderRequest: mockLoyaltyProviderRequest
+        )
+        testObject = KarhooAuthLoginWithCredentialsInteractor(
+            userInfoSender: mockUserRequest,
+            userDataStore: mockUserDataStore,
+            analytics: mockAnalytics,
+            paymentProviderRequest: mockPaymentProviderRequest,
+            loyaltyProviderRequest: mockLoyaltyProviderRequest,
+            nonceRequestSender: mockGetNonceRequestSender,
+            paymentProviderUpdateHandler: mockPaymentProviderUpdateHandler
+        )
         testObject.set(auth: AuthToken(accessToken: "123123123", expiresIn: 5, refreshToken: "123123123", refreshExpiresIn: 5))
     }
     
