@@ -16,8 +16,8 @@ public protocol KarhooSDKConfiguration {
 
     func analyticsProvider() -> AnalyticsProvider
 
-    /// Closure to provide new auth token for KarhooSDK usage, when the current one expires and there is no refresh token available.
-    var newTokenClosure: (() -> AuthToken)? { get }
+    /// Closure to provide new auth credentials for KarhooSDK usage, when the current one expires and there is no refresh token available.
+    func requestNewAuthenticationCredentials(callback: @escaping (Credentials?) -> Void)
 }
 
 public extension KarhooSDKConfiguration {
@@ -26,7 +26,7 @@ public extension KarhooSDKConfiguration {
         return DefaultAnalyticsProvider()
     }
 
-    var newTokenClosure: (() -> AuthToken)? {
-        nil
+    func requestNewAuthenticationCredentials(callback: @escaping (Credentials?) -> Void) {
+        callback(nil)
     }
 }

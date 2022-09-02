@@ -28,7 +28,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     func refreshToken(completion: @escaping (Result<Bool>) -> Void) {
-        self.callback = completion
+        callback = completion
 
         guard tokenNeedsRefreshing() else {
             completion(Result.success(result: false))
@@ -36,12 +36,21 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         }
 
         guard let refreshToken = dataStore.getCurrentCredentials()?.refreshToken else {
-            if let newToken = Karhoo.configuration.newTokenClosure?() {
-                handleRefreshRequest(result: .success(result: newToken))
-            } else {
-                completion(Result.failure(error: RefreshTokenError.noRefreshToken))
-            }
+            Karhoo.configuration.requestNewAuthenticationCredentials { [weak self] newCredentials in
+                guard let self = self else { return }
 
+                if let newCredentials = newCredentials {
+                    let newToken = AuthToken(
+                        accessToken: newCredentials.accessToken,
+                        expiresIn: Int(newCredentials.expiryDate?.timeIntervalSinceNow ?? 0),
+                        refreshToken: newCredentials.refreshToken ?? "",
+                        refreshExpiresIn: Int(newCredentials.refreshTokenExpiryDate?.timeIntervalSinceNow ?? 0)
+                    )
+                    self.handleRefreshRequest(result: .success(result: newToken))
+                } else {
+                    completion(Result.failure(error: RefreshTokenError.noRefreshToken))
+                }
+            }
             return
         }
 
@@ -76,15 +85,15 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     private func handleRefreshRequest(result: Result<AuthToken>) {
-        if let token = result.successValue() {
+        if let token = result.getSuccessValue() {
             guard self.tokenNeedsRefreshing() == true else {
                 callback?(Result.success(result: false))
                 return
             }
 
-            self.saveToDataStore(token: token)
+            saveToDataStore(token: token)
 
-        } else if let error = result.errorValue() {
+        } else if let error = result.getErrorValue() {
             callback?(Result.failure(error: error))
         }
     }
