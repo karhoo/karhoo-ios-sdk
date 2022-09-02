@@ -15,11 +15,20 @@ public protocol KarhooSDKConfiguration {
     func authenticationMethod() -> AuthenticationMethod
 
     func analyticsProvider() -> AnalyticsProvider
+
+    /// Closure to provide new auth token when the current one expires and there is no refresh token available
+    var newTokenClosure: (() -> AuthToken)? { get }
 }
 
 public extension KarhooSDKConfiguration {
 
     func analyticsProvider() -> AnalyticsProvider {
         return DefaultAnalyticsProvider()
+    }
+
+    var newTokenClosure: (() -> AuthToken)? {
+        {
+            return AuthToken(accessToken: "debug-token")
+        }
     }
 }

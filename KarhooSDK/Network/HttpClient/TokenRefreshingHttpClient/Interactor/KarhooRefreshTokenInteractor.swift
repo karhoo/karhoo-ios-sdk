@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
+final public class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
     private let dataStore: UserDataStore
     private let refreshTokenRequest: RequestSender
@@ -21,13 +21,14 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     func tokenNeedsRefreshing() -> Bool {
-        guard let credentials = dataStore.getCurrentCredentials() else {
-            return false
-        }
-        return tokenNeedsRefreshing(credentials: credentials)
+        true
+//        guard let credentials = dataStore.getCurrentCredentials() else {
+//            return false
+//        }
+//        return tokenNeedsRefreshing(credentials: credentials)
     }
 
-    func refreshToken(completion: @escaping (Result<Bool>) -> Void) {
+    public func refreshToken(completion: @escaping (Result<Bool>) -> Void) {
         self.callback = completion
 
         guard tokenNeedsRefreshing() else {
@@ -35,8 +36,15 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
             return
         }
 
-        guard let refreshToken = dataStore.getCurrentCredentials()?.refreshToken else {
-            completion(Result.failure(error: RefreshTokenError.noRefreshToken))
+//        guard let refreshToken = dataStore.getCurrentCredentials()?.refreshToken else {
+        let refreshToken: String? = nil
+        guard refreshToken != nil else {
+            if let newToken = Karhoo.configuration.newTokenClosure?() {
+                handleRefreshRequest(result: .success(result: newToken))
+            } else {
+                completion(Result.failure(error: RefreshTokenError.noRefreshToken))
+            }
+
             return
         }
 
@@ -44,7 +52,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         case .guest:
             completion(Result.success(result: false))
         case .karhooUser:
-            let refreshPayload = RefreshTokenRequestPayload(refreshToken: refreshToken)
+            let refreshPayload = RefreshTokenRequestPayload(refreshToken: refreshToken!)
             refreshTokenRequest.requestAndDecode(payload: refreshPayload,
                                                  endpoint: .karhooUserTokenRefresh,
                                                  callback: { [weak self] (result: Result<AuthToken>) in
