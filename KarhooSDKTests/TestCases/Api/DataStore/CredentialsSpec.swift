@@ -21,9 +21,12 @@ final class CredentialsSpec: XCTestCase {
         let accessToken = TestUtil.getRandomString()
         let refreshToken = TestUtil.getRandomString()
 
-        let credentials = Credentials(accessToken: accessToken,
-                                      expiresIn: expiresIn,
-                                      refreshToken: refreshToken)
+        let credentials = Credentials(
+            accessToken: accessToken,
+            expiresIn: expiresIn,
+            refreshToken: refreshToken,
+            refreshTokenExpriresIn: expiresIn
+        )
 
         XCTAssert(credentials.accessToken == accessToken)
         XCTAssert(credentials.refreshToken == refreshToken)

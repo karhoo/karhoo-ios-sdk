@@ -48,8 +48,11 @@ public struct AuthToken: KarhooCodableModel {
     }
 
     func toCredentials(withRefreshToken refreshToken: String? = nil) -> Credentials {
-        return Credentials(accessToken: accessToken,
-                expiresIn: TimeInterval(expiresIn),
-                refreshToken: refreshToken ?? self.refreshToken)
+        return Credentials(
+            accessToken: accessToken,
+            expiresIn: TimeInterval(expiresIn),
+            refreshToken: refreshToken ?? self.refreshToken,
+            refreshTokenExpriresIn: TimeInterval(refreshExpiresIn)
+        )
     }
 }

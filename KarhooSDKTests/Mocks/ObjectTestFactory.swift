@@ -15,8 +15,11 @@ class ObjectTestFactory {
 
     class func getRandomCredentials(expiryDate: Date? = TestUtil.getRandomDate(),
                                     withRefreshToken refreshToken: Bool = true) -> Credentials {
-        return Credentials(accessToken: TestUtil.getRandomString(),
-                           expiryDate: expiryDate,
-                           refreshToken: (refreshToken ? TestUtil.getRandomString() : nil))
+        return Credentials(
+            accessToken: TestUtil.getRandomString(),
+            expiryDate: expiryDate,
+            refreshToken: (refreshToken ? TestUtil.getRandomString() : nil),
+            refreshTokenExpiryDate: expiryDate
+        )
     }
 }

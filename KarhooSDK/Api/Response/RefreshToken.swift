@@ -19,8 +19,11 @@ struct RefreshToken: KarhooCodableModel {
     }
 
     func toCredentials(withRefreshToken refreshToken: String?) -> Credentials {
-        return Credentials(accessToken: accessToken,
-                           expiresIn: TimeInterval(expiresIn),
-                           refreshToken: refreshToken)
+        return Credentials(
+            accessToken: accessToken,
+            expiresIn: TimeInterval(expiresIn),
+            refreshToken: refreshToken,
+            refreshTokenExpriresIn: TimeInterval(expiresIn)
+        )
     }
 }

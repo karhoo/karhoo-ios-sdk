@@ -135,9 +135,12 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
       *   Then:  It should return true
       */
     func testNilExpiryDateRefreshCheck() {
-        let credentials = Credentials(accessToken: "123",
-                                      expiryDate: nil,
-                                      refreshToken: "123")
+        let credentials = Credentials(
+            accessToken: "123",
+            expiryDate: nil,
+            refreshToken: "123",
+            refreshTokenExpiryDate: Date().addingTimeInterval(300)
+        )
         mockUserDataStore.credentialsToReturn = credentials
 
         XCTAssertTrue(testObject.tokenNeedsRefreshing())
