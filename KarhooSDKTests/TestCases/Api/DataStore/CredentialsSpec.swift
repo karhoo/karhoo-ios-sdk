@@ -25,7 +25,7 @@ final class CredentialsSpec: XCTestCase {
             accessToken: accessToken,
             expiresIn: expiresIn,
             refreshToken: refreshToken,
-            refreshTokenExpriresIn: expiresIn
+            refreshTokenExpiresIn: expiresIn
         )
 
         XCTAssert(credentials.accessToken == accessToken)
@@ -33,25 +33,5 @@ final class CredentialsSpec: XCTestCase {
 
         let expectedExpiryDate = Date().addingTimeInterval(expiresIn)
         XCTAssert(TestUtil.datesEqual(credentials.expiryDate!, expectedExpiryDate))
-    }
-
-    /**
-     *  When:   Converting from RefreshToken to Credentials
-     *  Then:   ExpiryDate should be set correctly
-     *   And:   Other fields should be set accordingly
-     */
-    func testInitialiseFromRestRefreshTokenResponse() {
-        let accessToken = TestUtil.getRandomString()
-        let expiresIn = TestUtil.getRandomInt()
-        let refreshToken = TestUtil.getRandomString()
-        let refreshTokenModel = RefreshToken(accessToken: accessToken, expiresIn: expiresIn)
-
-        let credentials = refreshTokenModel.toCredentials(withRefreshToken: refreshToken)
-
-        XCTAssert(credentials.accessToken == accessToken)
-        XCTAssert(credentials.refreshToken == refreshToken)
-
-        let expectedExpiryDate = Date().addingTimeInterval(TimeInterval(expiresIn))
-        XCTAssert(TestUtil.datesEqual(credentials.expiryDate, expectedExpiryDate))
     }
 }

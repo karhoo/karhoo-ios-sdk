@@ -30,10 +30,10 @@ public struct Credentials {
         accessToken: String,
         expiresIn: TimeInterval,
         refreshToken: String?,
-        refreshTokenExpriresIn: TimeInterval?
+        refreshTokenExpiresIn: TimeInterval?
     ) {
         let expiryDate = Date().addingTimeInterval(Double(expiresIn))
-        let refreshTokenExpiryDate = refreshTokenExpriresIn.map { Date().addingTimeInterval(Double($0)) }
+        let refreshTokenExpiryDate = refreshTokenExpiresIn.map { Date().addingTimeInterval(Double($0)) }
         self.init(
             accessToken: accessToken,
             expiryDate: expiryDate,

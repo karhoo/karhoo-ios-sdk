@@ -167,7 +167,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
         let returnedError = capturedResult?.errorValue() as? RefreshTokenError
         XCTAssertNotNil(returnedError)
-        XCTAssertEqual(.noRefreshToken, returnedError)
+        XCTAssertEqual(.noAccessToken, returnedError)
     }
 
     /**
