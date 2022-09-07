@@ -10,6 +10,6 @@ import Foundation
 
 enum RefreshTokenError: KarhooError {
     case memoryAllocationError
-    case noRefreshToken
+    case noAccessToken
     case userAlreadyLoggedOut
 }

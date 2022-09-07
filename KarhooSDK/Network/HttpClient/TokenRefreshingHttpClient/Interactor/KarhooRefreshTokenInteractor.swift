@@ -51,7 +51,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
                     )
                     self.handleRefreshRequest(result: .success(result: newToken))
                 } else {
-                    completion(Result.failure(error: RefreshTokenError.noRefreshToken))
+                    completion(Result.failure(error: RefreshTokenError.noAccessToken))
                 }
             }
             return
