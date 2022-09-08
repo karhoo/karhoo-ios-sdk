@@ -77,8 +77,8 @@ final class DefaultUserDataStore: UserDataStore {
             expiryDate = Date(timeIntervalSince1970: expiryTimeInterval)
         }
         var refreshTokenExpiryDate: Date?
-        if let refreshTokenExpiryDateString = secretStore.readSecret(withKey: CredentialsStoreKeys.refreshToken.rawValue),
-           let refreshTokenExpiryTimeInterval = TimeInterval(refreshTokenExpiryDateString) {
+        if let refreshTokenExpiryIntervalString = secretStore.readSecret(withKey: CredentialsStoreKeys.refreshToken.rawValue),
+           let refreshTokenExpiryTimeInterval = TimeInterval(refreshTokenExpiryIntervalString) {
             refreshTokenExpiryDate = Date(timeIntervalSince1970: refreshTokenExpiryTimeInterval)
         }
         return Credentials(
