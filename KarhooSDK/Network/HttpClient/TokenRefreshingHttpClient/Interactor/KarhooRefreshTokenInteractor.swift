@@ -36,13 +36,12 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         }
 
         guard let refreshToken = dataStore.getCurrentCredentials()?.refreshToken, refreshToken.isEmpty == false else {
-            Karhoo.configuration.requestNewAuthenticationCredentials { [weak self] newCredentials in
+            Karhoo.configuration.requestNewAuthenticationCredentials { [weak self] in
                 guard let self = self else {
                     completion(.failure(error: RefreshTokenError.memoryAllocationError))
                     return
                 }
-
-                if let newCredentials = newCredentials {
+                if let newCredentials = self.dataStore.getCurrentCredentials() {
                     let newToken = AuthToken(
                         accessToken: newCredentials.accessToken,
                         expiresIn: Int(newCredentials.expiryDate?.timeIntervalSinceNow ?? 0),
