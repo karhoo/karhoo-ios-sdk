@@ -149,8 +149,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     /**
      *  Given:  Refresh token not saved in user data store
      *    And:  Token expiration date in near future
-     *   When:  refreshToken method called
-     *   Then:  Callback should be fired with an error
+     *   Then:  request new auth credentials called
      */
     func testMissingRefreshToken() {
         let user = UserInfoMock().set(userId: "some").build()
@@ -158,16 +157,17 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture(),
                                                                  withRefreshToken: false)
-        mockUserDataStore.credentialsToReturn = credentials
+        let expectation = XCTestExpectation(description: "new auth credentials requested")
 
-        var capturedResult: Result<Bool>?
-        testObject.refreshToken { result in
-            capturedResult = result
+        mockUserDataStore.credentialsToReturn = credentials
+        MockSDKConfig.requestNewAuthenticationCredentialsCompletion = {
+            expectation.fulfill()
         }
 
-        let returnedError = capturedResult?.errorValue() as? RefreshTokenError
-        XCTAssertNotNil(returnedError)
-        XCTAssertEqual(.noAccessToken, returnedError)
+        testObject.refreshToken { _ in
+        }
+        
+        wait(for: [expectation], timeout: 1)
     }
 
     /**
