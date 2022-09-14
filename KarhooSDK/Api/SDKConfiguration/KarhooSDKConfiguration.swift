@@ -21,12 +21,7 @@ public protocol KarhooSDKConfiguration {
 }
 
 public extension KarhooSDKConfiguration {
-
     func analyticsProvider() -> AnalyticsProvider {
         return DefaultAnalyticsProvider()
-    }
-
-    func requestNewAuthenticationCredentials(callback: @escaping () -> Void) {
-        callback()
     }
 }
