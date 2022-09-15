@@ -96,14 +96,17 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     private func handleRefreshRequest(result: Result<AuthToken>) {
-        guard
-            let token = result.getSuccessValue(),
-            tokenNeedsRefreshing()
-        else {
-            requestExteralAuthentication()
+        guard tokenNeedsRefreshing() else {
+            callback?(Result.success(result: false))
             return
         }
-        saveToDataStore(token: token)
+        
+        switch result {
+        case .success(result: let token, _):
+            saveToDataStore(token: token)
+        case .failure:
+            requestExteralAuthentication()
+        }
     }
 
     private func saveToDataStore(token: AuthToken) {
@@ -131,7 +134,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         return checkDateDueTime(for: credentials.refreshTokenExpiryDate)
     }
     
-    // Cehck if expire date for refresh token or token makes it needs to be renewed
+    // Check if expire date for refresh token or token makes it needs to be renewed
     private func checkDateDueTime(for date: Date?) -> Bool {
         guard let date = date else {
             return true

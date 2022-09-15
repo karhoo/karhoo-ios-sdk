@@ -551,6 +551,13 @@
 			remoteGlobalIDString = 4387A6401E3BAF6D0024FD55;
 			remoteInfo = KarhooSDK;
 		};
+		5124B86528D351F600031CF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4387A6381E3BAF6D0024FD55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09A9B28A2405901900823FB0;
+			remoteInfo = Client;
+		};
 		5CDD26D124BE560C00436F01 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4387A6381E3BAF6D0024FD55 /* Project object */;
@@ -3362,6 +3369,7 @@
 			);
 			dependencies = (
 				09B204B321412C3200063632 /* PBXTargetDependency */,
+				5124B86628D351F600031CF5 /* PBXTargetDependency */,
 			);
 			name = KarhooSDKIntegrationTests;
 			packageProductDependencies = (
@@ -3434,6 +3442,7 @@
 						DevelopmentTeam = U7U4Q7YGDH;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 09A9B28A2405901900823FB0;
 					};
 					4387A6401E3BAF6D0024FD55 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -3446,6 +3455,7 @@
 						DevelopmentTeam = U7U4Q7YGDH;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 09A9B28A2405901900823FB0;
 					};
 				};
 			};
@@ -4068,6 +4078,11 @@
 			target = 4387A6401E3BAF6D0024FD55 /* KarhooSDK */;
 			targetProxy = 4387A64C1E3BAF6D0024FD55 /* PBXContainerItemProxy */;
 		};
+		5124B86628D351F600031CF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09A9B28A2405901900823FB0 /* Client */;
+			targetProxy = 5124B86528D351F600031CF5 /* PBXContainerItemProxy */;
+		};
 		5CDD26D224BE560C00436F01 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 09A9B28A2405901900823FB0 /* Client */;
@@ -4166,6 +4181,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Client.app/Client";
 			};
 			name = Debug;
 		};
@@ -4197,6 +4213,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Client.app/Client";
 			};
 			name = Release;
 		};
@@ -4444,6 +4461,7 @@
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/KarhooSDK/Api/Networking/GRPC/";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Client.app/Client";
 			};
 			name = Debug;
 		};
@@ -4476,6 +4494,7 @@
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/KarhooSDK/Api/Networking/GRPC/";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Client.app/Client";
 			};
 			name = Release;
 		};

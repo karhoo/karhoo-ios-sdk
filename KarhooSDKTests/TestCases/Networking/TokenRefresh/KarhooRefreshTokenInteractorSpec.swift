@@ -34,7 +34,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
       * Then: Request should fire with expected path / method
       */
     func testRefreshRequest() {
-        let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
+        let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture(), refreshTokenExpiryDate: dateInTheFarFuture())
         mockUserDataStore.credentialsToReturn = credentials
 
         let user = UserInfoMock().set(userId: "some").build()
@@ -47,11 +47,16 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
     /**
       * When: Requesting token (Auth settings)
-      * Then: Request should fire with expected path / method
+      * And: Refresh token expiry is near future
+      * Then: Require external authentication should be called
       */
     func testAuthRefreshRequest() {
+        let expectation = XCTestExpectation(description: "requireSDKAuthenticationCalled")
         MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
-        let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
+        MockSDKConfig.requireSDKAuthenticationCompletion = {
+            expectation.fulfill()
+        }
+        let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture(), refreshTokenExpiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
 
         let user = UserInfoMock().set(userId: "some").build()
@@ -59,7 +64,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
         testObject.refreshToken(completion: { _ in})
 
-        mockRequestSender.assertRequestSend(endpoint: .authRefresh, method: .post)
+        wait(for: [expectation], timeout: 1)
     }
 
     /**
@@ -206,7 +211,6 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
      *    And:  Network request is made to refresh token
      *   When:  Network request to refresh token fails
      *   Then:  New credentials should NOT be saved in user data store
-     *    And:  Callback should return httpClient error
      */
     func testRefreshTokenError() {
         let user = UserInfoMock().set(userId: "some").build()
@@ -226,7 +230,6 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
         XCTAssertTrue(mockRequestSender.requestCalled)
         XCTAssertFalse(mockUserDataStore.setCurrentUserCalled)
-        XCTAssert(expectedError.equals(capturedResult!.errorValue()!))
 
     }
 

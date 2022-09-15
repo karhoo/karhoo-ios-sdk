@@ -13,13 +13,17 @@ import CoreLocation
 
 class ObjectTestFactory {
 
-    class func getRandomCredentials(expiryDate: Date? = TestUtil.getRandomDate(),
-                                    withRefreshToken refreshToken: Bool = true) -> Credentials {
+    class func getRandomCredentials(
+        expiryDate: Date? = TestUtil.getRandomDate(),
+        withRefreshToken refreshToken: Bool = true,
+        refreshTokenExpiryDate: Date? = TestUtil.getRandomDate()
+    
+    ) -> Credentials {
         return Credentials(
             accessToken: TestUtil.getRandomString(),
             expiryDate: expiryDate,
             refreshToken: (refreshToken ? TestUtil.getRandomString() : nil),
-            refreshTokenExpiryDate: expiryDate
+            refreshTokenExpiryDate: refreshTokenExpiryDate ?? expiryDate
         )
     }
 }
