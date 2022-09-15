@@ -39,23 +39,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
                 refreshToken.isEmpty == false,
                 refreshTokenNeedsRefreshing(credentials: dataStore.getCurrentCredentials()) == false
         else {
-            Karhoo.configuration.requireSDKAuthentication { [weak self] in
-                guard let self = self else {
-                    completion(.failure(error: RefreshTokenError.memoryAllocationError))
-                    return
-                }
-                if let newCredentials = self.dataStore.getCurrentCredentials() {
-                    let newToken = AuthToken(
-                        accessToken: newCredentials.accessToken,
-                        expiresIn: Int(newCredentials.expiryDate?.timeIntervalSinceNow ?? 0),
-                        refreshToken: newCredentials.refreshToken ?? "",
-                        refreshExpiresIn: Int(newCredentials.refreshTokenExpiryDate?.timeIntervalSinceNow ?? 0)
-                    )
-                    self.handleRefreshRequest(result: .success(result: newToken))
-                } else {
-                    completion(Result.failure(error: RefreshTokenError.noAccessToken))
-                }
-            }
+            requestExteralAuthentication()
             return
         }
 
@@ -77,6 +61,28 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
             })
         }
     }
+    
+    private func requestExteralAuthentication() {
+        Karhoo.configuration.requireSDKAuthentication { [weak self] in
+            guard let self = self else {
+                // Self not accessible so no way to call callback
+                assertionFailure()
+                return
+            }
+            if let newCredentials = self.dataStore.getCurrentCredentials() {
+                let newToken = AuthToken(
+                    accessToken: newCredentials.accessToken,
+                    expiresIn: Int(newCredentials.expiryDate?.timeIntervalSinceNow ?? 0),
+                    refreshToken: newCredentials.refreshToken ?? "",
+                    refreshExpiresIn: Int(newCredentials.refreshTokenExpiryDate?.timeIntervalSinceNow ?? 0)
+                )
+                // The request completion will be called inside `handleRefreshRequest` method.
+                self.handleRefreshRequest(result: .success(result: newToken))
+            } else {
+                self.callback?(Result.failure(error: RefreshTokenError.noAccessToken))
+            }
+        }
+    }
 
     private func authRefreshUrlComponents() -> URLComponents {
         var urlComponents = URLComponents()
@@ -90,17 +96,14 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     private func handleRefreshRequest(result: Result<AuthToken>) {
-        if let token = result.getSuccessValue() {
-            guard self.tokenNeedsRefreshing() == true else {
-                callback?(Result.success(result: false))
-                return
-            }
-
-            saveToDataStore(token: token)
-
-        } else if let error = result.getErrorValue() {
-            callback?(Result.failure(error: error))
+        guard
+            let token = result.getSuccessValue(),
+            tokenNeedsRefreshing()
+        else {
+            requestExteralAuthentication()
+            return
         }
+        saveToDataStore(token: token)
     }
 
     private func saveToDataStore(token: AuthToken) {
