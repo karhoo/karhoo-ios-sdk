@@ -35,7 +35,10 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
             return
         }
 
-        guard let refreshToken = dataStore.getCurrentCredentials()?.refreshToken, refreshToken.isEmpty == false else {
+        guard let refreshToken = dataStore.getCurrentCredentials()?.refreshToken,
+                refreshToken.isEmpty == false,
+                refreshTokenNeedsRefreshing(credentials: dataStore.getCurrentCredentials()) == false
+        else {
             Karhoo.configuration.requireSDKAuthentication { [weak self] in
                 guard let self = self else {
                     completion(.failure(error: RefreshTokenError.memoryAllocationError))
@@ -115,11 +118,22 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     private func tokenNeedsRefreshing(credentials: Credentials) -> Bool {
-        guard let expiryDate = credentials.expiryDate else {
+        checkDateDueTime(for: credentials.expiryDate)
+    }
+    
+    private func refreshTokenNeedsRefreshing(credentials: Credentials?) -> Bool {
+        guard let credentials = credentials else {
             return true
         }
-
-        let timeToExpiration = expiryDate.timeIntervalSince1970 - Date().timeIntervalSince1970
+        return checkDateDueTime(for: credentials.refreshTokenExpiryDate)
+    }
+    
+    // Cehck if expire date for refresh token or token makes it needs to be renewed
+    private func checkDateDueTime(for date: Date?) -> Bool {
+        guard let date = date else {
+            return true
+        }
+        let timeToExpiration = date.timeIntervalSince1970 - Date().timeIntervalSince1970
         return timeToExpiration < Constants.MaxTimeIntervalToRefreshToken
     }
 
