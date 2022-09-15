@@ -160,7 +160,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         let expectation = XCTestExpectation(description: "new auth credentials requested")
 
         mockUserDataStore.credentialsToReturn = credentials
-        MockSDKConfig.requestNewAuthenticationCredentialsCompletion = {
+        MockSDKConfig.requestSDKAuthenticationCompletion = {
             expectation.fulfill()
         }
 

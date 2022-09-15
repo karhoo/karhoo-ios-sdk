@@ -365,7 +365,6 @@
 		5CDD26D624BF502400436F01 /* QuoteRequestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD26D524BF502400436F01 /* QuoteRequestPoint.swift */; };
 		5D4800F516E293EA22604A94 /* AdyenClientKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D480980D478A06806E93B05 /* AdyenClientKey.swift */; };
 		5D4806EC519AFE12A3209A98 /* KarhooAdyenClientKeyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D480E1AF062F866A3A657C2 /* KarhooAdyenClientKeyInteractor.swift */; };
-		5D480A8C78D7C81F253BC00C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D480EA12F7236874F815CF5 /* Keys.swift */; };
 		5D480AB4657DBF0AB356D2C6 /* AdyenClientKeyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D48053897A118D887CD6495 /* AdyenClientKeyInteractor.swift */; };
 		6BB9405227512AB600478ABD /* LoyaltyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB9405127512AB600478ABD /* LoyaltyUtils.swift */; };
 		6F11A47D25713BC2003CFE15 /* NetPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F11A47C25713BC2003CFE15 /* NetPrice.swift */; };
@@ -924,7 +923,6 @@
 		5D48053897A118D887CD6495 /* AdyenClientKeyInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdyenClientKeyInteractor.swift; sourceTree = "<group>"; };
 		5D480980D478A06806E93B05 /* AdyenClientKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdyenClientKey.swift; sourceTree = "<group>"; };
 		5D480E1AF062F866A3A657C2 /* KarhooAdyenClientKeyInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooAdyenClientKeyInteractor.swift; sourceTree = "<group>"; };
-		5D480EA12F7236874F815CF5 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		6BB9405127512AB600478ABD /* LoyaltyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyUtils.swift; sourceTree = "<group>"; };
 		6F11A47C25713BC2003CFE15 /* NetPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetPrice.swift; sourceTree = "<group>"; };
 		6F11A48625714549003CFE15 /* FleetRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetRating.swift; sourceTree = "<group>"; };
@@ -1469,7 +1467,6 @@
 				09A9B2962405901B00823FB0 /* Assets.xcassets */,
 				09A9B2982405901B00823FB0 /* LaunchScreen.storyboard */,
 				09A9B29B2405901B00823FB0 /* Info.plist */,
-				5D480EA12F7236874F815CF5 /* Keys.swift */,
 				7B28E0092886891300F6FDAE /* Keys.swift */,
 			);
 			path = Client;
@@ -3560,7 +3557,6 @@
 				40FBF609240FBB2E007F6A54 /* AuthRequestsTesterViewController.swift in Sources */,
 				09A9B28E2405901900823FB0 /* AppDelegate.swift in Sources */,
 				09A9B2902405901900823FB0 /* SceneDelegate.swift in Sources */,
-				5D480A8C78D7C81F253BC00C /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

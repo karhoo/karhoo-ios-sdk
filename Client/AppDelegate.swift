@@ -26,10 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 struct SDKConfig: KarhooSDKConfiguration {
-    func requestNewAuthenticationCredentials(callback: @escaping () -> Void) {
+    func requestSDKAuthentication(callback: @escaping () -> Void) {
         callback()
     }
-    
 
     func environment() -> KarhooEnvironment {
         return .sandbox
