@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 struct SDKConfig: KarhooSDKConfiguration {
-    func requestSDKAuthentication(callback: @escaping () -> Void) {
+    func requireSDKAuthentication(callback: @escaping () -> Void) {
         callback()
     }
 
