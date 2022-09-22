@@ -213,6 +213,11 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
      *   Then:  New credentials should NOT be saved in user data store
      */
     func testRefreshTokenError() {
+        let externalAuthRequestCalledExpectation = XCTestExpectation(description: "externalAuthRequestCalled")
+        MockSDKConfig.requireSDKAuthenticationCompletion = {
+            externalAuthRequestCalledExpectation.fulfill()
+        }
+
         let user = UserInfoMock().set(userId: "some").build()
         mockUserDataStore.userToReturn = user
 
@@ -229,8 +234,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         mockRequestSender.fail(error: expectedError)
 
         XCTAssertTrue(mockRequestSender.requestCalled)
-        XCTAssertFalse(mockUserDataStore.setCurrentUserCalled)
-
+        wait(for: [externalAuthRequestCalledExpectation], timeout: 1)
     }
 
     /**
