@@ -50,7 +50,10 @@ jobs:
             echo "func environment() -> KarhooEnvironment {" >> Client/Keys.swift
             echo "return .custom(environment: .init(host: \"$ADYEN_STG_HOST\", authHost: \"$ADYEN_STG_AUTHHOST\", guestHost: \"$ADYEN_STG_GUESTHOST\")) }" >> Client/Keys.swift
             echo "func authenticationMethod() -> AuthenticationMethod {" >> Client/Keys.swift
-            echo "return .karhooUser }}" >> Client/Keys.swift
+            echo "return .karhooUser }" >> Client/Keys.swift
+            echo "func requireSDKAuthentication(callback: @escaping () -> Void) {" >> Client/Keys.swift
+            echo "callback() }" >> Client/Keys.swift
+            echo "}" >> Client/Keys.swift
       - run:
           name: fastlane
           command: |

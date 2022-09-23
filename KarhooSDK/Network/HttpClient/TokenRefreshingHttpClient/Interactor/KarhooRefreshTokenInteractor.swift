@@ -28,15 +28,18 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     func refreshToken(completion: @escaping (Result<Bool>) -> Void) {
-        self.callback = completion
+        callback = completion
 
         guard tokenNeedsRefreshing() else {
             completion(Result.success(result: false))
             return
         }
 
-        guard let refreshToken = dataStore.getCurrentCredentials()?.refreshToken else {
-            completion(Result.failure(error: RefreshTokenError.noRefreshToken))
+        guard let refreshToken = dataStore.getCurrentCredentials()?.refreshToken,
+                refreshToken.isEmpty == false,
+                refreshTokenNeedsRefreshing(credentials: dataStore.getCurrentCredentials()) == false
+        else {
+            requestExteralAuthentication()
             return
         }
 
@@ -58,6 +61,28 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
             })
         }
     }
+    
+    private func requestExteralAuthentication() {
+        Karhoo.configuration.requireSDKAuthentication { [weak self] in
+            guard let self = self else {
+                // Self not accessible so no way to call callback
+                assertionFailure()
+                return
+            }
+            if let newCredentials = self.dataStore.getCurrentCredentials() {
+                let newToken = AuthToken(
+                    accessToken: newCredentials.accessToken,
+                    expiresIn: Int(newCredentials.expiryDate?.timeIntervalSinceNow ?? 0),
+                    refreshToken: newCredentials.refreshToken ?? "",
+                    refreshExpiresIn: Int(newCredentials.refreshTokenExpiryDate?.timeIntervalSinceNow ?? 0)
+                )
+                // The request completion will be called inside `handleRefreshRequest` method.
+                self.handleRefreshRequest(result: .success(result: newToken))
+            } else {
+                self.callback?(Result.failure(error: RefreshTokenError.noAccessToken))
+            }
+        }
+    }
 
     private func authRefreshUrlComponents() -> URLComponents {
         var urlComponents = URLComponents()
@@ -71,16 +96,16 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     private func handleRefreshRequest(result: Result<AuthToken>) {
-        if let token = result.successValue() {
-            guard self.tokenNeedsRefreshing() == true else {
-                callback?(Result.success(result: false))
-                return
-            }
-
-            self.saveToDataStore(token: token)
-
-        } else if let error = result.errorValue() {
-            callback?(Result.failure(error: error))
+        guard tokenNeedsRefreshing() else {
+            callback?(Result.success(result: false))
+            return
+        }
+        
+        switch result {
+        case .success(result: let token, _):
+            saveToDataStore(token: token)
+        case .failure:
+            requestExteralAuthentication()
         }
     }
 
@@ -99,11 +124,22 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     private func tokenNeedsRefreshing(credentials: Credentials) -> Bool {
-        guard let expiryDate = credentials.expiryDate else {
+        checkDateDueTime(for: credentials.expiryDate)
+    }
+    
+    private func refreshTokenNeedsRefreshing(credentials: Credentials?) -> Bool {
+        guard let credentials = credentials else {
             return true
         }
-
-        let timeToExpiration = expiryDate.timeIntervalSince1970 - Date().timeIntervalSince1970
+        return checkDateDueTime(for: credentials.refreshTokenExpiryDate)
+    }
+    
+    // Check if expire date for refresh token or token makes it needs to be renewed
+    private func checkDateDueTime(for date: Date?) -> Bool {
+        guard let date = date else {
+            return true
+        }
+        let timeToExpiration = date.timeIntervalSince1970 - Date().timeIntervalSince1970
         return timeToExpiration < Constants.MaxTimeIntervalToRefreshToken
     }
 

@@ -29,9 +29,12 @@ final class DefaultAuthTokenProviderSpec: XCTestCase {
      */
     func testTokenProvider() {
         let testToken = "Test token"
-        mockUserDataStore.credentialsToReturn = Credentials(accessToken: testToken,
-                                                            expiryDate: nil,
-                                                            refreshToken: nil)
+        mockUserDataStore.credentialsToReturn = Credentials(
+            accessToken: testToken,
+            expiryDate: nil,
+            refreshToken: nil,
+            refreshTokenExpiryDate: nil
+        )
 
         let capturedToken = testObject.accessToken
         XCTAssert(capturedToken?.token == testToken)

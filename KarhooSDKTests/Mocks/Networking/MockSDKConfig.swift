@@ -22,4 +22,10 @@ class MockSDKConfig: KarhooSDKConfiguration {
     func authenticationMethod() -> AuthenticationMethod {
         return Self.authenticationMethod
     }
+    
+    static var requireSDKAuthenticationCompletion: () -> Void = {}
+    func requireSDKAuthentication(callback: @escaping () -> Void) {
+        MockSDKConfig.requireSDKAuthenticationCompletion()
+        callback()
+    }
 }
