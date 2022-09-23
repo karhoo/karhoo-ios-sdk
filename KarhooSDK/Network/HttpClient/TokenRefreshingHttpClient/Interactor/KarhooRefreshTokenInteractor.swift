@@ -173,7 +173,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         refreshTokenTimer?.invalidate()
         refreshTokenTimer = nil
 
-        let secondsToRefresh: TimeInterval = 5 // max(0, (credentials.expiryDate?.timeIntervalSinceNow ?? 0) - Constants.refreshBuffer)
+        let secondsToRefresh: TimeInterval = max(0, (credentials.expiryDate?.timeIntervalSinceNow ?? 0) - Constants.refreshBuffer)
 
         refreshTokenTimer = Timer.scheduledTimer(
             withTimeInterval: secondsToRefresh,
