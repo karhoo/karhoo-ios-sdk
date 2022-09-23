@@ -10,15 +10,34 @@ import Foundation
 
 final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
+    // MARK: - Nested types
+
+    private enum Constants {
+        static let MaxTimeIntervalToRefreshToken = TimeInterval(30) // 30 sec
+        static let refreshBuffer: TimeInterval = 5 * 60 // Seconds buffer when refresh token should be refreshed proactively, so it never becomes expired
+    }
+
+    // MARK: - Properties
+
+    private var refreshTokenTimer: Timer?
     private let dataStore: UserDataStore
     private let refreshTokenRequest: RequestSender
     private var callback: ((Result<Bool>) -> Void)?
+
+    // MARK: - Lifecycle
 
     init(dataStore: UserDataStore = DefaultUserDataStore(),
          refreshTokenRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared)) {
         self.dataStore = dataStore
         self.refreshTokenRequest = refreshTokenRequest
     }
+
+    deinit {
+        refreshTokenTimer?.invalidate()
+        refreshTokenTimer = nil
+    }
+
+    // MARK: - Endpoint methods
 
     func tokenNeedsRefreshing() -> Bool {
         guard let credentials = dataStore.getCurrentCredentials() else {
@@ -62,6 +81,8 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         }
     }
     
+    // MARK: - Private methods
+
     private func requestExteralAuthentication() {
         Karhoo.configuration.requireSDKAuthentication { [weak self] in
             guard let self = self else {
@@ -118,6 +139,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         if let user = user {
             dataStore.setCurrentUser(user: user, credentials: newCredentials)
             callback?(Result.success(result: true))
+            scheduleRefreshTokenTimer()
         } else {
             callback?(Result.failure(error: RefreshTokenError.userAlreadyLoggedOut))
         }
@@ -143,7 +165,26 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         return timeToExpiration < Constants.MaxTimeIntervalToRefreshToken
     }
 
-    private struct Constants {
-        static let MaxTimeIntervalToRefreshToken = TimeInterval(30) // 30 sec
+    private func scheduleRefreshTokenTimer() {
+        guard let credentials = dataStore.getCurrentCredentials() else {
+            assertionFailure("Credentials should be set at this stage")
+            return
+        }
+        refreshTokenTimer?.invalidate()
+        refreshTokenTimer = nil
+
+        let secondsToRefresh: TimeInterval = 5 // max(0, (credentials.expiryDate?.timeIntervalSinceNow ?? 0) - Constants.refreshBuffer)
+
+        refreshTokenTimer = Timer.scheduledTimer(
+            withTimeInterval: secondsToRefresh,
+            repeats: false,
+            block: { [weak self] _ in
+                self?.refreshToken { result in
+                    print("KarhooRefreshTokenInteractor.proactivelyRefreshToken result: \(result)")
+                }
+            }
+        )
+        RunLoop.main.add(refreshTokenTimer!, forMode: .default)
     }
+
 }
