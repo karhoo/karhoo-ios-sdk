@@ -59,7 +59,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
                 refreshToken.isEmpty == false,
                 refreshTokenNeedsRefreshing(credentials: dataStore.getCurrentCredentials()) == false
         else {
-            requestExteralAuthentication()
+            requestExternalAuthentication()
             return
         }
 
@@ -84,7 +84,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     
     // MARK: - Private methods
 
-    private func requestExteralAuthentication() {
+    private func requestExternalAuthentication() {
         scheduleExtenalAuthInvalidationTimer()
         Karhoo.configuration.requireSDKAuthentication { [weak self] in
             guard let self = self else {
@@ -128,7 +128,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         case .success(result: let token, _):
             saveToDataStore(token: token)
         case .failure:
-            requestExteralAuthentication()
+            requestExternalAuthentication()
         }
     }
 
