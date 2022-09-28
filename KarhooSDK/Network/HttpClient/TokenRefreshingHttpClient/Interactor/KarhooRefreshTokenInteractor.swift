@@ -13,7 +13,6 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     // MARK: - Nested types
 
     private enum Constants {
-        static let MaxTimeIntervalToRefreshToken = TimeInterval(30) // 30 sec
         static let refreshBuffer: TimeInterval = 5 * 60 // Seconds buffer when refresh token should be refreshed proactively, so it never becomes expired
     }
 
@@ -162,7 +161,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
             return true
         }
         let timeToExpiration = date.timeIntervalSince1970 - Date().timeIntervalSince1970
-        return timeToExpiration < Constants.MaxTimeIntervalToRefreshToken
+        return timeToExpiration < Constants.refreshBuffer
     }
 
     private func scheduleRefreshTokenTimer() {
