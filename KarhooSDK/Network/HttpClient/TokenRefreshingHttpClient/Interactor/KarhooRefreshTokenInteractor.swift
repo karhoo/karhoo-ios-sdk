@@ -14,10 +14,12 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
     private enum Constants {
         static let refreshBuffer: TimeInterval = 5 * 60 // Seconds buffer when refresh token should be refreshed proactively, so it never becomes expired
+        static let allowedExternalAuthTimeInterval: TimeInterval = 60
     }
 
     // MARK: - Properties
 
+    private var externalAuthInvalidationTimer: Timer?
     private var refreshTokenTimer: Timer?
     private let dataStore: UserDataStore
     private let refreshTokenRequest: RequestSender
@@ -32,8 +34,8 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     deinit {
-        refreshTokenTimer?.invalidate()
-        refreshTokenTimer = nil
+        invalidateRefreshTokenTimer()
+        invalidateExternalAuthTimer()
     }
 
     // MARK: - Endpoint methods
@@ -83,6 +85,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     // MARK: - Private methods
 
     private func requestExteralAuthentication() {
+        scheduleExtenalAuthInvalidationTimer()
         Karhoo.configuration.requireSDKAuthentication { [weak self] in
             guard let self = self else {
                 // Self not accessible so no way to call callback
@@ -164,13 +167,14 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         return timeToExpiration < Constants.refreshBuffer
     }
 
+    // MARK: Timers scheduling
+
     private func scheduleRefreshTokenTimer() {
         guard let credentials = dataStore.getCurrentCredentials() else {
             assertionFailure("Credentials should be set at this stage")
             return
         }
-        refreshTokenTimer?.invalidate()
-        refreshTokenTimer = nil
+        invalidateRefreshTokenTimer()
 
         let secondsToRefresh: TimeInterval = max(0, (credentials.expiryDate?.timeIntervalSinceNow ?? 0) - Constants.refreshBuffer)
 
@@ -183,7 +187,34 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
                 }
             }
         )
-        RunLoop.main.add(refreshTokenTimer!, forMode: .default)
+        RunLoop.main.add(refreshTokenTimer!, forMode: .common)
+    }
+
+    /// Schedule a timer that will return extenal authentition error if given time interval will be reached. This is designed as fallback in case of invalid DPs implementation of the `requireSDKAuthentication` method.
+    private func scheduleExtenalAuthInvalidationTimer() {
+        invalidateExternalAuthTimer()
+        externalAuthInvalidationTimer = Timer.scheduledTimer(
+            withTimeInterval: Constants.allowedExternalAuthTimeInterval,
+            repeats: false,
+            block: { [weak self] _ in
+                guard let self else { return }
+                self.invalidateExternalAuthTimer()
+                self.callback?(.failure(error: RefreshTokenError.extenalAuthenticationRequestExpired))
+            }
+        )
+        RunLoop.main.add(externalAuthInvalidationTimer!, forMode: .common)
+    }
+
+    // MARK: - Utils
+    
+    private func invalidateRefreshTokenTimer() {
+        refreshTokenTimer?.invalidate()
+        refreshTokenTimer = nil
+    }
+
+    private func invalidateExternalAuthTimer() {
+        externalAuthInvalidationTimer?.invalidate()
+        externalAuthInvalidationTimer = nil
     }
 
 }
