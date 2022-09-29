@@ -26,7 +26,9 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     private var refreshTokenTimer: Timer?
     private let dataStore: UserDataStore
     private let refreshTokenRequest: RequestSender
-    private var callback: ((Result<Bool>) -> Void)?
+
+    private var isTokenRefreshInProgress = false
+    private var completionWaitingForTokenRefresh: [(Result<Bool>) -> Void] = []
 
     // MARK: - Lifecycle
 
@@ -51,8 +53,12 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     func refreshToken(completion: @escaping (Result<Bool>) -> Void) {
-        callback = completion
+        completionWaitingForTokenRefresh.append(completion)
 
+        guard isTokenRefreshInProgress == false else {
+            // Refresh in progress, completion will be evaluated once the process is done.
+            return
+        }
         guard tokenNeedsRefreshing() else {
             completion(Result.success(result: false))
             return
@@ -105,7 +111,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
                 // The request completion will be called inside `handleRefreshRequest` method.
                 self.handleRefreshRequest(result: .success(result: newToken))
             } else {
-                self.callback?(Result.failure(error: RefreshTokenError.noAccessToken))
+                self.resolveRefreshCompletions(using: .failure(error: RefreshTokenError.noAccessToken))
             }
         }
     }
@@ -123,7 +129,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
     private func handleRefreshRequest(result: Result<AuthToken>) {
         guard tokenNeedsRefreshing() else {
-            callback?(Result.success(result: false))
+            resolveRefreshCompletions(using: .success(result: false))
             return
         }
         
@@ -149,31 +155,22 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
         if let user = user {
             dataStore.setCurrentUser(user: user, credentials: newCredentials)
-            callback?(Result.success(result: true))
+            resolveRefreshCompletions(using: .success(result: true))
             scheduleRefreshTokenTimer()
         } else {
-            callback?(Result.failure(error: RefreshTokenError.userAlreadyLoggedOut))
+            resolveRefreshCompletions(using: .failure(error: RefreshTokenError.userAlreadyLoggedOut))
         }
     }
 
-    private func tokenNeedsRefreshing(credentials: Credentials) -> Bool {
-        checkDateDueTime(for: credentials.expiryDate)
-    }
-    
-    private func refreshTokenNeedsRefreshing(credentials: Credentials?) -> Bool {
-        guard let credentials = credentials else {
-            return true
+    // MARK: Completion resolvment
+
+    private func resolveRefreshCompletions(using result: Result<Bool>) {
+        DispatchQueue.main.async {
+            self.completionWaitingForTokenRefresh.forEach { completion in
+                completion(result)
+            }
+            self.completionWaitingForTokenRefresh = []
         }
-        return checkDateDueTime(for: credentials.refreshTokenExpiryDate)
-    }
-    
-    // Check if expire date for refresh token or token makes it needs to be renewed
-    private func checkDateDueTime(for date: Date?) -> Bool {
-        guard let date = date else {
-            return true
-        }
-        let timeToExpiration = date.timeIntervalSince1970 - Date().timeIntervalSince1970
-        return timeToExpiration < Constants.refreshBuffer
     }
 
     // MARK: Timers scheduling
@@ -208,14 +205,34 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
             block: { [weak self] _ in
                 guard let self else { return }
                 self.invalidateExternalAuthTimer()
-                self.callback?(.failure(error: RefreshTokenError.extenalAuthenticationRequestExpired))
+                self.resolveRefreshCompletions(using: .failure(error: RefreshTokenError.extenalAuthenticationRequestExpired))
             }
         )
         RunLoop.main.add(externalAuthInvalidationTimer!, forMode: .common)
     }
 
     // MARK: - Utils
+
+    private func tokenNeedsRefreshing(credentials: Credentials) -> Bool {
+        checkDateDueTime(for: credentials.expiryDate)
+    }
     
+    private func refreshTokenNeedsRefreshing(credentials: Credentials?) -> Bool {
+        guard let credentials = credentials else {
+            return true
+        }
+        return checkDateDueTime(for: credentials.refreshTokenExpiryDate)
+    }
+    
+    // Check if expire date for refresh token or token makes it needs to be renewed
+    private func checkDateDueTime(for date: Date?) -> Bool {
+        guard let date = date else {
+            return true
+        }
+        let timeToExpiration = date.timeIntervalSince1970 - Date().timeIntervalSince1970
+        return timeToExpiration < Constants.refreshBuffer
+    }
+
     private func invalidateRefreshTokenTimer() {
         refreshTokenTimer?.invalidate()
         refreshTokenTimer = nil
