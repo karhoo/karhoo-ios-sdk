@@ -60,7 +60,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
             return
         }
         guard tokenNeedsRefreshing() else {
-            completion(Result.success(result: false))
+            resolveRefreshCompletions(using: .success(result: false))
             return
         }
 
@@ -74,7 +74,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
         switch Karhoo.configuration.authenticationMethod() {
         case .guest:
-            completion(Result.success(result: false))
+            resolveRefreshCompletions(using: .success(result: false))
         case .karhooUser:
             let refreshPayload = RefreshTokenRequestPayload(refreshToken: refreshToken)
             refreshTokenRequest.requestAndDecode(payload: refreshPayload,
