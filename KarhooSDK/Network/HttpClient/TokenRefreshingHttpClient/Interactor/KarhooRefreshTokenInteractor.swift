@@ -15,8 +15,8 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     private enum Constants {
         /// Seconds buffer when refresh token should be refreshed proactively, so it never becomes expired. Default value 5 mins. Updated each time new AuthToken is saved.
         static var refreshBuffer: TimeInterval = 5 * 60
-        static var refreshBufferMinimalTimeInterval: TimeInterval = 60
-        static var refreshBufferPercentageModifier: Double = 0.05
+        static let refreshBufferMinimalTimeInterval: TimeInterval = 60
+        static let refreshBufferPercentageModifier: Double = 0.05
         static let allowedExternalAuthTimeInterval: TimeInterval = 60
     }
 
