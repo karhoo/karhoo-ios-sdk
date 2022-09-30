@@ -12,4 +12,5 @@ enum RefreshTokenError: KarhooError {
     case memoryAllocationError
     case noAccessToken
     case userAlreadyLoggedOut
+    case extenalAuthenticationRequestExpired
 }
