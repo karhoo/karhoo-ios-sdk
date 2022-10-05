@@ -16,7 +16,8 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         /// Seconds buffer when refresh token should be refreshed proactively, so it never becomes expired. Default value 5 mins. Updated each time new AuthToken is saved.
         static var refreshBuffer: TimeInterval = 5 * 60
         static let refreshBufferMinimalTimeInterval: TimeInterval = 60
-        static let refreshBufferPercentageModifier: Double = 0.05
+        static let refreshBufferMinPercentageModifier: Double = 0.05
+        static let refreshBufferMaxPercentageModifier: Double = 0.20
         static let allowedExternalAuthTimeInterval: TimeInterval = 60
     }
 
@@ -143,8 +144,11 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     }
 
     private func saveRefreshBuffer(token: AuthToken) {
-        let calculatedRefreshBuffer = Double(token.expiresIn) * Constants.refreshBufferPercentageModifier
-        Constants.refreshBuffer = max(calculatedRefreshBuffer, Constants.refreshBufferMinimalTimeInterval)
+        var calculatedRefreshBuffer = Double(token.expiresIn) * Constants.refreshBufferMinPercentageModifier
+        if calculatedRefreshBuffer < Constants.refreshBufferMinimalTimeInterval {
+            calculatedRefreshBuffer = Double(token.expiresIn) * Constants.refreshBufferMaxPercentageModifier
+        }
+        Constants.refreshBuffer = calculatedRefreshBuffer
     }
 
     private func saveToDataStore(token: AuthToken) {
