@@ -23,6 +23,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
     // MARK: - Properties
 
+    private let tokenRefreshNeedWorker: TokenRefreshNeedWorker
     private var externalAuthInvalidationTimer: Timer?
     private var refreshTokenTimer: Timer?
     private let dataStore: UserDataStore
@@ -33,10 +34,14 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
     // MARK: - Lifecycle
 
-    init(dataStore: UserDataStore = DefaultUserDataStore(),
-         refreshTokenRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared)) {
+    init(
+        dataStore: UserDataStore = DefaultUserDataStore(),
+        refreshTokenRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
+        tokenRefreshNeedWorker: TokenRefreshNeedWorker = KarhooTokenRefreshNeedWorker()
+    ) {
         self.dataStore = dataStore
         self.refreshTokenRequest = refreshTokenRequest
+        self.tokenRefreshNeedWorker = tokenRefreshNeedWorker
     }
 
     deinit {
@@ -136,19 +141,11 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         
         switch result {
         case .success(result: let token, _):
-            saveRefreshBuffer(token: token)
+            tokenRefreshNeedWorker.saveRefreshBuffer(token: token)
             saveToDataStore(token: token)
         case .failure:
             requestExternalAuthentication()
         }
-    }
-
-    private func saveRefreshBuffer(token: AuthToken) {
-        var calculatedRefreshBuffer = Double(token.expiresIn) * Constants.refreshBufferMinPercentageModifier
-        if calculatedRefreshBuffer < Constants.refreshBufferMinimalTimeInterval {
-            calculatedRefreshBuffer = Double(token.expiresIn) * Constants.refreshBufferMaxPercentageModifier
-        }
-        Constants.refreshBuffer = calculatedRefreshBuffer
     }
 
     private func saveToDataStore(token: AuthToken) {
@@ -218,23 +215,11 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     // MARK: - Utils
 
     private func tokenNeedsRefreshing(credentials: Credentials) -> Bool {
-        checkDateDueTime(for: credentials.expiryDate)
+        tokenRefreshNeedWorker.tokenNeedsRefreshing(credentials: credentials)
     }
-    
+
     private func refreshTokenNeedsRefreshing(credentials: Credentials?) -> Bool {
-        guard let credentials = credentials else {
-            return true
-        }
-        return checkDateDueTime(for: credentials.refreshTokenExpiryDate)
-    }
-    
-    // Check if expire date for refresh token or token makes it needs to be renewed
-    private func checkDateDueTime(for date: Date?) -> Bool {
-        guard let date = date else {
-            return true
-        }
-        let timeToExpiration = date.timeIntervalSince1970 - Date().timeIntervalSince1970
-        return timeToExpiration < Constants.refreshBuffer
+        tokenRefreshNeedWorker.refreshTokenNeedsRefreshing(credentials: credentials)
     }
 
     private func invalidateRefreshTokenTimer() {

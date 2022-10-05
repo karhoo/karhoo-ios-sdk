@@ -13,15 +13,16 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     private var testObject: KarhooRefreshTokenInteractor!
     private var mockUserDataStore: MockUserDataStore!
     private var mockRequestSender: MockRefreshTokenRequest!
+    private var mockTokenRefreshNeedWorker: MockTokenRefreshNeedWorker!
 
     override func setUp() {
         super.setUp()
         MockSDKConfig.authenticationMethod = .karhooUser
         mockUserDataStore = MockUserDataStore()
         mockRequestSender = MockRefreshTokenRequest()
+        mockTokenRefreshNeedWorker = MockTokenRefreshNeedWorker()
 
-        testObject = KarhooRefreshTokenInteractor(dataStore: mockUserDataStore,
-                                          refreshTokenRequest: mockRequestSender)
+        buildTestObject()
     }
 
     override class func tearDown() {
@@ -36,7 +37,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     func testRefreshRequest() {
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture(), refreshTokenExpiryDate: dateInTheFarFuture())
         mockUserDataStore.credentialsToReturn = credentials
-
+        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
         let user = UserInfoMock().set(userId: "some").build()
         mockUserDataStore.userToReturn = user
 
@@ -58,7 +59,8 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         }
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture(), refreshTokenExpiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
-
+        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
+        mockTokenRefreshNeedWorker.refreshTokenNeedsRefreshingToReturn = true
         let user = UserInfoMock().set(userId: "some").build()
         mockUserDataStore.userToReturn = user
 
@@ -91,14 +93,16 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     }
 
     /**
-     *  Given:  Credentials authentication token expirationDate is near in the future
+     *  Given:  TokenRefreshNeedWorker calculated the token needs refreshing
      *   When:  tokenNeedsRefreshing method called
      *   Then:  It should return true
      */
-    func testTokenDoesNeedRefreshingDateFarFuture() {
+    func testTokenDoesNeedRefreshing() {
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
-
+        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
+        mockTokenRefreshNeedWorker.refreshTokenNeedsRefreshingToReturn = true
+        
         XCTAssertTrue(testObject.tokenNeedsRefreshing())
     }
 
@@ -110,6 +114,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     func testTokenDoesNeedRefreshingPastDate() {
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInThePast())
         mockUserDataStore.credentialsToReturn = credentials
+        buildTestObject(tokenRefreshNeedWorker: KarhooTokenRefreshNeedWorker())
 
         XCTAssertTrue(testObject.tokenNeedsRefreshing())
     }
@@ -147,7 +152,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
             refreshTokenExpiryDate: Date().addingTimeInterval(300)
         )
         mockUserDataStore.credentialsToReturn = credentials
-
+        buildTestObject(tokenRefreshNeedWorker: KarhooTokenRefreshNeedWorker())
         XCTAssertTrue(testObject.tokenNeedsRefreshing())
     }
 
@@ -163,8 +168,10 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture(),
                                                                  withRefreshToken: false)
         let expectation = XCTestExpectation(description: "new auth credentials requested")
-
+        
         mockUserDataStore.credentialsToReturn = credentials
+        buildTestObject(tokenRefreshNeedWorker: KarhooTokenRefreshNeedWorker())
+
         MockSDKConfig.requireSDKAuthenticationCompletion = {
             expectation.fulfill()
         }
@@ -176,7 +183,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     }
 
     /**
-     *  Given:  Refresh token expirationDate is near
+     *  Given:  TokenRefreshNeedWorker calculated the token needs refreshing
      *    And:  refreshToken method called
      *    And:  Network request is made to refresh token
      *   When:  Network request to refresh token returns
@@ -188,6 +195,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
+        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
 
         let accessTokenAfterRefresh = TestUtil.getRandomString()
         let successResponse = AuthTokenMock().set(accessToken: accessTokenAfterRefresh).set(expiresIn: 10000)
@@ -195,7 +203,6 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         let expectation = XCTestExpectation(description: "correct captured value")
         testObject.refreshToken { result in
             result.isSuccess() ? expectation.fulfill() : XCTFail("Result success value expected")
-            expectation.fulfill()
         }
 
         mockRequestSender.success(response: successResponse.build())
@@ -207,7 +214,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     }
 
     /**
-     *  Given:  Refresh token expirationDate is near
+     *  Given:  Token needs refreshing
      *    And:  refreshToken method called
      *    And:  Network request is made to refresh token
      *   When:  Network request to refresh token fails
@@ -225,6 +232,8 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
 
+        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
+
         let expectedError = TestUtil.getRandomError()
 
         var capturedResult: Result<Bool>?
@@ -239,7 +248,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     }
 
     /**
-     *  Given:  Refresh token expirationDate is near
+     *  Given:  Token needs refreshing
      *    And:  User credentials stored in user data store
      *    And:  refreshToken method called
      *    And:  Network request is made to refresh token
@@ -254,6 +263,8 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
+        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
+        mockTokenRefreshNeedWorker.refreshTokenNeedsRefreshingToReturn = false
 
         let accessTokenAfterRefresh = TestUtil.getRandomString()
 
@@ -347,11 +358,23 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     }
 
     private func dateInTheNearFuture() -> Date {
-        let shortInterval = TimeInterval(Double(TestUtil.getRandomInt(lessThan: 100)) * 0.01)
+        let shortInterval = TimeInterval(Double(TestUtil.getRandomInt(lessThan: 60)) * 0.01)
         return Date().addingTimeInterval(shortInterval)
     }
 
     private func dateInThePast() -> Date {
         return Date().addingTimeInterval(-400)
+    }
+
+    private func buildTestObject(
+        dataStore: UserDataStore? = nil,
+        refreshTokenRequest: RequestSender? = nil,
+        tokenRefreshNeedWorker: TokenRefreshNeedWorker? = nil
+    ) {
+        testObject = KarhooRefreshTokenInteractor(
+            dataStore: dataStore ?? mockUserDataStore,
+            refreshTokenRequest: refreshTokenRequest ?? mockRequestSender,
+            tokenRefreshNeedWorker: tokenRefreshNeedWorker ?? mockTokenRefreshNeedWorker
+        )
     }
 }
