@@ -124,14 +124,14 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheFarFuture())
         mockUserDataStore.credentialsToReturn = credentials
 
-        var capturedResult: Result<Bool>?
+        let expectation = XCTestExpectation(description: "correct captured value")
         testObject.refreshToken { result in
-            capturedResult = result
+            result.isSuccess() ? expectation.fulfill() : XCTFail("Result success value expected")
+            expectation.fulfill()
         }
-
+        
         XCTAssertFalse(mockRequestSender.requestCalled)
-        XCTAssertTrue(capturedResult!.isSuccess())
-        XCTAssertFalse(capturedResult!.successValue()!)
+        wait(for: [expectation], timeout: 1)
     }
 
     /**
@@ -192,17 +192,18 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         let accessTokenAfterRefresh = TestUtil.getRandomString()
         let successResponse = AuthTokenMock().set(accessToken: accessTokenAfterRefresh).set(expiresIn: 10000)
 
-        var capturedResult: Result<Bool>?
+        let expectation = XCTestExpectation(description: "correct captured value")
         testObject.refreshToken { result in
-            capturedResult = result
+            result.isSuccess() ? expectation.fulfill() : XCTFail("Result success value expected")
+            expectation.fulfill()
         }
 
         mockRequestSender.success(response: successResponse.build())
 
         XCTAssertTrue(mockRequestSender.requestCalled)
-        XCTAssertTrue(capturedResult!.isSuccess())
-        XCTAssertTrue(capturedResult!.successValue()!)
         XCTAssertEqual(mockUserDataStore.storedCredentials?.accessToken, accessTokenAfterRefresh)
+        
+        wait(for: [expectation], timeout: 1)
     }
 
     /**
@@ -262,18 +263,46 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
             self?.mockUserDataStore.userToReturn = nil
         }
 
-        var capturedResult: Result<Bool>?
+        let expectation = XCTestExpectation(description: "correct captured value")
         testObject.refreshToken { result in
-            capturedResult = result
+            !result.isSuccess() ? expectation.fulfill() : XCTFail("Result failure expected")
+            let expectedError = RefreshTokenError.userAlreadyLoggedOut
+            let capturedError = result.getErrorValue() as? RefreshTokenError
+            XCTAssertNotNil(capturedError)
+            XCTAssertEqual(expectedError, capturedError)
+            expectation.fulfill()
         }
 
         mockRequestSender.success(response: requestPayload.build())
         XCTAssertTrue(mockRequestSender.requestCalled)
         XCTAssert(mockUserDataStore.setCurrentUserCalled == false)
-        let expectedError = RefreshTokenError.userAlreadyLoggedOut
-        let capturedError = capturedResult?.errorValue() as? RefreshTokenError
-        XCTAssertNotNil(capturedError)
-        XCTAssertEqual(expectedError, capturedError)
+        wait(for: [expectation], timeout: 1)
+    }
+
+    /**
+        When: at least two refresh request are made
+        And: Refresh logic is done with any result
+        Then: All refresh compltions should be triggered
+     */
+    func testMultipleRefreshRequestHandling() {
+        let request1CompletionCalledExpectation = XCTestExpectation()
+        let request2CompletionCalledExpectation = XCTestExpectation()
+
+        let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
+        mockUserDataStore.credentialsToReturn = credentials
+
+        testObject.refreshToken { _ in
+            request1CompletionCalledExpectation.fulfill()
+        }
+        testObject.refreshToken { _ in
+            request2CompletionCalledExpectation.fulfill()
+        }
+        
+        let accessTokenAfterRefresh = TestUtil.getRandomString()
+        let requestPayload = AuthTokenMock().set(accessToken: accessTokenAfterRefresh).set(expiresIn: 10000)
+        mockRequestSender.success(response: requestPayload.build())
+
+        wait(for: [request1CompletionCalledExpectation, request2CompletionCalledExpectation], timeout: 1)
     }
 
     /**
@@ -302,15 +331,15 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
             self?.mockUserDataStore.credentialsToReturn = credentials
         }
 
-        var capturedResult: Result<Bool>?
+        let expectation = XCTestExpectation(description: "correct captured value")
         testObject.refreshToken { result in
-            capturedResult = result
+            result.isSuccess() ? expectation.fulfill() : XCTFail("Result success value expected")
+            XCTAssertFalse(self.mockUserDataStore.setCurrentUserCalled)
+            expectation.fulfill()
         }
 
         mockRequestSender.success(response: requestPayload.build())
-
-        XCTAssertFalse(mockUserDataStore.setCurrentUserCalled)
-        XCTAssertFalse(capturedResult!.successValue()!)
+        wait(for: [expectation], timeout: 1)
     }
 
     private func dateInTheFarFuture() -> Date {
