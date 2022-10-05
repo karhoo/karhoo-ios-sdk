@@ -41,4 +41,13 @@ public struct Credentials {
             refreshTokenExpiryDate: refreshTokenExpiryDate
         )
     }
+
+    func toAuthToken() -> AuthToken {
+        AuthToken(
+            accessToken: accessToken,
+            expiresIn: Int(expiryDate?.timeIntervalSinceNow ?? 0),
+            refreshToken: refreshToken ?? "",
+            refreshExpiresIn: Int(refreshTokenExpiryDate?.timeIntervalSinceNow ?? 01)
+        )
+    }
 }

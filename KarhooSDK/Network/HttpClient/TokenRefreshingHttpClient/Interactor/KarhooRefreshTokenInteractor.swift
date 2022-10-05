@@ -13,15 +13,12 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     // MARK: - Nested types
 
     private enum Constants {
-        /// Seconds buffer when refresh token should be refreshed proactively, so it never becomes expired. Default value 5 mins. Updated each time new AuthToken is saved.
-        static var refreshBuffer: TimeInterval = 5 * 60
-        static let refreshBufferMinimalTimeInterval: TimeInterval = 60
-        static let refreshBufferPercentageModifier: Double = 0.05
         static let allowedExternalAuthTimeInterval: TimeInterval = 60
     }
 
     // MARK: - Properties
 
+    private let tokenValidityWorker: TokenValidityWorker
     private var externalAuthInvalidationTimer: Timer?
     private var refreshTokenTimer: Timer?
     private let dataStore: UserDataStore
@@ -32,10 +29,14 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
     // MARK: - Lifecycle
 
-    init(dataStore: UserDataStore = DefaultUserDataStore(),
-         refreshTokenRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared)) {
+    init(
+        dataStore: UserDataStore = DefaultUserDataStore(),
+        refreshTokenRequest: RequestSender = KarhooRequestSender(httpClient: JsonHttpClient.shared),
+        tokenValidityWorker: TokenValidityWorker = KarhooTokenValidityWorker()
+    ) {
         self.dataStore = dataStore
         self.refreshTokenRequest = refreshTokenRequest
+        self.tokenValidityWorker = tokenValidityWorker
     }
 
     deinit {
@@ -46,10 +47,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     // MARK: - Endpoint methods
 
     func tokenNeedsRefreshing() -> Bool {
-        guard let credentials = dataStore.getCurrentCredentials() else {
-            return false
-        }
-        return tokenNeedsRefreshing(credentials: credentials)
+        tokenValidityWorker.tokenNeedsRefreshing()
     }
 
     func refreshToken(completion: @escaping (Result<Bool>) -> Void) {
@@ -66,7 +64,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
         guard let refreshToken = dataStore.getCurrentCredentials()?.refreshToken,
                 refreshToken.isEmpty == false,
-                refreshTokenNeedsRefreshing(credentials: dataStore.getCurrentCredentials()) == false
+                refreshTokenNeedsRefreshing() == false
         else {
             requestExternalAuthentication()
             return
@@ -135,16 +133,11 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         
         switch result {
         case .success(result: let token, _):
-            saveRefreshBuffer(token: token)
+            tokenValidityWorker.saveRefreshBuffer(token: token)
             saveToDataStore(token: token)
         case .failure:
             requestExternalAuthentication()
         }
-    }
-
-    private func saveRefreshBuffer(token: AuthToken) {
-        let calculatedRefreshBuffer = Double(token.expiresIn) * Constants.refreshBufferPercentageModifier
-        Constants.refreshBuffer = max(calculatedRefreshBuffer, Constants.refreshBufferMinimalTimeInterval)
     }
 
     private func saveToDataStore(token: AuthToken) {
@@ -176,16 +169,10 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     // MARK: Timers scheduling
 
     private func scheduleRefreshTokenTimer() {
-        guard let credentials = dataStore.getCurrentCredentials() else {
-            assertionFailure("Credentials should be set at this stage")
-            return
-        }
         invalidateRefreshTokenTimer()
 
-        let secondsToRefresh: TimeInterval = max(0, (credentials.expiryDate?.timeIntervalSinceNow ?? 0) - Constants.refreshBuffer)
-
         refreshTokenTimer = Timer.scheduledTimer(
-            withTimeInterval: secondsToRefresh,
+            withTimeInterval: tokenValidityWorker.timeToRequiredRefresh(),
             repeats: false,
             block: { [weak self] _ in
                 self?.refreshToken { result in
@@ -213,24 +200,8 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
 
     // MARK: - Utils
 
-    private func tokenNeedsRefreshing(credentials: Credentials) -> Bool {
-        checkDateDueTime(for: credentials.expiryDate)
-    }
-    
-    private func refreshTokenNeedsRefreshing(credentials: Credentials?) -> Bool {
-        guard let credentials = credentials else {
-            return true
-        }
-        return checkDateDueTime(for: credentials.refreshTokenExpiryDate)
-    }
-    
-    // Check if expire date for refresh token or token makes it needs to be renewed
-    private func checkDateDueTime(for date: Date?) -> Bool {
-        guard let date = date else {
-            return true
-        }
-        let timeToExpiration = date.timeIntervalSince1970 - Date().timeIntervalSince1970
-        return timeToExpiration < Constants.refreshBuffer
+    private func refreshTokenNeedsRefreshing() -> Bool {
+        tokenValidityWorker.refreshTokenNeedsRefreshing()
     }
 
     private func invalidateRefreshTokenTimer() {
