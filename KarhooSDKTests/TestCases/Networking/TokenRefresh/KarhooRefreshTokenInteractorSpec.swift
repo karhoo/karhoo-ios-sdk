@@ -13,14 +13,14 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     private var testObject: KarhooRefreshTokenInteractor!
     private var mockUserDataStore: MockUserDataStore!
     private var mockRequestSender: MockRefreshTokenRequest!
-    private var mockTokenRefreshNeedWorker: MockTokenRefreshNeedWorker!
+    private var mockTokenValidityWorker: MockTokenValidityWorker!
 
     override func setUp() {
         super.setUp()
         MockSDKConfig.authenticationMethod = .karhooUser
         mockUserDataStore = MockUserDataStore()
         mockRequestSender = MockRefreshTokenRequest()
-        mockTokenRefreshNeedWorker = MockTokenRefreshNeedWorker()
+        mockTokenValidityWorker = MockTokenValidityWorker()
 
         buildTestObject()
     }
@@ -37,7 +37,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     func testRefreshRequest() {
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture(), refreshTokenExpiryDate: dateInTheFarFuture())
         mockUserDataStore.credentialsToReturn = credentials
-        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
+        mockTokenValidityWorker.tokenNeedsRefreshingToReturn = true
         let user = UserInfoMock().set(userId: "some").build()
         mockUserDataStore.userToReturn = user
 
@@ -59,8 +59,8 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         }
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture(), refreshTokenExpiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
-        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
-        mockTokenRefreshNeedWorker.refreshTokenNeedsRefreshingToReturn = true
+        mockTokenValidityWorker.tokenNeedsRefreshingToReturn = true
+        mockTokenValidityWorker.refreshTokenNeedsRefreshingToReturn = true
         let user = UserInfoMock().set(userId: "some").build()
         mockUserDataStore.userToReturn = user
 
@@ -100,8 +100,8 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     func testTokenDoesNeedRefreshing() {
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
-        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
-        mockTokenRefreshNeedWorker.refreshTokenNeedsRefreshingToReturn = true
+        mockTokenValidityWorker.tokenNeedsRefreshingToReturn = true
+        mockTokenValidityWorker.refreshTokenNeedsRefreshingToReturn = true
         
         XCTAssertTrue(testObject.tokenNeedsRefreshing())
     }
@@ -114,7 +114,8 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     func testTokenDoesNeedRefreshingPastDate() {
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInThePast())
         mockUserDataStore.credentialsToReturn = credentials
-        buildTestObject(tokenRefreshNeedWorker: KarhooTokenRefreshNeedWorker())
+        let worker = KarhooTokenValidityWorker(dataStore: mockUserDataStore)
+        buildTestObject(tokenValidityWorker: worker)
 
         XCTAssertTrue(testObject.tokenNeedsRefreshing())
     }
@@ -152,7 +153,8 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
             refreshTokenExpiryDate: Date().addingTimeInterval(300)
         )
         mockUserDataStore.credentialsToReturn = credentials
-        buildTestObject(tokenRefreshNeedWorker: KarhooTokenRefreshNeedWorker())
+        let worker = KarhooTokenValidityWorker(dataStore: mockUserDataStore)
+        buildTestObject(tokenValidityWorker: worker)
         XCTAssertTrue(testObject.tokenNeedsRefreshing())
     }
 
@@ -170,7 +172,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         let expectation = XCTestExpectation(description: "new auth credentials requested")
         
         mockUserDataStore.credentialsToReturn = credentials
-        buildTestObject(tokenRefreshNeedWorker: KarhooTokenRefreshNeedWorker())
+        buildTestObject(tokenValidityWorker: KarhooTokenValidityWorker())
 
         MockSDKConfig.requireSDKAuthenticationCompletion = {
             expectation.fulfill()
@@ -195,7 +197,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
-        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
+        mockTokenValidityWorker.tokenNeedsRefreshingToReturn = true
 
         let accessTokenAfterRefresh = TestUtil.getRandomString()
         let successResponse = AuthTokenMock().set(accessToken: accessTokenAfterRefresh).set(expiresIn: 10000)
@@ -232,7 +234,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
 
-        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
+        mockTokenValidityWorker.tokenNeedsRefreshingToReturn = true
 
         let expectedError = TestUtil.getRandomError()
 
@@ -263,8 +265,8 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
         let credentials = ObjectTestFactory.getRandomCredentials(expiryDate: dateInTheNearFuture())
         mockUserDataStore.credentialsToReturn = credentials
-        mockTokenRefreshNeedWorker.tokenNeedsRefreshingToReturn = true
-        mockTokenRefreshNeedWorker.refreshTokenNeedsRefreshingToReturn = false
+        mockTokenValidityWorker.tokenNeedsRefreshingToReturn = true
+        mockTokenValidityWorker.refreshTokenNeedsRefreshingToReturn = false
 
         let accessTokenAfterRefresh = TestUtil.getRandomString()
 
@@ -369,12 +371,12 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
     private func buildTestObject(
         dataStore: UserDataStore? = nil,
         refreshTokenRequest: RequestSender? = nil,
-        tokenRefreshNeedWorker: TokenRefreshNeedWorker? = nil
+        tokenValidityWorker: TokenValidityWorker? = nil
     ) {
         testObject = KarhooRefreshTokenInteractor(
             dataStore: dataStore ?? mockUserDataStore,
             refreshTokenRequest: refreshTokenRequest ?? mockRequestSender,
-            tokenRefreshNeedWorker: tokenRefreshNeedWorker ?? mockTokenRefreshNeedWorker
+            tokenValidityWorker: tokenValidityWorker ?? mockTokenValidityWorker
         )
     }
 }

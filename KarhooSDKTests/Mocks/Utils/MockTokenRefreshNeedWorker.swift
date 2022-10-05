@@ -9,19 +9,25 @@
 import Foundation
 @testable import KarhooSDK
 
-class MockTokenRefreshNeedWorker: TokenRefreshNeedWorker {
+class MockTokenValidityWorker: TokenValidityWorker {
+    
+    var timeToRequiredRefreshToReturn = TimeInterval(0)
+    func timeToRequiredRefresh() -> TimeInterval {
+        timeToRequiredRefreshToReturn
+    }
+
     var bufferSaved = false
     func saveRefreshBuffer(token: KarhooSDK.AuthToken) {
         bufferSaved = true
     }
     
     var tokenNeedsRefreshingToReturn = false
-    func tokenNeedsRefreshing(credentials: KarhooSDK.Credentials) -> Bool {
+    func tokenNeedsRefreshing() -> Bool {
         tokenNeedsRefreshingToReturn
     }
     
     var refreshTokenNeedsRefreshingToReturn = false
-    func refreshTokenNeedsRefreshing(credentials: KarhooSDK.Credentials?) -> Bool {
+    func refreshTokenNeedsRefreshing() -> Bool {
         refreshTokenNeedsRefreshingToReturn
     }
 }
