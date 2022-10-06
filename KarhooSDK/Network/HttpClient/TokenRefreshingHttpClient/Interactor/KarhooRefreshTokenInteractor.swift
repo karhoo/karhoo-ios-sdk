@@ -25,6 +25,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     private let refreshTokenRequest: RequestSender
 
     private var isTokenRefreshInProgress = false
+    private var isExternalAuthRequestInProgress = false
     private var completionWaitingForTokenRefresh: [(Result<Bool>) -> Void] = []
 
     // MARK: - Lifecycle
@@ -92,6 +93,10 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
     // MARK: - Private methods
 
     private func requestExternalAuthentication() {
+        guard isExternalAuthRequestInProgress == false else {
+            return
+        }
+        isExternalAuthRequestInProgress = true
         scheduleExtenalAuthInvalidationTimer()
         Karhoo.configuration.requireSDKAuthentication { [weak self] in
             guard let self = self else {
@@ -111,6 +116,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
             } else {
                 self.resolveRefreshCompletions(using: .failure(error: RefreshTokenError.noAccessToken))
             }
+            self.isExternalAuthRequestInProgress = false
         }
     }
 
@@ -191,6 +197,7 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
             repeats: false,
             block: { [weak self] _ in
                 guard let self else { return }
+                self.isExternalAuthRequestInProgress = false
                 self.invalidateExternalAuthTimer()
                 self.resolveRefreshCompletions(using: .failure(error: RefreshTokenError.extenalAuthenticationRequestExpired))
             }
