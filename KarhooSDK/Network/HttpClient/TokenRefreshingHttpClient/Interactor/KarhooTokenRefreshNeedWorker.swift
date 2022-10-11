@@ -71,10 +71,12 @@ final class KarhooTokenValidityWorker: TokenValidityWorker {
     }
     
     func refreshTokenNeedsRefreshing() -> Bool {
-        guard let credentials = dataStore.getCurrentCredentials() else {
+        guard let credentials = dataStore.getCurrentCredentials(),
+              let refreshExpiryDate = credentials.refreshTokenExpiryDate
+        else {
             return false
         }
-        return checkDateDueTime(for: credentials.refreshTokenExpiryDate)
+        return refreshExpiryDate <= Date()
     }
     
     // Check if expire date for refresh token or token makes it needs to be renewed
