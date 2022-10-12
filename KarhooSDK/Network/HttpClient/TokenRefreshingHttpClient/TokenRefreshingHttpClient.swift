@@ -37,7 +37,7 @@ final class TokenRefreshingHttpClient: HttpClient {
         } else {
             let completion: CallbackClosure<HttpResponse> = { [weak self] result in
                 
-                if result.errorValue()?.isUnauthorizedError() == true {
+                if result.getErrorValue()?.isUnauthorizedError() == true {
                     self?.refreshTokenChainWithRequest(endpoint: endpoint,
                                                        data: data,
                                                        completion: completion)
@@ -69,12 +69,12 @@ final class TokenRefreshingHttpClient: HttpClient {
                 return
             }
             
-            if let error = result.errorValue(), error.isConnectionError() == true {
+            if let error = result.getErrorValue(), error.isConnectionError() == true {
                 completion(Result.failure(error: error))
                 return
             }
             
-            if let error = result.errorValue() {
+            if let error = result.getErrorValue() {
                 self?.logUserOut()
                 completion(Result.failure(error: error))
                 return
