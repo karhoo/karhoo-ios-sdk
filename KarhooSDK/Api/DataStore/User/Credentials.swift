@@ -47,7 +47,7 @@ public struct Credentials {
             accessToken: accessToken,
             expiresIn: Int(expiryDate?.timeIntervalSinceNow ?? 0),
             refreshToken: refreshToken ?? "",
-            refreshExpiresIn: Int(refreshTokenExpiryDate?.timeIntervalSinceNow ?? 01)
+            refreshExpiresIn: Int(refreshTokenExpiryDate?.timeIntervalSinceNow ?? 0)
         )
     }
 }
