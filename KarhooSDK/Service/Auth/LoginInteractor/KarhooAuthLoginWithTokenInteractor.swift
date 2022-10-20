@@ -59,13 +59,13 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
         tokenExchangeRequestSender.encodedRequest(endpoint: .authTokenExchange,
                                                   body: authLoginHeaderComponents(),
                                                   callback: { [weak self] (result: Result<AuthToken>) in
-            guard let authToken = result.successValue() else {
-                userInfoCallback(.failure(error: result.errorValue()))
+            guard let authToken = result.getSuccessValue() else {
+                userInfoCallback(.failure(error: result.getErrorValue()))
                 return
             }
             let credentials = authToken.toCredentials()
             self?.userDataStore.set(credentials: credentials)
-                                                    self?.getUserInfo(credentials: credentials, callback: userInfoCallback)
+            self?.getUserInfo(credentials: credentials, callback: userInfoCallback)
         })
     }
 
@@ -74,12 +74,12 @@ final class KarhooAuthLoginWithTokenInteractor: AuthLoginWithTokenInteractor {
         userInfoSender.requestAndDecode(payload: nil,
                                         endpoint: .authUserInfo) { [weak self](result: Result<UserInfo>) in
                                             switch result {
-                                            case .success(let result):
-                                                let user = result.result
+                                            case .success(let result, _):
+                                                let user = result
                                                 self?.didLogin(user: user, credentials: credentials)
                                                 callback(.success(result: user))
-                                            case .failure(let error):
-                                                callback(.failure(error: error.error))
+                                            case .failure(let error, _):
+                                                callback(.failure(error: error))
                                             }
         }
     }

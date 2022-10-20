@@ -8,21 +8,46 @@
 
 import Foundation
 
-struct Credentials {
+public struct Credentials {
     let accessToken: String
     let expiryDate: Date?
     let refreshToken: String?
-    
-    init(accessToken: String, expiryDate: Date?, refreshToken: String?) {
+    let refreshTokenExpiryDate: Date?
+
+    init(
+        accessToken: String,
+        expiryDate: Date?,
+        refreshToken: String?,
+        refreshTokenExpiryDate: Date?
+    ) {
         self.accessToken = accessToken
         self.expiryDate = expiryDate
         self.refreshToken = refreshToken
+        self.refreshTokenExpiryDate = refreshTokenExpiryDate
     }
 
-    init(accessToken: String, expiresIn: TimeInterval, refreshToken: String?) {
+    init(
+        accessToken: String,
+        expiresIn: TimeInterval,
+        refreshToken: String?,
+        refreshTokenExpiresIn: TimeInterval?
+    ) {
         let expiryDate = Date().addingTimeInterval(Double(expiresIn))
-        self.init(accessToken: accessToken,
-                  expiryDate: expiryDate,
-                  refreshToken: refreshToken)
+        let refreshTokenExpiryDate = refreshTokenExpiresIn.map { Date().addingTimeInterval(Double($0)) }
+        self.init(
+            accessToken: accessToken,
+            expiryDate: expiryDate,
+            refreshToken: refreshToken,
+            refreshTokenExpiryDate: refreshTokenExpiryDate
+        )
+    }
+
+    func toAuthToken() -> AuthToken {
+        AuthToken(
+            accessToken: accessToken,
+            expiresIn: Int(expiryDate?.timeIntervalSinceNow ?? 0),
+            refreshToken: refreshToken ?? "",
+            refreshExpiresIn: Int(refreshTokenExpiryDate?.timeIntervalSinceNow ?? 0)
+        )
     }
 }

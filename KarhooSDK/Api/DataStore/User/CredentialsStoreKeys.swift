@@ -12,4 +12,5 @@ enum CredentialsStoreKeys: String {
     case accessToken
     case expiryDate
     case refreshToken
+    case refreshTokenExpiryDate
 }

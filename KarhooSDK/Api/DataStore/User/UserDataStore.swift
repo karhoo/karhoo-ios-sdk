@@ -76,7 +76,17 @@ final class DefaultUserDataStore: UserDataStore {
            let expiryTimeInterval = TimeInterval(expiryDateString) {
             expiryDate = Date(timeIntervalSince1970: expiryTimeInterval)
         }
-        return Credentials(accessToken: accessToken, expiryDate: expiryDate, refreshToken: refreshToken)
+        var refreshTokenExpiryDate: Date?
+        if let refreshTokenExpiryIntervalString = secretStore.readSecret(withKey: CredentialsStoreKeys.refreshTokenExpiryDate.rawValue),
+           let refreshTokenExpiryTimeInterval = TimeInterval(refreshTokenExpiryIntervalString) {
+            refreshTokenExpiryDate = Date(timeIntervalSince1970: refreshTokenExpiryTimeInterval)
+        }
+        return Credentials(
+            accessToken: accessToken,
+            expiryDate: expiryDate,
+            refreshToken: refreshToken,
+            refreshTokenExpiryDate: refreshTokenExpiryDate
+        )
     }
 
     func set(credentials: Credentials) {
@@ -92,6 +102,11 @@ final class DefaultUserDataStore: UserDataStore {
             secretStore.saveSecret(refreshToken, withKey: CredentialsStoreKeys.refreshToken.rawValue)
         } else {
             secretStore.deleteSecret(withKey: CredentialsStoreKeys.refreshToken.rawValue)
+        }
+        if let refreshTokenExpiryTimeInterval = credentials.refreshTokenExpiryDate?.timeIntervalSince1970 {
+            secretStore.saveSecret(String(refreshTokenExpiryTimeInterval), withKey: CredentialsStoreKeys.refreshTokenExpiryDate.rawValue)
+        } else {
+            secretStore.deleteSecret(withKey: CredentialsStoreKeys.refreshTokenExpiryDate.rawValue)
         }
     }
 
@@ -151,6 +166,7 @@ final class DefaultUserDataStore: UserDataStore {
         secretStore.deleteSecret(withKey: CredentialsStoreKeys.accessToken.rawValue)
         secretStore.deleteSecret(withKey: CredentialsStoreKeys.expiryDate.rawValue)
         secretStore.deleteSecret(withKey: CredentialsStoreKeys.refreshToken.rawValue)
+        secretStore.deleteSecret(withKey: CredentialsStoreKeys.refreshTokenExpiryDate.rawValue)
 
         broadcastChange()
     }
