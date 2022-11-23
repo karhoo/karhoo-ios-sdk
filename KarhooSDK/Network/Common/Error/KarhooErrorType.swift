@@ -68,7 +68,6 @@ public enum KarhooErrorType {
     case noAvailabilityInRequestedArea
     case noAvailableCategoriesInRequestedArea
 
-    
     /* KPxxx Braintree Payments - previous version
     case couldNotFindCustomer
     case couldNotInitailizeClient
@@ -76,7 +75,6 @@ public enum KarhooErrorType {
     case couldNotFindDefaultCard
     case failedToGenerateNonce
      */
-    
     
     // KPxxx Adyen Payments
     case errDecodingBody
@@ -164,7 +162,6 @@ extension KarhooErrorType {
         case "K5003": self = .noAvailableCategoriesInRequestedArea
         
         /*  KPxxx Payments - previous version
-            
         case "KP001": self = .couldNotFindCustomer
         case "KP002": self = .couldNotInitailizeClient
         case "KP003": self = .couldNotFindDefaultPayment
