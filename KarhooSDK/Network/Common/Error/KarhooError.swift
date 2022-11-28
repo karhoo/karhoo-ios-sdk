@@ -18,22 +18,22 @@ public protocol KarhooError: Error {
 
 extension KarhooError {
     public var userMessage: String {
-        return message
+        message
     }
 
     // TODO: Temporary solution before all errors implement KarhooError
-    public var code: String { return "needs to be implemented" }
-    public var message: String { return "needs to be implemented" }
-    public var slug: String { return "needs to be implemented" }
+    public var code: String { "needs to be implemented" }
+    public var message: String { "needs to be implemented" }
+    public var slug: String { "needs to be implemented" }
 
     public func equals(_ error: KarhooError?) -> Bool {
-        return self.code == error?.code &&
-               self.message == error?.message &&
-               self.userMessage == error?.userMessage &&
-               self.slug == error?.slug
+        code == error?.code &&
+            message == error?.message &&
+            userMessage == error?.userMessage &&
+            slug == error?.slug
     }
 
     public var type: KarhooErrorType {
-        return KarhooErrorType(error: self)
+        KarhooErrorType(error: self)
     }
 }

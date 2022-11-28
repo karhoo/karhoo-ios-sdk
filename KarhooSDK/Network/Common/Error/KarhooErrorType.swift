@@ -67,13 +67,28 @@ public enum KarhooErrorType {
     // K5xxx Availability
     case noAvailabilityInRequestedArea
     case noAvailableCategoriesInRequestedArea
-    
-    // KPxxx Braintree Payments
+
+    /* KPxxx Braintree Payments - previous version
     case couldNotFindCustomer
     case couldNotInitailizeClient
     case couldNotFindDefaultPayment
     case couldNotFindDefaultCard
     case failedToGenerateNonce
+     */
+    
+    // KPxxx Adyen Payments
+    case errDecodingBody
+    case errInvalidOrgID
+    case errMissingSupplyPartnerID
+    case errInvalidUserID
+    case errMissingBrowserInfo
+    case missingReturnURL
+    case missingTripID
+    case missingUser
+    case unknownOrgID
+    case badMoney
+    case badMoneySplit
+
     case failedToCallMoneyService
     
     // No code
@@ -145,13 +160,27 @@ extension KarhooErrorType {
         // K5xxx Availability
         case "K5001": self = .couldNotGetEstimates
         case "K5003": self = .noAvailableCategoriesInRequestedArea
-            
-        // KPxxx Payments
+        
+        /*  KPxxx Payments - previous version
         case "KP001": self = .couldNotFindCustomer
         case "KP002": self = .couldNotInitailizeClient
         case "KP003": self = .couldNotFindDefaultPayment
         case "KP004": self = .couldNotFindDefaultCard
         case "KP005": self = .failedToGenerateNonce
+        */
+            
+        // KPxxx Payments
+        case "KP001": self = .errDecodingBody
+        case "KP002": self = .errInvalidOrgID
+        case "KP003": self = .errMissingSupplyPartnerID
+        case "KP004": self = .errInvalidUserID
+        case "KP005": self = .errMissingBrowserInfo
+        case "KP006": self = .missingReturnURL
+        case "KP007": self = .missingTripID
+        case "KP008": self = .missingUser
+        case "KP009": self = .unknownOrgID
+        case "KP0010": self = .badMoney
+        case "KP0011": self = .badMoneySplit
         case "P0002": self = .failedToCallMoneyService
 
         default:
