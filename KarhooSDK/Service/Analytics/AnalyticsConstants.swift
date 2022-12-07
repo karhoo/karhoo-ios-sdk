@@ -85,9 +85,9 @@ public enum AnalyticsConstants {
         case checkoutBookingRequested = "BOOKING_REQUESTED"
 
         // BOOKING CONFIRMATION
-        case rideConfirmationScreen = "RIDE_CONFIRMATION_SCREEN"
-        case rideConfirmationAddToCalendar = "RIDE_CONFIRMATION_ADD_TO_CALENDAR"
-        case rideConfirmationDetailsClicked = "RIDE_CONFIRMATION_DETAILS_CLICKED"
+        case rideConfirmationScreenOpened = "RIDE_CONFIRMATION_SCREEN_OPENED"
+        case rideConfirmationAddToCalendarSelected = "RIDE_CONFIRMATION_ADD_TO_CALENDAR_SELECTED"
+        case rideConfirmationDetailsSelected = "RIDE_CONFIRMATION_DETAILS_SELECTED"
 
         // LOYALTY STATUS
         case loyaltyStatusRequested = "LOYALTY_STATUS_REQUESTED"
