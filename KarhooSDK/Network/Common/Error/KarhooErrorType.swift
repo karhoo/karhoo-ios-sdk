@@ -179,8 +179,8 @@ extension KarhooErrorType {
         case "KP007": self = .missingTripID
         case "KP008": self = .missingUser
         case "KP009": self = .unknownOrgID
-        case "KP0010": self = .badMoney
-        case "KP0011": self = .badMoneySplit
+        case "KP010": self = .badMoney
+        case "KP011": self = .badMoneySplit
         case "P0002": self = .failedToCallMoneyService
 
         default:
