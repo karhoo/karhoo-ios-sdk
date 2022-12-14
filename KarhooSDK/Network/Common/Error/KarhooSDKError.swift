@@ -35,7 +35,7 @@ struct KarhooSDKError: KarhooError, KarhooCodableModel {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        self.code = (try? container.decode(String.self, forKey: .code)) ?? ""
+        code = (try? container.decode(String.self, forKey: .code)) ?? ""
         let message = (try? container.decode(String.self, forKey: .message)) ?? ""
         let userMessage = (try? container.decode(String.self, forKey: .userMessage))
 
