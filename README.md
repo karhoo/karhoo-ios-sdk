@@ -28,7 +28,7 @@ You can use [CocoaPods](http://cocoapods.org/) to install `KarhooSDK` by adding 
 ```ruby
 
 use_frameworks!
-pod 'KarhooSDK', '~> 1.7.0'
+pod 'KarhooSDK', '~> 1.7.1'
 ```
 
 then import `KarhooSDK` wherever you want to access Karhoo services
@@ -52,7 +52,7 @@ Once you have your Swift package set up, adding Karhoo as a dependency is as eas
 
 ```swift
 dependencies: [
-.package(url: "https://github.com/Karhoo/karhoo-ios-sdk.git", .upToNextMajor(from: "1.7.0"))
+.package(url: "https://github.com/Karhoo/karhoo-ios-sdk.git", .upToNextMajor(from: "1.7.1"))
 ]
 ```
 
