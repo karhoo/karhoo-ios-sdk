@@ -22,7 +22,7 @@ public extension ReachabilityProvider {
     }
 }
 
-public protocol ReachabilityListener: class {
+public protocol ReachabilityListener: AnyObject {
     func reachabilityChanged(isReachable: Bool)
 }
 
