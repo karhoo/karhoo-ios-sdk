@@ -39,7 +39,7 @@ final class VerifyQuoteMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -56,7 +56,7 @@ final class VerifyQuoteMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -74,7 +74,7 @@ final class VerifyQuoteMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 }
 

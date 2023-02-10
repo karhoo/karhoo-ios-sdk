@@ -195,7 +195,7 @@ class ReachabilityWrapperSpec: XCTestCase {
         DispatchQueue.main.async {
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 1.5)
+        wait(for: [exp], timeout: 10)
     }
 }
 

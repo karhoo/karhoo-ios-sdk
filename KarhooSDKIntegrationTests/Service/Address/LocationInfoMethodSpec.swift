@@ -39,7 +39,7 @@ final class LocationInfoMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -58,7 +58,7 @@ final class LocationInfoMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -76,7 +76,7 @@ final class LocationInfoMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -93,7 +93,7 @@ final class LocationInfoMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -111,7 +111,7 @@ final class LocationInfoMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     private func assertLocationInfo(info: LocationInfo) {

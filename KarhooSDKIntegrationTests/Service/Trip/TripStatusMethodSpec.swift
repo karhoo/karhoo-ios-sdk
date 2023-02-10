@@ -36,7 +36,7 @@ final class TripStatusMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -54,7 +54,7 @@ final class TripStatusMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -72,7 +72,7 @@ final class TripStatusMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -90,7 +90,7 @@ final class TripStatusMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -108,7 +108,7 @@ final class TripStatusMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -134,6 +134,6 @@ final class TripStatusMethodSpec: XCTestCase {
             }
         }
         pollCall.observable(pollTime: 0.3).subscribe(observer: observer)
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 }

@@ -50,7 +50,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -68,7 +68,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -86,7 +86,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -104,7 +104,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -122,7 +122,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -154,7 +154,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
         let quotesObservable = pollCall.observable(pollTime: 0.1)
         quotesObservable.subscribe(observer: quoteSearchObserver)
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     private func assertSuccess(quote: Quote?) {

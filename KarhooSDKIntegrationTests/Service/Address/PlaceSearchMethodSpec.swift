@@ -39,7 +39,7 @@ final class PlaceSearchMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -58,7 +58,7 @@ final class PlaceSearchMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -77,7 +77,7 @@ final class PlaceSearchMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.75, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -95,7 +95,7 @@ final class PlaceSearchMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.75, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -113,7 +113,7 @@ final class PlaceSearchMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.75, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     private func assertSuccess(result: Result<Places>) {

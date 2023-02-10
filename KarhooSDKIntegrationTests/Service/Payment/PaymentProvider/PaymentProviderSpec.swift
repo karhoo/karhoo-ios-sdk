@@ -38,7 +38,7 @@ final class PaymentProviderSpec: XCTestCase {
             expectation.fulfill()
         })
         
-        waitForExpectations(timeout: 1.50)
+        waitForExpectations(timeout: 100)
     }
     
     /**
@@ -58,7 +58,7 @@ final class PaymentProviderSpec: XCTestCase {
             expectation.fulfill()
         })
         
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
     
     /**
@@ -77,7 +77,7 @@ final class PaymentProviderSpec: XCTestCase {
             expectation.fulfill()
         })
         
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
     
 }

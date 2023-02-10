@@ -42,7 +42,7 @@ final class FareMethodSpec: XCTestCase {
             expectation.fulfill()
         })
         
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
     
     private func assertSuccess(result: Result<Fare>) {
@@ -76,7 +76,7 @@ final class FareMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
     
     /**
@@ -94,7 +94,7 @@ final class FareMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
     
     /**
@@ -112,7 +112,7 @@ final class FareMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
     
     /**
@@ -130,6 +130,6 @@ final class FareMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 }

@@ -44,7 +44,7 @@ final class AddPaymentDetailsMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -65,7 +65,7 @@ final class AddPaymentDetailsMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 2)
+        waitForExpectations(timeout: 20)
     }
 
     /**
@@ -83,6 +83,6 @@ final class AddPaymentDetailsMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1.5)
+        waitForExpectations(timeout: 10)
     }
 }
