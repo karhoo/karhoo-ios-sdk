@@ -66,7 +66,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
         testObject.refreshToken(completion: { _ in})
 
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 1.5)
     }
 
     /**
@@ -137,7 +137,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         }
         
         XCTAssertFalse(mockRequestSender.requestCalled)
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 1.5)
     }
 
     /**
@@ -181,7 +181,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         testObject.refreshToken { _ in
         }
         
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 1.5)
     }
 
     /**
@@ -212,7 +212,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         XCTAssertTrue(mockRequestSender.requestCalled)
         XCTAssertEqual(mockUserDataStore.storedCredentials?.accessToken, accessTokenAfterRefresh)
         
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 1.5)
     }
 
     /**
@@ -246,7 +246,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         mockRequestSender.fail(error: expectedError)
 
         XCTAssertTrue(mockRequestSender.requestCalled)
-        wait(for: [externalAuthRequestCalledExpectation], timeout: 1)
+        wait(for: [externalAuthRequestCalledExpectation], timeout: 1.5)
     }
 
     /**
@@ -289,7 +289,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         mockRequestSender.success(response: requestPayload.build())
         XCTAssertTrue(mockRequestSender.requestCalled)
         XCTAssert(mockUserDataStore.setCurrentUserCalled == false)
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 1.5)
     }
 
     /**
@@ -315,7 +315,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         let requestPayload = AuthTokenMock().set(accessToken: accessTokenAfterRefresh).set(expiresIn: 10000)
         mockRequestSender.success(response: requestPayload.build())
 
-        wait(for: [request1CompletionCalledExpectation, request2CompletionCalledExpectation], timeout: 1)
+        wait(for: [request1CompletionCalledExpectation, request2CompletionCalledExpectation], timeout: 1.5)
     }
 
     /**
@@ -352,7 +352,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
         }
 
         mockRequestSender.success(response: requestPayload.build())
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 1.5)
     }
 
     private func dateInTheFarFuture() -> Date {

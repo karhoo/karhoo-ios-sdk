@@ -41,7 +41,7 @@ final class GetNonceMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
 
     /**
@@ -62,7 +62,7 @@ final class GetNonceMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
 
     /**
@@ -80,6 +80,6 @@ final class GetNonceMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
 }

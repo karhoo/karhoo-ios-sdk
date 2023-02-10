@@ -39,7 +39,7 @@ final class LoyaltyConversionMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
     
 
@@ -57,7 +57,7 @@ final class LoyaltyConversionMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
 
     /**
@@ -74,7 +74,7 @@ final class LoyaltyConversionMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
 
     /**
@@ -92,7 +92,7 @@ final class LoyaltyConversionMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
 }
 

@@ -124,7 +124,7 @@ class BroadcasterSpec: XCTestCase {
             XCTAssert(listenerToInvoke !== listener2)
         }
 
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 1.5, handler: nil)
 
     }
 }

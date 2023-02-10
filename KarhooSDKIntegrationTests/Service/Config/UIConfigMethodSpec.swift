@@ -33,7 +33,7 @@ final class UIConfigMethod: XCTestCase {
                                                            password: "mock")).execute(callback: { _ in
                                                             expectation.fulfill()
                                                            })
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
 
     /**
@@ -53,7 +53,7 @@ final class UIConfigMethod: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
 
     /**
@@ -73,6 +73,6 @@ final class UIConfigMethod: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
 }

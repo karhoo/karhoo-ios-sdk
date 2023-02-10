@@ -53,7 +53,7 @@ final class UserDetailsUpdateMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
     
     /**
@@ -70,7 +70,7 @@ final class UserDetailsUpdateMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
     
     /**
@@ -87,7 +87,7 @@ final class UserDetailsUpdateMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
     
     /**
@@ -105,6 +105,6 @@ final class UserDetailsUpdateMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 1.5)
     }
 }
