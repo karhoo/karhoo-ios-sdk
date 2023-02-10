@@ -144,7 +144,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
             NetworkStub.errorResponse(path: self.quotesPath,
                                       responseData: RawKarhooErrorFactory.buildError(code: "K3003"))
 
-            if quoteSearchResult.count == 2 {
+            if quoteSearchResult.count == 20 {
                 self.assertSuccess(quote: quoteSearchResult[0].successValue()?.all[0])
                 XCTAssertEqual(.couldNotFindSpecifiedQuote, quoteSearchResult[1].errorValue()?.type)
                 expectation.fulfill()
