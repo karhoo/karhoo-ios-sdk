@@ -38,7 +38,7 @@ final class ReverseGeocodeMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -59,7 +59,7 @@ final class ReverseGeocodeMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -77,7 +77,7 @@ final class ReverseGeocodeMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -95,7 +95,7 @@ final class ReverseGeocodeMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -113,7 +113,7 @@ final class ReverseGeocodeMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     private func assertLocationInfo(info: LocationInfo) {

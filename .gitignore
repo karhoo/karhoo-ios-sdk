@@ -24,3 +24,7 @@ fastlane/.env
 Client/Keys.swift
 Package.resolved
 .idea
+.bitrise.secrets.yml
+
+# ruby
+/vendor

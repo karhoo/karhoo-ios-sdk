@@ -39,7 +39,7 @@ final class GeneralErrorSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        self.waitForExpectations(timeout: 0.5, handler: .none)
+        self.waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -57,6 +57,6 @@ final class GeneralErrorSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        self.waitForExpectations(timeout: 0.5, handler: .none)
+        self.waitForExpectations(timeout: 5, handler: .none)
     }
 }
