@@ -30,7 +30,7 @@ Danger publish test results
 ```
 fastlane ios unit_tests_integration_tests
 ```
-Description of what the lane does
+FASTLANE - Integration test run
 ### ios XcovReport
 ```
 fastlane ios XcovReport

@@ -2,15 +2,13 @@ FASTLANE_HIDE_CHANGELOG = true
 FASTLANE_SKIP_UPDATE_CHECK = true
 fastlane_require 'dotenv'
 
-
 default_platform(:ios)
-
 
 platform :ios do
   before_all do
     ENV["SLACK_URL"] = ENV["SLACK_WEBHOOK_URL"]
-    setup_circle_ci
 end
+
  desc "Danger PR Validation"
   lane :DangerPRValidation do
     danger(
@@ -25,6 +23,7 @@ end
       danger_id: "POST_CI",
      )
  end
+
   desc "FASTLANE - Integration test run"
   lane :unit_tests_integration_tests do
 	scan(
@@ -38,7 +37,8 @@ end
             output_files: "NetworkSDKTests.xml"
     )
   end
-  desc "Xcov Report"
+  
+  desc "FASTLANE - Xcov Report"
   lane :XcovReport do
     xcov(
       project: "KarhooSDK.xcodeproj",
@@ -47,4 +47,5 @@ end
       ignore_file_path: "./*view.swift",
     )
   end
+  
 end
