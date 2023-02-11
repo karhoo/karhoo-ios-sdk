@@ -4,11 +4,9 @@ fastlane_require 'dotenv'
 
 default_platform(:ios)
 
-
 platform :ios do
   before_all do
     ENV["SLACK_URL"] = ENV["SLACK_WEBHOOK_URL"]
-    setup_circle_ci
 end
 
  desc "Danger PR Validation"
@@ -40,12 +38,12 @@ end
     )
   end
 
-  desc "Xcov Report"
+  desc "Xcov Report - #{DateTime.now}"
   lane :XcovReport do
     xcov(
       project: "KarhooSDK.xcodeproj",
       scheme: "KarhooSDK",
-      output_directory: "fastlane/test_output",
+      output_directory: "fastlane/test_output-#{DateTime.now.strftime("%H%M%S")}",
       ignore_file_path: "./*view.swift",
       slack_message: "KarhooSDK test coverage report:"
     )
@@ -58,7 +56,7 @@ end
 after_all do |lane|
   # This block is called, only if the executed lane was successful
     slack(
-      channel: "#mobile_circleci_results",
+      channel: "#mobile-bitrise-results",
       message: nil,
       default_payloads: [:test_result, :git_branch]
     )
@@ -67,7 +65,7 @@ after_all do |lane|
 
 error do |lane, exception|
     slack(
-      channel: "#mobile_circleci_results",
+      channel: "#mobile-bitrise-results",
       message: exception.to_s,
       success: false
     )
