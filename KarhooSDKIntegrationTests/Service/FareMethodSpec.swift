@@ -47,7 +47,7 @@ final class FareMethodSpec: XCTestCase {
     
     private func assertSuccess(result: Result<Fare>) {
         XCTAssert(result.isSuccess())
-        guard let fare = result.successValue() else {
+        guard let fare = result.getSuccessValue() else {
             XCTFail("Missing success value")
             return
         }
@@ -72,7 +72,7 @@ final class FareMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls callback with error result")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.couldNotBookTrip, result.errorValue()!.type)
+            XCTAssertEqual(.couldNotBookTrip, result.getErrorValue()!.type)
             expectation.fulfill()
         })
 
@@ -108,7 +108,7 @@ final class FareMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -126,7 +126,7 @@ final class FareMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

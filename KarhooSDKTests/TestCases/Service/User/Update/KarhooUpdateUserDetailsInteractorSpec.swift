@@ -61,7 +61,7 @@ final class KarhooUpdateUserDetailsInteractorSpec: XCTestCase {
 
         mockUpdateSender.triggerSuccessWithDecoded(value: expectedResult)
         XCTAssertTrue(result!.isSuccess())
-        XCTAssertEqual(expectedResult, result?.successValue())
+        XCTAssertEqual(expectedResult, result?.getSuccessValue())
         XCTAssertTrue(mockUserDataStore.updateUserCalled)
         XCTAssertEqual(mockUserDataStore.updateUser?.userId, expectedResult.userId)
         XCTAssertEqual(mockAnalytics.eventSent, AnalyticsConstants.EventNames.userProfileUpdateSuccess)
@@ -83,6 +83,6 @@ final class KarhooUpdateUserDetailsInteractorSpec: XCTestCase {
 
             XCTAssertFalse(result!.isSuccess())
             XCTAssertFalse(mockUserDataStore.updateUserCalled)
-            XCTAssert(expectedError.equals(result!.errorValue()))
+            XCTAssert(expectedError.equals(result!.getErrorValue()))
         }
 }

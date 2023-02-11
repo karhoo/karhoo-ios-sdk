@@ -34,9 +34,9 @@ final class GetNonceMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with expected response")
 
         call.execute(callback: { result in
-            XCTAssertEqual(result.successValue()?.nonce, "some_nonce")
-            XCTAssertEqual(result.successValue()?.cardType, "Visa")
-            XCTAssertEqual(result.successValue()?.lastFour, "1111")
+            XCTAssertEqual(result.getSuccessValue()?.nonce, "some_nonce")
+            XCTAssertEqual(result.getSuccessValue()?.cardType, "Visa")
+            XCTAssertEqual(result.getSuccessValue()?.lastFour, "1111")
 
             expectation.fulfill()
         })
@@ -57,7 +57,7 @@ final class GetNonceMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with success")
 
         call.execute(callback: { result in
-            let error = result.errorValue()
+            let error = result.getErrorValue()
             XCTAssertEqual(error?.type, .couldNotReadAuthorisationToken)
             expectation.fulfill()
         })
@@ -76,7 +76,7 @@ final class GetNonceMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

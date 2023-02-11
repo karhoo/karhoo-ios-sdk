@@ -53,7 +53,7 @@ final class CancelTripMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.couldNotCancelTrip, result.errorValue()?.type)
+            XCTAssertEqual(.couldNotCancelTrip, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -70,7 +70,7 @@ final class CancelTripMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -88,7 +88,7 @@ final class CancelTripMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Unknown error propogated")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

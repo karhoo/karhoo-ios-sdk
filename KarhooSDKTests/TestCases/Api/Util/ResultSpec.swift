@@ -31,7 +31,7 @@ class ResultSpec: XCTestCase {
     func testSuccessValue() {
         let result: Result<Int> = .success(result: 5)
 
-        XCTAssert(result.successValue() == 5)
+        XCTAssert(result.getSuccessValue() == 5)
     }
 
     /**
@@ -42,7 +42,7 @@ class ResultSpec: XCTestCase {
     func testSuccessFailureValue() {
         let result: Result<Int> = .success(result: 5)
 
-        XCTAssertNil(result.errorValue())
+        XCTAssertNil(result.getErrorValue())
     }
 
     /**
@@ -66,8 +66,8 @@ class ResultSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         let result: Result<String> = .failure(error: expectedError)
 
-        XCTAssertNotNil(result.errorValue())
-        XCTAssert(expectedError.equals(result.errorValue()!))
+        XCTAssertNotNil(result.getErrorValue())
+        XCTAssert(expectedError.equals(result.getErrorValue()!))
     }
 
     /**
@@ -79,7 +79,7 @@ class ResultSpec: XCTestCase {
     func testNilError() {
         let result: Result<String> = .failure(error: nil)
 
-        XCTAssertNil(result.errorValue())
+        XCTAssertNil(result.getErrorValue())
     }
 
     /**
@@ -91,6 +91,6 @@ class ResultSpec: XCTestCase {
         let error = TestUtil.getRandomError()
         let result: Result<String> = .failure(error: error)
 
-        XCTAssertNil(result.successValue())
+        XCTAssertNil(result.getSuccessValue())
     }
 }

@@ -51,8 +51,8 @@ class KarhooLocationInfoInteractorSpec: XCTestCase {
         mockLocationInfoRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
 
         XCTAssertTrue(capturedResponse!.isSuccess())
-        XCTAssertNil(capturedResponse?.errorValue())
-        XCTAssertEqual(expectedResponse.encode(), capturedResponse!.successValue()!.encode())
+        XCTAssertNil(capturedResponse?.getErrorValue())
+        XCTAssertEqual(expectedResponse.encode(), capturedResponse!.getSuccessValue()!.encode())
     }
 
     /**
@@ -68,7 +68,7 @@ class KarhooLocationInfoInteractorSpec: XCTestCase {
         mockLocationInfoRequestSender.triggerFail(error: expectedError)
 
         XCTAssertFalse(capturedResponse!.isSuccess())
-        XCTAssertNil(capturedResponse?.successValue())
-        XCTAssert(expectedError.equals(capturedResponse!.errorValue()!))
+        XCTAssertNil(capturedResponse?.getSuccessValue())
+        XCTAssert(expectedError.equals(capturedResponse!.getErrorValue()!))
     }
 }

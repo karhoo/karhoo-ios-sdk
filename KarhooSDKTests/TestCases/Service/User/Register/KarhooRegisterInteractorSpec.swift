@@ -57,7 +57,7 @@ final class KarhooRegisterInteractorSpec: XCTestCase {
 
         mockUserRegisterRequest.triggerSuccessWithDecoded(value: expectedResult)
         XCTAssertTrue(result!.isSuccess())
-        XCTAssertEqual(expectedResult, result?.successValue())
+        XCTAssertEqual(expectedResult, result?.getSuccessValue())
     }
 
     /**
@@ -74,6 +74,6 @@ final class KarhooRegisterInteractorSpec: XCTestCase {
         mockUserRegisterRequest.triggerFail(error: expectedError)
 
         XCTAssertFalse(result!.isSuccess())
-        XCTAssert(expectedError.equals(result!.errorValue()))
+        XCTAssert(expectedError.equals(result!.getErrorValue()))
     }
 }

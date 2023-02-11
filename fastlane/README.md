@@ -35,7 +35,7 @@ Description of what the lane does
 ```
 fastlane ios XcovReport
 ```
-Xcov Report
+Xcov Report - 2023-02-11T13:36:51+00:00
 
 ----
 

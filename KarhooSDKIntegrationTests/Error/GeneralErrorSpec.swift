@@ -35,7 +35,7 @@ final class GeneralErrorSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with an error")
 
         call.execute(callback: { result in
-            XCTAssertEqual(result.errorValue()?.type, .unknownError)
+            XCTAssertEqual(result.getErrorValue()?.type, .unknownError)
             expectation.fulfill()
         })
 

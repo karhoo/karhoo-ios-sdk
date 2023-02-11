@@ -28,7 +28,7 @@ final class KarhooUIConfigProviderSpec: XCTestCase {
         testObject.fetchConfig(uiConfigRequest: request,
                                organisation: organisation,
                                callback: { result in
-                                XCTAssertFalse(result.successValue()!.hidden)
+                                XCTAssertFalse(result.getSuccessValue()!.hidden)
         })
     }
 
@@ -42,7 +42,7 @@ final class KarhooUIConfigProviderSpec: XCTestCase {
         testObject.fetchConfig(uiConfigRequest: request,
                                organisation: organisation,
                                callback: { result in
-                                XCTAssertTrue(result.errorValue()!.equals(SDKErrorFactory.noConfigAvailableForView()))
+                                XCTAssertTrue(result.getErrorValue()!.equals(SDKErrorFactory.noConfigAvailableForView()))
         })
     }
 }

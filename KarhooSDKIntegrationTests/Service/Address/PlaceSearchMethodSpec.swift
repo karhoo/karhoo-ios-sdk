@@ -54,7 +54,7 @@ final class PlaceSearchMethodSpec: XCTestCase {
 
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.couldNotAutocompleteAddress, result.errorValue()?.type)
+            XCTAssertEqual(.couldNotAutocompleteAddress, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -73,7 +73,7 @@ final class PlaceSearchMethodSpec: XCTestCase {
 
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -91,7 +91,7 @@ final class PlaceSearchMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -109,7 +109,7 @@ final class PlaceSearchMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -119,8 +119,8 @@ final class PlaceSearchMethodSpec: XCTestCase {
     private func assertSuccess(result: Result<Places>) {
         XCTAssertTrue(result.isSuccess())
 
-        let firstPlace = result.successValue()!.places[0]
-        let secondPlace = result.successValue()!.places[1]
+        let firstPlace = result.getSuccessValue()!.places[0]
+        let secondPlace = result.getSuccessValue()!.places[1]
 
         XCTAssertEqual("ChIJ3QD47p1xdkgRytPI0DjT6SU", firstPlace.placeId)
         XCTAssertEqual("Terminal 5, Longford, Hounslow, UK", firstPlace.displayAddress)

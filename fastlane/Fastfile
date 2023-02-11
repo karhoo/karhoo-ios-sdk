@@ -24,7 +24,7 @@ end
      )
  end
 
-  desc "Description of what the lane does"
+  desc "Runs the unit tests for Karhoo-iOS-SDK"
   lane :unit_tests_integration_tests do
 	scan(
 	    project: "KarhooSDK.xcodeproj",
@@ -34,11 +34,11 @@ end
 	    code_coverage: true,
 	    clean: true,
 	    output_types: "junit",
-            output_files: "NetworkSDKTests.xml"
+            output_files: "NetworkSDKTests-#{DateTime.now.strftime("%H%M%S")}.xml"
     )
   end
 
-  desc "Xcov Report - #{DateTime.now}"
+  desc "Xcov Report"
   lane :XcovReport do
     xcov(
       project: "KarhooSDK.xcodeproj",

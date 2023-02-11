@@ -68,7 +68,7 @@ final class AuthLoginMethodSpec: XCTestCase {
         
         let expectation = self.expectation(description: "Calls callback with expected result")
         call.execute(callback: { result in
-            XCTAssertNil(result.successValue()?.userId)
+            XCTAssertNil(result.getSuccessValue()?.userId)
             expectation.fulfill()
         })
 

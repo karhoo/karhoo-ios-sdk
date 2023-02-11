@@ -33,8 +33,8 @@ final class LoyaltyBalanceMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with success result")
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            XCTAssertEqual(true, result.successValue()?.burnable)
-            XCTAssertEqual(10, result.successValue()?.points)
+            XCTAssertEqual(true, result.getSuccessValue()?.burnable)
+            XCTAssertEqual(10, result.getSuccessValue()?.points)
             expectation.fulfill()
         })
 
@@ -52,8 +52,8 @@ final class LoyaltyBalanceMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with success result")
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            XCTAssertEqual(false, result.successValue()?.burnable)
-            XCTAssertEqual(10, result.successValue()?.points)
+            XCTAssertEqual(false, result.getSuccessValue()?.burnable)
+            XCTAssertEqual(10, result.getSuccessValue()?.points)
             expectation.fulfill()
         })
 
@@ -70,7 +70,7 @@ final class LoyaltyBalanceMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.generalRequestError, result.errorValue()?.type)
+            XCTAssertEqual(.generalRequestError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -87,7 +87,7 @@ final class LoyaltyBalanceMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -105,7 +105,7 @@ final class LoyaltyBalanceMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Unknown error propogated")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

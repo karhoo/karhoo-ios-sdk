@@ -39,7 +39,7 @@ final class TripSearchMethodSpec: XCTestCase {
 
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            self.assertSuccess(trip: result.successValue()![0])
+            self.assertSuccess(trip: result.getSuccessValue()![0])
             expectation.fulfill()
         })
 
@@ -58,7 +58,7 @@ final class TripSearchMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with expected error")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.couldNotGetTrip, result.errorValue()?.type)
+            XCTAssertEqual(.couldNotGetTrip, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -76,7 +76,7 @@ final class TripSearchMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls callback with unknown error")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -94,7 +94,7 @@ final class TripSearchMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls callback with unknown error")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -112,7 +112,7 @@ final class TripSearchMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls callback with empty TripInfoList")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -130,7 +130,7 @@ final class TripSearchMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls callback with unknown error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

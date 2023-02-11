@@ -75,13 +75,13 @@ class AuthRequestsTesterViewController: UIViewController {
                 self?.responseLabel.textColor = .green
                 let output = """
                 Success!
-                Payload: \(result.successValue().debugDescription)
+                Payload: \(result.getSuccessValue().debugDescription)
                 """
                 self?.responseLabel.text = output
             } else {
                 let output = """
                 Fail!
-                Payload: \(result.errorValue().debugDescription)
+                Payload: \(result.getErrorValue().debugDescription)
                 """
                 self?.responseLabel.textColor = .red
                 self?.responseLabel.text = output
@@ -96,7 +96,7 @@ class AuthRequestsTesterViewController: UIViewController {
                 self?.responseLabel.text = "Success: \(result.isSuccess())"
             } else {
                 self?.responseLabel.textColor = .red
-                self?.responseLabel.text = "Failed\nError: \(String(describing: result.errorValue().debugDescription))"
+                self?.responseLabel.text = "Failed\nError: \(String(describing: result.getErrorValue().debugDescription))"
             }
         })
     }

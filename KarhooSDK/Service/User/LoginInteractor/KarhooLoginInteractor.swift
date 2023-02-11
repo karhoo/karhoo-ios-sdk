@@ -67,7 +67,7 @@ final class KarhooLoginInteractor: LoginInteractor {
         loginRequestSender.requestAndDecode(payload: userLogin,
                                             endpoint: .login,
                                             callback: { [weak self] (result: Result<AuthToken>) in
-                                                guard let token = result.successValue(
+                                                guard let token = result.getSuccessValue(
                                                     orErrorCallback: callback) else { return }
                                                 self?.gotToken(token: token, callback: callback)
         })
@@ -90,7 +90,7 @@ final class KarhooLoginInteractor: LoginInteractor {
         profileRequestSender.requestAndDecode(payload: nil,
                                               endpoint: .userProfile,
                                               callback: {[weak self] (result: Result<UserInfo>) in
-                                                    guard let user = result.successValue(orErrorCallback: callback)
+                                                    guard let user = result.getSuccessValue(orErrorCallback: callback)
                                                     else {
                                                         return
                                                     }

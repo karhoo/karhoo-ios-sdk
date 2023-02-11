@@ -60,7 +60,7 @@ final class KarhooUserServiceSpec: XCTestCase {
         var returnedUser: UserInfo?
         let userLogin = UserLogin(username: "some", password: "some")
         testObject.login(userLogin: userLogin).execute(callback: { (result: Result<UserInfo>) in
-            returnedUser = result.successValue()
+            returnedUser = result.getSuccessValue()
         })
 
         let user = UserInfoMock().set(userId: "some").build()
@@ -83,7 +83,7 @@ final class KarhooUserServiceSpec: XCTestCase {
                   .execute(callback: { result = $0 })
 
         mockLoginInteractor.triggerFail(error: expectedError)
-        XCTAssert(expectedError.equals(result!.errorValue()))
+        XCTAssert(expectedError.equals(result!.getErrorValue()))
     }
 
     /**
@@ -113,7 +113,7 @@ final class KarhooUserServiceSpec: XCTestCase {
         mockLogoutInteractor.triggerFail(error: expectedError)
 
         XCTAssertFalse(result!.isSuccess())
-        XCTAssert(expectedError.equals(result!.errorValue()))
+        XCTAssert(expectedError.equals(result!.getErrorValue()))
     }
 
     /**
@@ -155,7 +155,7 @@ final class KarhooUserServiceSpec: XCTestCase {
 
         mockRegisterInteractor.triggerSuccess(result: successMock)
 
-        XCTAssertEqual(successMock, registerResult?.successValue())
+        XCTAssertEqual(successMock, registerResult?.getSuccessValue())
     }
 
     /**
@@ -187,7 +187,7 @@ final class KarhooUserServiceSpec: XCTestCase {
         mockPasswordResetInteractor.triggerFail(error: testError)
 
         XCTAssertFalse(result!.isSuccess())
-        XCTAssert(testError.equals(result!.errorValue()))
+        XCTAssert(testError.equals(result!.getErrorValue()))
     }
     
     /**
@@ -205,7 +205,7 @@ final class KarhooUserServiceSpec: XCTestCase {
         
         mockUpdateUserDetailsInteractor.triggerSuccess(result: response)
         XCTAssertTrue(updateResult!.isSuccess())
-        XCTAssertEqual(updateResult?.successValue()?.firstName, "Response")
+        XCTAssertEqual(updateResult?.getSuccessValue()?.firstName, "Response")
     }
 
     /**

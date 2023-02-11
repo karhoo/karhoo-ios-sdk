@@ -32,7 +32,7 @@ final class TripStatusMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with success result")
 
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.passengerOnBoard, result.successValue())
+            XCTAssertEqual(.passengerOnBoard, result.getSuccessValue())
             expectation.fulfill()
         })
 
@@ -50,7 +50,7 @@ final class TripStatusMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with unknown trip state")
 
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.unknown, result.successValue())
+            XCTAssertEqual(.unknown, result.getSuccessValue())
             expectation.fulfill()
         })
 
@@ -68,7 +68,7 @@ final class TripStatusMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with unknown trip state")
 
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.unknown, result.successValue())
+            XCTAssertEqual(.unknown, result.getSuccessValue())
             expectation.fulfill()
         })
 
@@ -86,7 +86,7 @@ final class TripStatusMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with expected error")
 
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.couldNotGetTrip, result.errorValue()?.type)
+            XCTAssertEqual(.couldNotGetTrip, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -104,7 +104,7 @@ final class TripStatusMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with unknown error")
 
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -128,12 +128,12 @@ final class TripStatusMethodSpec: XCTestCase {
                                       responseData: RawKarhooErrorFactory.buildError(code: "K4012"))
 
             if tripStatusResult.count == 2 {
-                XCTAssertEqual(.passengerOnBoard, tripStatusResult[0].successValue())
-                XCTAssertEqual(.couldNotGetTripCouldNotFindSpecifiedTrip, tripStatusResult[1].errorValue()?.type)
+                XCTAssertEqual(.passengerOnBoard, tripStatusResult[0].getSuccessValue())
+                XCTAssertEqual(.couldNotGetTripCouldNotFindSpecifiedTrip, tripStatusResult[1].getErrorValue()?.type)
                 expectation.fulfill()
             }
         }
-        pollCall.observable(pollTime: 0.3).subscribe(observer: observer)
+        pollCall.observable(polltime: 1).subscribe(observer: observer)
         waitForExpectations(timeout: 10)
     }
 }

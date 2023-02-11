@@ -35,7 +35,7 @@ final class VerifyQuoteMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with success result")
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            XCTAssertEqual("1762fe84-cb53-11ea-994d-52087d195d90", result.successValue()?.id)
+            XCTAssertEqual("1762fe84-cb53-11ea-994d-52087d195d90", result.getSuccessValue()?.id)
             expectation.fulfill()
         })
 
@@ -52,7 +52,7 @@ final class VerifyQuoteMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.couldNotFindSpecifiedQuote, result.errorValue()?.type)
+            XCTAssertEqual(.couldNotFindSpecifiedQuote, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -70,7 +70,7 @@ final class VerifyQuoteMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

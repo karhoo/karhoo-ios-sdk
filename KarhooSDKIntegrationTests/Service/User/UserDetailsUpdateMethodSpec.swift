@@ -66,7 +66,7 @@ final class UserDetailsUpdateMethodSpec: XCTestCase {
         
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.couldNotGetUserDetails, result.errorValue()?.type)
+            XCTAssertEqual(.couldNotGetUserDetails, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -83,7 +83,7 @@ final class UserDetailsUpdateMethodSpec: XCTestCase {
         
         let expectation = self.expectation(description: "Calls callback with error")
         call.execute(callback: { result in
-            XCTAssertEqual(.missingUserPermission, result.errorValue()?.type)
+            XCTAssertEqual(.missingUserPermission, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -101,7 +101,7 @@ final class UserDetailsUpdateMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

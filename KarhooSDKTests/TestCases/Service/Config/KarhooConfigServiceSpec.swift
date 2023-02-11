@@ -27,7 +27,7 @@ final class KarhooConfigServiceSpec: XCTestCase {
       */
     func testSuccess() {
         testObject.uiConfig(uiConfigRequest: UIConfigRequest(viewId: "some")).execute(callback: { result in
-            XCTAssertTrue(result.successValue()!.hidden)
+            XCTAssertTrue(result.getSuccessValue()!.hidden)
         })
 
         mockUIConfigInteractor.triggerSuccess(result: UIConfig(hidden: true))
@@ -36,7 +36,7 @@ final class KarhooConfigServiceSpec: XCTestCase {
 
     func testFail() {
         testObject.uiConfig(uiConfigRequest: UIConfigRequest(viewId: "some")).execute(callback: { result in
-            XCTAssertEqual("KSDK05", result.errorValue()?.code)
+            XCTAssertEqual("KSDK05", result.getErrorValue()?.code)
         })
 
         mockUIConfigInteractor.triggerFail(error: SDKErrorFactory.noConfigAvailableForView())

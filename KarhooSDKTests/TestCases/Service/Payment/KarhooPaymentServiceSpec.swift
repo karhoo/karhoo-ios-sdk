@@ -50,7 +50,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
 
         mockPaymentSDKTokenInteractor.triggerSuccess(result: mockResponse)
         XCTAssertTrue(executeResult!.isSuccess())
-        XCTAssertEqual(mockResponse.token, executeResult?.successValue()?.token)
+        XCTAssertEqual(mockResponse.token, executeResult?.getSuccessValue()?.token)
     }
 
     /**
@@ -68,8 +68,8 @@ class KarhooPaymentServiceSpec: XCTestCase {
         let error = TestUtil.getRandomError()
         mockPaymentSDKTokenInteractor.triggerFail(error: error)
 
-        XCTAssert(error.equals(executeResult!.errorValue()!))
-        XCTAssertNil(executeResult?.successValue()?.token)
+        XCTAssert(error.equals(executeResult!.getErrorValue()!))
+        XCTAssertNil(executeResult?.getSuccessValue()?.token)
     }
 
     /**
@@ -91,7 +91,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
         mockGetNonceInteractor.triggerSuccess(result: mockNonceResponse)
 
         XCTAssertTrue(executeResult!.isSuccess())
-        XCTAssertEqual(mockNonceResponse.nonce, executeResult?.successValue()?.nonce)
+        XCTAssertEqual(mockNonceResponse.nonce, executeResult?.getSuccessValue()?.nonce)
     }
 
     /**
@@ -111,8 +111,8 @@ class KarhooPaymentServiceSpec: XCTestCase {
         let error = TestUtil.getRandomError()
         mockGetNonceInteractor.triggerFail(error: error)
 
-        XCTAssert(error.equals(executeResult!.errorValue()!))
-        XCTAssertNil(executeResult?.successValue()?.nonce)
+        XCTAssert(error.equals(executeResult!.getErrorValue()!))
+        XCTAssertNil(executeResult?.getSuccessValue()?.nonce)
     }
 
     /**
@@ -132,7 +132,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
 
         mockAddPaymentDetailsInteractor.triggerSuccess(result: Nonce(nonce: "some+token"))
 
-        XCTAssertEqual("some+token", executeResult?.successValue()?.nonce)
+        XCTAssertEqual("some+token", executeResult?.getSuccessValue()?.nonce)
     }
 
     /**
@@ -154,7 +154,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
         let error = TestUtil.getRandomError()
         mockAddPaymentDetailsInteractor.triggerFail(error: error)
 
-        XCTAssert(error.equals(executeResult!.errorValue()!))
+        XCTAssert(error.equals(executeResult!.getErrorValue()!))
     }
 
     /**
@@ -171,7 +171,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
 
         mockPaymentProviderInteractor.triggerSuccess(result: PaymentProvider(provider: Provider(id: "braintree")))
 
-        XCTAssertEqual(executeResult?.successValue()?.provider.type, .braintree)
+        XCTAssertEqual(executeResult?.getSuccessValue()?.provider.type, .braintree)
     }
 
     /**
@@ -189,7 +189,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
         let error = TestUtil.getRandomError()
         mockPaymentProviderInteractor.triggerFail(error: error)
 
-        XCTAssert(error.equals(executeResult!.errorValue()!))
+        XCTAssert(error.equals(executeResult!.getErrorValue()!))
     }
 
     /** Note: This endpoint returns Data to be decoded by the Adyen Drop In SDK
@@ -206,7 +206,7 @@ class KarhooPaymentServiceSpec: XCTestCase {
 
         mockAdyenPaymentMethodsInteractor.triggerSuccess(result: DecodableData(data: Data()))
         XCTAssertNotNil(mockAdyenPaymentMethodsInteractor.adyenPaymentMethodsRequest)
-        XCTAssertEqual(executeResult?.successValue()?.data, Data())
+        XCTAssertEqual(executeResult?.getSuccessValue()?.data, Data())
     }
 
     /**
@@ -224,6 +224,6 @@ class KarhooPaymentServiceSpec: XCTestCase {
         let error = TestUtil.getRandomError()
         mockAdyenPaymentMethodsInteractor.triggerFail(error: error)
 
-        XCTAssert(error.equals(executeResult!.errorValue()!))
+        XCTAssert(error.equals(executeResult!.getErrorValue()!))
     }
 }

@@ -48,7 +48,7 @@ final class KarhooTripStatusInteractorSpec: XCTestCase {
 
         mockTripStatusRequest.triggerSuccessWithDecoded(value: successResult)
 
-        XCTAssertEqual(.confirmed, capturedCallback!.successValue()!)
+        XCTAssertEqual(.confirmed, capturedCallback!.getSuccessValue()!)
     }
 
     /**
@@ -64,7 +64,7 @@ final class KarhooTripStatusInteractorSpec: XCTestCase {
 
         mockTripStatusRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(capturedCallback!.errorValue()))
+        XCTAssert(expectedError.equals(capturedCallback!.getErrorValue()))
     }
 
     /**

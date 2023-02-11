@@ -55,7 +55,7 @@ final class KarhooAdyenPublicKeyInteractorSpec: XCTestCase {
 
           mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
 
-          XCTAssertEqual("mock", result!.successValue()?.key)
+          XCTAssertEqual("mock", result!.getSuccessValue()?.key)
       }
 
       /**
@@ -72,8 +72,8 @@ final class KarhooAdyenPublicKeyInteractorSpec: XCTestCase {
 
           mockRequestSender.triggerFail(error: expectedError)
 
-          XCTAssertNil(result?.successValue())
+          XCTAssertNil(result?.getSuccessValue())
           XCTAssertFalse(result!.isSuccess())
-          XCTAssert(expectedError.equals(result!.errorValue()!))
+          XCTAssert(expectedError.equals(result!.getErrorValue()!))
       }
 }

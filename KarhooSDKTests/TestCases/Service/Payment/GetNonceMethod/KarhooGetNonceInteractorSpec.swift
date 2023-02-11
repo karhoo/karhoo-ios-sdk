@@ -68,7 +68,7 @@ final class KarhooGetNonceInteractorSpec: XCTestCase {
         })
 
         mockGetNonceRequest.triggerSuccessWithDecoded(value: Nonce(nonce: "some_nonce"))
-        XCTAssertEqual(callbackResult!.successValue()?.nonce, "some_nonce")
+        XCTAssertEqual(callbackResult!.getSuccessValue()?.nonce, "some_nonce")
         XCTAssertEqual(mockUserDataStore.updateCurrentNonce?.nonce, "some_nonce")
     }
 
@@ -87,7 +87,7 @@ final class KarhooGetNonceInteractorSpec: XCTestCase {
         })
 
         mockGetNonceRequest.triggerFail(error: expectedError)
-        XCTAssertTrue(expectedError.equals(callbackResult?.errorValue()!))
+        XCTAssertTrue(expectedError.equals(callbackResult?.getErrorValue()!))
         XCTAssertTrue(mockUserDataStore.updateCurrentNonceCalled)
     }
 }

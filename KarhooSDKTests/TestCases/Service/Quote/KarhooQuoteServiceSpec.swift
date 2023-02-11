@@ -58,7 +58,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
 
         mockQuoteInteractor.triggerSuccess(result: mockQuotesResult)
 
-        XCTAssertEqual("success-quotev2", result?.successValue()?.quotes(for: "foo")[0].fleet.id)
+        XCTAssertEqual("success-quotev2", result?.getSuccessValue()?.quotes(for: "foo")[0].fleet.id)
     }
 
     /**
@@ -74,7 +74,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockQuoteInteractor.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result?.errorValue()))
+        XCTAssert(expectedError.equals(result?.getErrorValue()))
     }
     
     /**
@@ -104,7 +104,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockCoverageInteractor.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result?.errorValue()))
+        XCTAssert(expectedError.equals(result?.getErrorValue()))
     }
     
     /**
@@ -118,7 +118,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
         call.execute(callback: { result = $0 })
 
         mockVerifyQuoteInteractor.triggerSuccess(result: KarhooQuoteServiceSpec.mockQuote)
-        XCTAssertEqual("success-quote", result?.successValue()?.id)
+        XCTAssertEqual("success-quote", result?.getSuccessValue()?.id)
     }
 
     /**
@@ -134,7 +134,7 @@ final class KarhooQuoteServiceSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockVerifyQuoteInteractor.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result?.errorValue()))
+        XCTAssert(expectedError.equals(result?.getErrorValue()))
     }
     
     

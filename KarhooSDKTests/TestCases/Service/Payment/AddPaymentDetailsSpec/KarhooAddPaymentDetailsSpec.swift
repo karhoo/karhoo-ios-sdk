@@ -64,7 +64,7 @@ final class KarhooAddPaymentDetailsSpec: XCTestCase {
         let response = Nonce(nonce: "some+nonce")
         mockRequestSender.triggerSuccessWithDecoded(value: response)
 
-        XCTAssertEqual("some+nonce", callbackResult!.successValue()?.nonce)
+        XCTAssertEqual("some+nonce", callbackResult!.getSuccessValue()?.nonce)
         XCTAssertEqual("some+nonce", mockUserDataStore.updateCurrentNonce?.nonce)
     }
 
@@ -83,7 +83,7 @@ final class KarhooAddPaymentDetailsSpec: XCTestCase {
         })
 
         mockRequestSender.triggerFail(error: expectedError)
-        XCTAssertTrue(expectedError.equals(callbackResult!.errorValue()!))
+        XCTAssertTrue(expectedError.equals(callbackResult!.getErrorValue()!))
         XCTAssertFalse(mockUserDataStore.updateCurrentNonceCalled)
         XCTAssertNil(mockUserDataStore.updateCurrentNonce)
     }

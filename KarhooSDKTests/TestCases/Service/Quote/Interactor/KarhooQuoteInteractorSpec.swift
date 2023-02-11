@@ -135,7 +135,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
 
         mockQuoteListIdRequest.triggerFail(error: expectedError)
 
-        XCTAssertNotNil(expectedError.equals(result?.errorValue()))
+        XCTAssertNotNil(expectedError.equals(result?.getErrorValue()))
     }
 
     /**
@@ -177,7 +177,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
 
         mockQuotesRequest.triggerSuccessWithDecoded(value: expectedResult)
 
-        XCTAssertEqual(expectedQuote.id, result?.successValue()?.all[0].id)
+        XCTAssertEqual(expectedQuote.id, result?.getSuccessValue()?.all[0].id)
     }
 
     /**
@@ -197,7 +197,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
 
         mockQuotesRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result?.errorValue()))
+        XCTAssert(expectedError.equals(result?.getErrorValue()))
     }
 
     /**
@@ -257,7 +257,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
 
         mockQuotesRequest.triggerSuccessWithDecoded(value: expectedResult)
 
-        XCTAssertEqual(expectedQuote.id, result?.successValue()?.all[0].id)
+        XCTAssertEqual(expectedQuote.id, result?.getSuccessValue()?.all[0].id)
     }
 
     /**
@@ -282,7 +282,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
 
         mockQuotesRequest.triggerSuccessWithDecoded(value: expectedResult)
 
-        XCTAssertEqual(0, result?.successValue()?.all.count)
+        XCTAssertEqual(0, result?.getSuccessValue()?.all.count)
     }
 
     /**

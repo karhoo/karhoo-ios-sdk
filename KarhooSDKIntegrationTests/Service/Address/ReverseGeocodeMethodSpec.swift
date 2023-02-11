@@ -34,7 +34,7 @@ final class ReverseGeocodeMethodSpec: XCTestCase {
 
         call.execute(callback: { [weak self] result in
             XCTAssertTrue(result.isSuccess())
-            self?.assertLocationInfo(info: result.successValue()!)
+            self?.assertLocationInfo(info: result.getSuccessValue()!)
             expectation.fulfill()
         })
 
@@ -54,7 +54,7 @@ final class ReverseGeocodeMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
 
         call.execute(callback: { result in
-            let error = result.errorValue()
+            let error = result.getErrorValue()
             XCTAssertEqual(.couldNotGetAddress, error?.type)
             expectation.fulfill()
         })
@@ -91,7 +91,7 @@ final class ReverseGeocodeMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -109,7 +109,7 @@ final class ReverseGeocodeMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

@@ -35,7 +35,7 @@ final class PaymentSDKTokenMethod: XCTestCase {
         let expectation = self.expectation(description: "Callback called with succeess")
 
         call.execute(callback: { result in
-            XCTAssertEqual("some_sdk_token", result.successValue()?.token)
+            XCTAssertEqual("some_sdk_token", result.getSuccessValue()?.token)
             expectation.fulfill()
         })
 
@@ -53,7 +53,7 @@ final class PaymentSDKTokenMethod: XCTestCase {
         let expectation = self.expectation(description: "Callback called with an error")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.missingRequiredRoleForThisRequest, result.errorValue()?.type)
+            XCTAssertEqual(.missingRequiredRoleForThisRequest, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -71,7 +71,7 @@ final class PaymentSDKTokenMethod: XCTestCase {
         let expectation = self.expectation(description: "callback called with an unexpected error")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -89,7 +89,7 @@ final class PaymentSDKTokenMethod: XCTestCase {
         let expectation = self.expectation(description: "callback called with an unexpected error")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -107,7 +107,7 @@ final class PaymentSDKTokenMethod: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

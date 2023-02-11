@@ -30,7 +30,7 @@ final class KarhoooAuthRevokeInteractor: KarhooExecutable {
         revokeRequestSender.encodedRequest(endpoint: .authRevoke,
                                            body: requestComponents(),
                                            callback: { [weak self] (result: Result<KarhooVoid>) in
-                                            guard result.successValue(orErrorCallback: callback) != nil,
+                                            guard result.getSuccessValue(orErrorCallback: callback) != nil,
                                                 let resultValue = KarhooVoid() as? T else { return }
                                             self?.analytics.send(eventName: .ssoTokenRevoked)
                                             self?.userDataStore.removeCurrentUserAndCredentials()

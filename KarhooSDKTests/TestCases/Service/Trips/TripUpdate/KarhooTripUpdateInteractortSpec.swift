@@ -49,7 +49,7 @@ class KarhooTripUpdateInteractortSpec: XCTestCase {
         let mockResponse = TripInfoMock().set(tripId: "ABC123").build()
         mockTripUpdateRequest.triggerSuccessWithDecoded(value: mockResponse)
 
-        XCTAssertEqual(capturedCallback!.successValue()!.tripId, "ABC123")
+        XCTAssertEqual(capturedCallback!.getSuccessValue()!.tripId, "ABC123")
     }
 
     /**
@@ -63,7 +63,7 @@ class KarhooTripUpdateInteractortSpec: XCTestCase {
         let error = HTTPError(statusCode: 402, errorType: .badServerResponse)
         mockTripUpdateRequest.triggerFail(error: error)
 
-        XCTAssertEqual(error, capturedCallback!.errorValue() as? HTTPError)
+        XCTAssertEqual(error, capturedCallback!.getErrorValue() as? HTTPError)
     }
 
     /**
@@ -83,7 +83,7 @@ class KarhooTripUpdateInteractortSpec: XCTestCase {
     func testGuestTripUpdateUsesFollowCode() {
         MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
         testObject.execute(callback: { (result: Result<TripInfo>) in
-            XCTAssertEqual("TRIP_ID", result.successValue()?.followCode)
+            XCTAssertEqual("TRIP_ID", result.getSuccessValue()?.followCode)
         })
 
         mockTripUpdateRequest.assertRequestSendAndDecoded(endpoint: .trackTripFollowCode(followCode: tripId),

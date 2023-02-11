@@ -33,9 +33,9 @@ final class LoyaltyConversionMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with success result")
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            XCTAssertEqual("20200312", result.successValue()?.version)
-            XCTAssertEqual("EUR", result.successValue()?.rates[1].currency)
-            XCTAssertEqual("114.58", result.successValue()?.rates[0].points)
+            XCTAssertEqual("20200312", result.getSuccessValue()?.version)
+            XCTAssertEqual("EUR", result.getSuccessValue()?.rates[1].currency)
+            XCTAssertEqual("114.58", result.getSuccessValue()?.rates[0].points)
             expectation.fulfill()
         })
 
@@ -53,7 +53,7 @@ final class LoyaltyConversionMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.generalRequestError, result.errorValue()?.type)
+            XCTAssertEqual(.generalRequestError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -70,7 +70,7 @@ final class LoyaltyConversionMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -88,7 +88,7 @@ final class LoyaltyConversionMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Unknown error propogated")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
