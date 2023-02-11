@@ -29,7 +29,7 @@ final class KarhooPollableExecutorSpec: XCTestCase {
       * Then: pollingScheduler should fire in the set poll time repeating
       */
     func testStartPolling() {
-        testObject.startPolling(pollTime: 5, callback: { (_: Result<MockKarhooCodableModel>) -> Void in})
+        testObject.startPolling(pollTime:5, callback: { (_: Result<MockKarhooCodableModel>) -> Void in})
         XCTAssertEqual(5, mockTimingScheduler.timeIntervalSet)
     }
 
@@ -39,7 +39,7 @@ final class KarhooPollableExecutorSpec: XCTestCase {
       */
     func testTimingSchedulerFires() {
         var capturedResult: Result<MockKarhooCodableModel>?
-        testObject.startPolling(pollTime: 5, callback: { (result: Result<MockKarhooCodableModel>) -> Void in
+        testObject.startPolling(pollTime:5, callback: { (result: Result<MockKarhooCodableModel>) -> Void in
             capturedResult = result
         })
 

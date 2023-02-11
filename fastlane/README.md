@@ -30,12 +30,12 @@ Danger publish test results
 ```
 fastlane ios unit_tests_integration_tests
 ```
-Description of what the lane does
+Runs the unit tests for Karhoo-iOS-SDK
 ### ios XcovReport
 ```
 fastlane ios XcovReport
 ```
-Xcov Report - 2023-02-11T13:36:51+00:00
+Xcov Report
 
 ----
 

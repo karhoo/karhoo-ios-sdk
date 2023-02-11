@@ -86,7 +86,7 @@ final class TrackTripMethodSpec: XCTestCase {
                 expectation.fulfill()
             }
         }
-        pollCall.observable(polltime: 1).subscribe(observer: observer)
+        pollCall.observable(pollTime:1).subscribe(observer: observer)
         waitForExpectations(timeout: 10)
     }
 

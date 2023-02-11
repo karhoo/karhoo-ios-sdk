@@ -11,7 +11,7 @@ import Foundation
 public protocol KarhooPollExecutor {
     var executable: KarhooExecutable { get }
 
-    func startPolling<T: KarhooCodableModel>(pollTime: TimeInterval,
+    func startPolling<T: KarhooCodableModel>(pollTime:TimeInterval,
                                              callback: @escaping CallbackClosure<T>)
     func stopPolling()
 }
@@ -27,7 +27,7 @@ final class PollExecutor: KarhooPollExecutor {
         self.executable = executable
     }
 
-    func startPolling<T: KarhooCodableModel>(pollTime: TimeInterval,
+    func startPolling<T: KarhooCodableModel>(pollTime:TimeInterval,
                                              callback: @escaping CallbackClosure<T>) {
         let executableBlock: (() -> Void) = { [weak self] in
             self?.executable.execute(callback: callback)

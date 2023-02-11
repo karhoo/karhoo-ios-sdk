@@ -151,7 +151,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
             }
         }
 
-        let quotesObservable = pollCall.observable(polltime: 1)
+        let quotesObservable = pollCall.observable(pollTime:1)
         quotesObservable.subscribe(observer: quoteSearchObserver)
 
         waitForExpectations(timeout: 10)

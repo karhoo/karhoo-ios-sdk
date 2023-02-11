@@ -40,9 +40,9 @@ final class KarhooPollCallSpec: XCTestCase {
      * Then: should return different observables
      */
     func testGetMultipleObservablesWithDifferentPolltime() {
-        let first = testObject.observable(pollTime: 5)
-        let second = testObject.observable(pollTime: 5)
-        let third = testObject.observable(pollTime: 10)
+        let first = testObject.observable(pollTime:5)
+        let second = testObject.observable(pollTime:5)
+        let third = testObject.observable(pollTime:10)
 
         XCTAssert(first === second)
         XCTAssertFalse(first === third)

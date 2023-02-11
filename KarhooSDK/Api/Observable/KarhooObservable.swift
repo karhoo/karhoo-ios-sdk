@@ -12,10 +12,10 @@ open class Observable<ResponseType: KarhooCodableModel> {
 
     private let pollExecutor: KarhooPollExecutor
     private let broadcaster: ObserverBroadcaster<ResponseType>
-    private let pollTime: TimeInterval
+    private let pollTime:TimeInterval
 
     public init(pollExecutor: KarhooPollExecutor,
-                pollTime: TimeInterval,
+                pollTime:TimeInterval,
                 broadcaster: ObserverBroadcaster<ResponseType> = ObserverBroadcaster<ResponseType>()) {
         self.pollExecutor = pollExecutor
         self.pollTime = pollTime
@@ -27,7 +27,7 @@ open class Observable<ResponseType: KarhooCodableModel> {
         broadcaster.add(listener: observer)
 
         if shouldStartPolling {
-            pollExecutor.startPolling(pollTime: pollTime) { result in
+            pollExecutor.startPolling(pollTime:pollTime) { result in
                 // Intentionally strong reference to self, KarhooDisposable is taking care of disposal
                 self.broadcaster.broadcast(result: result)
             }

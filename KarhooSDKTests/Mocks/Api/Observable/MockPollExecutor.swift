@@ -24,7 +24,7 @@ final class MockPollExecutor: KarhooPollExecutor {
 
     var startPollingCalled = false
     var pollingStartedWithTime: TimeInterval?
-    func startPolling<T: KarhooCodableModel>(pollTime: TimeInterval, callback: @escaping CallbackClosure<T>) {
+    func startPolling<T: KarhooCodableModel>(pollTime:TimeInterval, callback: @escaping CallbackClosure<T>) {
         self.pollingStartedWithTime = pollTime
         self.callback = callback as? (Result<MockKarhooCodableModel>) -> Void
         startPollingCalled = true

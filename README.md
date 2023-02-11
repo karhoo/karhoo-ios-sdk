@@ -209,7 +209,7 @@ tripTrackingObserver = Observer<TripInfo>.value { [weak self] tripInfo in
            			print("new trip update! ", tripInfo)
         		}
         
-tripTrackingObservable = tripService.trackTrip(identifier: "some-trip-id").observable(pollTime: 5) // where 5 = 5 seconds
+tripTrackingObservable = tripService.trackTrip(identifier: "some-trip-id").observable(pollTime:5) // where 5 = 5 seconds
 
 tripTrackingObservable?.subscribe(observer: tripTrackingObserver)
 
