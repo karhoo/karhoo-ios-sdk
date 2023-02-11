@@ -25,7 +25,7 @@ end
       danger_id: "POST_CI",
      )
  end
-  desc "Description of what the lane does"
+  desc "FASTLANE - Integration test run"
   lane :unit_tests_integration_tests do
 	scan(
 	    project: "KarhooSDK.xcodeproj",
