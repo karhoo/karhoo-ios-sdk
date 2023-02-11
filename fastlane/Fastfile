@@ -45,7 +45,6 @@ end
       scheme: "KarhooSDK",
       output_directory: "fastlane/test_output",
       ignore_file_path: "./*view.swift",
-      slack_message: "KarhooSDK test coverage report:"
     )
   end
 end
