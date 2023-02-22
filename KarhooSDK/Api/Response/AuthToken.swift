@@ -33,10 +33,10 @@ public struct AuthToken: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        accessToken = (try? container.decode(String.self, forKey: .accessToken)) ?? ""
-        expiresIn = (try? container.decode(Int.self, forKey: .expiresIn)) ?? 0
-        refreshToken = (try? container.decode(String.self, forKey: .refreshToken)) ?? ""
-        refreshExpiresIn = (try? container.decode(Int.self, forKey: .refreshExpiresIn)) ?? 0
+        accessToken = (try? container.decodeIfPresent(String.self, forKey: .accessToken)) ?? ""
+        expiresIn = (try? container.decodeIfPresent(Int.self, forKey: .expiresIn)) ?? 0
+        refreshToken = (try? container.decodeIfPresent(String.self, forKey: .refreshToken)) ?? ""
+        refreshExpiresIn = (try? container.decodeIfPresent(Int.self, forKey: .refreshExpiresIn)) ?? 0
     }
 
     public func encode(to encoder: Encoder) throws {

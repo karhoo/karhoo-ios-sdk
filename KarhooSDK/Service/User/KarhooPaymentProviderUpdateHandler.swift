@@ -28,10 +28,10 @@ class KarhooPaymentProviderUpdateHandler: PaymentProviderUpdateHandler {
             payload: nil,
             endpoint: .paymentProvider,
             callback: { [weak self] (result: Result<PaymentProvider>) in
-                let paymentProvider = result.successValue()
+                let paymentProvider = result.getSuccessValue()
                 guard let self = self else { return }
                 self.userDataStore.updatePaymentProvider(paymentProvider: paymentProvider)
-                if result.successValue()?.provider.type == .braintree {
+                if result.getSuccessValue()?.provider.type == .braintree {
                     self.updateUserNonce(user: user)
                 }
                 LoyaltyUtils.updateLoyaltyStatusFor(
@@ -53,7 +53,7 @@ class KarhooPaymentProviderUpdateHandler: PaymentProviderUpdateHandler {
             payload: payload,
             endpoint: .getNonce
         ) { [weak self] (result: Result<Nonce>) in
-            self?.userDataStore.updateCurrentUserNonce(nonce: result.successValue())
+            self?.userDataStore.updateCurrentUserNonce(nonce: result.getSuccessValue())
         }
     }
 }

@@ -17,7 +17,7 @@ public struct QuoteCoverage: KarhooCodableModel {
     
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.coverage = (try? container.decode(Bool.self, forKey: .coverage)) ?? false
+        self.coverage = (try? container.decodeIfPresent(Bool.self, forKey: .coverage)) ?? false
     }
     
     enum CodingKeys: String, CodingKey {

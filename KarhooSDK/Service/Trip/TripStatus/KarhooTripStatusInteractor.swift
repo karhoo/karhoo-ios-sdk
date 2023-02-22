@@ -19,7 +19,7 @@ final class KarhooTripStatusInteractor: TripStatusInteractor {
         requestSender.requestAndDecode(payload: nil,
                                        endpoint: .tripStatus(identifier: tripId),
                                        callback: { (result: Result<TripStatus>) in
-                                        guard let status = result.successValue(orErrorCallback: callback),
+                                        guard let status = result.getSuccessValue(orErrorCallback: callback),
                                             let resultValue = status.status as? T else { return }
                                         callback(.success(result: resultValue))
 

@@ -26,7 +26,7 @@ public struct Position: KarhooCodableModel, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.latitude = (try? container.decode(Double.self, forKey: .latitude)) ?? 0
-        self.longitude = (try? container.decode(Double.self, forKey: .longitude)) ?? 0
+        self.latitude = (try? container.decodeIfPresent(Double.self, forKey: .latitude)) ?? 0
+        self.longitude = (try? container.decodeIfPresent(Double.self, forKey: .longitude)) ?? 0
     }
 }

@@ -29,10 +29,10 @@ public struct DriverTrackingInfo: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.position = (try? container.decode(Position.self, forKey: .position)) ?? Position(latitude: 0, longitude: 0)
-        self.direction = (try? container.decode(Direction.self, forKey: .direction)) ?? Direction(kph: 0, heading: 0)
-        self.originEta = (try? container.decode(Int.self, forKey: .originEta)) ?? 0
-        self.destinationEta = (try? container.decode(Int.self, forKey: .destinationEta)) ?? 0
+        self.position = (try? container.decodeIfPresent(Position.self, forKey: .position)) ?? Position(latitude: 0, longitude: 0)
+        self.direction = (try? container.decodeIfPresent(Direction.self, forKey: .direction)) ?? Direction(kph: 0, heading: 0)
+        self.originEta = (try? container.decodeIfPresent(Int.self, forKey: .originEta)) ?? 0
+        self.destinationEta = (try? container.decodeIfPresent(Int.self, forKey: .destinationEta)) ?? 0
     }
 
     public func encode(to encoder: Encoder) throws {

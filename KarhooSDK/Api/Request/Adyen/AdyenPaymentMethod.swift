@@ -28,8 +28,8 @@ public struct AdyenPaymentMethod: KarhooCodableModel {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.storedPaymentMethodId = (try? container.decode(String.self, forKey: .storedPaymentMethodId)) ?? ""
-        self.type = (try? container.decode(String.self, forKey: .type)) ?? ""
+        self.storedPaymentMethodId = (try? container.decodeIfPresent(String.self, forKey: .storedPaymentMethodId)) ?? ""
+        self.type = (try? container.decodeIfPresent(String.self, forKey: .type)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

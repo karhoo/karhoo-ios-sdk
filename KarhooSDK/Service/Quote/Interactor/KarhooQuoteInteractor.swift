@@ -54,7 +54,7 @@ final class KarhooQuoteInteractor: QuoteInteractor {
         quoteListIdRequest.requestAndDecode(payload: requestPayload,
                                             endpoint: .quoteListId,
                                             callback: { [weak self] (result: Result<QuoteListId>) in
-                                                if let quoteListId = result.successValue() {
+                                                if let quoteListId = result.getSuccessValue() {
                                                     self?.makeQuotesRequest(quoteListId: quoteListId,
                                                                             callback: callback)
                                                 } else {
@@ -70,11 +70,11 @@ final class KarhooQuoteInteractor: QuoteInteractor {
         quotesRequest.requestAndDecode(payload: nil,
                                        endpoint: .quotes(identifier: quoteListId.identifier),
                                        callback: { [weak self] (result: Result<QuoteList>) in
-                                        if let successValue = result.successValue() {
+                                        if let successValue = result.getSuccessValue() {
                                             self?.handleSuccessfulQuoteRequest(quoteList: successValue,
                                                                                callback: callback)
                                         } else {
-                                            self?.handleFailedQuoteRequest(error: result.errorValue(),
+                                            self?.handleFailedQuoteRequest(error: result.getErrorValue(),
                                                                            callback: callback)
                                         }
         })

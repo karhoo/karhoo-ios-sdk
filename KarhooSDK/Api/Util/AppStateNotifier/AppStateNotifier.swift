@@ -8,7 +8,7 @@
 #if !os(macOS)
 import UIKit
 
-public protocol AppStateChangeDelegate: class {
+public protocol AppStateChangeDelegate: AnyObject {
     func appDidBecomeActive()
     func appWillResignActive()
     func appDidEnterBackground()

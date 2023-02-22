@@ -22,7 +22,7 @@ public struct LoyaltyPoints: KarhooCodableModel {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.points = (try? container.decode(Int.self, forKey: .points)) ?? 0
+        self.points = (try? container.decodeIfPresent(Int.self, forKey: .points)) ?? 0
     }
     
     public func encode(to encoder: Encoder) throws {

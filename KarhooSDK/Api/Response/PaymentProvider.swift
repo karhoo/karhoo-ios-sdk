@@ -23,9 +23,9 @@ public struct PaymentProvider : KarhooCodableModel {
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.provider = (try? container.decode(Provider.self, forKey: .provider)) ?? Provider()
+        self.provider = (try? container.decodeIfPresent(Provider.self, forKey: .provider)) ?? Provider()
         self.version = (try? container.decodeIfPresent(String.self, forKey: .version)) ?? "v51"
-        self.loyaltyProgamme = (try? container.decode(LoyaltyProgramme.self, forKey: .loyaltyProgamme)) ?? LoyaltyProgramme()
+        self.loyaltyProgamme = (try? container.decodeIfPresent(LoyaltyProgramme.self, forKey: .loyaltyProgamme)) ?? LoyaltyProgramme()
     }
     
     enum CodingKeys: String, CodingKey {

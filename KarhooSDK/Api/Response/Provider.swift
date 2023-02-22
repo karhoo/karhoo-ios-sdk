@@ -31,8 +31,8 @@ public struct Provider: KarhooCodableModel {
     public init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
-        self.version = (try? container.decode(String.self, forKey: .version)) ?? "v51"
+        self.id = (try? container.decodeIfPresent(String.self, forKey: .id)) ?? ""
+        self.version = (try? container.decodeIfPresent(String.self, forKey: .version)) ?? "v51"
     }
     
     enum CodingKeys: String, CodingKey {

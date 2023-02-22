@@ -38,11 +38,11 @@ public struct Driver: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.firstName = (try? container.decode(String.self, forKey: .firstName)) ?? ""
-        self.lastName = (try? container.decode(String.self, forKey: .lastName)) ?? ""
-        self.phoneNumber = (try? container.decode(String.self, forKey: .phoneNumber)) ?? ""
-        self.photoUrl = (try? container.decode(String.self, forKey: .photoUrl)) ?? ""
-        self.licenseNumber = (try? container.decode(String.self, forKey: .licenseNumber)) ?? ""
+        self.firstName = (try? container.decodeIfPresent(String.self, forKey: .firstName)) ?? ""
+        self.lastName = (try? container.decodeIfPresent(String.self, forKey: .lastName)) ?? ""
+        self.phoneNumber = (try? container.decodeIfPresent(String.self, forKey: .phoneNumber)) ?? ""
+        self.photoUrl = (try? container.decodeIfPresent(String.self, forKey: .photoUrl)) ?? ""
+        self.licenseNumber = (try? container.decodeIfPresent(String.self, forKey: .licenseNumber)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

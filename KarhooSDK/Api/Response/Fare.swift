@@ -36,10 +36,10 @@ public struct Fare: KarhooCodableModel {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.state = (try? container.decode(String.self, forKey: .state)) ?? ""
-        self.expectedFinalTime = (try? container.decode(String.self, forKey: .expectedFinalTime)) ?? ""
-        self.expectedIn = (try? container.decode(String.self, forKey: .expectedIn)) ?? ""
-        self.breakdown = (try? container.decode(FareComponent.self, forKey: .breakdown)) ?? FareComponent()
+        self.state = (try? container.decodeIfPresent(String.self, forKey: .state)) ?? ""
+        self.expectedFinalTime = (try? container.decodeIfPresent(String.self, forKey: .expectedFinalTime)) ?? ""
+        self.expectedIn = (try? container.decodeIfPresent(String.self, forKey: .expectedIn)) ?? ""
+        self.breakdown = (try? container.decodeIfPresent(FareComponent.self, forKey: .breakdown)) ?? FareComponent()
     }
 
     public func encode(to encoder: Encoder) throws {

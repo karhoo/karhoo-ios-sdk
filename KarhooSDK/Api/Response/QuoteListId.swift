@@ -22,8 +22,8 @@ struct QuoteListId: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.identifier = (try? container.decode(String.self, forKey: .identifier)) ?? ""
-        self.validityTime = (try? container.decode(Int.self, forKey: .validityTime)) ?? 0
+        self.identifier = (try? container.decodeIfPresent(String.self, forKey: .identifier)) ?? ""
+        self.validityTime = (try? container.decodeIfPresent(Int.self, forKey: .validityTime)) ?? 0
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -22,8 +22,8 @@ public struct ServiceAgreements: KarhooCodableModel {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.serviceCancellation = (try? container.decode(ServiceCancellation.self, forKey: .serviceCancellation)) ?? ServiceCancellation()
-        self.serviceWaiting = (try? container.decode(ServiceWaiting.self, forKey: .serviceWaiting)) ?? ServiceWaiting()
+        self.serviceCancellation = (try? container.decodeIfPresent(ServiceCancellation.self, forKey: .serviceCancellation)) ?? ServiceCancellation()
+        self.serviceWaiting = (try? container.decodeIfPresent(ServiceWaiting.self, forKey: .serviceWaiting)) ?? ServiceWaiting()
     }
     
     public func encode(to encoder: Encoder) throws {

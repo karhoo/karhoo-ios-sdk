@@ -21,8 +21,8 @@ public struct AdyenClientKey: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        clientKey = (try? container.decode(String.self, forKey: .clientKey)) ?? ""
-        environment = (try? container.decode(String.self, forKey: .environment)) ?? ""
+        clientKey = (try? container.decodeIfPresent(String.self, forKey: .clientKey)) ?? ""
+        environment = (try? container.decodeIfPresent(String.self, forKey: .environment)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -37,10 +37,10 @@ public struct TripLocationDetails: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayAddress = (try? container.decode(String.self, forKey: .displayAddress)) ?? ""
-        self.placeId = (try? container.decode(String.self, forKey: .placeId)) ?? ""
-        self.position = (try? container.decode(Position.self, forKey: .position)) ?? Position()
-        self.timeZoneIdentifier = (try? container.decode(String.self, forKey: .timeZoneIdentifier)) ?? ""
+        self.displayAddress = (try? container.decodeIfPresent(String.self, forKey: .displayAddress)) ?? ""
+        self.placeId = (try? container.decodeIfPresent(String.self, forKey: .placeId)) ?? ""
+        self.position = (try? container.decodeIfPresent(Position.self, forKey: .position)) ?? Position()
+        self.timeZoneIdentifier = (try? container.decodeIfPresent(String.self, forKey: .timeZoneIdentifier)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

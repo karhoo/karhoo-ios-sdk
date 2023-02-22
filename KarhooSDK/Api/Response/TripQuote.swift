@@ -64,16 +64,16 @@ public struct TripQuote: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.total = (try? container.decode(Int.self, forKey: .total)) ?? 0
-        self.currency = (try? container.decode(String.self, forKey: .currency)) ?? ""
-        self.gratuityPercent = (try? container.decode(Int.self, forKey: .gratuityPercent)) ?? 0
-        self.breakdown = (try? container.decode([FareComponent?].self, forKey: .breakdown)) ?? []
-        self.qtaHighMinutes = (try? container.decode(Int.self, forKey: .qtaHighMinutes)) ?? 0
-        self.qtaLowMinutes = (try? container.decode(Int.self, forKey: .qtaLowMinutes)) ?? 0
-        self.highPrice = (try? container.decode(Int.self, forKey: .highPrice)) ?? 0
-        self.lowPrice = (try? container.decode(Int.self, forKey: .lowPrice)) ?? 0
-        self.type = (try? container.decode(QuoteType.self, forKey: .type)) ?? .estimated
-        self.vehicleClass = (try? container.decode(String.self, forKey: .vehicleClass)) ?? ""
+        self.total = (try? container.decodeIfPresent(Int.self, forKey: .total)) ?? 0
+        self.currency = (try? container.decodeIfPresent(String.self, forKey: .currency)) ?? ""
+        self.gratuityPercent = (try? container.decodeIfPresent(Int.self, forKey: .gratuityPercent)) ?? 0
+        self.breakdown = (try? container.decodeIfPresent([FareComponent?].self, forKey: .breakdown)) ?? []
+        self.qtaHighMinutes = (try? container.decodeIfPresent(Int.self, forKey: .qtaHighMinutes)) ?? 0
+        self.qtaLowMinutes = (try? container.decodeIfPresent(Int.self, forKey: .qtaLowMinutes)) ?? 0
+        self.highPrice = (try? container.decodeIfPresent(Int.self, forKey: .highPrice)) ?? 0
+        self.lowPrice = (try? container.decodeIfPresent(Int.self, forKey: .lowPrice)) ?? 0
+        self.type = (try? container.decodeIfPresent(QuoteType.self, forKey: .type)) ?? .estimated
+        self.vehicleClass = (try? container.decodeIfPresent(String.self, forKey: .vehicleClass)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

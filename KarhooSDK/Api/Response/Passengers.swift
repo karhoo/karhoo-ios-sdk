@@ -30,9 +30,9 @@ public struct Passengers: KarhooCodableModel, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.additionalPassengers = (try? container.decode(Int.self, forKey: .additionalPassengers)) ?? 0
-        self.passengerDetails = (try? container.decode([PassengerDetails].self, forKey: .passengerDetails)) ?? []
-        self.luggage = (try? container.decode(Luggage.self, forKey: .luggage)) ?? Luggage()
+        self.additionalPassengers = (try? container.decodeIfPresent(Int.self, forKey: .additionalPassengers)) ?? 0
+        self.passengerDetails = (try? container.decodeIfPresent([PassengerDetails].self, forKey: .passengerDetails)) ?? []
+        self.luggage = (try? container.decodeIfPresent(Luggage.self, forKey: .luggage)) ?? Luggage()
         
     }
 

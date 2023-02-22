@@ -26,7 +26,7 @@ public struct Direction: KarhooCodableModel, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.kph = (try? container.decode(Int.self, forKey: .kph)) ?? 0
-        self.heading = (try? container.decode(Int.self, forKey: .heading)) ?? 0
+        self.kph = (try? container.decodeIfPresent(Int.self, forKey: .kph)) ?? 0
+        self.heading = (try? container.decodeIfPresent(Int.self, forKey: .heading)) ?? 0
     }
 }

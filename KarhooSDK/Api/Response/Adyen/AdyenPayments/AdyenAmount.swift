@@ -26,8 +26,8 @@ public struct AdyenAmount: KarhooCodableModel {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.currency = (try? container.decode(String.self, forKey: .currency)) ?? ""
-        self.value = (try? container.decode(Int.self, forKey: .value)) ?? 0
+        self.currency = (try? container.decodeIfPresent(String.self, forKey: .currency)) ?? ""
+        self.value = (try? container.decodeIfPresent(Int.self, forKey: .value)) ?? 0
     }
     
     public func encode(to encoder: Encoder) throws {

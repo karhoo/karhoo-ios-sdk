@@ -34,10 +34,10 @@ public struct CancelledByPayer: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
-        self.firstName = (try? container.decode(String.self, forKey: .firstName)) ?? ""
-        self.lastName = (try? container.decode(String.self, forKey: .lastName)) ?? ""
-        self.email = (try? container.decode(String.self, forKey: .email)) ?? ""
+        self.id = (try? container.decodeIfPresent(String.self, forKey: .id)) ?? ""
+        self.firstName = (try? container.decodeIfPresent(String.self, forKey: .firstName)) ?? ""
+        self.lastName = (try? container.decodeIfPresent(String.self, forKey: .lastName)) ?? ""
+        self.email = (try? container.decodeIfPresent(String.self, forKey: .email)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

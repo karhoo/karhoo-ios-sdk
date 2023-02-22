@@ -36,7 +36,7 @@ final class KarhooLoyaltyStatusInteractor: LoyaltyStatusInteractor {
                                        endpoint: .loyaltyStatus(identifier: identifier),
                                        callback: { [weak self] (result: Result<T>) in
             if let statusResult = result as? Result<LoyaltyStatus>,
-               let status = statusResult.successValue() {
+               let status = statusResult.getSuccessValue() {
                 self?.userDataStore.updateLoyaltyStatus(status: status, forLoyaltyId: identifier)
             }
             

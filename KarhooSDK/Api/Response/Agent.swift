@@ -34,10 +34,10 @@ public struct Agent: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.userID = (try? container.decode(String.self, forKey: .userID)) ?? ""
-        self.userName = (try? container.decode(String.self, forKey: .userName)) ?? ""
-        self.orgID = (try? container.decode(String.self, forKey: .orgID)) ?? ""
-        self.orgName = (try? container.decode(String.self, forKey: .orgName)) ?? ""
+        self.userID = (try? container.decodeIfPresent(String.self, forKey: .userID)) ?? ""
+        self.userName = (try? container.decodeIfPresent(String.self, forKey: .userName)) ?? ""
+        self.orgID = (try? container.decodeIfPresent(String.self, forKey: .orgID)) ?? ""
+        self.orgName = (try? container.decodeIfPresent(String.self, forKey: .orgName)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

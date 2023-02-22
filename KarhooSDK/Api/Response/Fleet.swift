@@ -50,14 +50,14 @@ public struct Fleet: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
-        self.name = (try? container.decode(String.self, forKey: .name)) ?? ""
-        self.logoUrl = (try? container.decode(String.self, forKey: .logoUrl)) ?? ""
-        self.description = (try? container.decode(String.self, forKey: .description)) ?? ""
-        self.phoneNumber = (try? container.decode(String.self, forKey: .phoneNumber)) ?? ""
-        self.termsConditionsUrl = (try? container.decode(String.self, forKey: .termsConditionsUrl)) ?? ""
-        self.capability = (try? container.decode(Array.self, forKey: .capability)) ?? []
-        self.rating = (try? container.decode(FleetRating.self, forKey: .rating)) ?? FleetRating()
+        self.id = (try? container.decodeIfPresent(String.self, forKey: .id)) ?? ""
+        self.name = (try? container.decodeIfPresent(String.self, forKey: .name)) ?? ""
+        self.logoUrl = (try? container.decodeIfPresent(String.self, forKey: .logoUrl)) ?? ""
+        self.description = (try? container.decodeIfPresent(String.self, forKey: .description)) ?? ""
+        self.phoneNumber = (try? container.decodeIfPresent(String.self, forKey: .phoneNumber)) ?? ""
+        self.termsConditionsUrl = (try? container.decodeIfPresent(String.self, forKey: .termsConditionsUrl)) ?? ""
+        self.capability = (try? container.decodeIfPresent(Array.self, forKey: .capability)) ?? []
+        self.rating = (try? container.decodeIfPresent(FleetRating.self, forKey: .rating)) ?? FleetRating()
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -25,8 +25,8 @@ public struct AdyenBrowserInfo: KarhooCodableModel {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.userAgent = (try? container.decode(String.self, forKey: .userAgent)) ?? ""
-        self.acceptHeader = (try? container.decode(String.self, forKey: .acceptHeader)) ?? ""
+        self.userAgent = (try? container.decodeIfPresent(String.self, forKey: .userAgent)) ?? ""
+        self.acceptHeader = (try? container.decodeIfPresent(String.self, forKey: .acceptHeader)) ?? ""
     }
     
     public func encode(to encoder: Encoder) throws {

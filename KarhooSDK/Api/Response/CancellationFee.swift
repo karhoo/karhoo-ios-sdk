@@ -26,8 +26,8 @@ public struct CancellationFee: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cancellationFee = (try? container.decode(Bool.self, forKey: .cancellationFee)) ?? false
-        self.fee = (try? container.decode(CancellationFeePrice.self, forKey: .fee)) ?? CancellationFeePrice()
+        self.cancellationFee = (try? container.decodeIfPresent(Bool.self, forKey: .cancellationFee)) ?? false
+        self.fee = (try? container.decodeIfPresent(CancellationFeePrice.self, forKey: .fee)) ?? CancellationFeePrice()
     }
 
     public func encode(to encoder: Encoder) throws {

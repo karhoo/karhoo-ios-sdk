@@ -22,7 +22,7 @@ public struct AdyenPublicKey: KarhooCodableModel {
     
     public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
-          self.key = (try? container.decode(String.self, forKey: .key)) ?? ""
+          self.key = (try? container.decodeIfPresent(String.self, forKey: .key)) ?? ""
     }
     
     public func encode(to encoder: Encoder) throws {

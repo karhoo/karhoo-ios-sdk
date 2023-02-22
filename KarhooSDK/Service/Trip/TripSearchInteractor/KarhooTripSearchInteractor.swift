@@ -26,7 +26,7 @@ final class KarhooTripSearchInteractor: TripSearchInteractor {
 
         requestSender.requestAndDecode(payload: tripSearch,
                                        endpoint: .tripSearch) { (result: Result<BookingSearch>) in
-                                        guard let bookingList = result.successValue(orErrorCallback: callback),
+                                        guard let bookingList = result.getSuccessValue(orErrorCallback: callback),
                                                let result = bookingList.trips as? T else { return }
                                          callback(.success(result: result))
         }

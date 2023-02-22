@@ -25,7 +25,7 @@ final class KarhooPasswordResetInteractor: PasswordResetInteractor {
         requestSender.request(payload: PasswordResetRequestPayload(email: email),
                              endpoint: .passwordReset,
                              callback: { result in
-                                guard result.successValue(orErrorCallback: callback) != nil,
+                                guard result.getSuccessValue(orErrorCallback: callback) != nil,
                                 let success = KarhooVoid() as? T else {
                                     return
                                 }

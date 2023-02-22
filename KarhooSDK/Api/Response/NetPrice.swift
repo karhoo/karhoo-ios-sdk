@@ -26,8 +26,8 @@ public struct NetPrice: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.high = (try? container.decode(Int.self, forKey: .high)) ?? 0
-        self.low = (try? container.decode(Int.self, forKey: .low)) ?? 0
+        self.high = (try? container.decodeIfPresent(Int.self, forKey: .high)) ?? 0
+        self.low = (try? container.decodeIfPresent(Int.self, forKey: .low)) ?? 0
     }
 
     public func encode(to encoder: Encoder) throws {

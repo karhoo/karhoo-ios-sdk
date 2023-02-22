@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol UserStateObserver: class {
+public protocol UserStateObserver: AnyObject {
     func userStateUpdated(user: UserInfo?)
 }
 

@@ -19,6 +19,6 @@ public struct Availability: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.vehicles = (try? container.decode(VehicleAvailability.self, forKey: .vehicles)) ?? VehicleAvailability()
+        self.vehicles = (try? container.decodeIfPresent(VehicleAvailability.self, forKey: .vehicles)) ?? VehicleAvailability()
     }
 }

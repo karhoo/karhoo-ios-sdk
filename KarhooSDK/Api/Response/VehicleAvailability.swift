@@ -30,8 +30,8 @@ public struct VehicleAvailability: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.classes = (try? container.decode(Array.self, forKey: .classes)) ?? []
-        self.types = (try? container.decode(Array.self, forKey: .types)) ?? []
-        self.tags = (try? container.decode(Array.self, forKey: .tags)) ?? []
+        self.classes = (try? container.decodeIfPresent(Array.self, forKey: .classes)) ?? []
+        self.types = (try? container.decodeIfPresent(Array.self, forKey: .types)) ?? []
+        self.tags = (try? container.decodeIfPresent(Array.self, forKey: .tags)) ?? []
     }
 }
