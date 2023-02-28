@@ -40,7 +40,7 @@ final class CancelTripMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -57,7 +57,7 @@ final class CancelTripMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -74,7 +74,7 @@ final class CancelTripMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -92,6 +92,6 @@ final class CancelTripMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 }

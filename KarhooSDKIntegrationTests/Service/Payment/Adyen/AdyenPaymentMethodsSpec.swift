@@ -37,7 +37,7 @@ final class AdyenPaymentMethodsSpec: XCTestCase {
             expectation.fulfill()
         })
         
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 100)
     }
     
     /**
@@ -59,7 +59,7 @@ final class AdyenPaymentMethodsSpec: XCTestCase {
             expectation.fulfill()
         })
         
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
     
     /**
@@ -78,7 +78,7 @@ final class AdyenPaymentMethodsSpec: XCTestCase {
             expectation.fulfill()
         })
         
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
     
 }

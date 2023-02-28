@@ -21,7 +21,7 @@ final class KarhooObservableSpec: XCTestCase {
         super.setUp()
 
         testObject = Observable<MockKarhooCodableModel>(pollExecutor: mockPollExecutor,
-                                                              pollTime: 5,
+                                                              pollTime: 1.5,
                                                               broadcaster: mockObserverBroadcaster)
     }
 

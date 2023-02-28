@@ -1,0 +1,93 @@
+---
+format_version: '11'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: ios
+app:
+  envs:
+  - FASTLANE_XCODE_LIST_TIMEOUT: '120'
+  - FASTLANE_LANE: unit_tests_integration_tests
+  - ADYEN_STG_AUTHHOST: https://sso.stg.karhoo.net
+  - ADYEN_STG_GUESTHOST: https://public-api.stg.karhoo.net
+  - ADYEN_STG_HOST: https://rest.stg.karhoo.net
+workflows:
+  sandbox:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@7.0: {}
+    - script@1:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # make pipelines' return status equal the last command to exit with a non-zero status, or zero if all commands exit successfully
+            set -o pipefail
+            # debug log
+            set -x
+
+            # Script
+            echo "import KarhooSDK" > Client/Keys.swift
+                        echo "struct Keys {" >> Client/Keys.swift
+                        echo "static let identifier = \"\"" >> Client/Keys.swift
+                        echo "static let referer = \"\"" >> Client/Keys.swift
+                        echo "static let organisationId = \"\"}" >> Client/Keys.swift
+                        echo "struct AdyenSDKConfig: KarhooSDKConfiguration {" >> Client/Keys.swift
+                        echo "func environment() -> KarhooEnvironment {" >> Client/Keys.swift
+                        echo "return .custom(environment: .init(host: \"$ADYEN_STG_HOST\", authHost: \"$ADYEN_STG_AUTHHOST\", guestHost: \"$ADYEN_STG_GUESTHOST\")) }" >> Client/Keys.swift
+                        echo "func authenticationMethod() -> AuthenticationMethod {" >> Client/Keys.swift
+                        echo "return .karhooUser }" >> Client/Keys.swift
+                        echo "func requireSDKAuthentication(callback: @escaping () -> Void) {" >> Client/Keys.swift
+                        echo "callback() }" >> Client/Keys.swift
+                        echo "}" >> Client/Keys.swift
+        title: Create Keys.swift
+    - bundler@0:
+        inputs:
+        - bundle_install_jobs: '1'
+    - fastlane@3:
+        inputs:
+        - verbose_log: 'yes'
+        - lane: unit_tests_integration_tests
+        title: fastlane - unit_tests_integration_tests
+        is_always_run: true
+    - fastlane@3:
+        title: fastlane - Xcov report
+        inputs:
+        - lane: ios XcovReport
+        is_always_run: true
+    - certificate-and-profile-installer@1: {}
+    - deploy-to-bitrise-io@2: {}
+    - script@1:
+        inputs:
+        - content: |-
+            #!/bin/bash
+            set -e
+            set -x
+
+            if [ "$BITRISE_GIT_TAG" != "" ] ; then
+                envman add --key FROM_MESSAGE --value 'with tag *$BITRISE_GIT_TAG*'
+            elif [ "$BITRISE_GIT_COMMIT" != "" ] ; then
+                envman add --key FROM_MESSAGE --value 'from commit *$BITRISE_GIT_COMMIT*'
+            else
+                envman add --key FROM_MESSAGE --value 'from branch *$BITRISE_GIT_BRANCH*'
+            fi
+
+            if [ "$EXISTING_URL_TAG" != "" ] ; then
+                envman add --key SUCCESS_RESPONSE --value "Skipped *$BITRISE_APP_TITLE* release build *#$BITRISE_BUILD_NUMBER* $FROM_MESSAGE - Already available at $BITRISE_PUBLIC_INSTALL_PAGE_URL"
+            else
+                envman add --key SUCCESS_RESPONSE --value "Success! *$BITRISE_APP_TITLE* release build *#$BITRISE_BUILD_NUMBER* $FROM_MESSAGE$CUSTOM_URL_MESSAGE is available at $BITRISE_PUBLIC_INSTALL_PAGE_URL"
+                envman add --key ERROR_RESPONSE --value "Failed to compile *$BITRISE_APP_TITLE* release build $FROM_MESSAGE$CUSTOM_URL_MESSAGE - $ERROR_MESSAGE $BITRISE_BUILD_URL"
+            fi
+        title: Create Slack response
+    - slack@3:
+        inputs:
+        - emoji: ":rocket:"
+        - title: 'Commit message: $GIT_CLONE_COMMIT_MESSAGE_SUBJECT'
+        - webhook_url: "$SLACK_WEBHOOK_URL"
+meta:
+  bitrise.io:
+    stack: osx-xcode-14.0.x-ventura
+trigger_map:
+- pull_request_source_branch: "*"
+  workflow: sandbox
+  pull_request_target_branch: master

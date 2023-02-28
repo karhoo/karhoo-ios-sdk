@@ -4,11 +4,9 @@ fastlane_require 'dotenv'
 
 default_platform(:ios)
 
-
 platform :ios do
   before_all do
     ENV["SLACK_URL"] = ENV["SLACK_WEBHOOK_URL"]
-    setup_circle_ci
 end
 
  desc "Danger PR Validation"
@@ -26,7 +24,7 @@ end
      )
  end
 
-  desc "Description of what the lane does"
+  desc "FASTLANE - Integration test run"
   lane :unit_tests_integration_tests do
 	scan(
 	    project: "KarhooSDK.xcodeproj",
@@ -39,38 +37,15 @@ end
             output_files: "NetworkSDKTests.xml"
     )
   end
-
-  desc "Xcov Report"
+  
+  desc "FASTLANE - Xcov Report"
   lane :XcovReport do
     xcov(
       project: "KarhooSDK.xcodeproj",
       scheme: "KarhooSDK",
       output_directory: "fastlane/test_output",
       ignore_file_path: "./*view.swift",
-      slack_message: "KarhooSDK test coverage report:"
     )
   end
-
-################
-# Success/Error:
-################
-
-after_all do |lane|
-  # This block is called, only if the executed lane was successful
-    slack(
-      channel: "#mobile_circleci_results",
-      message: nil,
-      default_payloads: [:test_result, :git_branch]
-    )
-    clean_build_artifacts
- end
-
-error do |lane, exception|
-    slack(
-      channel: "#mobile_circleci_results",
-      message: exception.to_s,
-      success: false
-    )
-  end
-
+  
 end

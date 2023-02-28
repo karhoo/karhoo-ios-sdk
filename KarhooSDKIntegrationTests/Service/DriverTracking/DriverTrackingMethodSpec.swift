@@ -38,7 +38,7 @@ final class DriverTrackingMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -58,7 +58,7 @@ final class DriverTrackingMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -83,8 +83,8 @@ final class DriverTrackingMethodSpec: XCTestCase {
                 expectation.fulfill()
             }
         }
-        pollCall.observable(pollTime: 0.1).subscribe(observer: observer)
-        waitForExpectations(timeout: 1)
+        pollCall.observable(pollTime: 1).subscribe(observer: observer)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -102,7 +102,7 @@ final class DriverTrackingMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     private func assertSuccess(result: Result<DriverTrackingInfo>) {

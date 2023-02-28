@@ -50,7 +50,7 @@ final class LoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
     
     /**
@@ -67,7 +67,7 @@ final class LoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -86,7 +86,7 @@ final class LoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -106,7 +106,7 @@ final class LoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -125,7 +125,7 @@ final class LoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5)
+        waitForExpectations(timeout: 5)
     }
 
     /**
@@ -150,7 +150,7 @@ final class LoginMethodSpec: XCTestCase {
             })
         })
 
-        wait(for: [initialLoginExpectation, secondLoginExpectation], timeout: 1)
+        wait(for: [initialLoginExpectation, secondLoginExpectation], timeout: 10)
     }
 
     /**
@@ -168,6 +168,6 @@ final class LoginMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 }

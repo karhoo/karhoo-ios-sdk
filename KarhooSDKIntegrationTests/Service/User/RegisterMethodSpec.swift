@@ -40,7 +40,7 @@ final class RegisterMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -61,7 +61,7 @@ final class RegisterMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -80,7 +80,7 @@ final class RegisterMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -98,7 +98,7 @@ final class RegisterMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     /**
@@ -116,7 +116,7 @@ final class RegisterMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 0.5, handler: .none)
+        waitForExpectations(timeout: 5, handler: .none)
     }
 
     private func assertUserInfo(info: UserInfo) {

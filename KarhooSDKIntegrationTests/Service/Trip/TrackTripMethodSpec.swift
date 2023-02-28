@@ -40,7 +40,7 @@ final class TrackTripMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -60,7 +60,7 @@ final class TrackTripMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -86,8 +86,8 @@ final class TrackTripMethodSpec: XCTestCase {
                 expectation.fulfill()
             }
         }
-        pollCall.observable(pollTime: 0.3).subscribe(observer: observer)
-        waitForExpectations(timeout: 1)
+        pollCall.observable(pollTime: 0.9).subscribe(observer: observer)
+        waitForExpectations(timeout: 10)
     }
 
     /**
@@ -105,7 +105,7 @@ final class TrackTripMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 
     private func assertSuccess(result: Result<TripInfo>) {

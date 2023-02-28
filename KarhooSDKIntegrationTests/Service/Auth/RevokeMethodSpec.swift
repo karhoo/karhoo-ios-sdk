@@ -33,7 +33,7 @@ final class AuthRevokeMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 2)
+        waitForExpectations(timeout: 20)
     }
 
     /**
@@ -51,6 +51,6 @@ final class AuthRevokeMethodSpec: XCTestCase {
             expectation.fulfill()
         })
 
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 10)
     }
 }
