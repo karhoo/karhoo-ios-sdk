@@ -23,7 +23,7 @@ class LoyaltyUtils {
         loyaltyProviderRequest.requestAndDecode(payload: nil,
                                                 endpoint: .loyaltyStatus(identifier: paymentProvider.loyaltyProgamme.id),
                                                 callback: { (result: Result<LoyaltyStatus>) in
-            guard let status = result.successValue()
+            guard let status = result.getSuccessValue()
             else {
                 return
             }

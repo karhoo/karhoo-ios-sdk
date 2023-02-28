@@ -25,9 +25,9 @@ public struct Place: KarhooCodableModel {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        self.placeId = (try? container.decode(String.self, forKey: .placeId)) ?? ""
-        self.displayAddress = (try? container.decode(String.self, forKey: .displayAddress)) ?? ""
-        self.poiDetailsType = (try? container.decode(PoiDetailsType.self,
+        self.placeId = (try? container.decodeIfPresent(String.self, forKey: .placeId)) ?? ""
+        self.displayAddress = (try? container.decodeIfPresent(String.self, forKey: .displayAddress)) ?? ""
+        self.poiDetailsType = (try? container.decodeIfPresent(PoiDetailsType.self,
                                                      forKey: .poiDetailsType)) ?? .notSetDetailsType
     }
 

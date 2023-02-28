@@ -54,15 +54,15 @@ public struct LocationInfoAddress: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayAddress = (try? container.decode(String.self, forKey: .displayAddress)) ?? ""
-        self.lineOne = (try? container.decode(String.self, forKey: .lineOne)) ?? ""
-        self.lineTwo = (try? container.decode(String.self, forKey: .lineTwo)) ?? ""
-        self.buildingNumber = (try? container.decode(String.self, forKey: .buildingNumber)) ?? ""
-        self.streetName = (try? container.decode(String.self, forKey: .streetName)) ?? ""
-        self.city = (try? container.decode(String.self, forKey: .city)) ?? ""
-        self.postalCode = (try? container.decode(String.self, forKey: .postalCode)) ?? ""
-        self.region = (try? container.decode(String.self, forKey: .region)) ?? ""
-        self.countryCode = (try? container.decode(String.self, forKey: .countryCode)) ?? ""
+        self.displayAddress = (try? container.decodeIfPresent(String.self, forKey: .displayAddress)) ?? ""
+        self.lineOne = (try? container.decodeIfPresent(String.self, forKey: .lineOne)) ?? ""
+        self.lineTwo = (try? container.decodeIfPresent(String.self, forKey: .lineTwo)) ?? ""
+        self.buildingNumber = (try? container.decodeIfPresent(String.self, forKey: .buildingNumber)) ?? ""
+        self.streetName = (try? container.decodeIfPresent(String.self, forKey: .streetName)) ?? ""
+        self.city = (try? container.decodeIfPresent(String.self, forKey: .city)) ?? ""
+        self.postalCode = (try? container.decodeIfPresent(String.self, forKey: .postalCode)) ?? ""
+        self.region = (try? container.decodeIfPresent(String.self, forKey: .region)) ?? ""
+        self.countryCode = (try? container.decodeIfPresent(String.self, forKey: .countryCode)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

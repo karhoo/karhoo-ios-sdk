@@ -26,8 +26,8 @@ public struct FleetRating: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.count = (try? container.decode(Int.self, forKey: .count)) ?? 0
-        self.score = (try? container.decode(Int.self, forKey: .score)) ?? 0
+        self.count = (try? container.decodeIfPresent(Int.self, forKey: .count)) ?? 0
+        self.score = (try? container.decodeIfPresent(Int.self, forKey: .score)) ?? 0
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -32,9 +32,9 @@ public struct TripFare: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.total = (try? container.decode(Int.self, forKey: .total)) ?? 0
-        self.currency = (try? container.decode(String.self, forKey: .currency)) ?? ""
-        self.gratuityPercent = (try? container.decode(Int.self, forKey: .gratuityPercent)) ?? 0
+        self.total = (try? container.decodeIfPresent(Int.self, forKey: .total)) ?? 0
+        self.currency = (try? container.decodeIfPresent(String.self, forKey: .currency)) ?? ""
+        self.gratuityPercent = (try? container.decodeIfPresent(Int.self, forKey: .gratuityPercent)) ?? 0
     }
 
     public func encode(to encoder: Encoder) throws {

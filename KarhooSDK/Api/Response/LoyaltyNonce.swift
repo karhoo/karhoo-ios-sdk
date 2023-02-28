@@ -22,7 +22,7 @@ public struct LoyaltyNonce: KarhooCodableModel {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.nonce = (try? container.decode(String.self, forKey: .nonce)) ?? ""
+        self.nonce = (try? container.decodeIfPresent(String.self, forKey: .nonce)) ?? ""
     }
     
     public func encode(to encoder: Encoder) throws {

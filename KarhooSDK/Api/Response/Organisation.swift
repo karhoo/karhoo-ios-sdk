@@ -24,9 +24,9 @@ public struct Organisation: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
-        self.name = (try? container.decode(String.self, forKey: .name)) ?? ""
-        self.roles = (try? container.decode([String].self, forKey: .roles)) ?? []
+        self.id = (try? container.decodeIfPresent(String.self, forKey: .id)) ?? ""
+        self.name = (try? container.decodeIfPresent(String.self, forKey: .name)) ?? ""
+        self.roles = (try? container.decodeIfPresent([String].self, forKey: .roles)) ?? []
     }
 
     public func encode(to encoder: Encoder) throws {

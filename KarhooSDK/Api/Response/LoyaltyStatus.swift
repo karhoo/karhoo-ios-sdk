@@ -30,9 +30,9 @@ public struct LoyaltyStatus: KarhooCodableModel {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.balance = (try? container.decode(Int.self, forKey: .balance)) ?? 0
-        self.canBurn = (try? container.decode(Bool.self, forKey: .canBurn)) ?? false
-        self.canEarn = (try? container.decode(Bool.self, forKey: .canEarn)) ?? false
+        self.balance = (try? container.decodeIfPresent(Int.self, forKey: .balance)) ?? 0
+        self.canBurn = (try? container.decodeIfPresent(Bool.self, forKey: .canBurn)) ?? false
+        self.canEarn = (try? container.decodeIfPresent(Bool.self, forKey: .canEarn)) ?? false
     }
     
     public func encode(to encoder: Encoder) throws {

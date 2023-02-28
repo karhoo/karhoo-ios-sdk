@@ -26,9 +26,9 @@ public struct PoiDetails: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.iata = (try? container.decode(String.self, forKey: .iata)) ?? ""
-        self.terminal = (try? container.decode(String.self, forKey: .terminal)) ?? ""
-        self.type = (try? container.decode(PoiDetailsType.self, forKey: .type)) ?? .notSetDetailsType
+        self.iata = (try? container.decodeIfPresent(String.self, forKey: .iata)) ?? ""
+        self.terminal = (try? container.decodeIfPresent(String.self, forKey: .terminal)) ?? ""
+        self.type = (try? container.decodeIfPresent(PoiDetailsType.self, forKey: .type)) ?? .notSetDetailsType
     }
 
     public func encode(to encoder: Encoder) throws {

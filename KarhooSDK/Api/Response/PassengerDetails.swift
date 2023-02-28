@@ -39,11 +39,11 @@ public struct PassengerDetails: KarhooCodableModel, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.firstName = (try? container.decode(String.self, forKey: .firstName)) ?? ""
-        self.lastName = (try? container.decode(String.self, forKey: .lastName)) ?? ""
-        self.email = (try? container.decode(String.self, forKey: .email)) ?? ""
-        self.phoneNumber = (try? container.decode(String.self, forKey: .phoneNumber)) ?? ""
-        self.locale = (try? container.decode(String.self, forKey: .locale)) ?? ""
+        self.firstName = (try? container.decodeIfPresent(String.self, forKey: .firstName)) ?? ""
+        self.lastName = (try? container.decodeIfPresent(String.self, forKey: .lastName)) ?? ""
+        self.email = (try? container.decodeIfPresent(String.self, forKey: .email)) ?? ""
+        self.phoneNumber = (try? container.decodeIfPresent(String.self, forKey: .phoneNumber)) ?? ""
+        self.locale = (try? container.decodeIfPresent(String.self, forKey: .locale)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

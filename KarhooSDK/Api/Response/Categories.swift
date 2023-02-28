@@ -19,7 +19,7 @@ public struct Categories: KarhooCodableModel, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.categories = (try? container.decode([String].self, forKey: .categories)) ?? []
+        self.categories = (try? container.decodeIfPresent([String].self, forKey: .categories)) ?? []
     }
 
     public func encode(to encoder: Encoder) throws {

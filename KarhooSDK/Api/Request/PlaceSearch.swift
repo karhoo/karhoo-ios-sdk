@@ -30,8 +30,8 @@ public struct PlaceSearch: KarhooCodableModel, Equatable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.position = (try? container.decode(Position.self, forKey: .position)) ?? Position()
-        self.query = (try? container.decode(String.self, forKey: .query)) ?? ""
-        self.sessionToken = (try? container.decode(String.self, forKey: .sessionToken)) ?? ""
+        self.position = (try? container.decodeIfPresent(Position.self, forKey: .position)) ?? Position()
+        self.query = (try? container.decodeIfPresent(String.self, forKey: .query)) ?? ""
+        self.sessionToken = (try? container.decodeIfPresent(String.self, forKey: .sessionToken)) ?? ""
     }
 }

@@ -19,7 +19,7 @@ public struct ServiceWaiting: KarhooCodableModel {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.minutes = (try? container.decode(Int.self, forKey: .minutes)) ?? 0
+        self.minutes = (try? container.decodeIfPresent(Int.self, forKey: .minutes)) ?? 0
     }
     
     public func encode(to encoder: Encoder) throws {

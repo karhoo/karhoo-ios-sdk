@@ -31,10 +31,10 @@ public struct MeetingPoint: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.position = (try? container.decode(Position.self, forKey: .position)) ?? Position()
-        self.instructions = (try? container.decode(String.self, forKey: .instructions)) ?? ""
-        self.type = (try? container.decode(MeetingPointType.self, forKey: .type)) ?? .notSet
-        self.note = (try? container.decode(String.self, forKey: .note)) ?? ""
+        self.position = (try? container.decodeIfPresent(Position.self, forKey: .position)) ?? Position()
+        self.instructions = (try? container.decodeIfPresent(String.self, forKey: .instructions)) ?? ""
+        self.type = (try? container.decodeIfPresent(MeetingPointType.self, forKey: .type)) ?? .notSet
+        self.note = (try? container.decodeIfPresent(String.self, forKey: .note)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

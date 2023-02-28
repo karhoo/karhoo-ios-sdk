@@ -26,8 +26,8 @@ public struct LoyaltyConversion: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.version = (try? container.decode(String.self, forKey: .version)) ?? ""
-        self.rates = (try? container.decode([LoyaltyRates].self, forKey: .rates)) ?? []
+        self.version = (try? container.decodeIfPresent(String.self, forKey: .version)) ?? ""
+        self.rates = (try? container.decodeIfPresent([LoyaltyRates].self, forKey: .rates)) ?? []
     }
 
     public func encode(to encoder: Encoder) throws {

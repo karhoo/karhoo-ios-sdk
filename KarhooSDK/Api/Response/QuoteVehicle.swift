@@ -43,11 +43,11 @@ public struct QuoteVehicle: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.vehicleClass = (try? container.decode(String.self, forKey: .vehicleClass)) ?? ""
-        self.type = (try? container.decode(String.self, forKey: .type)) ?? ""
-        self.tags = (try? container.decode(Array.self, forKey: .tags)) ?? []
-        self.qta = (try? container.decode(QuoteQta.self, forKey: .qta)) ?? QuoteQta()
-        self.passengerCapacity = (try? container.decode(Int.self, forKey: .passengerCapacity)) ?? 0
-        self.luggageCapacity = (try? container.decode(Int.self, forKey: .luggageCapacity)) ?? 0
+        self.vehicleClass = (try? container.decodeIfPresent(String.self, forKey: .vehicleClass)) ?? ""
+        self.type = (try? container.decodeIfPresent(String.self, forKey: .type)) ?? ""
+        self.tags = (try? container.decodeIfPresent(Array.self, forKey: .tags)) ?? []
+        self.qta = (try? container.decodeIfPresent(QuoteQta.self, forKey: .qta)) ?? QuoteQta()
+        self.passengerCapacity = (try? container.decodeIfPresent(Int.self, forKey: .passengerCapacity)) ?? 0
+        self.luggageCapacity = (try? container.decodeIfPresent(Int.self, forKey: .luggageCapacity)) ?? 0
     }
 }

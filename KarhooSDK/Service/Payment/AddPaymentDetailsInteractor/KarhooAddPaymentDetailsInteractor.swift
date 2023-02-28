@@ -34,7 +34,7 @@ final class KarhooAddPaymentDetailsInteractor: AddPaymentDetailsInteractor {
         requestSender.requestAndDecode(payload: payload,
                                        endpoint: APIEndpoint.addPaymentDetails,
                                        callback: {  [weak self] (result: Result<Nonce>) in
-                                        if let nonce = result.successValue() {
+                                        if let nonce = result.getSuccessValue() {
                                             self?.userDataStore.updateCurrentUserNonce(nonce: nonce)
                                         }
 

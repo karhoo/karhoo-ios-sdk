@@ -38,9 +38,9 @@ final class KarhooPaymentProviderInteractor: PaymentProviderInteractor {
                 return providerCallback(result)
             }
             
-            if let program = result.successValue()?.loyaltyProgamme,
+            if let program = result.getSuccessValue()?.loyaltyProgamme,
                !program.id.isEmpty {
-                LoyaltyUtils.updateLoyaltyStatusFor(paymentProvider: result.successValue(),
+                LoyaltyUtils.updateLoyaltyStatusFor(paymentProvider: result.getSuccessValue(),
                                                     userDataStore: self.userDataStore,
                                                     loyaltyProviderRequest: self.loyaltyProviderRequestSender)
             }
@@ -54,7 +54,7 @@ final class KarhooPaymentProviderInteractor: PaymentProviderInteractor {
     }
 
     private func persistProvider(_ result: Result<PaymentProvider>) {
-        guard let paymentProvider = result.successValue() else {
+        guard let paymentProvider = result.getSuccessValue() else {
             return
         }
 

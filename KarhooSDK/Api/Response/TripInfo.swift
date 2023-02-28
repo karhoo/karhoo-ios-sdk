@@ -91,38 +91,38 @@ public struct TripInfo: KarhooCodableModel {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        self.tripId = (try? container.decode(String.self, forKey: .tripId)) ?? ""
-        self.passengers = (try? container.decode(Passengers.self, forKey: .passengers)) ?? Passengers()
-        self.followCode = (try? container.decode(String.self, forKey: .followCode)) ?? ""
-        self.displayId = (try? container.decode(String.self, forKey: .displayId)) ?? ""
-        self.origin = (try? container.decode(TripLocationDetails.self, forKey: .origin)) ?? TripLocationDetails()
-        self.destination = (try? container.decode(TripLocationDetails.self,
+        self.tripId = (try? container.decodeIfPresent(String.self, forKey: .tripId)) ?? ""
+        self.passengers = (try? container.decodeIfPresent(Passengers.self, forKey: .passengers)) ?? Passengers()
+        self.followCode = (try? container.decodeIfPresent(String.self, forKey: .followCode)) ?? ""
+        self.displayId = (try? container.decodeIfPresent(String.self, forKey: .displayId)) ?? ""
+        self.origin = (try? container.decodeIfPresent(TripLocationDetails.self, forKey: .origin)) ?? TripLocationDetails()
+        self.destination = (try? container.decodeIfPresent(TripLocationDetails.self,
                                                   forKey: .destination)) ?? TripLocationDetails()
-        self.state = (try? container.decode(TripState.self, forKey: .state)) ?? .unknown
-        self.stateDetails = (try? container.decode(StateDetails.self, forKey: .stateDetails)) ?? .failure
-        self.tripQuote = (try? container.decode(TripQuote.self, forKey: .quote)) ?? TripQuote()
-        self.vehicle = (try? container.decode(Vehicle.self, forKey: .vehicle)) ?? Vehicle()
-        self.fleetInfo = (try? container.decode(FleetInfo.self, forKey: .fleetInfo)) ?? FleetInfo()
-        self.flightNumber = (try? container.decode(String.self, forKey: .flightNumber)) ?? ""
-        self.trainNumber = (try? container.decode(String.self, forKey: .trainNumber)) ?? ""
-        self.trainTime = (try? container.decode(String.self, forKey: .trainTime)) ?? ""
-        self.meetingPoint = (try? container.decode(MeetingPoint.self, forKey: .meetingPoint))
-        self.fare = (try? container.decode(TripFare.self, forKey: .fare)) ?? TripFare()
-        self.costCenterReference = (try? container.decode(String.self, forKey: .costCenterReference)) ?? ""
-        self.partnerTravellerID = (try? container.decode(String.self, forKey: .partnerTravellerID)) ?? ""
-        self.partnerTripID = (try? container.decode(String.self, forKey: .partnerTripID)) ?? ""
-        self.agent = (try? container.decode(Agent.self, forKey: .agent)) ?? Agent()
-        self.cancelledBy = (try? container.decode(CancelledByPayer.self, forKey: .cancelledBy)) ?? CancelledByPayer()
-        self.serviceAgreements = (try? container.decode(ServiceAgreements.self, forKey: .serviceAgreements))
+        self.state = (try? container.decodeIfPresent(TripState.self, forKey: .state)) ?? .unknown
+        self.stateDetails = (try? container.decodeIfPresent(StateDetails.self, forKey: .stateDetails)) ?? .failure
+        self.tripQuote = (try? container.decodeIfPresent(TripQuote.self, forKey: .quote)) ?? TripQuote()
+        self.vehicle = (try? container.decodeIfPresent(Vehicle.self, forKey: .vehicle)) ?? Vehicle()
+        self.fleetInfo = (try? container.decodeIfPresent(FleetInfo.self, forKey: .fleetInfo)) ?? FleetInfo()
+        self.flightNumber = (try? container.decodeIfPresent(String.self, forKey: .flightNumber)) ?? ""
+        self.trainNumber = (try? container.decodeIfPresent(String.self, forKey: .trainNumber)) ?? ""
+        self.trainTime = (try? container.decodeIfPresent(String.self, forKey: .trainTime)) ?? ""
+        self.meetingPoint = (try? container.decodeIfPresent(MeetingPoint.self, forKey: .meetingPoint))
+        self.fare = (try? container.decodeIfPresent(TripFare.self, forKey: .fare)) ?? TripFare()
+        self.costCenterReference = (try? container.decodeIfPresent(String.self, forKey: .costCenterReference)) ?? ""
+        self.partnerTravellerID = (try? container.decodeIfPresent(String.self, forKey: .partnerTravellerID)) ?? ""
+        self.partnerTripID = (try? container.decodeIfPresent(String.self, forKey: .partnerTripID)) ?? ""
+        self.agent = (try? container.decodeIfPresent(Agent.self, forKey: .agent)) ?? Agent()
+        self.cancelledBy = (try? container.decodeIfPresent(CancelledByPayer.self, forKey: .cancelledBy)) ?? CancelledByPayer()
+        self.serviceAgreements = (try? container.decodeIfPresent(ServiceAgreements.self, forKey: .serviceAgreements))
         
-        let utcDateBooked = (try? container.decode(String.self, forKey: .dateBooked))
+        let utcDateBooked = (try? container.decodeIfPresent(String.self, forKey: .dateBooked))
         if let utcDateBooked = utcDateBooked {
             self.dateBooked = KarhooNetworkDateFormatter(formatType: .booking).toDate(from: utcDateBooked)
         } else {
             self.dateBooked = nil
         }
         
-        let utcDateScheduled = (try? container.decode(String.self, forKey: .dateScheduled))
+        let utcDateScheduled = (try? container.decodeIfPresent(String.self, forKey: .dateScheduled))
         if let utcDateScheduled = utcDateScheduled {
             self.dateScheduled = KarhooNetworkDateFormatter(formatType: .booking).toDate(from: utcDateScheduled)
         } else {

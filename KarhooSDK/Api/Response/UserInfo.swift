@@ -52,17 +52,17 @@ public struct UserInfo: KarhooCodableModel, Equatable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.userId = try container.decode(String.self, forKey: .userId)
-        self.firstName = (try? container.decode(String.self, forKey: .firstName)) ?? ""
-        self.lastName = (try? container.decode(String.self, forKey: .lastName)) ?? ""
-        self.email = (try? container.decode(String.self, forKey: .email)) ?? ""
-        self.mobileNumber = (try? container.decode(String.self, forKey: .mobileNumber)) ?? ""
-        self.locale = (try? container.decode(String.self, forKey: .locale)) ?? ""
-        self.metadata = (try? container.decode(String.self, forKey: .metadata)) ?? ""
-        self.organisations = (try? container.decode([Organisation].self, forKey: .organisations)) ?? []
-        self.primaryOrganisationID = (try? container.decode(String.self, forKey: .primaryOrganisationID)) ?? ""
-        self.avatarURL = (try? container.decode(String.self, forKey: .avatarURL)) ?? ""
-        self.nonce = (try? container.decode(Nonce.self, forKey: .nonce)) ?? nil
-        self.paymentProvider = (try? container.decode(PaymentProvider.self, forKey: .paymentProvider)) ?? nil
+        self.firstName = (try? container.decodeIfPresent(String.self, forKey: .firstName)) ?? ""
+        self.lastName = (try? container.decodeIfPresent(String.self, forKey: .lastName)) ?? ""
+        self.email = (try? container.decodeIfPresent(String.self, forKey: .email)) ?? ""
+        self.mobileNumber = (try? container.decodeIfPresent(String.self, forKey: .mobileNumber)) ?? ""
+        self.locale = (try? container.decodeIfPresent(String.self, forKey: .locale)) ?? ""
+        self.metadata = (try? container.decodeIfPresent(String.self, forKey: .metadata)) ?? ""
+        self.organisations = (try? container.decodeIfPresent([Organisation].self, forKey: .organisations)) ?? []
+        self.primaryOrganisationID = (try? container.decodeIfPresent(String.self, forKey: .primaryOrganisationID)) ?? ""
+        self.avatarURL = (try? container.decodeIfPresent(String.self, forKey: .avatarURL)) ?? ""
+        self.nonce = (try? container.decodeIfPresent(Nonce.self, forKey: .nonce)) ?? nil
+        self.paymentProvider = (try? container.decodeIfPresent(PaymentProvider.self, forKey: .paymentProvider)) ?? nil
         if container.contains(.upstream) {
             let upstream = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .upstream)
             self.externalId = (try? upstream.decode(String.self, forKey: .externalId)) ?? ""

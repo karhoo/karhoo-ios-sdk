@@ -34,7 +34,7 @@ final class KarhooGetNonceInteractor: GetNonceInteractor {
         getNonceRequest.requestAndDecode(payload: payload,
                                          endpoint: APIEndpoint.getNonce,
                                          callback: { [weak self] (result: Result<Nonce>) in
-                                            self?.userDataStore.updateCurrentUserNonce(nonce: result.successValue())
+                                            self?.userDataStore.updateCurrentUserNonce(nonce: result.getSuccessValue())
                                             self?.getNonceCallback?(result)
         })
     }

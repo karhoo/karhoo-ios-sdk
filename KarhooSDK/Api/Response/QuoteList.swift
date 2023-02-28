@@ -38,11 +38,11 @@ public struct QuoteList: KarhooCodableModel {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.quotes = (try? container.decode([Quote].self, forKey: .quotes)) ?? []
+        self.quotes = (try? container.decodeIfPresent([Quote].self, forKey: .quotes)) ?? []
         self.listId = try container.decode(String.self, forKey: .listId)
-        self.status = (try? container.decode(QuoteStatus.self, forKey: .status)) ?? .default
-        self.validity = (try? container.decode(Int.self, forKey: .validity)) ?? 0
-        self.availability = (try? container.decode(Availability.self, forKey: .availability)) ?? Availability()
+        self.status = (try? container.decodeIfPresent(QuoteStatus.self, forKey: .status)) ?? .default
+        self.validity = (try? container.decodeIfPresent(Int.self, forKey: .validity)) ?? 0
+        self.availability = (try? container.decodeIfPresent(Availability.self, forKey: .availability)) ?? Availability()
     }
 
     public func encode(to encoder: Encoder) throws {

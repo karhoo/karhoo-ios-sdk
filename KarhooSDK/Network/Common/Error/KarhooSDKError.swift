@@ -35,13 +35,13 @@ struct KarhooSDKError: KarhooError, KarhooCodableModel {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        code = (try? container.decode(String.self, forKey: .code)) ?? ""
-        let message = (try? container.decode(String.self, forKey: .message)) ?? ""
-        let userMessage = (try? container.decode(String.self, forKey: .userMessage))
+        code = (try? container.decodeIfPresent(String.self, forKey: .code)) ?? ""
+        let message = (try? container.decodeIfPresent(String.self, forKey: .message)) ?? ""
+        let userMessage = (try? container.decodeIfPresent(String.self, forKey: .userMessage))
 
         self.message = message
         self.userMessage = userMessage ?? message
-        self.slug = (try? container.decode(String.self, forKey: .slug)) ?? ""
+        self.slug = (try? container.decodeIfPresent(String.self, forKey: .slug)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

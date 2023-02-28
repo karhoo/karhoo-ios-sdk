@@ -26,7 +26,7 @@ public struct QuoteQta: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.highMinutes = (try? container.decode(Int.self, forKey: .highMinutes)) ?? 0
-        self.lowMinutes = (try? container.decode(Int.self, forKey: .lowMinutes)) ?? 0
+        self.highMinutes = (try? container.decodeIfPresent(Int.self, forKey: .highMinutes)) ?? 0
+        self.lowMinutes = (try? container.decodeIfPresent(Int.self, forKey: .lowMinutes)) ?? 0
     }
 }

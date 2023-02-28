@@ -46,13 +46,13 @@ public struct FleetInfo: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fleetId = (try? container.decode(String.self, forKey: .fleetId)) ?? ""
-        self.name = (try? container.decode(String.self, forKey: .name)) ?? ""
-        self.logoUrl = (try? container.decode(String.self, forKey: .logoUrl)) ?? ""
-        self.description = (try? container.decode(String.self, forKey: .description)) ?? ""
-        self.phoneNumber = (try? container.decode(String.self, forKey: .phoneNumber)) ?? ""
-        self.termsConditionsUrl = (try? container.decode(String.self, forKey: .termsConditionsUrl)) ?? ""
-        self.email = (try? container.decode(String.self, forKey: .email)) ?? ""
+        self.fleetId = (try? container.decodeIfPresent(String.self, forKey: .fleetId)) ?? ""
+        self.name = (try? container.decodeIfPresent(String.self, forKey: .name)) ?? ""
+        self.logoUrl = (try? container.decodeIfPresent(String.self, forKey: .logoUrl)) ?? ""
+        self.description = (try? container.decodeIfPresent(String.self, forKey: .description)) ?? ""
+        self.phoneNumber = (try? container.decodeIfPresent(String.self, forKey: .phoneNumber)) ?? ""
+        self.termsConditionsUrl = (try? container.decodeIfPresent(String.self, forKey: .termsConditionsUrl)) ?? ""
+        self.email = (try? container.decodeIfPresent(String.self, forKey: .email)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

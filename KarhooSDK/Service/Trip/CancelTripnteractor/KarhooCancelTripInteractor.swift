@@ -35,7 +35,7 @@ final class KarhooCancelTripInteractor: CancelTripInteractor {
         requestSender.request(payload: payload,
                               endpoint: endpoint(identifier: tripCancellation.tripId),
                               callback: { result in
-                                guard result.successValue(orErrorCallback: callback) != nil,
+                                guard result.getSuccessValue(orErrorCallback: callback) != nil,
                                     let resultValue = KarhooVoid() as? T else { return }
                                 callback(Result.success(result: resultValue))
         })

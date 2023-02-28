@@ -27,8 +27,8 @@ public struct FareComponent: Codable, Equatable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.total = (try? container.decode(Double.self, forKey: .total)) ?? 0.0
-        self.currency = (try? container.decode(String.self, forKey: .currency)) ?? ""
+        self.total = (try? container.decodeIfPresent(Double.self, forKey: .total)) ?? 0.0
+        self.currency = (try? container.decodeIfPresent(String.self, forKey: .currency)) ?? ""
     }
 
     public func encode(to encoder: Encoder) throws {

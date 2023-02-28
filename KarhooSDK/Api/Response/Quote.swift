@@ -54,16 +54,16 @@ public struct Quote: KarhooCodableModel, Equatable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.quoteType = (try? container.decode(QuoteType.self, forKey: .quoteType)) ?? .estimated
-        self.pickUpType = (try? container.decode(PickUpType.self, forKey: .pickUpType)) ?? .default
-        self.source = (try? container.decode(QuoteSource.self, forKey: .source)) ?? .fleet
+        self.quoteType = (try? container.decodeIfPresent(QuoteType.self, forKey: .quoteType)) ?? .estimated
+        self.pickUpType = (try? container.decodeIfPresent(PickUpType.self, forKey: .pickUpType)) ?? .default
+        self.source = (try? container.decodeIfPresent(QuoteSource.self, forKey: .source)) ?? .fleet
 
-        self.id = (try? container.decode(String.self, forKey: .id)) ?? ""
-        self.fleet = (try? container.decode(Fleet.self, forKey: .fleet)) ?? Fleet()
-        self.vehicle = (try? container.decode(QuoteVehicle.self, forKey: .vehicle)) ?? QuoteVehicle()
-        self.validity = (try? container.decode(Int.self, forKey: .validity)) ?? 0
-        self.price = (try? container.decode(QuotePrice.self, forKey: .price)) ?? QuotePrice()
-        self.serviceLevelAgreements = (try? container.decode(ServiceAgreements.self, forKey: .serviceLevelAgreements))
+        self.id = (try? container.decodeIfPresent(String.self, forKey: .id)) ?? ""
+        self.fleet = (try? container.decodeIfPresent(Fleet.self, forKey: .fleet)) ?? Fleet()
+        self.vehicle = (try? container.decodeIfPresent(QuoteVehicle.self, forKey: .vehicle)) ?? QuoteVehicle()
+        self.validity = (try? container.decodeIfPresent(Int.self, forKey: .validity)) ?? 0
+        self.price = (try? container.decodeIfPresent(QuotePrice.self, forKey: .price)) ?? QuotePrice()
+        self.serviceLevelAgreements = (try? container.decodeIfPresent(ServiceAgreements.self, forKey: .serviceLevelAgreements))
     }
 
     public static func == (lhs: Quote, rhs: Quote) -> Bool {
