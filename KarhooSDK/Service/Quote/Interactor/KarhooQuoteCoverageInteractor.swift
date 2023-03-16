@@ -21,7 +21,12 @@ final class KarhooQuoteCoverageInteractor: QuoteCoverageInteractor {
     }
     
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
-        coverageRequestSender.requestAndDecode(payload: coverageRequest, endpoint: .quoteCoverage, callback: callback)
+        guard let coverageRequest else { return }
+        coverageRequestSender.requestAndDecode(
+            payload: nil,
+            endpoint: .quoteCoverage(coverageRequest),
+            callback: callback
+        )
     }
     
     func cancel() {
