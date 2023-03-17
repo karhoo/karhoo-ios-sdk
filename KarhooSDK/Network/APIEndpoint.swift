@@ -39,7 +39,7 @@ enum APIEndpoint {
     case adyenPaymentsDetails(paymentAPIVersion: String)
     case adyenPublicKey
     case adyenClientKey
-    case quoteCoverage
+    case quoteCoverage(coverageCheckRequest: QuoteCoverageRequest)
     case vehicleImageRules
     case verifyQuote(quoteID: String)
     case loyaltyStatus(identifier: String)
@@ -140,8 +140,8 @@ enum APIEndpoint {
             return "/payments/adyen/public-key"
         case .adyenClientKey:
             return "/payments/adyen/client-key"
-        case .quoteCoverage:
-            return "/quotes/coverage"
+        case .quoteCoverage(let coverageRequest):
+            return "/quotes/coverage?latitude=\(coverageRequest.latitude)&longitude=\(coverageRequest.longitude)&local_time_of_pickup=\(coverageRequest.localTimeOfPickup ?? "")"
         case .vehicleImageRules:
             return "https://cdn.karhoo.com/s/images/vehicles/config.json"
         case .verifyQuote(let quoteID):
