@@ -21,8 +21,6 @@ final class KarhooQuoteCoverageInteractorSpec: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        quoteCoerageRequestModel = QuoteCoverageRequest(latitude: "", longitude: "", localTimeOfPickup: "")
-
         mockQuoteCoverageRequest = MockRequestSender()
         
         mockPayload = QuoteCoverageRequest(latitude: "123", longitude: "456", localTimeOfPickup: "10.00")
@@ -41,9 +39,9 @@ final class KarhooQuoteCoverageInteractorSpec: XCTestCase {
             _ = response as Result<QuoteCoverage>
         })
 
-        mockQuoteCoverageRequest.assertRequestSendAndDecoded(endpoint: .quoteCoverage(quoteCoerageRequestModel),
+        mockQuoteCoverageRequest.assertRequestSendAndDecoded(endpoint: .quoteCoverage(mockPayload),
                                                               method: .get,
-                                                              payload: mockPayload)
+                                                              payload: nil)
     }
 
     /**
