@@ -38,7 +38,7 @@ final class KarhooQuoteCoverageInteractorSpec: XCTestCase {
             _ = response as Result<QuoteCoverage>
         })
 
-        mockQuoteCoverageRequest.assertRequestSendAndDecoded(endpoint: .quoteCoverage(mockPayload),
+        mockQuoteCoverageRequest.assertRequestSendAndDecoded(endpoint: .quoteCoverage(coverageCheckRequest: mockPayload),
                                                               method: .get,
                                                               payload: nil)
     }

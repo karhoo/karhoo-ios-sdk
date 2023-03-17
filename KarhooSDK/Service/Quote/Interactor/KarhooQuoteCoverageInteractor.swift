@@ -24,7 +24,7 @@ final class KarhooQuoteCoverageInteractor: QuoteCoverageInteractor {
         guard let coverageRequest else { return }
         coverageRequestSender.requestAndDecode(
             payload: nil,
-            endpoint: .quoteCoverage(coverageRequest),
+            endpoint: .quoteCoverage(coverageCheckRequest: coverageRequest),
             callback: callback
         )
     }
