@@ -39,7 +39,7 @@ enum APIEndpoint {
     case adyenPaymentsDetails(paymentAPIVersion: String)
     case adyenPublicKey
     case adyenClientKey
-    case quoteCoverage(QuoteCoverageRequest)
+    case quoteCoverage(coverageCheckRequest: QuoteCoverageRequest)
     case vehicleImageRules
     case verifyQuote(quoteID: String)
     case loyaltyStatus(identifier: String)
