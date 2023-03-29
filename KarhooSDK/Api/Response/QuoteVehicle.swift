@@ -14,16 +14,18 @@ public struct QuoteVehicle: Codable {
     public let type: String
     public let tags: [String]
     public let qta: QuoteQta
-    public let passengerCapacity: Int
-    public let luggageCapacity: Int
+    public let passengerCapacity: Int?
+    public let luggageCapacity: Int?
     
 
-    public init(vehicleClass: String = "",
-                type: String = "",
-                tags: [String] = [],
-                qta: QuoteQta = QuoteQta(),
-                passengerCapacity: Int = 0,
-                luggageCapacity: Int = 0) {
+    public init(
+        vehicleClass: String = "",
+        type: String = "",
+        tags: [String] = [],
+        qta: QuoteQta = QuoteQta(),
+        passengerCapacity: Int? = nil,
+        luggageCapacity: Int? = nil
+    ) {
         self.vehicleClass = vehicleClass
         self.type = type
         self.tags = tags
@@ -47,7 +49,7 @@ public struct QuoteVehicle: Codable {
         self.type = (try? container.decodeIfPresent(String.self, forKey: .type)) ?? ""
         self.tags = (try? container.decodeIfPresent(Array.self, forKey: .tags)) ?? []
         self.qta = (try? container.decodeIfPresent(QuoteQta.self, forKey: .qta)) ?? QuoteQta()
-        self.passengerCapacity = (try? container.decodeIfPresent(Int.self, forKey: .passengerCapacity)) ?? 0
-        self.luggageCapacity = (try? container.decodeIfPresent(Int.self, forKey: .luggageCapacity)) ?? 0
+        self.passengerCapacity = (try? container.decodeIfPresent(Int.self, forKey: .passengerCapacity))
+        self.luggageCapacity = (try? container.decodeIfPresent(Int.self, forKey: .luggageCapacity))
     }
 }
