@@ -24,7 +24,7 @@ public struct BadgeImageRule: Codable {
     
     enum CodingKeys: String, CodingKey {
         case tags
-        case imagePath = "image_svg"
+        case imagePath = "image_png"
     }
 }
 
