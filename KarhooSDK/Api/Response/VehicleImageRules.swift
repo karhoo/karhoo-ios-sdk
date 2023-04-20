@@ -10,9 +10,21 @@ import Foundation
 
 public struct VehicleImageRules: Codable, KarhooCodableModel {
     public let rules: [VehicleImageRule]
-
+    public let badges: [BadgeImageRule]
+    
     enum CodingKeys: String, CodingKey {
         case rules = "mappings"
+        case badges = "badgeMappings"
+    }
+}
+
+public struct BadgeImageRule: Codable {
+    public let tags: [String]
+    public let imagePath: String
+    
+    enum CodingKeys: String, CodingKey {
+        case tags
+        case imagePath = "image_svg"
     }
 }
 
