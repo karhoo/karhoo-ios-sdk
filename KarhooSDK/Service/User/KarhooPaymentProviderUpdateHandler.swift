@@ -31,9 +31,6 @@ class KarhooPaymentProviderUpdateHandler: PaymentProviderUpdateHandler {
                 let paymentProvider = result.getSuccessValue()
                 guard let self = self else { return }
                 self.userDataStore.updatePaymentProvider(paymentProvider: paymentProvider)
-                if result.getSuccessValue()?.provider.type == .braintree {
-                    self.updateUserNonce(user: user)
-                }
                 LoyaltyUtils.updateLoyaltyStatusFor(
                     paymentProvider: paymentProvider,
                     userDataStore: self.userDataStore,
@@ -41,19 +38,5 @@ class KarhooPaymentProviderUpdateHandler: PaymentProviderUpdateHandler {
                 )
             }
         )
-    }
-
-    private func updateUserNonce(user: UserInfo) {
-        let payload = NonceRequestPayload(
-            payer: Payer(user: user),
-            organisationId: user.organisations.first?.id ?? ""
-        )
-
-        nonceRequestSender.requestAndDecode(
-            payload: payload,
-            endpoint: .getNonce
-        ) { [weak self] (result: Result<Nonce>) in
-            self?.userDataStore.updateCurrentUserNonce(nonce: result.getSuccessValue())
-        }
     }
 }

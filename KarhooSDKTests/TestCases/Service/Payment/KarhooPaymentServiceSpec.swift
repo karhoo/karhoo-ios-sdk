@@ -13,7 +13,6 @@ import XCTest
 class KarhooPaymentServiceSpec: XCTestCase {
 
     private var mockPaymentSDKTokenInteractor: MockPaymentSDKTokenInteractor!
-    private var mockGetNonceInteractor: MockGetNonceInteractor!
     private var mockAddPaymentDetailsInteractor: MockAddPaymentDetailsInteractor!
     private var mockPaymentProviderInteractor = MockPaymentProviderInteractor()
     private var mockAdyenPaymentMethodsInteractor = MockAdyenPaymentMethodsInteractor()
@@ -24,11 +23,9 @@ class KarhooPaymentServiceSpec: XCTestCase {
         super.setUp()
 
         mockPaymentSDKTokenInteractor = MockPaymentSDKTokenInteractor()
-        mockGetNonceInteractor = MockGetNonceInteractor()
         mockAddPaymentDetailsInteractor = MockAddPaymentDetailsInteractor()
 
         testObject = KarhooPaymentService(tokenInteractor: mockPaymentSDKTokenInteractor,
-                                          getNonceInteractor: mockGetNonceInteractor,
                                           addPaymentDetailsInteractor: mockAddPaymentDetailsInteractor,
                                           paymentProviderInteractor: mockPaymentProviderInteractor,
                                           adyenPaymentMethodsInteractor: mockAdyenPaymentMethodsInteractor)
@@ -70,49 +67,6 @@ class KarhooPaymentServiceSpec: XCTestCase {
 
         XCTAssert(error.equals(executeResult!.errorValue()!))
         XCTAssertNil(executeResult?.successValue()?.token)
-    }
-
-    /**
-     * Given:   Get nonce is called
-     *  When:   getNonceInteractor succeeds
-     *  Then:   succeess value should be propogated through callback
-     */
-    func testGetNonceSuccess() {
-        let mockPayload = NonceRequestPayloadMock().set(payer: Payer()).set(organisationId: "some").build()
-        let karhooCall = testObject.getNonce(nonceRequestPayload: mockPayload)
-
-        let mockNonceResponse = Nonce(nonce: "some_nonce")
-
-        var executeResult: Result<Nonce>?
-        karhooCall.execute(callback: { result in
-            executeResult = result
-        })
-
-        mockGetNonceInteractor.triggerSuccess(result: mockNonceResponse)
-
-        XCTAssertTrue(executeResult!.isSuccess())
-        XCTAssertEqual(mockNonceResponse.nonce, executeResult?.successValue()?.nonce)
-    }
-
-    /**
-     * Given:   Get nonce is called
-     *  When:   getNonceInteractor fails
-     *  Then:   An error should be sent through the callback
-     */
-    func testGetNonceFail() {
-        let mockPayload = NonceRequestPayloadMock().set(payer: Payer()).set(organisationId: "some").build()
-        let karhooCall = testObject.getNonce(nonceRequestPayload: mockPayload)
-
-        var executeResult: Result<Nonce>?
-        karhooCall.execute(callback: { result in
-            executeResult = result
-        })
-
-        let error = TestUtil.getRandomError()
-        mockGetNonceInteractor.triggerFail(error: error)
-
-        XCTAssert(error.equals(executeResult!.errorValue()!))
-        XCTAssertNil(executeResult?.successValue()?.nonce)
     }
 
     /**

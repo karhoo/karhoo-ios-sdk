@@ -11,7 +11,6 @@ import Foundation
 final class KarhooPaymentService: PaymentService {
 
     private let paymentSDKTokenInteractor: PaymentSDKTokenInteractor
-    private let getNonceInteractor: GetNonceInteractor
     private let addPaymentDetailsInteractor: AddPaymentDetailsInteractor
     private let paymentProviderInteractor: PaymentProviderInteractor
     private let adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor
@@ -22,7 +21,6 @@ final class KarhooPaymentService: PaymentService {
 
     init(
         tokenInteractor: PaymentSDKTokenInteractor = KarhooPaymentSDKTokenInteractor(),
-        getNonceInteractor: GetNonceInteractor = KarhooGetNonceInteractor(),
         addPaymentDetailsInteractor: AddPaymentDetailsInteractor = KarhooAddPaymentDetailsInteractor(),
         paymentProviderInteractor: PaymentProviderInteractor = KarhooPaymentProviderInteractor(),
         adyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor = KarhooAdyenPaymentMethodsInteractor(),
@@ -32,7 +30,6 @@ final class KarhooPaymentService: PaymentService {
         adyenClientKeyInteractor: AdyenClientKeyInteractor = KarhooAdyenClientKeyInteractor()
     ) {
         self.paymentSDKTokenInteractor = tokenInteractor
-        self.getNonceInteractor = getNonceInteractor
         self.addPaymentDetailsInteractor = addPaymentDetailsInteractor
         self.paymentProviderInteractor = paymentProviderInteractor
         self.adyenPaymentMethodsInteractor = adyenPaymentMethodsInteractor
@@ -50,11 +47,6 @@ final class KarhooPaymentService: PaymentService {
     func addPaymentDetails(addPaymentDetailsPayload: AddPaymentDetailsPayload) -> Call<Nonce> {
         addPaymentDetailsInteractor.set(addPaymentDetailsPayload: addPaymentDetailsPayload)
         return Call(executable: addPaymentDetailsInteractor)
-    }
-
-    func getNonce(nonceRequestPayload: NonceRequestPayload) -> Call<Nonce> {
-        getNonceInteractor.set(nonceRequestPayload: nonceRequestPayload)
-        return Call(executable: getNonceInteractor)
     }
     
     func getPaymentProvider() -> Call<PaymentProvider> {
