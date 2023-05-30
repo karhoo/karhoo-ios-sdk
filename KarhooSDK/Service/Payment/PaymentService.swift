@@ -12,8 +12,6 @@ public protocol PaymentService {
 
     func initialisePaymentSDK(paymentSDKTokenPayload: PaymentSDKTokenPayload) -> Call<PaymentSDKToken>
 
-    func getNonce(nonceRequestPayload: NonceRequestPayload) -> Call<Nonce>
-
     func addPaymentDetails(addPaymentDetailsPayload: AddPaymentDetailsPayload) -> Call<Nonce>
     
     func getPaymentProvider() -> Call<PaymentProvider>

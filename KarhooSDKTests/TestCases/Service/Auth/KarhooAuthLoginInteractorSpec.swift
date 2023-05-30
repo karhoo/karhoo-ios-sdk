@@ -110,28 +110,6 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
     }
 
     /**
-      * Given: Login successful and the payment provider is braintree
-      * When: Nonce succeeds
-      * Then: User should be updated
-      */
-    func testGetNonceSuccessAfterLogin() {
-        let successNonce = Nonce(nonce: "some_nonce",
-                                cardType: "Visa",
-                                lastFour: "1234")
-
-        triggerSuccessfulAuthLoginAndProfileFetch()
-        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
-        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
-
-        XCTAssertTrue(mockGetNonceRequestSender.requestAndDecodeCalled)
-
-        mockGetNonceRequestSender.triggerSuccessWithDecoded(value: successNonce)
-
-        XCTAssertTrue(mockUserDataStore.updateCurrentNonceCalled)
-        XCTAssertEqual("some_nonce", successNonce.nonce)
-    }
-
-    /**
      * Given: Login successful
      * When: provider call succeeds
      * Then: User should be updated
@@ -161,23 +139,6 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
         mockLoyaltyProviderRequest.triggerSuccessWithDecoded(value: loyaltyStatus)
 
         XCTAssertEqual("some", mockUserDataStore.updatedPaymentProvider?.loyaltyProgamme.id)
-    }
-
-    /**
-     * Given: Login successful and the payment provider is braintree
-     * When: Nonce fails
-     * Then: User should be updated
-     */
-    func testGetNonceFailsAfterSuccessfulLogin() {
-        triggerSuccessfulAuthLoginAndProfileFetch()
-        let paymentProvider = PaymentProvider(provider: Provider(id: "braintree"))
-        mockPaymentProviderRequest.triggerSuccessWithDecoded(value: paymentProvider)
-
-        mockGetNonceRequestSender.triggerFail(error: TestUtil.getRandomError())
-
-        XCTAssertTrue(mockGetNonceRequestSender.requestAndDecodeCalled)
-        XCTAssertTrue(mockUserDataStore.updateCurrentNonceCalled)
-        XCTAssertNil(mockUserDataStore.updateCurrentNonce)
     }
 
     private func triggerSuccessfulAuthLoginAndProfileFetch() {

@@ -125,16 +125,10 @@
 		09EE81F121528791004B2B09 /* Availability.json in Resources */ = {isa = PBXBuildFile; fileRef = 09EE81EE21528791004B2B09 /* Availability.json */; };
 		09EE81F221528791004B2B09 /* Quotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 09EE81EF21528791004B2B09 /* Quotes.json */; };
 		09F79E34223952F900D5B0B8 /* Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F79E33223952F900D5B0B8 /* Nonce.swift */; };
-		09F79E362239546E00D5B0B8 /* GetNonceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F79E352239546E00D5B0B8 /* GetNonceInteractor.swift */; };
-		09F79E382239547A00D5B0B8 /* KarhooGetNonceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F79E372239547A00D5B0B8 /* KarhooGetNonceInteractor.swift */; };
 		09F79E3A223955FF00D5B0B8 /* NonceRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F79E39223955FF00D5B0B8 /* NonceRequestPayload.swift */; };
 		09F79E3C2239564600D5B0B8 /* Payer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F79E3B2239564600D5B0B8 /* Payer.swift */; };
-		09F79E3F2239723200D5B0B8 /* KarhooGetNonceInteractorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F79E3E2239723200D5B0B8 /* KarhooGetNonceInteractorSpec.swift */; };
 		09F79E41223A63DA00D5B0B8 /* NonceRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F79E40223A63DA00D5B0B8 /* NonceRequestPayload.swift */; };
-		09F79E44223A99E700D5B0B8 /* GetNonceMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F79E43223A99E700D5B0B8 /* GetNonceMethodSpec.swift */; };
-		09F79E47223AAA6600D5B0B8 /* MockGetNonceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F79E46223AAA6600D5B0B8 /* MockGetNonceInteractor.swift */; };
 		09F79E48223AB40000D5B0B8 /* NonceRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F79E40223A63DA00D5B0B8 /* NonceRequestPayload.swift */; };
-		09F79E4B223ABD5B00D5B0B8 /* GetNonce.json in Resources */ = {isa = PBXBuildFile; fileRef = 09F79E4A223ABD5A00D5B0B8 /* GetNonce.json */; };
 		09F8ABE9214A9B1500E293B7 /* DriverTracking.json in Resources */ = {isa = PBXBuildFile; fileRef = 09F8ABE8214A9B1500E293B7 /* DriverTracking.json */; };
 		09F8ABEC214A9B5700E293B7 /* DriverTrackingMethodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F8ABEB214A9B5700E293B7 /* DriverTrackingMethodSpec.swift */; };
 		09F8ABEE214AABBD00E293B7 /* NetworkStubFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F8ABED214AABBD00E293B7 /* NetworkStubFactory.swift */; };
@@ -690,15 +684,9 @@
 		09EE81EE21528791004B2B09 /* Availability.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Availability.json; sourceTree = "<group>"; };
 		09EE81EF21528791004B2B09 /* Quotes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Quotes.json; sourceTree = "<group>"; };
 		09F79E33223952F900D5B0B8 /* Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nonce.swift; sourceTree = "<group>"; };
-		09F79E352239546E00D5B0B8 /* GetNonceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNonceInteractor.swift; sourceTree = "<group>"; };
-		09F79E372239547A00D5B0B8 /* KarhooGetNonceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooGetNonceInteractor.swift; sourceTree = "<group>"; };
 		09F79E39223955FF00D5B0B8 /* NonceRequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonceRequestPayload.swift; sourceTree = "<group>"; };
 		09F79E3B2239564600D5B0B8 /* Payer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payer.swift; sourceTree = "<group>"; };
-		09F79E3E2239723200D5B0B8 /* KarhooGetNonceInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooGetNonceInteractorSpec.swift; sourceTree = "<group>"; };
 		09F79E40223A63DA00D5B0B8 /* NonceRequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonceRequestPayload.swift; sourceTree = "<group>"; };
-		09F79E43223A99E700D5B0B8 /* GetNonceMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNonceMethodSpec.swift; sourceTree = "<group>"; };
-		09F79E46223AAA6600D5B0B8 /* MockGetNonceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGetNonceInteractor.swift; sourceTree = "<group>"; };
-		09F79E4A223ABD5A00D5B0B8 /* GetNonce.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetNonce.json; sourceTree = "<group>"; };
 		09F8ABE8214A9B1500E293B7 /* DriverTracking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DriverTracking.json; sourceTree = "<group>"; };
 		09F8ABEB214A9B5700E293B7 /* DriverTrackingMethodSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTrackingMethodSpec.swift; sourceTree = "<group>"; };
 		09F8ABED214AABBD00E293B7 /* NetworkStubFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkStubFactory.swift; sourceTree = "<group>"; };
@@ -1368,7 +1356,6 @@
 				1471BE2424E5900B00BE1C4D /* Adyen */,
 				094B449F2285B223002D2506 /* AddPaymentDetails */,
 				094B44B22285B8C8002D2506 /* PaymentSDKToken */,
-				09F79E49223ABD3600D5B0B8 /* GetNonce */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -1750,42 +1737,15 @@
 		09F79E322239520D00D5B0B8 /* GetNonceInteractor */ = {
 			isa = PBXGroup;
 			children = (
-				09F79E352239546E00D5B0B8 /* GetNonceInteractor.swift */,
-				09F79E372239547A00D5B0B8 /* KarhooGetNonceInteractor.swift */,
 			);
 			path = GetNonceInteractor;
-			sourceTree = "<group>";
-		};
-		09F79E3D2239720E00D5B0B8 /* GetNonceMethod */ = {
-			isa = PBXGroup;
-			children = (
-				09F79E3E2239723200D5B0B8 /* KarhooGetNonceInteractorSpec.swift */,
-			);
-			path = GetNonceMethod;
 			sourceTree = "<group>";
 		};
 		09F79E42223A99BD00D5B0B8 /* GetNonceMethod */ = {
 			isa = PBXGroup;
 			children = (
-				09F79E43223A99E700D5B0B8 /* GetNonceMethodSpec.swift */,
 			);
 			path = GetNonceMethod;
-			sourceTree = "<group>";
-		};
-		09F79E45223AAA2D00D5B0B8 /* GetNonce */ = {
-			isa = PBXGroup;
-			children = (
-				09F79E46223AAA6600D5B0B8 /* MockGetNonceInteractor.swift */,
-			);
-			path = GetNonce;
-			sourceTree = "<group>";
-		};
-		09F79E49223ABD3600D5B0B8 /* GetNonce */ = {
-			isa = PBXGroup;
-			children = (
-				09F79E4A223ABD5A00D5B0B8 /* GetNonce.json */,
-			);
-			path = GetNonce;
 			sourceTree = "<group>";
 		};
 		09F8ABE7214A9AF200E293B7 /* DriverTracking */ = {
@@ -2607,7 +2567,6 @@
 				142CB39524DC44A30065149C /* PaymentProvider */,
 				090E0163223FAB56005D1CB7 /* AddPaymentDetailsSpec */,
 				43D395D41ECFA31900499E8F /* KarhooPaymentServiceSpec.swift */,
-				09F79E3D2239720E00D5B0B8 /* GetNonceMethod */,
 				BAA0AE0F713F6AB11F295960 /* PaymentSDKToken */,
 			);
 			path = Payment;
@@ -3243,7 +3202,6 @@
 				147B88A024E3FE8C003F78B8 /* AdyenPaymentMethods */,
 				1477E3FA24DC5F6900581FC2 /* PaymentProvider */,
 				5C224EB2223DD81C00C1CFCE /* AddPaymentDetails */,
-				09F79E45223AAA2D00D5B0B8 /* GetNonce */,
 				BAA0A16C33556F8407404DA8 /* PaymentSDKToken */,
 			);
 			path = Payment;
@@ -3545,7 +3503,6 @@
 				097D4725215128E0008D8D94 /* TripStatus.json in Resources */,
 				4032BD1223FC491500C2409B /* AuthExchangeToken.json in Resources */,
 				09F8ABF8214BF69400E293B7 /* Places.json in Resources */,
-				09F79E4B223ABD5B00D5B0B8 /* GetNonce.json in Resources */,
 				2316364F27469B3D0082EE9B /* LoyaltyStatus.json in Resources */,
 				FC1202452146A4F000161081 /* Empty.json in Resources */,
 				2316365527469E290082EE9B /* LoyaltyPreAuthPayload.json in Resources */,
@@ -3617,7 +3574,6 @@
 				09F8AC00214FDF4200E293B7 /* LoginMethodSpec.swift in Sources */,
 				097D472321511208008D8D94 /* TripStatusMethodSpec.swift in Sources */,
 				6F9A9E6625652D0500B50753 /* VerifyQuoteMethodSpec.swift in Sources */,
-				09F79E44223A99E700D5B0B8 /* GetNonceMethodSpec.swift in Sources */,
 				6F19F25A2510B3A500E1F771 /* AdyenPublicKeySpec.swift in Sources */,
 				09F79E48223AB40000D5B0B8 /* NonceRequestPayload.swift in Sources */,
 				6FD5426F258CCD4B002EA542 /* LoyaltyBalanceMethodSpec.swift in Sources */,
@@ -3736,7 +3692,6 @@
 				09928D2A20EFAABA00B9F462 /* KarhooQuoteService.swift in Sources */,
 				2359B45F2342522E008433A1 /* KarhooUpdateUserDetailsInteractor.swift in Sources */,
 				40FBF607240EAFD9007F6A54 /* AuthHeaderKeys.swift in Sources */,
-				09F79E382239547A00D5B0B8 /* KarhooGetNonceInteractor.swift in Sources */,
 				091BE6EA2085192800BA34D0 /* PlaceSearch.swift in Sources */,
 				095A03C72333B115007D805E /* UIConfigProvider.swift in Sources */,
 				091BE6EC2086562900BA34D0 /* Position.swift in Sources */,
@@ -3862,7 +3817,6 @@
 				BAA0ABF896D0A71FBF3482B7 /* PaymentSDKTokenInteractor.swift in Sources */,
 				095A03C22333AF98007D805E /* UIConfig.swift in Sources */,
 				BAA0A4B940D784C81D26467F /* KarhooPaymentSDKTokenInteractor.swift in Sources */,
-				09F79E362239546E00D5B0B8 /* GetNonceInteractor.swift in Sources */,
 				0970BA78211371600015A170 /* KarhooDriverTrackingInteractor.swift in Sources */,
 				0970BA7121136F870015A170 /* KarhooPollCall.swift in Sources */,
 				6F69F33F255A7AEC00F8DA05 /* QuoteCoverageRequest.swift in Sources */,
@@ -4016,14 +3970,12 @@
 				0981F6D520CFE1B300BF7FB5 /* MockLoginInteractor.swift in Sources */,
 				6F19F2582510B21100E1F771 /* KarhooAdyenPublicKeyInteractorSpec.swift in Sources */,
 				6FD542DD258D070C002EA542 /* KarhooLoyaltyConversionInteractorSpec.swift in Sources */,
-				09F79E47223AAA6600D5B0B8 /* MockGetNonceInteractor.swift in Sources */,
 				31904CD82003800000BA7402 /* TokenRefreshingHttpClientSpec.swift in Sources */,
 				43584E9F1EE6A3D400B4DFAB /* MockUserDefaults.swift in Sources */,
 				310D44AE1FA1F8890038BFDA /* TimestampFormatterSpec.swift in Sources */,
 				095A03CD2333B3F8007D805E /* KarhooUIConfigInteractorSpec.swift in Sources */,
 				2742197A13ACCCDBAE32D13A /* HeaderProviderSpec.swift in Sources */,
 				5C3C66D8245718BE00C736E9 /* JsonHttpClientSpec.swift in Sources */,
-				09F79E3F2239723200D5B0B8 /* KarhooGetNonceInteractorSpec.swift in Sources */,
 				5C2E265024282B0400B1FF0C /* KarhooAddPaymentDetailsSpec.swift in Sources */,
 				5C08DFB420E5A92A002203CB /* MockAnalyticsProvider.swift in Sources */,
 				BAA0AD9A7DADB9A66E5705F3 /* MockPaymentSDKTokenInteractor.swift in Sources */,

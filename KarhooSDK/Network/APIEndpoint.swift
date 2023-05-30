@@ -26,7 +26,6 @@ enum APIEndpoint {
     case passwordReset
     case paymentSDKToken(payload: PaymentSDKTokenPayload)
     case addPaymentDetails
-    case getNonce
     case karhooUserTokenRefresh
     case custom(path: String, method: HttpMethod)
     case authTokenExchange
@@ -112,8 +111,6 @@ enum APIEndpoint {
         case .paymentSDKToken(let payload):
             return "/payments/payment-methods/braintree/client-tokens?organisation_id=\(payload.organisationId)"
                    + "&currency=\(payload.currency)"
-        case .getNonce:
-            return "/payments/payment-methods/braintree/get-payment-method"
         case .addPaymentDetails:
             return "/payments/payment-methods/braintree/add-payment-details"
         case .karhooUserTokenRefresh:
@@ -186,7 +183,6 @@ enum APIEndpoint {
         case .userProfileUpdate: return .put
         case .passwordReset: return .post
         case .paymentSDKToken: return .post
-        case .getNonce: return .post
         case .addPaymentDetails: return .post
         case .karhooUserTokenRefresh: return .post
         case .authTokenExchange: return .post
@@ -215,7 +211,6 @@ enum APIEndpoint {
     private var version: String {
         switch self {
         case .addPaymentDetails: return "v2"
-        case .getNonce: return "v2"
         case .paymentSDKToken: return "v2"
         case .quotes(_ ): return "v2"
         case .quoteListId: return "v2"
