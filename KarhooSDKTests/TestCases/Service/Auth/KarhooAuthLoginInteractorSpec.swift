@@ -72,7 +72,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
         XCTAssertEqual("123", mockUserDataStore.credentialsToSet?.accessToken)
         XCTAssertTrue(mockUserDataStore.setCurrentUserCalled)
         XCTAssertEqual(mockAnalytics.eventSent, .ssoUserLogIn)
-        XCTAssertNotNil(result!.successValue())
+        XCTAssertNotNil(result!.getSuccessValue())
     }
 
     /**
@@ -90,7 +90,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
 
         XCTAssertFalse(mockUserRequest.requestAndDecodeCalled)
         XCTAssertNil(mockUserDataStore.credentialsToSet)
-        XCTAssertNotNil(result!.errorValue())
+        XCTAssertNotNil(result!.getErrorValue())
     }
 
     /**
@@ -105,7 +105,7 @@ final class KarhooAuthLoginInteractorSpec: XCTestCase {
         mocktokenExchangeRequest.triggerEncodedRequestSuccess(value: AuthTokenMock().set(accessToken: "123").build())
         mockUserRequest.triggerFail(error: expectedError)
 
-        XCTAssertNotNil(result!.errorValue())
+        XCTAssertNotNil(result!.getErrorValue())
         XCTAssertNil(mockAnalytics.eventSent)
     }
 

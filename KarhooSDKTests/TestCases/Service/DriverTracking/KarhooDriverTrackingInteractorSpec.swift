@@ -51,7 +51,7 @@ final class KarhooDriverTrackingInteractorSpec: XCTestCase {
         let driverTrackingInfo = DriverTrackingInfoMock().setOriginEta(originEta: 5).build()
         mockDriverTrackingRequest.triggerSuccessWithDecoded(value: driverTrackingInfo)
 
-        XCTAssertEqual(5, response!.successValue()!.originEta)
+        XCTAssertEqual(5, response!.getSuccessValue()!.originEta)
     }
 
     /**
@@ -68,6 +68,6 @@ final class KarhooDriverTrackingInteractorSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockDriverTrackingRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(response!.errorValue()))
+        XCTAssert(expectedError.equals(response!.getErrorValue()))
     }
 }

@@ -68,8 +68,8 @@ final class KarhooObservableSpec: XCTestCase {
 
         mockPollExecutor.trigger(result: .success(result: MockKarhooCodableModel(id: "some")))
 
-        XCTAssertEqual("some", mockObserverBroadcaster.broadcastedResult?.successValue()?.id)
-        XCTAssertEqual("some", observeResult?.successValue()?.id)
+        XCTAssertEqual("some", mockObserverBroadcaster.broadcastedResult?.getSuccessValue()?.id)
+        XCTAssertEqual("some", observeResult?.getSuccessValue()?.id)
     }
 
 }

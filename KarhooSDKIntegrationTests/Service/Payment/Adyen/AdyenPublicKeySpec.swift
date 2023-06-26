@@ -33,7 +33,7 @@ final class AdyenPublicKeySpec: XCTestCase {
         let expectation = self.expectation(description: "Callback called with succeess")
         
         call.execute(callback: { result in
-            XCTAssertEqual("aaaa-aaaa-aaaa", result.successValue()?.key)
+            XCTAssertEqual("aaaa-aaaa-aaaa", result.getSuccessValue()?.key)
             expectation.fulfill()
         })
         
@@ -53,7 +53,7 @@ final class AdyenPublicKeySpec: XCTestCase {
         let expectation = self.expectation(description: "calls callback with error result")
         
         call.execute(callback: { result in
-            XCTAssertEqual(.generalRequestError, result.errorValue()!.type)
+            XCTAssertEqual(.generalRequestError, result.getErrorValue()!.type)
             expectation.fulfill()
         })
         
@@ -72,7 +72,7 @@ final class AdyenPublicKeySpec: XCTestCase {
         
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
         

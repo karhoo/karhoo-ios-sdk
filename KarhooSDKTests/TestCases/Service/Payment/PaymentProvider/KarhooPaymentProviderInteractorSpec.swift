@@ -54,7 +54,7 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
         mockRequestSender.triggerSuccessWithDecoded(value: expectedResponse)
 
         XCTAssertEqual(.braintree, mockUserDataStore.updatedPaymentProvider!.provider.type)
-        XCTAssertEqual(.braintree, expectedResult!.successValue()?.provider.type)
+        XCTAssertEqual(.braintree, expectedResult!.getSuccessValue()?.provider.type)
     }
 
     /**
@@ -72,9 +72,9 @@ final class KarhooPaymentProviderInteractorSpec: XCTestCase {
 
         mockRequestSender.triggerFail(error: expectedError)
 
-        XCTAssertNil(expectedResult?.successValue())
+        XCTAssertNil(expectedResult?.getSuccessValue())
         XCTAssertNil(mockUserDataStore.updatedPaymentProvider)
         XCTAssertFalse(expectedResult!.isSuccess())
-        XCTAssert(expectedError.equals(expectedResult!.errorValue()!))
+        XCTAssert(expectedError.equals(expectedResult!.getErrorValue()!))
     }
 }

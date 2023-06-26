@@ -152,7 +152,7 @@ final class JsonHttpClientSpec: XCTestCase {
         })
 
         XCTAssertTrue(capturedResult?.isSuccess() == true)
-        let httpResponse: HttpResponse? = capturedResult?.successValue()
+        let httpResponse: HttpResponse? = capturedResult?.getSuccessValue()
         XCTAssertNotNil(httpResponse)
 
         XCTAssertTrue(httpResponse!.code == 0)
@@ -174,7 +174,7 @@ final class JsonHttpClientSpec: XCTestCase {
         sendSampleRequest()
 
         XCTAssertTrue(capturedResult?.isSuccess() == true)
-        let httpResponse: HttpResponse? = capturedResult?.successValue()
+        let httpResponse: HttpResponse? = capturedResult?.getSuccessValue()
         XCTAssertNotNil(httpResponse)
 
         XCTAssertTrue(httpResponse!.code == 201)
@@ -192,7 +192,7 @@ final class JsonHttpClientSpec: XCTestCase {
         sendSampleRequest()
 
         XCTAssertTrue(capturedResult?.isSuccess() == true)
-        let httpResponse: HttpResponse? = capturedResult?.successValue()
+        let httpResponse: HttpResponse? = capturedResult?.getSuccessValue()
         XCTAssertNotNil(httpResponse)
 
         XCTAssertTrue(httpResponse!.code == 0)
@@ -211,9 +211,9 @@ final class JsonHttpClientSpec: XCTestCase {
         sendSampleRequest()
 
         XCTAssertTrue(capturedResult?.isSuccess() == false)
-        let httpResponse: HttpResponse? = capturedResult?.successValue()
+        let httpResponse: HttpResponse? = capturedResult?.getSuccessValue()
         XCTAssertNil(httpResponse)
-        XCTAssertNotNil(capturedResult!.errorValue())
+        XCTAssertNotNil(capturedResult!.getErrorValue())
     }
 
     /**
@@ -229,7 +229,7 @@ final class JsonHttpClientSpec: XCTestCase {
         sendSampleRequest()
 
         XCTAssertTrue(capturedResult?.isSuccess() == false)
-        let errorValue = capturedResult?.errorValue() as? HTTPError
+        let errorValue = capturedResult?.getErrorValue() as? HTTPError
         XCTAssertEqual(errorCode, errorValue?.statusCode)
     }
     

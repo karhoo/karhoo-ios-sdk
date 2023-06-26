@@ -56,7 +56,7 @@ final class TrackTripMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls callback with error result")
 
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.couldNotGetTrip, result.errorValue()!.type)
+            XCTAssertEqual(.couldNotGetTrip, result.getErrorValue()!.type)
             expectation.fulfill()
         })
 
@@ -82,7 +82,7 @@ final class TrackTripMethodSpec: XCTestCase {
 
             if trackTripResults.count == 2 {
                 self.assertSuccess(result: trackTripResults[0])
-                XCTAssertEqual(.couldNotGetTripCouldNotFindSpecifiedTrip, trackTripResults[1].errorValue()?.type)
+                XCTAssertEqual(.couldNotGetTripCouldNotFindSpecifiedTrip, trackTripResults[1].getErrorValue()?.type)
                 expectation.fulfill()
             }
         }
@@ -101,7 +101,7 @@ final class TrackTripMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         pollCall.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -110,7 +110,7 @@ final class TrackTripMethodSpec: XCTestCase {
 
     private func assertSuccess(result: Result<TripInfo>) {
         XCTAssert(result.isSuccess())
-        guard let trip = result.successValue() else {
+        guard let trip = result.getSuccessValue() else {
             XCTFail("Missing success value")
             return
         }

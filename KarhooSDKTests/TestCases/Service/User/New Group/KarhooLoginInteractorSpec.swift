@@ -71,7 +71,7 @@ class KarhooLoginInteractorSpec: XCTestCase {
         testObject.set(userLogin: userLogin)
         testObject.execute(callback: { result = $0 })
 
-        XCTAssertEqual(existingUser, result?.successValue())
+        XCTAssertEqual(existingUser, result?.getSuccessValue())
     }
 
     /**
@@ -89,7 +89,7 @@ class KarhooLoginInteractorSpec: XCTestCase {
         let userLogin = UserLogin(username: "some other email", password: "some")
         testObject.set(userLogin: userLogin)
         testObject.execute(callback: { (result: Result<UserInfo>) in
-            returnedError = result.errorValue()
+            returnedError = result.getErrorValue()
         })
 
         XCTAssertNotNil(returnedError)
@@ -135,7 +135,7 @@ class KarhooLoginInteractorSpec: XCTestCase {
         
         testObject.set(userLogin: userLogin)
         testObject.execute(callback: { (result: Result<UserInfo>) in
-            returnedUser = result.successValue()
+            returnedUser = result.getSuccessValue()
         })
         
         let loginResult = AuthTokenMock().set(accessToken: "some_token")
@@ -188,8 +188,8 @@ class KarhooLoginInteractorSpec: XCTestCase {
 
         XCTAssertEqual(mockUserDataStore.credentialsToSet?.accessToken, "some_token")
         XCTAssertNil(mockUserDataStore.storedUser)
-        XCTAssertEqual(.missingUserPermission, result?.errorValue()?.type)
-        XCTAssertNil(result?.successValue())
+        XCTAssertEqual(.missingUserPermission, result?.getErrorValue()?.type)
+        XCTAssertNil(result?.getSuccessValue())
         XCTAssert(result?.isSuccess() == false)
     }
 
@@ -220,7 +220,7 @@ class KarhooLoginInteractorSpec: XCTestCase {
 
         mockProfileRequestSender.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result!.errorValue()))
+        XCTAssert(expectedError.equals(result!.getErrorValue()))
     }
 
     /**
@@ -242,7 +242,7 @@ class KarhooLoginInteractorSpec: XCTestCase {
 
         XCTAssertNil(mockUserDataStore.credentialsToSet)
         XCTAssertFalse(mockProfileRequestSender.requestCalled)
-        XCTAssert(expectedError.equals(result!.errorValue()))
+        XCTAssert(expectedError.equals(result!.getErrorValue()))
     }
 
     /**

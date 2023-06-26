@@ -58,7 +58,7 @@ final class KarhooQuoteInteractor: QuoteInteractor {
                                                     self?.makeQuotesRequest(quoteListId: quoteListId,
                                                                             callback: callback)
                                                 } else {
-                                                    callback(.failure(error: result.errorValue()))
+                                                    callback(.failure(error: result.getErrorValue()))
                                                 }
 
         })

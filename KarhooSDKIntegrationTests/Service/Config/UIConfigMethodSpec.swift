@@ -48,7 +48,7 @@ final class UIConfigMethod: XCTestCase {
 
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            XCTAssertFalse(result.successValue()?.hidden ?? false)
+            XCTAssertFalse(result.getSuccessValue()?.hidden ?? false)
 
             expectation.fulfill()
         })
@@ -68,7 +68,7 @@ final class UIConfigMethod: XCTestCase {
 
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual("KSDK05", result.errorValue()?.code)
+            XCTAssertEqual("KSDK05", result.getErrorValue()?.code)
 
             expectation.fulfill()
         })

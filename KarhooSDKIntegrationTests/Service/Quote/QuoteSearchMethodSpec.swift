@@ -37,16 +37,16 @@ final class QuoteSearchMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with success result")
         pollCall.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            self.assertSuccess(quote: result.successValue()?.all[0])
-            XCTAssertEqual(4, result.successValue()?.quoteCategories.count)
-            XCTAssertEqual(0, result.successValue()?.quotes(for: "Saloon").count)
-            XCTAssertEqual(0, result.successValue()?.quotes(for: "Taxi").count)
-            XCTAssertEqual(0, result.successValue()?.quotes(for: "MPV").count)
-            XCTAssertEqual(0, result.successValue()?.quotes(for: "Exec").count)
-            XCTAssertEqual(0, result.successValue()?.quotes(for: "Electric").count)
-            XCTAssertEqual(0, result.successValue()?.quotes(for: "Moto").count)
-            XCTAssertEqual(1, result.successValue()?.quotes(for: "moto").count)
-            XCTAssertEqual(2, result.successValue()?.quotes(for: "standard").count)
+            self.assertSuccess(quote: result.getSuccessValue()?.all[0])
+            XCTAssertEqual(4, result.getSuccessValue()?.quoteCategories.count)
+            XCTAssertEqual(0, result.getSuccessValue()?.quotes(for: "Saloon").count)
+            XCTAssertEqual(0, result.getSuccessValue()?.quotes(for: "Taxi").count)
+            XCTAssertEqual(0, result.getSuccessValue()?.quotes(for: "MPV").count)
+            XCTAssertEqual(0, result.getSuccessValue()?.quotes(for: "Exec").count)
+            XCTAssertEqual(0, result.getSuccessValue()?.quotes(for: "Electric").count)
+            XCTAssertEqual(0, result.getSuccessValue()?.quotes(for: "Moto").count)
+            XCTAssertEqual(1, result.getSuccessValue()?.quotes(for: "moto").count)
+            XCTAssertEqual(2, result.getSuccessValue()?.quotes(for: "standard").count)
             expectation.fulfill()
         })
 
@@ -64,7 +64,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.noAvailabilityInRequestedArea, result.errorValue()?.type)
+            XCTAssertEqual(.noAvailabilityInRequestedArea, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -82,7 +82,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.couldNotFindSpecifiedQuote, result.errorValue()?.type)
+            XCTAssertEqual(.couldNotFindSpecifiedQuote, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -100,7 +100,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -118,7 +118,7 @@ final class QuoteSearchMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -145,8 +145,8 @@ final class QuoteSearchMethodSpec: XCTestCase {
                                       responseData: RawKarhooErrorFactory.buildError(code: "K3003"))
 
             if quoteSearchResult.count == 2 {
-                self.assertSuccess(quote: quoteSearchResult[0].successValue()?.all[0])
-                XCTAssertEqual(.couldNotFindSpecifiedQuote, quoteSearchResult[1].errorValue()?.type)
+                self.assertSuccess(quote: quoteSearchResult[0].getSuccessValue()?.all[0])
+                XCTAssertEqual(.couldNotFindSpecifiedQuote, quoteSearchResult[1].getErrorValue()?.type)
                 expectation.fulfill()
             }
         }

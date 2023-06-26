@@ -56,8 +56,8 @@ final class KarhooLoyaltyStatusInteractorSpec: XCTestCase {
         let loyaltyStatus = LoyaltyStatus(balance: 30, canBurn: true, canEarn: true)
         mockLoyaltyStatusRequest.triggerSuccessWithDecoded(value: loyaltyStatus)
         
-        XCTAssertEqual(capturedCallback!.successValue()!.balance, 30)
-        XCTAssertEqual(capturedCallback!.successValue()!.canBurn, true)
+        XCTAssertEqual(capturedCallback!.getSuccessValue()!.balance, 30)
+        XCTAssertEqual(capturedCallback!.getSuccessValue()!.canBurn, true)
     }
     
     /**
@@ -72,8 +72,8 @@ final class KarhooLoyaltyStatusInteractorSpec: XCTestCase {
         let loyaltyStatus = LoyaltyStatus(balance: 30, canBurn: false, canEarn: true)
         mockLoyaltyStatusRequest.triggerSuccessWithDecoded(value: loyaltyStatus)
         
-        XCTAssertEqual(capturedCallback!.successValue()!.balance, 30)
-        XCTAssertEqual(capturedCallback!.successValue()!.canBurn, false)
+        XCTAssertEqual(capturedCallback!.getSuccessValue()!.balance, 30)
+        XCTAssertEqual(capturedCallback!.getSuccessValue()!.canBurn, false)
     }
 
     /**
@@ -89,7 +89,7 @@ final class KarhooLoyaltyStatusInteractorSpec: XCTestCase {
 
         mockLoyaltyStatusRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(capturedCallback!.errorValue()))
+        XCTAssert(expectedError.equals(capturedCallback!.getErrorValue()))
     }
 
     /**

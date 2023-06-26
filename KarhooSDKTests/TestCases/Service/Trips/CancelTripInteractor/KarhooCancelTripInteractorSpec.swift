@@ -78,7 +78,7 @@ final class KarhooCancelTripInteractorSpec: XCTestCase {
 
         XCTAssertEqual(.tripCancellationAttempted, mockAnalyticsService.eventSent)
         XCTAssertFalse(capturedCallback!.isSuccess())
-        XCTAssert(expectedError.equals(capturedCallback!.errorValue()))
+        XCTAssert(expectedError.equals(capturedCallback!.getErrorValue()))
     }
 
     func testGuestUserCancelTrip() {

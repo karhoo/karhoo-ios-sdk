@@ -46,7 +46,7 @@ final class KarhooPollableExecutorSpec: XCTestCase {
         mockTimingScheduler.fire()
         mockExecutable.triggerExecution(result: .success(result: MockKarhooCodableModel(id: "some")))
 
-        XCTAssertEqual("some", capturedResult?.successValue()?.id)
+        XCTAssertEqual("some", capturedResult?.getSuccessValue()?.id)
     }
 
     /**

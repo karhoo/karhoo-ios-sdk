@@ -56,8 +56,8 @@ final class KarhooTripsListInteractorSpec: XCTestCase {
                                                 TripInfoMock().set(tripId: "456").build()])
         mockTripSearchRequest.triggerSuccessWithDecoded(value: mockResponse)
 
-        XCTAssertEqual("123", capturedCallback?.successValue()![0].tripId)
-        XCTAssertEqual("456", capturedCallback?.successValue()![1].tripId)
+        XCTAssertEqual("123", capturedCallback?.getSuccessValue()![0].tripId)
+        XCTAssertEqual("456", capturedCallback?.getSuccessValue()![1].tripId)
     }
 
     /**
@@ -73,7 +73,7 @@ final class KarhooTripsListInteractorSpec: XCTestCase {
 
         mockTripSearchRequest.triggerFail(error: error)
 
-        XCTAssertNotNil(capturedCallback?.errorValue())
-        XCTAssert(error.equals(capturedCallback!.errorValue()))
+        XCTAssertNotNil(capturedCallback?.getErrorValue())
+        XCTAssert(error.equals(capturedCallback!.getErrorValue()))
     }
 }

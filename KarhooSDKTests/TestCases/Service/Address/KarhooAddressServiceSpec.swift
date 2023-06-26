@@ -50,10 +50,10 @@ class KarhooAddressServiceSpec: XCTestCase {
 
         mockPlaceSearchInteractor.triggerSuccess(result: expectedResult)
 
-        XCTAssertEqual(capturedResult!.successValue()!.places[0].encode(),
+        XCTAssertEqual(capturedResult!.getSuccessValue()!.places[0].encode(),
                        expectedResult.places[0].encode())
         XCTAssertTrue(capturedResult!.isSuccess())
-        XCTAssertNil(capturedResult?.errorValue())
+        XCTAssertNil(capturedResult?.getErrorValue())
         XCTAssertEqual(mockPlaceSearch, mockPlaceSearchInteractor.placeSearchSet!)
     }
 
@@ -71,9 +71,9 @@ class KarhooAddressServiceSpec: XCTestCase {
 
         mockPlaceSearchInteractor.triggerFail(error: expectedError)
 
-        XCTAssertNil(capturedResult?.successValue())
+        XCTAssertNil(capturedResult?.getSuccessValue())
         XCTAssertFalse(capturedResult!.isSuccess())
-        XCTAssert(expectedError.equals(capturedResult!.errorValue()!))
+        XCTAssert(expectedError.equals(capturedResult!.getErrorValue()!))
         XCTAssertEqual(mockPlaceSearch, mockPlaceSearchInteractor.placeSearchSet!)
     }
 
@@ -93,8 +93,8 @@ class KarhooAddressServiceSpec: XCTestCase {
         mockReverseGeocodeInteractor.triggerSuccess(result: expectedResult)
 
         XCTAssertTrue(capturedResult!.isSuccess())
-        XCTAssertNil(capturedResult?.errorValue())
-        XCTAssertEqual(capturedResult!.successValue()?.encode(), expectedResult.encode())
+        XCTAssertNil(capturedResult?.getErrorValue())
+        XCTAssertEqual(capturedResult!.getSuccessValue()?.encode(), expectedResult.encode())
         XCTAssertEqual(testPosition, mockReverseGeocodeInteractor.positionSet)
     }
 
@@ -113,8 +113,8 @@ class KarhooAddressServiceSpec: XCTestCase {
         mockReverseGeocodeInteractor.triggerFail(error: expectedError)
 
         XCTAssertFalse(capturedResult!.isSuccess())
-        XCTAssertNil(capturedResult?.successValue())
-        XCTAssert(expectedError.equals(capturedResult!.errorValue()!))
+        XCTAssertNil(capturedResult?.getSuccessValue())
+        XCTAssert(expectedError.equals(capturedResult!.getErrorValue()!))
         XCTAssertEqual(mockReverseGeocodeInteractor.positionSet, testPostion)
     }
 
@@ -135,8 +135,8 @@ class KarhooAddressServiceSpec: XCTestCase {
         mockLocationInfoInteractor.triggerSuccess(result: expectedResult)
 
         XCTAssertTrue(capturedResult!.isSuccess())
-        XCTAssertNil(capturedResult?.errorValue())
-        XCTAssertEqual(capturedResult!.successValue()?.encode(), expectedResult.encode())
+        XCTAssertNil(capturedResult?.getErrorValue())
+        XCTAssertEqual(capturedResult!.getSuccessValue()?.encode(), expectedResult.encode())
         XCTAssertEqual(mockLocationInfoInteractor.locationInfoSearchSet?.placeId, "123")
         XCTAssertEqual(mockLocationInfoInteractor.locationInfoSearchSet?.sessionToken, "1234")
 
@@ -158,8 +158,8 @@ class KarhooAddressServiceSpec: XCTestCase {
         mockLocationInfoInteractor.triggerFail(error: expectedError)
 
         XCTAssertFalse(capturedResponse!.isSuccess())
-        XCTAssertNil(capturedResponse?.successValue())
-        XCTAssert(expectedError.equals(capturedResponse!.errorValue()!))
+        XCTAssertNil(capturedResponse?.getSuccessValue())
+        XCTAssert(expectedError.equals(capturedResponse!.getErrorValue()!))
         XCTAssertEqual(mockLocationInfoInteractor.locationInfoSearchSet?.placeId, "123")
         XCTAssertEqual(mockLocationInfoInteractor.locationInfoSearchSet?.sessionToken, "1234")
     }

@@ -57,9 +57,9 @@ final class KarhooLoyaltyConversionInteractorSpec: XCTestCase {
         let loyaltyConversion = LoyaltyConversion(version: "20200312", rates: rates)
         mockLoyaltyConversionRequest.triggerSuccessWithDecoded(value: loyaltyConversion)
         
-        XCTAssertEqual(capturedCallback!.successValue()!.version, "20200312")
-        XCTAssertEqual(capturedCallback!.successValue()!.rates[0].currency, "GBP")
-        XCTAssertEqual(capturedCallback!.successValue()!.rates[0].points, "10")
+        XCTAssertEqual(capturedCallback!.getSuccessValue()!.version, "20200312")
+        XCTAssertEqual(capturedCallback!.getSuccessValue()!.rates[0].currency, "GBP")
+        XCTAssertEqual(capturedCallback!.getSuccessValue()!.rates[0].points, "10")
     }
 
     /**
@@ -75,7 +75,7 @@ final class KarhooLoyaltyConversionInteractorSpec: XCTestCase {
 
         mockLoyaltyConversionRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(capturedCallback!.errorValue()))
+        XCTAssert(expectedError.equals(capturedCallback!.getErrorValue()))
     }
 
     /**

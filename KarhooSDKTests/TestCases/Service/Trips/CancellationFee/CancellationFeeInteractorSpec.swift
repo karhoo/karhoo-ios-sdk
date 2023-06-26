@@ -75,7 +75,7 @@ final class CancellationFeeInteractorSpec: XCTestCase {
         let cancellationFee = CancellationFee(cancellationFee: true, fee: fee)
         mockCancellationFeeRequest.triggerSuccessWithDecoded(value: cancellationFee)
         
-        XCTAssertEqual(capturedCallback!.successValue()!.cancellationFee, true)
+        XCTAssertEqual(capturedCallback!.getSuccessValue()!.cancellationFee, true)
     }
     
     /**
@@ -90,7 +90,7 @@ final class CancellationFeeInteractorSpec: XCTestCase {
         let cancellationFee = CancellationFee(cancellationFee: false)
         mockCancellationFeeRequest.triggerSuccessWithDecoded(value: cancellationFee)
         
-        XCTAssertEqual(capturedCallback!.successValue()!.cancellationFee, false)
+        XCTAssertEqual(capturedCallback!.getSuccessValue()!.cancellationFee, false)
     }
 
     /**
@@ -106,7 +106,7 @@ final class CancellationFeeInteractorSpec: XCTestCase {
 
         mockCancellationFeeRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(capturedCallback!.errorValue()))
+        XCTAssert(expectedError.equals(capturedCallback!.getErrorValue()))
     }
 
     /**

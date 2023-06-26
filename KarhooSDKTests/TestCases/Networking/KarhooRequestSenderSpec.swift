@@ -58,7 +58,7 @@ final class KarhooRequestSenderSpec: XCTestCase {
         mockHttpClient.lastCompletion?(success)
 
         XCTAssertTrue(requestCallback!.isSuccess())
-        XCTAssertEqual(requestCallback?.successValue()?.data, mockPayload.encode()!)
+        XCTAssertEqual(requestCallback?.getSuccessValue()?.data, mockPayload.encode()!)
     }
 
     /**
@@ -77,7 +77,7 @@ final class KarhooRequestSenderSpec: XCTestCase {
         mockHttpClient.lastCompletion?(Result.failure(error: responseError))
 
         XCTAssertFalse(requestCallback!.isSuccess())
-        XCTAssertEqual(requestCallback?.errorValue()?.localizedDescription, responseError.localizedDescription)
+        XCTAssertEqual(requestCallback?.getErrorValue()?.localizedDescription, responseError.localizedDescription)
     }
 }
 

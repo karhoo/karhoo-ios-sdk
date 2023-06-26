@@ -70,7 +70,7 @@ final class BookTripMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls callback with error result")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.couldNotBookTrip, result.errorValue()!.type)
+            XCTAssertEqual(.couldNotBookTrip, result.getErrorValue()!.type)
             expectation.fulfill()
         })
 
@@ -106,7 +106,7 @@ final class BookTripMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -124,7 +124,7 @@ final class BookTripMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -133,7 +133,7 @@ final class BookTripMethodSpec: XCTestCase {
 
     private func assertSuccess(result: Result<TripInfo>) {
         XCTAssert(result.isSuccess())
-        guard let trip = result.successValue() else {
+        guard let trip = result.getSuccessValue() else {
             XCTFail("Missing success value")
             return
         }

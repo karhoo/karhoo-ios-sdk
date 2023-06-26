@@ -32,7 +32,7 @@ final class KarhooUIConfigInteractorSpec: XCTestCase {
       */
     func testConfigRequestNotSet() {
         testObject.execute(callback: { (result: Result<UIConfig>) in
-            XCTAssert(result.errorValue()?.code == "KSDK01")
+            XCTAssert(result.getErrorValue()?.code == "KSDK01")
         })
 
         XCTAssertFalse(mockUIConfigProvider.fetchConfigCalled)
@@ -47,7 +47,7 @@ final class KarhooUIConfigInteractorSpec: XCTestCase {
         mockUserDataStore.userToReturn = nil
         testObject.set(uiConfigRequest: UIConfigRequest(viewId: "some"))
         testObject.execute(callback: { (result: Result<UIConfig>) in
-            XCTAssert(result.errorValue()?.code == "KSDK02")
+            XCTAssert(result.getErrorValue()?.code == "KSDK02")
         })
 
         XCTAssertFalse(mockUIConfigProvider.fetchConfigCalled)
@@ -62,7 +62,7 @@ final class KarhooUIConfigInteractorSpec: XCTestCase {
         mockUserDataStore.userToReturn = mockUser.build()
 
         testObject.execute(callback: { (result: Result<UIConfig>) in
-            XCTAssertTrue(result.successValue()!.hidden)
+            XCTAssertTrue(result.getSuccessValue()!.hidden)
         })
 
         mockUIConfigProvider.triggerConfigCallbackResult(.success(result: UIConfig(hidden: true)))
@@ -79,7 +79,7 @@ final class KarhooUIConfigInteractorSpec: XCTestCase {
         mockUserDataStore.userToReturn = mockUser.build()
 
         testObject.execute(callback: { (result: Result<UIConfig>) in
-            XCTAssertEqual("KSDK05", result.errorValue()?.code)
+            XCTAssertEqual("KSDK05", result.getErrorValue()?.code)
         })
 
         mockUIConfigProvider.triggerConfigCallbackResult(.failure(error: SDKErrorFactory.noConfigAvailableForView()))
