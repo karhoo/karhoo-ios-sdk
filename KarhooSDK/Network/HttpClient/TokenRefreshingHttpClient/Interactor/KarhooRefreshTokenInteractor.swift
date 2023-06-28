@@ -74,13 +74,6 @@ final class KarhooRefreshTokenInteractor: RefreshTokenInteractor {
         switch Karhoo.configuration.authenticationMethod() {
         case .guest:
             resolveRefreshCompletions(using: .success(result: false))
-        case .karhooUser:
-            let refreshPayload = RefreshTokenRequestPayload(refreshToken: refreshToken)
-            refreshTokenRequest.requestAndDecode(payload: refreshPayload,
-                                                 endpoint: .karhooUserTokenRefresh,
-                                                 callback: { [weak self] (result: Result<AuthToken>) in
-                                                    self?.handleRefreshRequest(result: result)
-            })
         case .tokenExchange:
             refreshTokenRequest.encodedRequest(endpoint: .authRefresh,
                                                body: authRefreshUrlComponents(),
