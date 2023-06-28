@@ -33,8 +33,8 @@ final class PaymentProviderSpec: XCTestCase {
         let expectation = self.expectation(description: "Callback called with succeess")
         
         call.execute(callback: { result in
-            XCTAssertEqual("Adyen", result.successValue()?.provider.id)
-            XCTAssertEqual(PaymentProviderType.adyen, result.successValue()?.provider.type)
+            XCTAssertEqual("Adyen", result.getSuccessValue()?.provider.id)
+            XCTAssertEqual(PaymentProviderType.adyen, result.getSuccessValue()?.provider.type)
             expectation.fulfill()
         })
         
@@ -54,7 +54,7 @@ final class PaymentProviderSpec: XCTestCase {
         let expectation = self.expectation(description: "calls callback with error result")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.generalRequestError, result.errorValue()!.type)
+            XCTAssertEqual(.generalRequestError, result.getErrorValue()!.type)
             expectation.fulfill()
         })
         
@@ -73,7 +73,7 @@ final class PaymentProviderSpec: XCTestCase {
         
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
         

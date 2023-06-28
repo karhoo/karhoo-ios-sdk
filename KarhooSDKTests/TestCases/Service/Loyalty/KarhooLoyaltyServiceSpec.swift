@@ -63,8 +63,8 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
 
         mockLoyaltyBalanceInteractor.triggerSuccess(result: loyaltyBalanceMock)
 
-        XCTAssertEqual(10, result?.successValue()?.points)
-        XCTAssertEqual(false, result?.successValue()?.burnable)
+        XCTAssertEqual(10, result?.getSuccessValue()?.points)
+        XCTAssertEqual(false, result?.getSuccessValue()?.burnable)
     }
 
     /**
@@ -80,7 +80,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockLoyaltyBalanceInteractor.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result?.errorValue()))
+        XCTAssert(expectedError.equals(result?.getErrorValue()))
     }
     
     /**
@@ -95,9 +95,9 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
 
         mockLoyaltyConversionInteractor.triggerSuccess(result: loyaltyConversionMock)
 
-        XCTAssertEqual("123", result?.successValue()?.version)
-        XCTAssertEqual("GBP", result?.successValue()?.rates[0].currency)
-        XCTAssertEqual("10", result?.successValue()?.rates[0].points)
+        XCTAssertEqual("123", result?.getSuccessValue()?.version)
+        XCTAssertEqual("GBP", result?.getSuccessValue()?.rates[0].currency)
+        XCTAssertEqual("10", result?.getSuccessValue()?.rates[0].points)
     }
 
     /**
@@ -113,7 +113,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockLoyaltyConversionInteractor.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result?.errorValue()))
+        XCTAssert(expectedError.equals(result?.getErrorValue()))
     }
     
     func testLoyaltyStatusSuccess() {
@@ -124,9 +124,9 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         
         mockLoyaltyStatusInteractor.triggerSuccess(result: loyaltyStatusMock)
         
-        XCTAssertEqual(1000, result?.successValue()?.balance)
-        XCTAssertEqual(false, result?.successValue()?.canBurn)
-        XCTAssertEqual(true, result?.successValue()?.canEarn)
+        XCTAssertEqual(1000, result?.getSuccessValue()?.balance)
+        XCTAssertEqual(false, result?.getSuccessValue()?.canBurn)
+        XCTAssertEqual(true, result?.getSuccessValue()?.canEarn)
     }
     
     func testLoyaltyStatusFail() {
@@ -138,7 +138,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockLoyaltyStatusInteractor.triggerFail(error: expectedError)
         
-        XCTAssert(expectedError.equals(result?.errorValue()))
+        XCTAssert(expectedError.equals(result?.getErrorValue()))
     }
     
     func testLoyaltyBurnSuccess() {
@@ -149,7 +149,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         
         mockLoyaltyBurnInteractor.triggerSuccess(result: loyaltyPointsMock)
         
-        XCTAssertEqual(10, result?.successValue()?.points)
+        XCTAssertEqual(10, result?.getSuccessValue()?.points)
     }
     
     func testLoyaltyBurnFail() {
@@ -161,7 +161,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockLoyaltyBurnInteractor.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result?.errorValue()))
+        XCTAssert(expectedError.equals(result?.getErrorValue()))
     }
     
     func testLoyaltyEarnSuccess() {
@@ -172,7 +172,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         
         mockLoyaltyEarnInteractor.triggerSuccess(result: loyaltyPointsMock)
         
-        XCTAssertEqual(10, result?.successValue()?.points)
+        XCTAssertEqual(10, result?.getSuccessValue()?.points)
     }
     
     func testLoyaltyEarnFail() {
@@ -184,7 +184,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockLoyaltyEarnInteractor.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result?.errorValue()))
+        XCTAssert(expectedError.equals(result?.getErrorValue()))
     }
     
     func testLoyaltyPreAuthSuccess() {
@@ -195,7 +195,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         
         mockLoyaltyPreAuthInteractor.triggerSuccess(result: loyaltyNonceMock)
         
-        XCTAssertEqual("123A", result?.successValue()?.nonce)
+        XCTAssertEqual("123A", result?.getSuccessValue()?.nonce)
     }
     
     func testLoyaltyPreAuthFail() {
@@ -207,7 +207,7 @@ final class KarhooLoyaltyServiceSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockLoyaltyPreAuthInteractor.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result?.errorValue()))
+        XCTAssert(expectedError.equals(result?.getErrorValue()))
     }
 }
 

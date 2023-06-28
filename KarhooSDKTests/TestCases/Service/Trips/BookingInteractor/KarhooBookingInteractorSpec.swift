@@ -108,9 +108,9 @@ class KarhooBookingInteractorSpec: XCTestCase {
 
         mockBookingRequest.triggerSuccessWithDecoded(value: TripInfoMock().set(tripId: "some").build())
 
-        XCTAssertEqual("some", capturedCallback!.successValue()?.tripId)
+        XCTAssertEqual("some", capturedCallback!.getSuccessValue()?.tripId)
         XCTAssertTrue(capturedCallback!.isSuccess())
-        XCTAssertNil(capturedCallback?.errorValue())
+        XCTAssertNil(capturedCallback?.getErrorValue())
     }
 
     /**
@@ -130,7 +130,7 @@ class KarhooBookingInteractorSpec: XCTestCase {
 
         let error = TestUtil.getRandomError()
         mockBookingRequest.triggerFail(error: error)
-        XCTAssert(error.equals(capturedCallback!.errorValue()))
+        XCTAssert(error.equals(capturedCallback!.getErrorValue()))
         XCTAssertFalse(capturedCallback!.isSuccess())
     }
 }

@@ -35,7 +35,7 @@ final class LocationInfoMethodSpec: XCTestCase {
 
         call.execute(callback: { [weak self] result in
             XCTAssertTrue(result.isSuccess())
-            self?.assertLocationInfo(info: result.successValue()!)
+            self?.assertLocationInfo(info: result.getSuccessValue()!)
             expectation.fulfill()
         })
 
@@ -53,7 +53,7 @@ final class LocationInfoMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
 
         call.execute(callback: { result in
-            let error = result.errorValue()
+            let error = result.getErrorValue()
             XCTAssertEqual(error?.type, .couldNotGetAddress)
             expectation.fulfill()
         })
@@ -107,7 +107,7 @@ final class LocationInfoMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

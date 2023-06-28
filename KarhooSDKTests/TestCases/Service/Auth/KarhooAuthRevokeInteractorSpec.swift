@@ -50,6 +50,6 @@ final class KarhoooAuthRevokeInteractorSpec: XCTestCase {
 
         XCTAssertTrue(mockUserDataStore.removeUserCalled)
         XCTAssertEqual(mockAnalytics.eventSent, .ssoTokenRevoked)
-        XCTAssertNotNil(result!.successValue())
+        XCTAssertNotNil(result!.getSuccessValue())
     }
 }

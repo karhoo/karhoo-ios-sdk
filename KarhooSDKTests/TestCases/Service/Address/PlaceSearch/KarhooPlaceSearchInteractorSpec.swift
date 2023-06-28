@@ -52,9 +52,9 @@ class KarhooPlaceSearchInteractorSpec: XCTestCase {
 
         mockPlaceSearchRequest.triggerSuccessWithDecoded(value: expectedResponse)
 
-        XCTAssertEqual(expectedResponse.places[0].encode(), expectedResult!.successValue()!.places[0].encode()!)
+        XCTAssertEqual(expectedResponse.places[0].encode(), expectedResult!.getSuccessValue()!.places[0].encode()!)
         XCTAssertTrue(expectedResult!.isSuccess())
-        XCTAssertNil(expectedResult!.errorValue())
+        XCTAssertNil(expectedResult!.getErrorValue())
     }
 
     /**
@@ -71,8 +71,8 @@ class KarhooPlaceSearchInteractorSpec: XCTestCase {
 
         mockPlaceSearchRequest.triggerFail(error: expectedError)
 
-        XCTAssertNil(expectedResult?.successValue())
+        XCTAssertNil(expectedResult?.getSuccessValue())
         XCTAssertFalse(expectedResult!.isSuccess())
-        XCTAssert(expectedError.equals(expectedResult!.errorValue()!))
+        XCTAssert(expectedError.equals(expectedResult!.getErrorValue()!))
     }
 }

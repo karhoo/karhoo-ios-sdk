@@ -70,7 +70,7 @@ final class KarhooAuthLoginWithCredentialsSpec: XCTestCase {
         XCTAssertEqual("123123123", mockUserDataStore.credentialsToSet?.accessToken)
         XCTAssertTrue(mockUserDataStore.setCurrentUserCalled)
         XCTAssertEqual(mockAnalytics.eventSent, .ssoUserLogIn)
-        XCTAssertNotNil(result!.successValue())
+        XCTAssertNotNil(result!.getSuccessValue())
     }
 
     /**
@@ -87,7 +87,7 @@ final class KarhooAuthLoginWithCredentialsSpec: XCTestCase {
 
         XCTAssertFalse(mockUserRequest.requestAndDecodeCalled)
         XCTAssertNil(mockUserDataStore.credentialsToSet)
-        XCTAssertNotNil(result!.errorValue())
+        XCTAssertNotNil(result!.getErrorValue())
     }
 
     /**
@@ -101,7 +101,7 @@ final class KarhooAuthLoginWithCredentialsSpec: XCTestCase {
         testObject.execute(callback: { result = $0 })
         mockUserRequest.triggerFail(error: expectedError)
 
-        XCTAssertNotNil(result!.errorValue())
+        XCTAssertNotNil(result!.getErrorValue())
         XCTAssertNil(mockAnalytics.eventSent)
     }
 

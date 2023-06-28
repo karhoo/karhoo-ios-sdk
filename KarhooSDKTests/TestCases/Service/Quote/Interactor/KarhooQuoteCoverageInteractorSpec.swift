@@ -71,6 +71,6 @@ final class KarhooQuoteCoverageInteractorSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockQuoteCoverageRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(response!.errorValue()))
+        XCTAssert(expectedError.equals(response!.getErrorValue()))
     }
 }

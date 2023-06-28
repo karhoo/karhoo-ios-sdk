@@ -74,6 +74,6 @@ final class KarhooVerifyQuoteInteractorSpec: XCTestCase {
         let expectedError = TestUtil.getRandomError()
         mockVerifyQuoteRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(response!.errorValue()))
+        XCTAssert(expectedError.equals(response!.getErrorValue()))
     }
 }

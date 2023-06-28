@@ -49,9 +49,9 @@ class KarhooReverseGeocodeInteractorSpec: XCTestCase {
 
         mockReverseGeocodeRequest.triggerSuccessWithDecoded(value: expectedResponse.build())
 
-        XCTAssertEqual(capturedResponse!.successValue()!.placeId, expectedResponse.build().placeId)
+        XCTAssertEqual(capturedResponse!.getSuccessValue()!.placeId, expectedResponse.build().placeId)
         XCTAssertTrue(capturedResponse!.isSuccess())
-        XCTAssertNil(capturedResponse?.errorValue())
+        XCTAssertNil(capturedResponse?.getErrorValue())
     }
 
     /**
@@ -67,6 +67,6 @@ class KarhooReverseGeocodeInteractorSpec: XCTestCase {
         mockReverseGeocodeRequest.triggerFail(error: expectedError)
 
         XCTAssertFalse(capturedResponse!.isSuccess())
-        XCTAssert(expectedError.equals(capturedResponse!.errorValue()!))
+        XCTAssert(expectedError.equals(capturedResponse!.getErrorValue()!))
     }
 }

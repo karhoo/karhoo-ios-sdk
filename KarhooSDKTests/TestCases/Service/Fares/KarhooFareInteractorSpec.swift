@@ -37,11 +37,11 @@ final class KarhooFareInteractorSpec: XCTestCase {
 
         mockFareRequest.triggerSuccessWithDecoded(value: expectedResponse)
         
-        XCTAssertEqual(expectedResponse.encode(), expectedResult!.successValue()!.encode()!)
-        XCTAssertEqual(expectedResult?.successValue()!.breakdown.currency, "GBP")
-        XCTAssertEqual(expectedResult?.successValue()!.breakdown.total, 20)
+        XCTAssertEqual(expectedResponse.encode(), expectedResult!.getSuccessValue()!.encode()!)
+        XCTAssertEqual(expectedResult?.getSuccessValue()!.breakdown.currency, "GBP")
+        XCTAssertEqual(expectedResult?.getSuccessValue()!.breakdown.total, 20)
         XCTAssertTrue(expectedResult!.isSuccess())
-        XCTAssertNil(expectedResult!.errorValue())
+        XCTAssertNil(expectedResult!.getErrorValue())
     }
     
     /**
@@ -57,8 +57,8 @@ final class KarhooFareInteractorSpec: XCTestCase {
 
         mockFareRequest.triggerFail(error: expectedError)
 
-        XCTAssertNil(expectedResult?.successValue())
+        XCTAssertNil(expectedResult?.getSuccessValue())
         XCTAssertFalse(expectedResult!.isSuccess())
-        XCTAssert(expectedError.equals(expectedResult!.errorValue()!))
+        XCTAssert(expectedError.equals(expectedResult!.getErrorValue()!))
     }
 }

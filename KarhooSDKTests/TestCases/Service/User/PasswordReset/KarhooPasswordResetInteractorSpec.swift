@@ -63,7 +63,7 @@ final class KarhooPasswordResetInteractorSpec: XCTestCase {
 
         mockPasswordResetRequest.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(result!.errorValue()))
+        XCTAssert(expectedError.equals(result!.getErrorValue()))
         XCTAssertFalse(result!.isSuccess())
     }
 }

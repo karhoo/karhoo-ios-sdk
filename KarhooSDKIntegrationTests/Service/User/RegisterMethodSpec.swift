@@ -36,7 +36,7 @@ final class RegisterMethodSpec: XCTestCase {
 
         call.execute(callback: { [weak self] result in
             XCTAssertTrue(result.isSuccess())
-            self?.assertUserInfo(info: result.successValue()!)
+            self?.assertUserInfo(info: result.getSuccessValue()!)
             expectation.fulfill()
         })
 
@@ -56,7 +56,7 @@ final class RegisterMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
 
         call.execute(callback: { result in
-            let error = result.errorValue()
+            let error = result.getErrorValue()
             XCTAssertEqual(.couldNotRegister, error?.type)
             expectation.fulfill()
         })
@@ -76,7 +76,7 @@ final class RegisterMethodSpec: XCTestCase {
 
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -94,7 +94,7 @@ final class RegisterMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -112,7 +112,7 @@ final class RegisterMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

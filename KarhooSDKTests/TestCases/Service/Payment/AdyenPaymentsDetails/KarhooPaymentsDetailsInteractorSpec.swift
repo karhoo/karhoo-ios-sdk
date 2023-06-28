@@ -55,8 +55,8 @@ final class KarhooAdyenPaymentsDetailsInteractorSpec: XCTestCase {
 
         mockRequestSender.triggerSuccess(response: Data())
 
-        XCTAssertNotNil(capturedResult?.successValue())
-        XCTAssertEqual(capturedResult?.successValue()?.data, Data())
+        XCTAssertNotNil(capturedResult?.getSuccessValue())
+        XCTAssertEqual(capturedResult?.getSuccessValue()?.data, Data())
     }
 
     /**
@@ -73,7 +73,7 @@ final class KarhooAdyenPaymentsDetailsInteractorSpec: XCTestCase {
 
         mockRequestSender.triggerFail(error: expectedError)
 
-        XCTAssertNil(capturedResult?.successValue())
-        XCTAssert(expectedError.equals(capturedResult!.errorValue()!))
+        XCTAssertNil(capturedResult?.getSuccessValue())
+        XCTAssert(expectedError.equals(capturedResult!.getErrorValue()!))
     }
 }

@@ -33,7 +33,7 @@ final class AdyenPaymentMethodsSpec: XCTestCase {
         let expectation = self.expectation(description: "Callback called with succeess")
         
         call.execute(callback: { result in
-            XCTAssertNotNil(result.successValue()!.data)
+            XCTAssertNotNil(result.getSuccessValue()!.data)
             expectation.fulfill()
         })
         
@@ -53,8 +53,8 @@ final class AdyenPaymentMethodsSpec: XCTestCase {
         let expectation = self.expectation(description: "calls callback with error result")
 
         call.execute(callback: { result in
-            XCTAssertEqual(.generalRequestError, result.errorValue()!.type)
-            XCTAssertNil(result.successValue())
+            XCTAssertEqual(.generalRequestError, result.getErrorValue()!.type)
+            XCTAssertNil(result.getSuccessValue())
 
             expectation.fulfill()
         })
@@ -74,7 +74,7 @@ final class AdyenPaymentMethodsSpec: XCTestCase {
         
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
         

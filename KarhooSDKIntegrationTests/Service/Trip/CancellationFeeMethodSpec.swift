@@ -33,9 +33,9 @@ final class CancellationFeeMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with success result")
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            XCTAssertEqual(true, result.successValue()?.cancellationFee)
-            XCTAssertEqual(100, result.successValue()?.fee.value)
-            XCTAssertEqual(1, result.successValue()?.fee.decimalValue)
+            XCTAssertEqual(true, result.getSuccessValue()?.cancellationFee)
+            XCTAssertEqual(100, result.getSuccessValue()?.fee.value)
+            XCTAssertEqual(1, result.getSuccessValue()?.fee.decimalValue)
             expectation.fulfill()
         })
 
@@ -53,8 +53,8 @@ final class CancellationFeeMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with success result")
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            XCTAssertEqual(false, result.successValue()?.cancellationFee)
-            XCTAssertEqual(0, result.successValue()?.fee.value)
+            XCTAssertEqual(false, result.getSuccessValue()?.cancellationFee)
+            XCTAssertEqual(0, result.getSuccessValue()?.fee.value)
             expectation.fulfill()
         })
 
@@ -71,7 +71,7 @@ final class CancellationFeeMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.couldNotCancelTrip, result.errorValue()?.type)
+            XCTAssertEqual(.couldNotCancelTrip, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -88,7 +88,7 @@ final class CancellationFeeMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with error result")
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -106,7 +106,7 @@ final class CancellationFeeMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Unknown error propogated")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

@@ -166,7 +166,7 @@ final class TokenRefreshingHttpClientSpec: XCTestCase {
 
         XCTAssert(mockHttpClient.sendRequestsCount == 0)
         XCTAssert(capturedResult?.isSuccess() == false)
-        XCTAssertEqual(noConnectionError, capturedResult?.errorValue() as? HTTPError)
+        XCTAssertEqual(noConnectionError, capturedResult?.getErrorValue() as? HTTPError)
     }
 
     /**
@@ -194,7 +194,7 @@ final class TokenRefreshingHttpClientSpec: XCTestCase {
 
         XCTAssertNotNil((capturedRequest as? AsyncNetworkRequestWrapper)?.hasRequest)
         XCTAssert(capturedResult?.isSuccess() == false)
-        XCTAssert(tokenError.equals(capturedResult!.errorValue()!))
+        XCTAssert(tokenError.equals(capturedResult!.getErrorValue()!))
     }
 
     /**
@@ -263,7 +263,7 @@ final class TokenRefreshingHttpClientSpec: XCTestCase {
         XCTAssert(testRefreshTokenProvider.tokenNeedsRefreshingCalled)
         XCTAssert(testRefreshTokenProvider.refreshTokenCalled)
 
-        XCTAssert(expectedError.equals(capturedResult!.errorValue()!))
+        XCTAssert(expectedError.equals(capturedResult!.getErrorValue()!))
 
         XCTAssert(mockUserDataStore.removeUserCalled == true)
     }

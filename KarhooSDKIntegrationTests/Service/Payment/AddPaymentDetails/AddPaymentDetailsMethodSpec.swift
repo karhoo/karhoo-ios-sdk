@@ -20,7 +20,7 @@ final class AddPaymentDetailsMethodSpec: XCTestCase {
 
         self.paymentService = Karhoo.getPaymentService()
 
-        let payload = AddPaymentDetailsPayload(nonce: "some", payer: Payer(), organisationId: "some+desiredOrg")
+        let payload = AddPaymentDetailsPayload(nonce: "some", organisationId: "some+desiredOrg")
         self.call = paymentService.addPaymentDetails(addPaymentDetailsPayload: payload)
         
     }
@@ -37,9 +37,9 @@ final class AddPaymentDetailsMethodSpec: XCTestCase {
 
         call.execute(callback: { result in
             XCTAssertTrue(result.isSuccess())
-            XCTAssertEqual(result.successValue()?.cardType, "Visa")
-            XCTAssertEqual(result.successValue()?.lastFour, "1111")
-            XCTAssertEqual(result.successValue()?.nonce, "some_nonce")
+            XCTAssertEqual(result.getSuccessValue()?.cardType, "Visa")
+            XCTAssertEqual(result.getSuccessValue()?.lastFour, "1111")
+            XCTAssertEqual(result.getSuccessValue()?.nonce, "some_nonce")
 
             expectation.fulfill()
         })
@@ -60,7 +60,7 @@ final class AddPaymentDetailsMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with success")
 
         call.execute(callback: { result in
-            let error = result.errorValue()
+            let error = result.getErrorValue()
             XCTAssertEqual(error?.type, .couldNotReadAuthorisationToken)
             expectation.fulfill()
         })
@@ -79,7 +79,7 @@ final class AddPaymentDetailsMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

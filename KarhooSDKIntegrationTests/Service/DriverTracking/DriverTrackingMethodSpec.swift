@@ -54,7 +54,7 @@ final class DriverTrackingMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Calls callback with K4012 error type")
 
         pollCall.execute(callback: { result in
-            XCTAssertEqual(.couldNotGetTripCouldNotFindSpecifiedTrip, result.errorValue()!.type)
+            XCTAssertEqual(.couldNotGetTripCouldNotFindSpecifiedTrip, result.getErrorValue()!.type)
             expectation.fulfill()
         })
 
@@ -79,7 +79,7 @@ final class DriverTrackingMethodSpec: XCTestCase {
 
             if driverTrackingResults.count == 2 {
                 self.assertSuccess(result: driverTrackingResults[0])
-                XCTAssertEqual(.couldNotGetTripCouldNotFindSpecifiedTrip, driverTrackingResults[1].errorValue()?.type)
+                XCTAssertEqual(.couldNotGetTripCouldNotFindSpecifiedTrip, driverTrackingResults[1].getErrorValue()?.type)
                 expectation.fulfill()
             }
         }
@@ -98,7 +98,7 @@ final class DriverTrackingMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "Unknown error propogated")
         pollCall.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -106,8 +106,8 @@ final class DriverTrackingMethodSpec: XCTestCase {
     }
 
     private func assertSuccess(result: Result<DriverTrackingInfo>) {
-        XCTAssertEqual(Position(latitude: 1, longitude: -1), result.successValue()?.position)
-        XCTAssertEqual(5, result.successValue()?.originEta)
-        XCTAssertEqual(10, result.successValue()?.destinationEta)
+        XCTAssertEqual(Position(latitude: 1, longitude: -1), result.getSuccessValue()?.position)
+        XCTAssertEqual(5, result.getSuccessValue()?.originEta)
+        XCTAssertEqual(10, result.getSuccessValue()?.destinationEta)
     }
 }

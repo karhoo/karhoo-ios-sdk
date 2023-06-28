@@ -45,8 +45,8 @@ final class LoginMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with expected result")
         call.execute(callback: { result in
-            XCTAssertEqual("some_userId", result.successValue()?.userId)
-            XCTAssertEqual("", result.successValue()?.externalId)
+            XCTAssertEqual("some_userId", result.getSuccessValue()?.userId)
+            XCTAssertEqual("", result.getSuccessValue()?.externalId)
             expectation.fulfill()
         })
 
@@ -63,7 +63,7 @@ final class LoginMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with expected error")
         call.execute(callback: { result in
-            XCTAssertEqual(.passwordInWrongFormat, result.errorValue()?.type)
+            XCTAssertEqual(.passwordInWrongFormat, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -82,7 +82,7 @@ final class LoginMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with expected error")
         call.execute(callback: { result in
-            XCTAssertEqual(.couldNotGetUserDetails, result.errorValue()?.type)
+            XCTAssertEqual(.couldNotGetUserDetails, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -102,7 +102,7 @@ final class LoginMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with expected error")
         call.execute(callback: { result in
-            XCTAssertEqual(.missingUserPermission, result.errorValue()?.type)
+            XCTAssertEqual(.missingUserPermission, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -121,7 +121,7 @@ final class LoginMethodSpec: XCTestCase {
 
         let expectation = self.expectation(description: "Calls callback with expected error")
         call.execute(callback: { result in
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 
@@ -145,7 +145,7 @@ final class LoginMethodSpec: XCTestCase {
 
             // login again
             self.call.execute(callback: { result in
-                XCTAssertEqual(.userAlreadyLoggedIn, result.errorValue()?.type)
+                XCTAssertEqual(.userAlreadyLoggedIn, result.getErrorValue()?.type)
                 secondLoginExpectation.fulfill()
             })
         })
@@ -164,7 +164,7 @@ final class LoginMethodSpec: XCTestCase {
         let expectation = self.expectation(description: "calls the callback with error")
         call.execute(callback: { result in
             XCTAssertFalse(result.isSuccess())
-            XCTAssertEqual(.unknownError, result.errorValue()?.type)
+            XCTAssertEqual(.unknownError, result.getErrorValue()?.type)
             expectation.fulfill()
         })
 

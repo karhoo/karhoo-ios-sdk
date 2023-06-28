@@ -61,7 +61,7 @@ final class KarhooTripServiceSpec: XCTestCase {
         mockTripBookingInteractor.triggerSuccess(result: tripBooked)
 
         XCTAssertEqual(mockTripBookingInteractor.tripBookingSet!, tripBooking)
-        XCTAssertEqual(tripBooked.tripId, capturedCallback!.successValue()!.tripId)
+        XCTAssertEqual(tripBooked.tripId, capturedCallback!.getSuccessValue()!.tripId)
     }
 
     /**
@@ -78,7 +78,7 @@ final class KarhooTripServiceSpec: XCTestCase {
 
         mockTripBookingInteractor.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(capturedCallback?.errorValue()))
+        XCTAssert(expectedError.equals(capturedCallback?.getErrorValue()))
     }
 
     /**
@@ -94,7 +94,7 @@ final class KarhooTripServiceSpec: XCTestCase {
 
         mockTripSearchInteractor.triggerSuccess(result: tripList)
 
-        XCTAssertEqual(tripList[0].tripId, capturedCallback!.successValue()![0].tripId)
+        XCTAssertEqual(tripList[0].tripId, capturedCallback!.getSuccessValue()![0].tripId)
     }
 
     /**
@@ -110,7 +110,7 @@ final class KarhooTripServiceSpec: XCTestCase {
 
         mockTripSearchInteractor.triggerFail(error: expectedError)
 
-        XCTAssert(expectedError.equals(capturedCallback?.errorValue()))
+        XCTAssert(expectedError.equals(capturedCallback?.getErrorValue()))
     }
 
     /**
@@ -125,7 +125,7 @@ final class KarhooTripServiceSpec: XCTestCase {
         mockCancelTripInteractor.triggerSuccess(result: KarhooVoid())
 
         XCTAssertTrue(capturedCallback!.isSuccess())
-        XCTAssertNil(capturedCallback!.errorValue())
+        XCTAssertNil(capturedCallback!.getErrorValue())
     }
 
     /**
@@ -141,7 +141,7 @@ final class KarhooTripServiceSpec: XCTestCase {
         mockCancelTripInteractor.triggerFail(error: expectedError)
 
         XCTAssertFalse(capturedCallback!.isSuccess())
-        XCTAssert(expectedError.equals(capturedCallback!.errorValue()))
+        XCTAssert(expectedError.equals(capturedCallback!.getErrorValue()))
     }
 
     /**

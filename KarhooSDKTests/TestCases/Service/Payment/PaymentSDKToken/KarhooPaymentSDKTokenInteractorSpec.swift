@@ -60,7 +60,7 @@ final class KarhooPaymentSDKTokenInteractorSpec: XCTestCase {
 
         mockPaymentSDKTokenRequest.triggerSuccessWithDecoded(value: successResult.build())
 
-        XCTAssertEqual("some_token", callbackResult!.successValue()!.token)
+        XCTAssertEqual("some_token", callbackResult!.getSuccessValue()!.token)
     }
 
     /**
@@ -78,6 +78,6 @@ final class KarhooPaymentSDKTokenInteractorSpec: XCTestCase {
 
         mockPaymentSDKTokenRequest.triggerFail(error: expectedError)
 
-        XCTAssertTrue(expectedError.equals(callbackResult!.errorValue()!))
+        XCTAssertTrue(expectedError.equals(callbackResult!.getErrorValue()!))
     }
 }
