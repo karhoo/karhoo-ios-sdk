@@ -14,7 +14,6 @@ public protocol UserStateObserver: AnyObject {
 
 public protocol UserService {
 
-    func login(userLogin: UserLogin) -> Call<UserInfo>
     func logout() -> Call<KarhooVoid>
     func getCurrentUser() -> UserInfo?
     func passwordReset(email: String) -> Call<KarhooVoid>

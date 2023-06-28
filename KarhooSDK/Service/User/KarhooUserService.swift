@@ -11,30 +11,21 @@ import Foundation
 final class KarhooUserService: UserService {
 
     private let userDataStore: UserDataStore
-    private let loginInteractor: LoginInteractor
     private let registerInteractor: RegisterInteractor
     private let passwordResetInteractor: PasswordResetInteractor
     private let logoutInteractor: KarhooExecutable
     private let updateUserDetailsInteractor: UpdaterUserDetailsInteractor
 
     init(userDataStore: UserDataStore = DefaultUserDataStore(),
-         loginInteractor: LoginInteractor = KarhooLoginInteractor(),
          registerInteractor: RegisterInteractor = KarhooRegisterInteractor(),
          passwordResetInteractor: PasswordResetInteractor = KarhooPasswordResetInteractor(),
          logoutInteractor: KarhooExecutable = KarhooLogoutInteractor(),
          updateUserDetailsInteractor: UpdaterUserDetailsInteractor = KarhooUpdateUserDetailsInteractor()) {
         self.userDataStore = userDataStore
-        self.loginInteractor = loginInteractor
         self.registerInteractor = registerInteractor
         self.passwordResetInteractor = passwordResetInteractor
         self.logoutInteractor = logoutInteractor
         self.updateUserDetailsInteractor = updateUserDetailsInteractor
-    }
-
-    public func login(userLogin: UserLogin) -> Call<UserInfo> {
-        authenticationMethodSanityCheck()
-        loginInteractor.set(userLogin: userLogin)
-        return Call(executable: loginInteractor)
     }
 
     public func logout() -> Call<KarhooVoid> {
