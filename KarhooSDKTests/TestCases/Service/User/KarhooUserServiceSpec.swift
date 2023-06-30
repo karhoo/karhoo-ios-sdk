@@ -13,10 +13,7 @@ import XCTest
 final class KarhooUserServiceSpec: XCTestCase {
 
     private var mockUserDataStore: MockUserDataStore!
-    private var mockRegisterInteractor: MockRegisterInteractor!
     private var mockLogoutInteractor: MockLogoutInteractor!
-    private var mockPasswordResetInteractor: MockPasswordResetInteractor!
-    private var mockUpdateUserDetailsInteractor: MockUpdateuserDetailsInteractor!
 
     private var testObject: UserService!
 
@@ -24,16 +21,10 @@ final class KarhooUserServiceSpec: XCTestCase {
         super.setUp()
 
         mockUserDataStore = MockUserDataStore()
-        mockRegisterInteractor = MockRegisterInteractor()
         mockLogoutInteractor = MockLogoutInteractor()
-        mockPasswordResetInteractor = MockPasswordResetInteractor()
-        mockUpdateUserDetailsInteractor = MockUpdateuserDetailsInteractor()
 
         testObject = KarhooUserService(userDataStore: mockUserDataStore,
-                                       registerInteractor: mockRegisterInteractor,
-                                       passwordResetInteractor: mockPasswordResetInteractor,
-                                       logoutInteractor: mockLogoutInteractor,
-                                       updateUserDetailsInteractor: mockUpdateUserDetailsInteractor)
+                                       logoutInteractor: mockLogoutInteractor)
     }
 
     /**
