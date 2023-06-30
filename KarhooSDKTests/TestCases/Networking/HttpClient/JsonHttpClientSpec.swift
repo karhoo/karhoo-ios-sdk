@@ -112,7 +112,7 @@ final class JsonHttpClientSpec: XCTestCase {
      *   And:   Request interceptor headers should be added
      */
     func testAuthorisationRequest() {
-        MockSDKConfig.authenticationMethod = .karhooUser
+        MockSDKConfig.authenticationMethod =  .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         sendSampleRequest(method: .post)
         let httpHeaders = mockURLSessionSender.lastRequest?.allHTTPHeaderFields
 

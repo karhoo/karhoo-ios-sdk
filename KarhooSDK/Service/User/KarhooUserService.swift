@@ -36,40 +36,11 @@ final class KarhooUserService: UserService {
         return userDataStore.getCurrentUser()
     }
 
-    func register(userRegistration: UserRegistration) -> Call<UserInfo> {
-        authenticationMethodSanityCheck()
-        registerInteractor.set(userRegistration: userRegistration)
-        return Call(executable: registerInteractor)
-    }
-
-    public func passwordReset(email: String) -> Call<KarhooVoid> {
-        authenticationMethodSanityCheck()
-        passwordResetInteractor.set(email: email)
-        return Call(executable: passwordResetInteractor)
-    }
-    
-    public func updateUserDetails(update: UserDetailsUpdateRequest) -> Call<UserInfo> {
-        authenticationMethodSanityCheck()
-        updateUserDetailsInteractor.set(update: update)
-        return Call(executable: updateUserDetailsInteractor)
-    }
-
     public func add(observer: UserStateObserver) {
         userDataStore.add(observer: observer)
     }
 
     public func remove(observer: UserStateObserver) {
         userDataStore.remove(observer: observer)
-    }
-
-    private func authenticationMethodSanityCheck() {
-        let error = "The AuthenticationMethod set in KarhooSDKConfiguration does not support this operation"
-
-        switch Karhoo.configuration.authenticationMethod() {
-        case .tokenExchange(_:), .guest(_:):
-            fatalError(error)
-        default:
-            return
-        }
     }
 }

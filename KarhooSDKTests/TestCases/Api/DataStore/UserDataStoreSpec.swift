@@ -393,7 +393,7 @@ class UserDataStoreSpec: XCTestCase {
                        testObject.getCurrentUser()?.organisations[0].id)
         XCTAssertEqual("", testObject.getCurrentUser()?.userId)
 
-        MockSDKConfig.authenticationMethod = .karhooUser
+        MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
     }
 
     /**
@@ -416,7 +416,7 @@ class UserDataStoreSpec: XCTestCase {
         XCTAssertEqual(mockObserver.userUpdatedTo?.paymentProvider?.provider.type, .braintree)
         XCTAssertTrue(mockObserver.userStateUpdateCalled)
 
-        MockSDKConfig.authenticationMethod = .karhooUser
+        MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
     }
     
     /**
