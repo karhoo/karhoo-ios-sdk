@@ -25,7 +25,6 @@ final class UIConfigMethod: XCTestCase {
 
     private func authenticate() {
         NetworkStub.successResponse(jsonFile: "AuthToken.json", path: "/v1/auth/token")
-        NetworkStub.successResponse(jsonFile: "AuthorisedUserInfo.json", path: "/v1/directory/users/me")
 
         let expectation = self.expectation(description: "calls the callback with success")
 
