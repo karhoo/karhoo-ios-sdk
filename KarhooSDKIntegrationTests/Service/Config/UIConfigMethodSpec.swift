@@ -24,11 +24,12 @@ final class UIConfigMethod: XCTestCase {
     }
 
     private func authenticate() {
-        NetworkStub.successResponse(jsonFile: "AuthToken.json", path: "/v1/auth/token")
+        NetworkStub.successResponse(jsonFile: "AuthToken.json", path: "/oauth/v2/token-exchange")
+        NetworkStub.successResponse(jsonFile: "AuthorisedUserInfo.json", path: "/oauth/v2/userinfo")
 
         let expectation = self.expectation(description: "calls the callback with success")
 
-        Karhoo.getAuthService().login(token: "token").execute(callback: { _ in
+        Karhoo.getAuthService().login(token: "123").execute(callback: { _ in
             expectation.fulfill()
            })
         
