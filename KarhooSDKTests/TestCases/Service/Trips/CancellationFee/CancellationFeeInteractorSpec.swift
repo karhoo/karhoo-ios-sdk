@@ -23,7 +23,7 @@ final class CancellationFeeInteractorSpec: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        MockSDKConfig.authenticationMethod = .karhooUser
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         mockCancellationFeeRequest = MockRequestSender()
         testObject = KarhooCancellationFeeInteractor(requestSender: mockCancellationFeeRequest)
         testObject.set(identifier: identifier)

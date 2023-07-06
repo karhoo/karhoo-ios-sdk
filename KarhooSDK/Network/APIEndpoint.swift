@@ -20,10 +20,6 @@ enum APIEndpoint {
     case placeSearch
     case reverseGeocode(position: Position)
     case login
-    case register
-    case userProfile
-    case userProfileUpdate(identifier: String)
-    case passwordReset
     case paymentSDKToken(payload: PaymentSDKTokenPayload)
     case addPaymentDetails
     case karhooUserTokenRefresh
@@ -100,14 +96,6 @@ enum APIEndpoint {
             return "/locations/reverse-geocode?latitude=\(position.latitude)&longitude=\(position.longitude)"
         case .login:
             return "/auth/token"
-        case .register:
-            return "/directory/users"
-        case .userProfile:
-            return "/directory/users/me"
-        case .userProfileUpdate(let indentifier):
-            return "/directory/users/\(indentifier)"
-        case .passwordReset:
-            return "/directory/users/password-reset"
         case .paymentSDKToken(let payload):
             return "/payments/payment-methods/braintree/client-tokens?organisation_id=\(payload.organisationId)"
                    + "&currency=\(payload.currency)"
@@ -178,10 +166,6 @@ enum APIEndpoint {
         case .placeSearch: return .post
         case .reverseGeocode: return .get
         case .login: return .post
-        case .register: return .post
-        case .userProfile: return .get
-        case .userProfileUpdate: return .put
-        case .passwordReset: return .post
         case .paymentSDKToken: return .post
         case .addPaymentDetails: return .post
         case .karhooUserTokenRefresh: return .post

@@ -22,7 +22,7 @@ final class KarhooCancelTripInteractorSpec: XCTestCase {
                                                         explanation: "some_explanation")
     override func setUp() {
         super.setUp()
-        MockSDKConfig.authenticationMethod = .karhooUser
+        MockSDKConfig.authenticationMethod =  .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         mockCancelTripRequestSender = MockRequestSender()
         mockAnalyticsService = MockAnalyticsService()
 

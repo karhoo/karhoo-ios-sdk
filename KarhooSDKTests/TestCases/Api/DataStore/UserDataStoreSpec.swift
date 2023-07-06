@@ -192,6 +192,7 @@ class UserDataStoreSpec: XCTestCase {
      *  Then:   The stored user should be replaced by the new user
      */
     func testSetUserWhenExistingUser() {
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         let newUser = UserInfoMock().set(userId: "some").build()
 
         let newCredentials = ObjectTestFactory.getRandomCredentials()
@@ -210,6 +211,7 @@ class UserDataStoreSpec: XCTestCase {
      *  Then:   The new user should be set
      */
     func testSetUser() {
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         let newUser = UserInfoMock().set(userId: "some").build()
 
         let newCredentials = ObjectTestFactory.getRandomCredentials()
@@ -227,6 +229,7 @@ class UserDataStoreSpec: XCTestCase {
      *  Then:   The current user should be removed
      */
     func testRemoveCurrentUser() {
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         mockUserDefaults.set(["test": "test"], forKey: DefaultUserDataStore.currentUserKey)
         testObject.removeCurrentUserAndCredentials()
 
@@ -242,7 +245,9 @@ class UserDataStoreSpec: XCTestCase {
      *  Then:   Nothing should happen
      */
     func testRemoveCurrentUserNoUser() {
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         testObject.removeCurrentUserAndCredentials()
+        MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
 
         XCTAssertNil(mockUserDefaults.value(forKey: DefaultUserDataStore.currentUserKey))
 
@@ -283,6 +288,7 @@ class UserDataStoreSpec: XCTestCase {
       * And: observer should be broadcasted
       */
     func testUpdateNonce() {
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         let storedUser = UserInfoMock().set(userId: "some").build()
         mockUserDefaults.set(storedUser.encode()!, forKey: DefaultUserDataStore.currentUserKey)
 
@@ -340,48 +346,6 @@ class UserDataStoreSpec: XCTestCase {
     }
 
     /**
-     * When: Updating the current user
-     * Then: New user should be persisted
-     * And: observer should be broadcasted with new user
-     */
-    func testUpdateUserData() {
-        let existingUser = UserInfoMock().set(userId: "someExistingUser").build()
-        var newUser = UserInfoMock().set(userId: "someNewUser").build()
-
-        mockUserDefaults.set(existingUser.encode()!, forKey: DefaultUserDataStore.currentUserKey)
-
-        let currentUser = testObject.getCurrentUser()
-        XCTAssertEqual(currentUser?.userId, existingUser.userId)
-
-        testObject.updateUser(user: &newUser)
-
-        XCTAssertTrue(mockObserver.userStateUpdateCalled)
-        XCTAssertEqual(testObject.getCurrentUser()?.userId, newUser.userId)
-    }
-
-    /**
-     * When: Updating the current user
-     * Then: New user should be persisted with current user nonce
-     * And: observer should be broadcasted with new user
-     */
-    func testUpdateUserRetainsUserNonce() {
-        let currentUserData = UserInfoMock().set(userId: "nonceUser")
-            .set(nonce: Nonce(nonce: "some"))
-            .set(paymentProvider: PaymentProvider(provider: Provider(id: "123")))
-            .build()
-
-        var newUserUpdate = UserInfoMock().set(userId: "nonceUser").build()
-
-        mockUserDefaults.set(currentUserData.encode()!, forKey: DefaultUserDataStore.currentUserKey)
-
-        testObject.updateUser(user: &newUserUpdate)
-        XCTAssertTrue(mockObserver.userStateUpdateCalled)
-
-        XCTAssertNotNil(testObject.getCurrentUser()?.nonce)
-        XCTAssertEqual(testObject.getCurrentUser()?.nonce, currentUserData.nonce)
-    }
-
-    /**
      * When: SDK is in guest mode
      * When: Getting the current user
      * Then: blank user should return with the organisation id set
@@ -393,7 +357,7 @@ class UserDataStoreSpec: XCTestCase {
                        testObject.getCurrentUser()?.organisations[0].id)
         XCTAssertEqual("", testObject.getCurrentUser()?.userId)
 
-        MockSDKConfig.authenticationMethod = .karhooUser
+        MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
     }
 
     /**
@@ -416,7 +380,7 @@ class UserDataStoreSpec: XCTestCase {
         XCTAssertEqual(mockObserver.userUpdatedTo?.paymentProvider?.provider.type, .braintree)
         XCTAssertTrue(mockObserver.userStateUpdateCalled)
 
-        MockSDKConfig.authenticationMethod = .karhooUser
+        MockSDKConfig.authenticationMethod = .guest(settings: MockSDKConfig.guestSettings)
     }
     
     /**

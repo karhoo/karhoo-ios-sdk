@@ -14,7 +14,6 @@ protocol UserDataStore {
     func setCurrentUser(user: UserInfo, credentials: Credentials)
     func updateCurrentUserNonce(nonce: Nonce?)
     func updatePaymentProvider(paymentProvider: PaymentProvider?)
-    func updateUser(user: inout UserInfo)
     func removeCurrentUserAndCredentials()
     func set(credentials: Credentials)
     func add(observer: UserStateObserver)
@@ -146,18 +145,6 @@ final class DefaultUserDataStore: UserDataStore {
 
         persistantStore.set(data, forKey: DefaultUserDataStore.currentUserKey)
         broadcastChange()
-    }
-
-    func updateUser( user: inout UserInfo) {
-        if let currentNonce = getCurrentUser()?.nonce {
-            user.nonce = currentNonce
-        }
-
-        if let currentPaymentProvider = getCurrentUser()?.paymentProvider {
-            user.paymentProvider = currentPaymentProvider
-        }
-
-        updateUser(data: user.encode())
     }
 
     func removeCurrentUserAndCredentials() {

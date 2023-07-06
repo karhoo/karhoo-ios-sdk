@@ -13,11 +13,7 @@ import XCTest
 final class KarhooUserServiceSpec: XCTestCase {
 
     private var mockUserDataStore: MockUserDataStore!
-    private var mockRegisterInteractor: MockRegisterInteractor!
     private var mockLogoutInteractor: MockLogoutInteractor!
-    private var mockPasswordResetInteractor: MockPasswordResetInteractor!
-    private var mockLoginInteractor: MockLoginInteractor!
-    private var mockUpdateUserDetailsInteractor: MockUpdateuserDetailsInteractor!
 
     private var testObject: UserService!
 
@@ -25,65 +21,10 @@ final class KarhooUserServiceSpec: XCTestCase {
         super.setUp()
 
         mockUserDataStore = MockUserDataStore()
-        mockRegisterInteractor = MockRegisterInteractor()
         mockLogoutInteractor = MockLogoutInteractor()
-        mockPasswordResetInteractor = MockPasswordResetInteractor()
-        mockLoginInteractor = MockLoginInteractor()
-        mockUpdateUserDetailsInteractor = MockUpdateuserDetailsInteractor()
 
         testObject = KarhooUserService(userDataStore: mockUserDataStore,
-                                       loginInteractor: mockLoginInteractor,
-                                       registerInteractor: mockRegisterInteractor,
-                                       passwordResetInteractor: mockPasswordResetInteractor,
-                                       logoutInteractor: mockLogoutInteractor,
-                                       updateUserDetailsInteractor: mockUpdateUserDetailsInteractor)
-    }
-
-    /**
-     *  Given:  A email and password
-     *  When:   Trying to log in
-     *  Then:   It should request a login from the login data accessor
-     */
-    func testLogin() {
-        let userLogin = UserLogin(username: "name", password: "password")
-        testObject.login(userLogin: userLogin).execute(callback: { _ in})
-
-        XCTAssertEqual(userLogin.encode(), mockLoginInteractor.userLoginSet?.encode())
-    }
-
-    /**
-     *  Given:  A login attempt has been made
-     *  When:   The login attempt succeeds
-     *  Then:   It should pass the information along to the caller
-     */
-    func testLoginSuccessful() {
-        var returnedUser: UserInfo?
-        let userLogin = UserLogin(username: "some", password: "some")
-        testObject.login(userLogin: userLogin).execute(callback: { (result: Result<UserInfo>) in
-            returnedUser = result.getSuccessValue()
-        })
-
-        let user = UserInfoMock().set(userId: "some").build()
-        mockLoginInteractor.triggerSuccess(result: user)
-
-        XCTAssertEqual(user.encode(), returnedUser?.encode())
-    }
-
-    /**
-     *  Given:  A login attempt has been made
-     *  When:   The login attempt fails
-     *  Then:   It should pass the error along to the caller
-     */
-    func testLoginFailure() {
-        let expectedError = TestUtil.getRandomError()
-
-        let userLogin = UserLogin(username: "some", password: "some")
-        var result: Result<UserInfo>?
-        testObject.login(userLogin: userLogin)
-                  .execute(callback: { result = $0 })
-
-        mockLoginInteractor.triggerFail(error: expectedError)
-        XCTAssert(expectedError.equals(result!.getErrorValue()))
+                                       logoutInteractor: mockLogoutInteractor)
     }
 
     /**
@@ -137,92 +78,6 @@ final class KarhooUserServiceSpec: XCTestCase {
 
         let returnedUser = testObject.getCurrentUser()
         XCTAssertEqual(user, returnedUser)
-    }
-
-    /**
-     *  When:   Attempting to create a user
-     *  Then:   The sign up service should be called with the correct arguments
-     */
-    func testRegister() {
-        let userRegistration = UserRegistrationMock().build()
-        let successMock = UserInfoMock().set(userId: "some").build()
-
-        var registerResult: Result<UserInfo>?
-        testObject.register(userRegistration: userRegistration)
-            .execute(callback: { registerResult = $0 })
-
-        XCTAssertEqual(userRegistration.encode(), mockRegisterInteractor.userRegistrationSet?.encode())
-
-        mockRegisterInteractor.triggerSuccess(result: successMock)
-
-        XCTAssertEqual(successMock, registerResult?.getSuccessValue())
-    }
-
-    /**
-     *  Given:  Resetting password
-     *  When:   PasswordResetInteractor succeeds
-     *  Then:   Expected callback should be propagated
-     */
-    func testPasswordResetSuccess() {
-        var passwordResult: Result<KarhooVoid>?
-        testObject.passwordReset(email: "some")
-            .execute(callback: { passwordResult = $0 })
-
-        mockPasswordResetInteractor.triggerSuccess(result: KarhooVoid())
-        XCTAssertTrue(passwordResult!.isSuccess())
-    }
-
-    /**
-      *  Given:  Resetting password
-      *  When:   PasswordResetInteractor fails
-      *  Then:   Expected callback should be propagated
-      */
-    func testPasswordResetFails() {
-        let testError = TestUtil.getRandomError()
-
-        var result: Result<KarhooVoid>?
-        testObject.passwordReset(email: "some")
-            .execute(callback: { result = $0 })
-
-        mockPasswordResetInteractor.triggerFail(error: testError)
-
-        XCTAssertFalse(result!.isSuccess())
-        XCTAssert(testError.equals(result!.getErrorValue()))
-    }
-    
-    /**
-     *  Given: Updating Profile
-     *  When: UpdateUserDetailsInteractor succeeds
-     *  Then: The updated details should be sent
-     */
-    func testUpdateUserDetailsSuccess() {
-        let request = UserUpdateMock().set(firstName: "FirstName").build()
-        let response = UserInfoMock().set(firstName: "Response").build()
-        var updateResult: Result<UserInfo>?
-        
-        testObject.updateUserDetails(update: request)
-            .execute(callback: { updateResult = $0 })
-        
-        mockUpdateUserDetailsInteractor.triggerSuccess(result: response)
-        XCTAssertTrue(updateResult!.isSuccess())
-        XCTAssertEqual(updateResult?.getSuccessValue()?.firstName, "Response")
-    }
-
-    /**
-     *  Given: Updating Profile
-     *  When: UpdateUserDetailsInteractor fails
-     *  Then: Error should be sent
-     */
-    func testUpdateUserDetailsFails() {
-        let request = UserUpdateMock().set(firstName: "FirstName").build()
-        let expectedError = TestUtil.getRandomError()
-        var updateResult: Result<UserInfo>?
-        
-        testObject.updateUserDetails(update: request)
-            .execute(callback: { updateResult = $0 })
-        
-        mockUpdateUserDetailsInteractor.triggerFail(error: expectedError)
-        XCTAssertFalse(updateResult!.isSuccess())
     }
 
     /**

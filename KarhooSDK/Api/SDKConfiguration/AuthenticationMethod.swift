@@ -7,7 +7,6 @@
 import Foundation
 
 public enum AuthenticationMethod {
-    case karhooUser
     case tokenExchange(settings: TokenExchangeSettings)
     case guest(settings: GuestSettings)
 

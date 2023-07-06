@@ -20,7 +20,7 @@ class KarhooTripUpdateInteractortSpec: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        MockSDKConfig.authenticationMethod = .karhooUser
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         mockTripUpdateRequest = MockRequestSender()
         testObject = KarhooTripUpdateInteractor(identifier: tripId,
                                                 requestSender: mockTripUpdateRequest)

@@ -17,7 +17,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        MockSDKConfig.authenticationMethod = .karhooUser
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
         mockUserDataStore = MockUserDataStore()
         mockRequestSender = MockRefreshTokenRequest()
         mockTokenValidityWorker = MockTokenValidityWorker()
@@ -27,7 +27,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
     override class func tearDown() {
         super.tearDown()
-        MockSDKConfig.authenticationMethod = .karhooUser
+        MockSDKConfig.authenticationMethod = .tokenExchange(settings: MockSDKConfig.tokenExchangeSettings)
     }
 
     /**
@@ -43,7 +43,7 @@ final class KarhooRefreshTokenInteractorSpec: XCTestCase {
 
         testObject.refreshToken(completion: { _ in})
 
-        mockRequestSender.assertRequestSend(endpoint: .karhooUserTokenRefresh, method: .post)
+        mockRequestSender.assertRequestSend(endpoint: .authRefresh, method: .post)
     }
 
     /**

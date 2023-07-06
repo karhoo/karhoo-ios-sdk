@@ -46,8 +46,6 @@ class KarhooHeaderProvider: HeaderProvider {
         switch endpoint {
         case .login,
              .karhooUserTokenRefresh,
-             .register,
-             .passwordReset,
              .authRefresh:
             return headers
         default:

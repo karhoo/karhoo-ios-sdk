@@ -48,31 +48,6 @@ final class HeaderProviderSpec: XCTestCase {
     }
 
     /**
-    *  Given:  A user makes a register request
-    *  When:   They add the auth token
-    *  Then:   The auth token shouldn't be added as its not needed
-    */
-    func testAddingAuthTokenToRegisterEndpointDoesntAddToken() {
-        var headers = HttpHeaders()
-        headers = testHeaderProvider.headersWithAuthorization(headers: &headers, endpoint: .register)
-
-        XCTAssertEqual(0, headers.count)
-    }
-
-    /**
-     *  Given:  A user makes a password reset request
-     *  When:   They add the auth token
-     *  Then:   The auth token shouldn't be added as its not needed
-     */
-    func testAddingAuthTokenToPasswordResetRequestDoesntAddToken() {
-        var headers = HttpHeaders()
-
-        headers = testHeaderProvider.headersWithAuthorization(headers: &headers, endpoint: .passwordReset)
-
-        XCTAssertEqual(0, headers.count)
-    }
-
-    /**
      *  Given:  Custom http headers provided
      *  When:   One of the headers is the authorization headers
      *  Then:   Custom headers should be set
