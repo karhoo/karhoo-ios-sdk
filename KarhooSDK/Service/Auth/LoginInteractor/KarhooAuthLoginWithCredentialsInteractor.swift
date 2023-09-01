@@ -61,12 +61,11 @@ final class KarhooAuthLoginWithCredentialsInteractor: AuthLoginWithCredentialsIn
         userInfoSender.requestAndDecode(payload: nil,
                                         endpoint: .authUserInfo) { [weak self](result: Result<UserInfo>) in
                                             switch result {
-                                            case .success(let result):
-                                                let user = result.result
-                                                self?.didLogin(user: user, credentials: credentials)
-                                                callback(.success(result: user))
-                                            case .failure(let error):
-                                                callback(.failure(error: error.error))
+                                            case .success(let result, _):
+                                                self?.didLogin(user: result, credentials: credentials)
+                                                callback(.success(result: result))
+                                            case .failure(let error, _):
+                                                callback(.failure(error: error))
                                             }
         }
     }
