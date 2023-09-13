@@ -46,8 +46,8 @@ final class KarhooAdyenPaymentMethodsInteractor: AdyenPaymentMethodsInteractor {
 
     private func handle(_ response: Result<HttpResponse>, interactorCallback: CallbackClosure<DecodableData>) {
         switch response {
-        case .failure(let error): interactorCallback(.failure(error: error.error))
-        case .success(let result): interactorCallback(.success(result: DecodableData(data: result.result.data)))
+        case .failure(let error, _): interactorCallback(.failure(error: error))
+        case .success(let result, _): interactorCallback(.success(result: DecodableData(data: result.data)))
         }
     }
 }

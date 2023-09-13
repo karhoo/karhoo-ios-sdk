@@ -21,7 +21,11 @@ final class NetworkConnectionTypeProvider {
     }
 
     private func coreTelephonyNetworkStatus() -> String {
-        let networkString = CTTelephonyNetworkInfo().currentRadioAccessTechnology ?? ""
+        var networkString: String = ""
+        if let networkDictionary = CTTelephonyNetworkInfo().serviceCurrentRadioAccessTechnology,
+           let key = networkDictionary.keys.first {
+            networkString = networkDictionary[key] ?? ""
+        }
 
         switch networkString {
         case CTRadioAccessTechnologyLTE:

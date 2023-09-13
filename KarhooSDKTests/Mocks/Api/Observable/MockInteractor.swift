@@ -9,7 +9,7 @@
 import Foundation
 @testable import KarhooSDK
 
-protocol MockInteractor: class, KarhooExecutable {
+protocol MockInteractor: AnyObject, KarhooExecutable {
     associatedtype ResponseType
     var callbackSet: CallbackClosure<ResponseType>? { get set }
     func triggerSuccess(result: ResponseType)
