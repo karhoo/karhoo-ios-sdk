@@ -3,10 +3,10 @@
     {
       "identity" : "keychain-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/evgenyneu/keychain-swift.git",
+      "location" : "https://github.com/dianakarh/keychain-swift",
       "state" : {
-        "revision" : "d108a1fa6189e661f91560548ef48651ed8d93b9",
-        "version" : "20.0.0"
+        "revision" : "6a14164ea5730776ae71f6d4d17bebcc6df743c7",
+        "version" : "1.0.0"
       }
     },
     {
