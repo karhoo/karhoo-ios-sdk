@@ -13,8 +13,8 @@ let package = Package(
             targets: ["KarhooSDK"]),
     ],
     dependencies: [
-        .package(name: "KeychainSwift", url: "https://github.com/evgenyneu/keychain-swift", from: "19.0.0"),
-        .package(name: "Reachability", url: "https://github.com/ashleymills/Reachability.swift", from: "5.0.0"),
+        .package(name: "KeychainSwift", url: "https://github.com/dianakarh/keychain-swift", from: "1.0.0"),
+        .package(name: "Reachability", url: "https://github.com/dianakarh/Reachability.swift", from: "1.0.0"),
         .package(name: "OHHTTPStubs", url: "https://github.com/AliSoftware/OHHTTPStubs", from: "9.0.0"),
     ],
     targets: [

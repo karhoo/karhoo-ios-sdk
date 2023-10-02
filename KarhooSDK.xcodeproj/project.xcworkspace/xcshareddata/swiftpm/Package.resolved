@@ -21,10 +21,10 @@
     {
       "identity" : "reachability.swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ashleymills/Reachability.swift",
+      "location" : "https://github.com/dianakarh/Reachability.swift",
       "state" : {
-        "revision" : "98e968e7b6c1318fb61df23e347bc319761e8acb",
-        "version" : "5.0.0"
+        "revision" : "c21596a13edbaa1ac40fd43f265d3b5b3fe7c524",
+        "version" : "1.0.0"
       }
     }
   ],
