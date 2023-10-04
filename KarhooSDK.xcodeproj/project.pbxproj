@@ -424,8 +424,8 @@
 		7B28E006288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */; };
 		7B28E008288688E300F6FDAE /* PaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */; };
 		7B28E00A2886891300F6FDAE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E0092886891300F6FDAE /* Keys.swift */; };
-		8407EC4E2ACB120400DFD4DD /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 8407EC4D2ACB120400DFD4DD /* Reachability */; };
-		84E42B8A2ACB0C1B004D8C02 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 84E42B892ACB0C1B004D8C02 /* KeychainSwift */; };
+		843305B52ACD8C4B0076D27D /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 843305B42ACD8C4B0076D27D /* Reachability */; };
+		843305B82ACD8EE80076D27D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 843305B72ACD8EE80076D27D /* KeychainSwift */; };
 		A10F03D6260CA199005743F4 /* ServiceCancellationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F03D5260CA199005743F4 /* ServiceCancellationType.swift */; };
 		A1F3C05A261B7C44003CE2CD /* MockSecretStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3C059261B7C44003CE2CD /* MockSecretStore.swift */; };
 		A1F3C070261B83AC003CE2CD /* CredentialsStoreKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3C06F261B83AC003CE2CD /* CredentialsStoreKeys.swift */; };
@@ -1072,8 +1072,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84E42B8A2ACB0C1B004D8C02 /* KeychainSwift in Frameworks */,
-				8407EC4E2ACB120400DFD4DD /* Reachability in Frameworks */,
+				843305B82ACD8EE80076D27D /* KeychainSwift in Frameworks */,
+				843305B52ACD8C4B0076D27D /* Reachability in Frameworks */,
 				5C4253332519068400CCCB5D /* OHHTTPStubsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3230,8 +3230,8 @@
 			name = KarhooSDK;
 			packageProductDependencies = (
 				5C4253322519068400CCCB5D /* OHHTTPStubsSwift */,
-				84E42B892ACB0C1B004D8C02 /* KeychainSwift */,
-				8407EC4D2ACB120400DFD4DD /* Reachability */,
+				843305B42ACD8C4B0076D27D /* Reachability */,
+				843305B72ACD8EE80076D27D /* KeychainSwift */,
 			);
 			productName = KarhooSDK;
 			productReference = 4387A6411E3BAF6D0024FD55 /* KarhooSDK.framework */;
@@ -3307,8 +3307,8 @@
 			mainGroup = 4387A6371E3BAF6D0024FD55;
 			packageReferences = (
 				5C4252EF2518F72200CCCB5D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
-				84E42B882ACB0C1B004D8C02 /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				8407EC4C2ACB120400DFD4DD /* XCRemoteSwiftPackageReference "Reachability" */,
+				843305B32ACD8C4B0076D27D /* XCRemoteSwiftPackageReference "karhoo-reachability-swift" */,
+				843305B62ACD8EE80076D27D /* XCRemoteSwiftPackageReference "karhoo-keychain-swift" */,
 			);
 			productRefGroup = 4387A6421E3BAF6D0024FD55 /* Products */;
 			projectDirPath = "";
@@ -4378,17 +4378,17 @@
 				minimumVersion = 9.1.0;
 			};
 		};
-		8407EC4C2ACB120400DFD4DD /* XCRemoteSwiftPackageReference "Reachability" */ = {
+		843305B32ACD8C4B0076D27D /* XCRemoteSwiftPackageReference "karhoo-reachability-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dianakarh/Reachability.swift";
+			repositoryURL = "https://github.com/karhoo/karhoo-reachability-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
 			};
 		};
-		84E42B882ACB0C1B004D8C02 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+		843305B62ACD8EE80076D27D /* XCRemoteSwiftPackageReference "karhoo-keychain-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dianakarh/keychain-swift";
+			repositoryURL = "https://github.com/karhoo/karhoo-keychain-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
@@ -4402,14 +4402,14 @@
 			package = 5C4252EF2518F72200CCCB5D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
 			productName = OHHTTPStubsSwift;
 		};
-		8407EC4D2ACB120400DFD4DD /* Reachability */ = {
+		843305B42ACD8C4B0076D27D /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8407EC4C2ACB120400DFD4DD /* XCRemoteSwiftPackageReference "Reachability" */;
+			package = 843305B32ACD8C4B0076D27D /* XCRemoteSwiftPackageReference "karhoo-reachability-swift" */;
 			productName = Reachability;
 		};
-		84E42B892ACB0C1B004D8C02 /* KeychainSwift */ = {
+		843305B72ACD8EE80076D27D /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 84E42B882ACB0C1B004D8C02 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			package = 843305B62ACD8EE80076D27D /* XCRemoteSwiftPackageReference "karhoo-keychain-swift" */;
 			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -1,11 +1,20 @@
 {
   "pins" : [
     {
-      "identity" : "keychain-swift",
+      "identity" : "karhoo-keychain-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/dianakarh/keychain-swift",
+      "location" : "https://github.com/karhoo/karhoo-keychain-swift",
       "state" : {
-        "revision" : "6a14164ea5730776ae71f6d4d17bebcc6df743c7",
+        "revision" : "bc5b50de87f222ffa6e6a488a9becf8d1e7abd5e",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "karhoo-reachability-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/karhoo/karhoo-reachability-swift",
+      "state" : {
+        "revision" : "c5b2edb5c24568ea8128e063a99a9d619184faa7",
         "version" : "1.0.0"
       }
     },
@@ -16,15 +25,6 @@
       "state" : {
         "revision" : "12f19662426d0434d6c330c6974d53e2eb10ecd9",
         "version" : "9.1.0"
-      }
-    },
-    {
-      "identity" : "reachability.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/dianakarh/Reachability.swift",
-      "state" : {
-        "revision" : "c21596a13edbaa1ac40fd43f265d3b5b3fe7c524",
-        "version" : "1.0.0"
       }
     }
   ],
