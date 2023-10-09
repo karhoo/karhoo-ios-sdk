@@ -424,8 +424,10 @@
 		7B28E006288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */; };
 		7B28E008288688E300F6FDAE /* PaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */; };
 		7B28E00A2886891300F6FDAE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E0092886891300F6FDAE /* Keys.swift */; };
-		843305B52ACD8C4B0076D27D /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 843305B42ACD8C4B0076D27D /* Reachability */; };
-		843305B82ACD8EE80076D27D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 843305B72ACD8EE80076D27D /* KeychainSwift */; };
+		843305C02AD431910076D27D /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BB2AD431910076D27D /* TegKeychainConstants.swift */; };
+		843305C12AD431910076D27D /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BC2AD431910076D27D /* KeychainSwift.swift */; };
+		843305C32AD431910076D27D /* KeychainSwiftAccessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BE2AD431910076D27D /* KeychainSwiftAccessOptions.swift */; };
+		843305C72AD434250076D27D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305C62AD434250076D27D /* Reachability.swift */; };
 		A10F03D6260CA199005743F4 /* ServiceCancellationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F03D5260CA199005743F4 /* ServiceCancellationType.swift */; };
 		A1F3C05A261B7C44003CE2CD /* MockSecretStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3C059261B7C44003CE2CD /* MockSecretStore.swift */; };
 		A1F3C070261B83AC003CE2CD /* CredentialsStoreKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3C06F261B83AC003CE2CD /* CredentialsStoreKeys.swift */; };
@@ -965,6 +967,10 @@
 		7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KarhooPaymentProviderUpdateHandler.swift; path = KarhooSDK/Service/User/KarhooPaymentProviderUpdateHandler.swift; sourceTree = SOURCE_ROOT; };
 		7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProviderUpdateHandler.swift; path = KarhooSDK/Service/User/PaymentProviderUpdateHandler.swift; sourceTree = SOURCE_ROOT; };
 		7B28E0092886891300F6FDAE /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		843305BB2AD431910076D27D /* TegKeychainConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TegKeychainConstants.swift; sourceTree = "<group>"; };
+		843305BC2AD431910076D27D /* KeychainSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwift.swift; sourceTree = "<group>"; };
+		843305BE2AD431910076D27D /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
+		843305C62AD434250076D27D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		A10F03D5260CA199005743F4 /* ServiceCancellationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCancellationType.swift; sourceTree = "<group>"; };
 		A1F3C059261B7C44003CE2CD /* MockSecretStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSecretStore.swift; sourceTree = "<group>"; };
 		A1F3C06F261B83AC003CE2CD /* CredentialsStoreKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsStoreKeys.swift; sourceTree = "<group>"; };
@@ -1072,8 +1078,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				843305B82ACD8EE80076D27D /* KeychainSwift in Frameworks */,
-				843305B52ACD8C4B0076D27D /* Reachability in Frameworks */,
 				5C4253332519068400CCCB5D /* OHHTTPStubsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1531,7 +1535,6 @@
 				BAA0A29CABA7ACA838A7B9D0 /* Extention */,
 				317610EB1FD84B1E00D2DB75 /* KarhooNetworkDateFormatter.swift */,
 				095E406C20B32DAE008EAF0F /* NetworkDateFormatter.swift */,
-				43D251B51F45C76E005ECB85 /* ReachabilityWrapper.swift */,
 				432D47891ECC80E10085DBBE /* Result.swift */,
 				31ACC66D1FF566C400E8B24F /* KarhooTimingScheduler.swift */,
 				4310E4B71E99395D00625A0E /* WeakReferenceWrapper.swift */,
@@ -2423,6 +2426,7 @@
 		4387A6431E3BAF6D0024FD55 /* KarhooSDK */ = {
 			isa = PBXGroup;
 			children = (
+				843305B92AD431260076D27D /* Utils */,
 				4310E47E1E99395D00625A0E /* Api */,
 				4371C5791EB0E7F70059429D /* Service */,
 				4310E4A41E99395D00625A0E /* Network */,
@@ -2879,6 +2883,34 @@
 			path = PaymentProviderUpdater;
 			sourceTree = "<group>";
 		};
+		843305B92AD431260076D27D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				843305C52AD433EB0076D27D /* Reachability */,
+				843305BA2AD431340076D27D /* Keychain */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		843305BA2AD431340076D27D /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				843305BC2AD431910076D27D /* KeychainSwift.swift */,
+				843305BE2AD431910076D27D /* KeychainSwiftAccessOptions.swift */,
+				843305BB2AD431910076D27D /* TegKeychainConstants.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		843305C52AD433EB0076D27D /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				843305C62AD434250076D27D /* Reachability.swift */,
+				43D251B51F45C76E005ECB85 /* ReachabilityWrapper.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		BAA0A09FEA1B89384EFDA915 /* TripUpdate */ = {
 			isa = PBXGroup;
 			children = (
@@ -3230,8 +3262,6 @@
 			name = KarhooSDK;
 			packageProductDependencies = (
 				5C4253322519068400CCCB5D /* OHHTTPStubsSwift */,
-				843305B42ACD8C4B0076D27D /* Reachability */,
-				843305B72ACD8EE80076D27D /* KeychainSwift */,
 			);
 			productName = KarhooSDK;
 			productReference = 4387A6411E3BAF6D0024FD55 /* KarhooSDK.framework */;
@@ -3307,8 +3337,6 @@
 			mainGroup = 4387A6371E3BAF6D0024FD55;
 			packageReferences = (
 				5C4252EF2518F72200CCCB5D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
-				843305B32ACD8C4B0076D27D /* XCRemoteSwiftPackageReference "karhoo-reachability-swift" */,
-				843305B62ACD8EE80076D27D /* XCRemoteSwiftPackageReference "karhoo-keychain-swift" */,
 			);
 			productRefGroup = 4387A6421E3BAF6D0024FD55 /* Products */;
 			projectDirPath = "";
@@ -3604,6 +3632,7 @@
 				095A03C42333AFED007D805E /* UIConfigRequest.swift in Sources */,
 				5C2856CF20E3B127009B9464 /* PlaceSearchInteractor.swift in Sources */,
 				237E0C572347823A00798AA0 /* FareService.swift in Sources */,
+				843305C32AD431910076D27D /* KeychainSwiftAccessOptions.swift in Sources */,
 				5CAEC77D24BDA9920008EA50 /* KarhooQuoteInteractor.swift in Sources */,
 				5C1E32A4211F015D00651BB9 /* KarhooVoid.swift in Sources */,
 				230FD90126A03E34009BDCFA /* AuthLoginWithCredentialsInteractor.swift in Sources */,
@@ -3686,6 +3715,7 @@
 				BAA0A2F241A3762CCC60A9ED /* KarhooBookingInteractor.swift in Sources */,
 				BAA0A99196851950BE007EC3 /* BookingInteractor.swift in Sources */,
 				FCC17D792118984B00A25B87 /* KarhooPollCallFactory.swift in Sources */,
+				843305C72AD434250076D27D /* Reachability.swift in Sources */,
 				FCD32FEB20DA9C5F0044BB64 /* KarhooTripSearchInteractor.swift in Sources */,
 				2316363B274666800082EE9B /* LoyaltyPreAuthInteractor.swift in Sources */,
 				0900D34920D2B17B0082D1E8 /* RefreshTokenInteractor.swift in Sources */,
@@ -3694,6 +3724,7 @@
 				6FA4EA58257FA8D800173DAE /* Direction.swift in Sources */,
 				094B449E2285AC66002D2506 /* PaymentSDKTokenPayload.swift in Sources */,
 				BAA0ADC3A54466A62DCB5412 /* TripStatusInteractor.swift in Sources */,
+				843305C12AD431910076D27D /* KeychainSwift.swift in Sources */,
 				BAA0A113CE860049AD045890 /* KarhooTripStatusInteractor.swift in Sources */,
 				A10F03D6260CA199005743F4 /* ServiceCancellationType.swift in Sources */,
 				BAA0A1625DACE366FC991EE7 /* TripStatus.swift in Sources */,
@@ -3714,6 +3745,7 @@
 				400555712350AEDD008AD78F /* TripFare.swift in Sources */,
 				BAA0A20863C722DEDBD8AB81 /* RequestSender.swift in Sources */,
 				BAA0A6EAF352449EA13B4994 /* KarhooRequestSender.swift in Sources */,
+				843305C02AD431910076D27D /* TegKeychainConstants.swift in Sources */,
 				AE77775B25FACD1A000433BB /* Fleet.swift in Sources */,
 				6FD94A5D258BC3C200B21B8B /* KarhooLoyaltyBalanceInteractor.swift in Sources */,
 				FC861B2C21107727004CC47A /* KarhooError.swift in Sources */,
@@ -4378,22 +4410,6 @@
 				minimumVersion = 9.1.0;
 			};
 		};
-		843305B32ACD8C4B0076D27D /* XCRemoteSwiftPackageReference "karhoo-reachability-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/karhoo/karhoo-reachability-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		843305B62ACD8EE80076D27D /* XCRemoteSwiftPackageReference "karhoo-keychain-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/karhoo/karhoo-keychain-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -4401,16 +4417,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5C4252EF2518F72200CCCB5D /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
 			productName = OHHTTPStubsSwift;
-		};
-		843305B42ACD8C4B0076D27D /* Reachability */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 843305B32ACD8C4B0076D27D /* XCRemoteSwiftPackageReference "karhoo-reachability-swift" */;
-			productName = Reachability;
-		};
-		843305B72ACD8EE80076D27D /* KeychainSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 843305B62ACD8EE80076D27D /* XCRemoteSwiftPackageReference "karhoo-keychain-swift" */;
-			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

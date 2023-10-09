@@ -1,24 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "karhoo-keychain-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/karhoo/karhoo-keychain-swift",
-      "state" : {
-        "revision" : "bc5b50de87f222ffa6e6a488a9becf8d1e7abd5e",
-        "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "karhoo-reachability-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/karhoo/karhoo-reachability-swift",
-      "state" : {
-        "revision" : "c5b2edb5c24568ea8128e063a99a9d619184faa7",
-        "version" : "1.0.0"
-      }
-    },
-    {
       "identity" : "ohhttpstubs",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AliSoftware/OHHTTPStubs",

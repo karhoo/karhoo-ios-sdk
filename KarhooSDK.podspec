@@ -13,7 +13,4 @@ Pod::Spec.new do |s|
   s.requires_arc          = true
   s.swift_version         = '5.0'
 
-  s.dependency   'ReachabilitySwift', '5.0.0'
-  s.dependency   'KeychainSwift', '12.0.0'
-
 end

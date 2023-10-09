@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Reachability
 
 public protocol ReachabilityProvider {
     func add(listener: ReachabilityListener)
@@ -29,13 +28,13 @@ public protocol ReachabilityListener: AnyObject {
 protocol ReachabilityProtocol {
     func startNotifier() throws
     func stopNotifier()
-    var currentReachabilityStatus: Reachability.Connection { get }
+    var connectionStatus: Reachability.Connection { get }
     var whenReachable: Reachability.NetworkReachable? { get set }
     var whenUnreachable: Reachability.NetworkUnreachable? { get set }
 }
 
 extension Reachability: ReachabilityProtocol {
-    var currentReachabilityStatus: Reachability.Connection {
+    var connectionStatus: Reachability.Connection {
         return self.connection
     }
 }
@@ -49,13 +48,13 @@ public final class ReachabilityWrapper: ReachabilityProvider {
     private var lastStatus: Reachability.Connection
 
     public var currentReachabilityStatus: Reachability.Connection {
-        return reachability.currentReachabilityStatus
+        return reachability.connectionStatus
     }
 
     init(reachability: ReachabilityProtocol,
          broadcaster: Broadcaster<AnyObject> = Broadcaster<AnyObject>()) {
         self.reachability = reachability
-        lastStatus = reachability.currentReachabilityStatus
+        lastStatus = reachability.connectionStatus
         self.broadcaster = broadcaster
 
         self.reachability.whenReachable = { [weak self] (_) in
@@ -73,7 +72,7 @@ public final class ReachabilityWrapper: ReachabilityProvider {
         }
 
         broadcaster.add(listener: listener)
-        listener.reachabilityChanged(isReachable: reachability.currentReachabilityStatus != .unavailable)
+        listener.reachabilityChanged(isReachable: reachability.connectionStatus != .unavailable)
     }
 
     public func remove(listener: ReachabilityListener) {
@@ -85,11 +84,11 @@ public final class ReachabilityWrapper: ReachabilityProvider {
     }
 
     public func isReachable() -> Bool {
-        return reachability.currentReachabilityStatus != .unavailable
+        return reachability.connectionStatus != .unavailable
     }
 
     private func reactToPotentialNetworkStatusChange() {
-        let currentStatus = reachability.currentReachabilityStatus
+        let currentStatus = reachability.connectionStatus
 
         let wasReachable = lastStatus != .unavailable
         let isReachable = currentStatus != .unavailable
