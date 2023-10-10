@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import KeychainSwift
 
 struct KeychainSecretStore: SecretStore {
 

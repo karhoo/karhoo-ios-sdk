@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import KeychainSwift
 
 protocol KeychainWrapperProtocol {
     func set(_ value: String, forKey: String)

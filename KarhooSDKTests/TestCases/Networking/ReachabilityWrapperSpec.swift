@@ -8,7 +8,6 @@
 
 import XCTest
 
-import Reachability
 @testable import KarhooSDK
 
 class ReachabilityWrapperSpec: XCTestCase {
@@ -205,7 +204,7 @@ private class MockReachability: ReachabilityProtocol {
     var whenUnreachable: Reachability.NetworkUnreachable?
     private(set) var notifierRunning = false
 
-    var currentReachabilityStatus: Reachability.Connection {
+    var connectionStatus: Reachability.Connection {
         return reachabilityStatus
     }
 
