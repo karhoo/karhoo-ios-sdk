@@ -2426,11 +2426,11 @@
 		4387A6431E3BAF6D0024FD55 /* KarhooSDK */ = {
 			isa = PBXGroup;
 			children = (
-				843305B92AD431260076D27D /* Utils */,
-				4310E47E1E99395D00625A0E /* Api */,
-				4371C5791EB0E7F70059429D /* Service */,
-				4310E4A41E99395D00625A0E /* Network */,
 				4387A6451E3BAF6D0024FD55 /* Info.plist */,
+				4310E47E1E99395D00625A0E /* Api */,
+				4310E4A41E99395D00625A0E /* Network */,
+				4371C5791EB0E7F70059429D /* Service */,
+				843305B92AD431260076D27D /* Utils */,
 			);
 			path = KarhooSDK;
 			sourceTree = "<group>";
@@ -2886,8 +2886,8 @@
 		843305B92AD431260076D27D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				843305C52AD433EB0076D27D /* Reachability */,
 				843305BA2AD431340076D27D /* Keychain */,
+				843305C52AD433EB0076D27D /* Reachability */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -4199,7 +4199,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4223,7 +4223,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.2;
+				MARKETING_VERSION = 1.8.3;
 				MODULEMAP_PRIVATE_FILE = "";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
@@ -4246,7 +4246,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4271,7 +4271,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.2;
+				MARKETING_VERSION = 1.8.3;
 				MODULEMAP_PRIVATE_FILE = "";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
