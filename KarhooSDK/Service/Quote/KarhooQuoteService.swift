@@ -27,8 +27,9 @@ final class KarhooQuoteService: QuoteService {
         self.vehicleRulesInteractor = vehicleRulesInteractor
     }
 
-    func quotes(quoteSearch: QuoteSearch) -> PollCall<Quotes> {
+    func quotes(quoteSearch: QuoteSearch, locale: String? = nil) -> PollCall<Quotes> {
         quoteInteractor.set(quoteSearch: quoteSearch)
+        quoteInteractor.set(locale: locale)
         let pollExecutor = PollExecutor(executable: quoteInteractor)
         return PollCall(pollExecutor: pollExecutor)
     }
