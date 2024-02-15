@@ -11,7 +11,11 @@ import Foundation
 @testable import KarhooSDK
 
 final class MockQuoteInteractor: QuoteInteractor, MockInteractor {
-
+    var locale: String?
+    func set(locale: String?) {
+        self.locale = locale
+    }
+    
     var cancelCalled: Bool = false
     var callbackSet: CallbackClosure<Quotes>?
 

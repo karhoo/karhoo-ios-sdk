@@ -115,7 +115,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
                                            destination: expectedDestination,
                                            dateScheduled: dateScheduled)
 
-        mockQuoteListIdRequest.assertRequestSendAndDecoded(endpoint: .quoteListId,
+        mockQuoteListIdRequest.assertRequestSendAndDecoded(endpoint: .quoteListId(locale: nil),
                                                            method: .post,
                                                            payload: expectedPayload)
 
@@ -150,7 +150,7 @@ final class KarhooQuoteInteractorSpec: XCTestCase {
 
         mockQuoteListIdRequest.triggerSuccessWithDecoded(value: QuoteListId(identifier: "some", validityTime: 100))
 
-        mockQuotesRequest.assertRequestSendAndDecoded(endpoint: .quotes(identifier: "some"),
+        mockQuotesRequest.assertRequestSendAndDecoded(endpoint: .quotes(identifier: "some", locale: nil),
                                                       method: .post,
                                                       payload: nil)
     }

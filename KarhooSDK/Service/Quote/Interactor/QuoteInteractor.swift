@@ -11,4 +11,5 @@ import Foundation
 protocol QuoteInteractor: KarhooExecutable {
 
     func set(quoteSearch: QuoteSearch)
+    func set(locale: String?)
 }

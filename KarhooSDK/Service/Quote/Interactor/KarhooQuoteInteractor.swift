@@ -14,6 +14,7 @@ final class KarhooQuoteInteractor: QuoteInteractor {
     private let quotesRequest: RequestSender
     private var quoteSearch: QuoteSearch?
     private var quoteListId: QuoteListId?
+    private var locale: String?
     private let filterRidesWithETA: Int = 30
     private let refreshQuoteListMinimumValidity: Int = 10
 
@@ -26,6 +27,10 @@ final class KarhooQuoteInteractor: QuoteInteractor {
     func set(quoteSearch: QuoteSearch) {
         cancel()
         self.quoteSearch = quoteSearch
+    }
+    
+    func set(locale: String?) {
+        self.locale = locale
     }
 
     func execute<T: KarhooCodableModel>(callback: @escaping CallbackClosure<T>) {
@@ -44,6 +49,7 @@ final class KarhooQuoteInteractor: QuoteInteractor {
         quoteListIdRequest.cancelNetworkRequest()
         quotesRequest.cancelNetworkRequest()
         quoteListId = nil
+        locale = nil
     }
 
     private func requestAndHandleQuoteListId(callback: @escaping CallbackClosure<Quotes>) {
@@ -52,7 +58,7 @@ final class KarhooQuoteInteractor: QuoteInteractor {
         }
 
         quoteListIdRequest.requestAndDecode(payload: requestPayload,
-                                            endpoint: .quoteListId,
+                                            endpoint: .quoteListId(locale: locale),
                                             callback: { [weak self] (result: Result<QuoteListId>) in
                                                 if let quoteListId = result.getSuccessValue() {
                                                     self?.makeQuotesRequest(quoteListId: quoteListId,
@@ -68,7 +74,7 @@ final class KarhooQuoteInteractor: QuoteInteractor {
         self.quoteListId = quoteListId
 
         quotesRequest.requestAndDecode(payload: nil,
-                                       endpoint: .quotes(identifier: quoteListId.identifier),
+                                       endpoint: .quotes(identifier: quoteListId.identifier, locale: locale),
                                        callback: { [weak self] (result: Result<QuoteList>) in
                                         if let successValue = result.getSuccessValue() {
                                             self?.handleSuccessfulQuoteRequest(quoteList: successValue,
