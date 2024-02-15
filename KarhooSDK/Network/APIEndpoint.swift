@@ -61,9 +61,9 @@ enum APIEndpoint {
     var relativePath: String {
         switch self {
         case .quoteListId(let locale):
-            return locale != nil ? "/quotes?locale=\(locale!)" : "/quotes/"
+            return isNilEmptyOrWhitespace(text: locale) ? "/quotes/" : "/quotes?locale=\(locale!)"
         case .quotes(let identifier, let locale):
-            return locale != nil ? "/quotes/\(identifier)?locale=\(locale!)" : "/quotes/\(identifier)"
+            return isNilEmptyOrWhitespace(text: locale) ? "/quotes/\(identifier)" : "/quotes/\(identifier)?locale=\(locale!)"
         case .bookTrip:
             return "/bookings"
         case .bookTripWithNonce:
@@ -211,6 +211,10 @@ enum APIEndpoint {
         case .loyaltyConversion: return "v3"
         default: return "v1"
         }
+    }
+    
+    private func isNilEmptyOrWhitespace(text: String?) -> Bool {
+        return text == nil || text?.isEmpty ?? true || text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true
     }
 }
 
