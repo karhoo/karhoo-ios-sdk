@@ -17,6 +17,6 @@ public protocol QuoteService {
 
 public extension QuoteService {
     func quotes(quoteSearch: QuoteSearch, locale: String? = nil) -> PollCall<Quotes> {
-        quotes(quoteSearch: quoteSearch, locale: nil)
+        quotes(quoteSearch: quoteSearch, locale: locale)
     }
 }
