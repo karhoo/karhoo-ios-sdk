@@ -2,8 +2,8 @@ import Foundation
 
 enum APIEndpoint {
 
-    case quoteListId
-    case quotes(identifier: String)
+    case quoteListId(locale: String?)
+    case quotes(identifier: String, locale: String?)
     case bookTrip
     case bookTripWithNonce
     case cancelTrip(identifier: String)
@@ -60,10 +60,10 @@ enum APIEndpoint {
 
     var relativePath: String {
         switch self {
-        case .quoteListId:
-            return "/quotes/"
-        case .quotes(let identifier):
-            return "/quotes/\(identifier)"
+        case .quoteListId(let locale):
+            return locale != nil ? "/quotes?locale=\(locale!)" : "/quotes/"
+        case .quotes(let identifier, let locale):
+            return locale != nil ? "/quotes/\(identifier)?locale=\(locale!)" : "/quotes/\(identifier)"
         case .bookTrip:
             return "/bookings"
         case .bookTripWithNonce:
@@ -196,7 +196,7 @@ enum APIEndpoint {
         switch self {
         case .addPaymentDetails: return "v2"
         case .paymentSDKToken: return "v2"
-        case .quotes(_ ): return "v2"
+        case .quotes(_, _): return "v2"
         case .quoteListId: return "v2"
         case .paymentProvider: return "v3"
         case .adyenPaymentMethods: return "v3"
