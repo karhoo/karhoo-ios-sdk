@@ -58,11 +58,11 @@ public struct PassengerDetails: KarhooCodableModel, Equatable {
 }
 
 public extension PassengerDetails {
-    init(user: UserInfo) {
+    init(user: UserInfo, customLocale: String? = nil) {
         self.init(firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
                 phoneNumber: user.mobileNumber,
-                locale: user.locale)
+                locale: customLocale ?? user.locale)
     }
 }
