@@ -18,10 +18,17 @@ let package = Package(
     targets: [
         .target(
             name: "KarhooSDK",
-            path: "KarhooSDK"),
+            path: "KarhooSDK",
+            resources: [
+                .copy("PrivacyInfo.xcprivacy")
+            ]
+        ),
         .target(name: "Client",
                 dependencies: ["KarhooSDK"],
-                path: "Client"),
+                path: "Client",
+                resources: [
+                    .copy("KarhooSDK/PrivacyInfo.xcprivacy")
+                ]),
         .testTarget(
             name: "KarhooSDKTests",
             dependencies: ["KarhooSDK"],
