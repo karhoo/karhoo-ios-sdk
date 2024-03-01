@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -424,6 +424,7 @@
 		7B28E006288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */; };
 		7B28E008288688E300F6FDAE /* PaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */; };
 		7B28E00A2886891300F6FDAE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E0092886891300F6FDAE /* Keys.swift */; };
+		8416A0BB2B92102C00B1437F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8416A0BA2B92102C00B1437F /* PrivacyInfo.xcprivacy */; };
 		843305C02AD431910076D27D /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BB2AD431910076D27D /* TegKeychainConstants.swift */; };
 		843305C12AD431910076D27D /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BC2AD431910076D27D /* KeychainSwift.swift */; };
 		843305C32AD431910076D27D /* KeychainSwiftAccessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BE2AD431910076D27D /* KeychainSwiftAccessOptions.swift */; };
@@ -967,6 +968,7 @@
 		7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KarhooPaymentProviderUpdateHandler.swift; path = KarhooSDK/Service/User/KarhooPaymentProviderUpdateHandler.swift; sourceTree = SOURCE_ROOT; };
 		7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProviderUpdateHandler.swift; path = KarhooSDK/Service/User/PaymentProviderUpdateHandler.swift; sourceTree = SOURCE_ROOT; };
 		7B28E0092886891300F6FDAE /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		8416A0BA2B92102C00B1437F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		843305BB2AD431910076D27D /* TegKeychainConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TegKeychainConstants.swift; sourceTree = "<group>"; };
 		843305BC2AD431910076D27D /* KeychainSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwift.swift; sourceTree = "<group>"; };
 		843305BE2AD431910076D27D /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
@@ -2431,6 +2433,7 @@
 				4310E4A41E99395D00625A0E /* Network */,
 				4371C5791EB0E7F70059429D /* Service */,
 				843305B92AD431260076D27D /* Utils */,
+				8416A0BA2B92102C00B1437F /* PrivacyInfo.xcprivacy */,
 			);
 			path = KarhooSDK;
 			sourceTree = "<group>";
@@ -3409,6 +3412,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8416A0BB2B92102C00B1437F /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
