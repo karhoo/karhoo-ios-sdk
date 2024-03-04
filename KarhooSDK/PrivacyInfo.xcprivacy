@@ -37,6 +37,7 @@
 			<false/>
 			<key>NSPrivacyCollectedDataTypePurposes</key>
 			<array>
+				<string>NSPrivacyCollectedDataTypePurposeProductPersonalization</string>
 				<string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>
 			</array>
 		</dict>
