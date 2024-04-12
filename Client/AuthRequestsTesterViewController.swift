@@ -70,7 +70,14 @@ class AuthRequestsTesterViewController: UIViewController {
     }
     
     private func login() {
-        Karhoo.getAuthService().login(token: "").execute(callback: { [weak self] result in
+        SDKConfig.auth = .tokenExchange(
+            settings: TokenExchangeSettings(
+                clientId: Keys.tokenClientId,
+                scope: Keys.tokenScope
+            )
+        )
+        
+        Karhoo.getAuthService().login(token: Keys.authToken).execute(callback: { [weak self] result in
             if result.isSuccess() {
                 self?.responseLabel.textColor = .green
                 let output = """

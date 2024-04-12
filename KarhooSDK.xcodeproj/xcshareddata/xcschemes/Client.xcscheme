@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "09A9B28A2405901900823FB0"
-               BuildableName = "Client.app"
-               BlueprintName = "Client"
+               BuildableName = "NSDKClient.app"
+               BlueprintName = "NSDKClient"
                ReferencedContainer = "container:KarhooSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "09A9B28A2405901900823FB0"
-            BuildableName = "Client.app"
-            BlueprintName = "Client"
+            BuildableName = "NSDKClient.app"
+            BlueprintName = "NSDKClient"
             ReferencedContainer = "container:KarhooSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "09A9B28A2405901900823FB0"
-            BuildableName = "Client.app"
-            BlueprintName = "Client"
+            BuildableName = "NSDKClient.app"
+            BlueprintName = "NSDKClient"
             ReferencedContainer = "container:KarhooSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
