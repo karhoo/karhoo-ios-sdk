@@ -422,7 +422,6 @@
 		6FED7C42257E741000E95C27 /* Luggage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FED7C41257E741000E95C27 /* Luggage.swift */; };
 		7B28E006288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */; };
 		7B28E008288688E300F6FDAE /* PaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */; };
-		7B28E00A2886891300F6FDAE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E0092886891300F6FDAE /* Keys.swift */; };
 		8416A0BB2B92102C00B1437F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8416A0BA2B92102C00B1437F /* PrivacyInfo.xcprivacy */; };
 		843305C02AD431910076D27D /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BB2AD431910076D27D /* TegKeychainConstants.swift */; };
 		843305C12AD431910076D27D /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BC2AD431910076D27D /* KeychainSwift.swift */; };
@@ -430,6 +429,7 @@
 		843305C72AD434250076D27D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305C62AD434250076D27D /* Reachability.swift */; };
 		84B57F732BC966D600EB7BDB /* KarhooSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4387A6411E3BAF6D0024FD55 /* KarhooSDK.framework */; };
 		84B57F742BC966D600EB7BDB /* KarhooSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4387A6411E3BAF6D0024FD55 /* KarhooSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84EBE5F32BC96F1F00EFA08A /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBE5F22BC96F1F00EFA08A /* Keys.swift */; };
 		A10F03D6260CA199005743F4 /* ServiceCancellationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F03D5260CA199005743F4 /* ServiceCancellationType.swift */; };
 		A1F3C05A261B7C44003CE2CD /* MockSecretStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3C059261B7C44003CE2CD /* MockSecretStore.swift */; };
 		A1F3C070261B83AC003CE2CD /* CredentialsStoreKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3C06F261B83AC003CE2CD /* CredentialsStoreKeys.swift */; };
@@ -986,12 +986,12 @@
 		6FED7C41257E741000E95C27 /* Luggage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luggage.swift; sourceTree = "<group>"; };
 		7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KarhooPaymentProviderUpdateHandler.swift; path = KarhooSDK/Service/User/KarhooPaymentProviderUpdateHandler.swift; sourceTree = SOURCE_ROOT; };
 		7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProviderUpdateHandler.swift; path = KarhooSDK/Service/User/PaymentProviderUpdateHandler.swift; sourceTree = SOURCE_ROOT; };
-		7B28E0092886891300F6FDAE /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		8416A0BA2B92102C00B1437F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		843305BB2AD431910076D27D /* TegKeychainConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TegKeychainConstants.swift; sourceTree = "<group>"; };
 		843305BC2AD431910076D27D /* KeychainSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwift.swift; sourceTree = "<group>"; };
 		843305BE2AD431910076D27D /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
 		843305C62AD434250076D27D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		84EBE5F22BC96F1F00EFA08A /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A10F03D5260CA199005743F4 /* ServiceCancellationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCancellationType.swift; sourceTree = "<group>"; };
 		A1F3C059261B7C44003CE2CD /* MockSecretStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSecretStore.swift; sourceTree = "<group>"; };
 		A1F3C06F261B83AC003CE2CD /* CredentialsStoreKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsStoreKeys.swift; sourceTree = "<group>"; };
@@ -1420,7 +1420,7 @@
 			path = Quote;
 			sourceTree = "<group>";
 		};
-		09A9B28C2405901900823FB0 /* Client */ = {
+		09A9B28C2405901900823FB0 /* NSDKClient */ = {
 			isa = PBXGroup;
 			children = (
 				09A9B28D2405901900823FB0 /* AppDelegate.swift */,
@@ -1430,9 +1430,9 @@
 				09A9B2962405901B00823FB0 /* Assets.xcassets */,
 				09A9B2982405901B00823FB0 /* LaunchScreen.storyboard */,
 				09A9B29B2405901B00823FB0 /* Info.plist */,
-				7B28E0092886891300F6FDAE /* Keys.swift */,
+				84EBE5F22BC96F1F00EFA08A /* Keys.swift */,
 			);
-			path = Client;
+			path = NSDKClient;
 			sourceTree = "<group>";
 		};
 		09B204AD21412C3100063632 /* KarhooSDKIntegrationTests */ = {
@@ -2423,7 +2423,7 @@
 				4387A6431E3BAF6D0024FD55 /* KarhooSDK */,
 				4387A64E1E3BAF6D0024FD55 /* KarhooSDKTests */,
 				09B204AD21412C3100063632 /* KarhooSDKIntegrationTests */,
-				09A9B28C2405901900823FB0 /* Client */,
+				09A9B28C2405901900823FB0 /* NSDKClient */,
 				4387A6421E3BAF6D0024FD55 /* Products */,
 				18DBF3907EAF3E4DE145B9C0 /* Frameworks */,
 				09CA785420EE59B200D3BB6F /* Recovered References */,
@@ -3449,10 +3449,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				09A9B2922405901900823FB0 /* ViewController.swift in Sources */,
-				7B28E00A2886891300F6FDAE /* Keys.swift in Sources */,
 				40FBF609240FBB2E007F6A54 /* AuthRequestsTesterViewController.swift in Sources */,
 				09A9B28E2405901900823FB0 /* AppDelegate.swift in Sources */,
 				09A9B2902405901900823FB0 /* SceneDelegate.swift in Sources */,
+				84EBE5F32BC96F1F00EFA08A /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3984,7 +3984,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Client/Info.plist;
+				INFOPLIST_FILE = NSDKClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4011,7 +4011,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Client/Info.plist;
+				INFOPLIST_FILE = NSDKClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

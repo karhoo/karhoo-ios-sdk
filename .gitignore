@@ -22,6 +22,7 @@ fastlane/.env
 
 # access keys
 Client/Keys.swift
+NSDKClient/Keys.swift
 Package.resolved
 .idea
 .bitrise.secrets.yml
