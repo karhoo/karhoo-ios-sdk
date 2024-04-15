@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol KarhooCodableModel: Encodable, Decodable, KarhooRequestModel {
+public protocol KarhooCodableModel: Decodable, KarhooRequestModel {
     func encode() -> Data?
 
     func equals(_ item: KarhooCodableModel) -> Bool
