@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol KarhooCodableModel: Decodable, KarhooRequestModel {
+public protocol KarhooCodableModel: Encodable, Decodable, KarhooRequestModel {
     func encode() -> Data?
 
     func equals(_ item: KarhooCodableModel) -> Bool
@@ -21,7 +21,9 @@ public protocol KarhooRequestModel: Encodable {
 extension KarhooRequestModel {
     public func encode() -> Data? {
         do {
-            return try JSONEncoder().encode(self)
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .sortedKeys
+            return try encoder.encode(self)
         } catch let error {
             print("----Error Encoding model: \(self) | Reason: \(error.localizedDescription)")
             return nil
@@ -33,7 +35,9 @@ extension KarhooCodableModel {
 
     public func encode() -> Data? {
         do {
-            return try JSONEncoder().encode(self)
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .sortedKeys
+            return try encoder.encode(self)
         } catch let error {
             print("----Error Encoding model: \(self) | Reason: \(error.localizedDescription)")
             return nil
