@@ -21,7 +21,9 @@ public protocol KarhooRequestModel: Encodable {
 extension KarhooRequestModel {
     public func encode() -> Data? {
         do {
-            return try JSONEncoder().encode(self)
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .sortedKeys
+            return try encoder.encode(self)
         } catch let error {
             print("----Error Encoding model: \(self) | Reason: \(error.localizedDescription)")
             return nil
@@ -33,7 +35,9 @@ extension KarhooCodableModel {
 
     public func encode() -> Data? {
         do {
-            return try JSONEncoder().encode(self)
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .sortedKeys
+            return try encoder.encode(self)
         } catch let error {
             print("----Error Encoding model: \(self) | Reason: \(error.localizedDescription)")
             return nil

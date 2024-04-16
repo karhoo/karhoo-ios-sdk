@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 struct SDKConfig: KarhooSDKConfiguration {
+    static var auth: AuthenticationMethod?
+    
     func requireSDKAuthentication(callback: @escaping () -> Void) {
         callback()
     }
@@ -35,10 +37,13 @@ struct SDKConfig: KarhooSDKConfiguration {
     }
 
     func authenticationMethod() -> AuthenticationMethod {
-        let guestSettings = GuestSettings(identifier: Keys.identifier,
-                                          referer: Keys.referer,
-                                          organisationId: Keys.organisationId)
-        return .guest(settings: guestSettings)
+        guard let auth = SDKConfig.auth else {
+            let guestSettings = GuestSettings(identifier: Keys.identifier,
+                                              referer: Keys.referer,
+                                              organisationId: Keys.organisationId)
+            return .guest(settings: guestSettings)
+        }
+         return auth
     }
 }
 

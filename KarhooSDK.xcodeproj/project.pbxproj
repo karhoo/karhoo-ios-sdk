@@ -100,7 +100,6 @@
 		09A9B2922405901900823FB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9B2912405901900823FB0 /* ViewController.swift */; };
 		09A9B2972405901B00823FB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09A9B2962405901B00823FB0 /* Assets.xcassets */; };
 		09A9B29A2405901B00823FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A9B2982405901B00823FB0 /* LaunchScreen.storyboard */; };
-		09A9B2A42405916400823FB0 /* KarhooSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4387A6411E3BAF6D0024FD55 /* KarhooSDK.framework */; };
 		09ACCE50207BBB5E0057B0CC /* QuoteListIdRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACCE4F207BBB5E0057B0CC /* QuoteListIdRequestPayload.swift */; };
 		09AF9AAB20D1751D0046D725 /* RefreshTokenRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AF9AAA20D1751D0046D725 /* RefreshTokenRequestPayload.swift */; };
 		09B204B121412C3200063632 /* KarhooSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4387A6411E3BAF6D0024FD55 /* KarhooSDK.framework */; };
@@ -423,12 +422,14 @@
 		6FED7C42257E741000E95C27 /* Luggage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FED7C41257E741000E95C27 /* Luggage.swift */; };
 		7B28E006288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */; };
 		7B28E008288688E300F6FDAE /* PaymentProviderUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */; };
-		7B28E00A2886891300F6FDAE /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B28E0092886891300F6FDAE /* Keys.swift */; };
 		8416A0BB2B92102C00B1437F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8416A0BA2B92102C00B1437F /* PrivacyInfo.xcprivacy */; };
 		843305C02AD431910076D27D /* TegKeychainConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BB2AD431910076D27D /* TegKeychainConstants.swift */; };
 		843305C12AD431910076D27D /* KeychainSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BC2AD431910076D27D /* KeychainSwift.swift */; };
 		843305C32AD431910076D27D /* KeychainSwiftAccessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305BE2AD431910076D27D /* KeychainSwiftAccessOptions.swift */; };
 		843305C72AD434250076D27D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843305C62AD434250076D27D /* Reachability.swift */; };
+		84B57F732BC966D600EB7BDB /* KarhooSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4387A6411E3BAF6D0024FD55 /* KarhooSDK.framework */; };
+		84B57F742BC966D600EB7BDB /* KarhooSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4387A6411E3BAF6D0024FD55 /* KarhooSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84EBE5F32BC96F1F00EFA08A /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBE5F22BC96F1F00EFA08A /* Keys.swift */; };
 		A10F03D6260CA199005743F4 /* ServiceCancellationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F03D5260CA199005743F4 /* ServiceCancellationType.swift */; };
 		A1F3C05A261B7C44003CE2CD /* MockSecretStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3C059261B7C44003CE2CD /* MockSecretStore.swift */; };
 		A1F3C070261B83AC003CE2CD /* CredentialsStoreKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3C06F261B83AC003CE2CD /* CredentialsStoreKeys.swift */; };
@@ -543,12 +544,32 @@
 			remoteGlobalIDString = 09A9B28A2405901900823FB0;
 			remoteInfo = Client;
 		};
+		84B57F702BC9606600EB7BDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4387A6381E3BAF6D0024FD55 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4387A6401E3BAF6D0024FD55;
+			remoteInfo = KarhooSDK;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		84B57F752BC966D600EB7BDB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				84B57F742BC966D600EB7BDB /* KarhooSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0900D34820D2B17B0082D1E8 /* RefreshTokenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenInteractor.swift; sourceTree = "<group>"; };
 		0900D34A20D2B1920082D1E8 /* RefreshTokenError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenError.swift; sourceTree = "<group>"; };
-		0907B98920D7B794008915B1 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0907B98B20D7B901008915B1 /* CancelTripInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTripInteractor.swift; sourceTree = "<group>"; };
 		0907B98E20D7B964008915B1 /* KarhooCancelTripInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooCancelTripInteractor.swift; sourceTree = "<group>"; };
 		0907B99120D7B98A008915B1 /* KarhooCancelTripInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooCancelTripInteractorSpec.swift; sourceTree = "<group>"; };
@@ -635,7 +656,7 @@
 		09A18BD821185080009F927B /* KarhooDriverTrackingInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooDriverTrackingInteractorSpec.swift; sourceTree = "<group>"; };
 		09A56DFB20922D5C00891F02 /* MeetingPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingPointType.swift; sourceTree = "<group>"; };
 		09A56DFF2097162C00891F02 /* LocationDetailsExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsExt.swift; sourceTree = "<group>"; };
-		09A9B28B2405901900823FB0 /* Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		09A9B28B2405901900823FB0 /* NSDKClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSDKClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A9B28D2405901900823FB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09A9B28F2405901900823FB0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		09A9B2912405901900823FB0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -730,8 +751,6 @@
 		237E0C662347897B00798AA0 /* MockFareInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFareInteractor.swift; sourceTree = "<group>"; };
 		237E0C682347931D00798AA0 /* KarhooFareInteractorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KarhooFareInteractorSpec.swift; sourceTree = "<group>"; };
 		239E3FC12498CC40005AB7F0 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = "<group>"; };
-		239E3FC42498CC4F005AB7F0 /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
-		23ED1A1924979C7500AD3269 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		2742100A1C88263575619D5D /* KarhooHeaderProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarhooHeaderProvider.swift; sourceTree = "<group>"; };
 		2742119D00DE30C9E3590055 /* HeaderProviderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderProviderSpec.swift; sourceTree = "<group>"; };
 		274213D38799FE5D607435B2 /* HeaderProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderProvider.swift; sourceTree = "<group>"; };
@@ -967,12 +986,12 @@
 		6FED7C41257E741000E95C27 /* Luggage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luggage.swift; sourceTree = "<group>"; };
 		7B28E005288688D400F6FDAE /* KarhooPaymentProviderUpdateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KarhooPaymentProviderUpdateHandler.swift; path = KarhooSDK/Service/User/KarhooPaymentProviderUpdateHandler.swift; sourceTree = SOURCE_ROOT; };
 		7B28E007288688E300F6FDAE /* PaymentProviderUpdateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProviderUpdateHandler.swift; path = KarhooSDK/Service/User/PaymentProviderUpdateHandler.swift; sourceTree = SOURCE_ROOT; };
-		7B28E0092886891300F6FDAE /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		8416A0BA2B92102C00B1437F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		843305BB2AD431910076D27D /* TegKeychainConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TegKeychainConstants.swift; sourceTree = "<group>"; };
 		843305BC2AD431910076D27D /* KeychainSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwift.swift; sourceTree = "<group>"; };
 		843305BE2AD431910076D27D /* KeychainSwiftAccessOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftAccessOptions.swift; sourceTree = "<group>"; };
 		843305C62AD434250076D27D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		84EBE5F22BC96F1F00EFA08A /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		A10F03D5260CA199005743F4 /* ServiceCancellationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCancellationType.swift; sourceTree = "<group>"; };
 		A1F3C059261B7C44003CE2CD /* MockSecretStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSecretStore.swift; sourceTree = "<group>"; };
 		A1F3C06F261B83AC003CE2CD /* CredentialsStoreKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsStoreKeys.swift; sourceTree = "<group>"; };
@@ -1064,7 +1083,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09A9B2A42405916400823FB0 /* KarhooSDK.framework in Frameworks */,
+				84B57F732BC966D600EB7BDB /* KarhooSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1401,7 +1420,7 @@
 			path = Quote;
 			sourceTree = "<group>";
 		};
-		09A9B28C2405901900823FB0 /* Client */ = {
+		09A9B28C2405901900823FB0 /* NSDKClient */ = {
 			isa = PBXGroup;
 			children = (
 				09A9B28D2405901900823FB0 /* AppDelegate.swift */,
@@ -1411,9 +1430,9 @@
 				09A9B2962405901B00823FB0 /* Assets.xcassets */,
 				09A9B2982405901B00823FB0 /* LaunchScreen.storyboard */,
 				09A9B29B2405901B00823FB0 /* Info.plist */,
-				7B28E0092886891300F6FDAE /* Keys.swift */,
+				84EBE5F22BC96F1F00EFA08A /* Keys.swift */,
 			);
-			path = Client;
+			path = NSDKClient;
 			sourceTree = "<group>";
 		};
 		09B204AD21412C3100063632 /* KarhooSDKIntegrationTests */ = {
@@ -1859,10 +1878,7 @@
 		18DBF3907EAF3E4DE145B9C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				239E3FC42498CC4F005AB7F0 /* KeychainSwift.framework */,
 				239E3FC12498CC40005AB7F0 /* OHHTTPStubs.framework */,
-				0907B98920D7B794008915B1 /* Reachability.framework */,
-				23ED1A1924979C7500AD3269 /* Reachability.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2407,7 +2423,7 @@
 				4387A6431E3BAF6D0024FD55 /* KarhooSDK */,
 				4387A64E1E3BAF6D0024FD55 /* KarhooSDKTests */,
 				09B204AD21412C3100063632 /* KarhooSDKIntegrationTests */,
-				09A9B28C2405901900823FB0 /* Client */,
+				09A9B28C2405901900823FB0 /* NSDKClient */,
 				4387A6421E3BAF6D0024FD55 /* Products */,
 				18DBF3907EAF3E4DE145B9C0 /* Frameworks */,
 				09CA785420EE59B200D3BB6F /* Recovered References */,
@@ -2420,7 +2436,7 @@
 				4387A6411E3BAF6D0024FD55 /* KarhooSDK.framework */,
 				4387A64A1E3BAF6D0024FD55 /* KarhooSDKTests.xctest */,
 				09B204AC21412C3100063632 /* KarhooSDKIntegrationTests.xctest */,
-				09A9B28B2405901900823FB0 /* Client.app */,
+				09A9B28B2405901900823FB0 /* NSDKClient.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3211,21 +3227,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		09A9B28A2405901900823FB0 /* Client */ = {
+		09A9B28A2405901900823FB0 /* NSDKClient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09A9B29C2405901B00823FB0 /* Build configuration list for PBXNativeTarget "Client" */;
+			buildConfigurationList = 09A9B29C2405901B00823FB0 /* Build configuration list for PBXNativeTarget "NSDKClient" */;
 			buildPhases = (
 				09A9B2872405901900823FB0 /* Sources */,
 				09A9B2882405901900823FB0 /* Frameworks */,
 				09A9B2892405901900823FB0 /* Resources */,
+				84B57F752BC966D600EB7BDB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				84B57F712BC9606600EB7BDB /* PBXTargetDependency */,
 			);
-			name = Client;
+			name = NSDKClient;
 			productName = Client;
-			productReference = 09A9B28B2405901900823FB0 /* Client.app */;
+			productReference = 09A9B28B2405901900823FB0 /* NSDKClient.app */;
 			productType = "com.apple.product-type.application";
 		};
 		09B204AB21412C3100063632 /* KarhooSDKIntegrationTests */ = {
@@ -3348,7 +3366,7 @@
 				4387A6401E3BAF6D0024FD55 /* KarhooSDK */,
 				4387A6491E3BAF6D0024FD55 /* KarhooSDKTests */,
 				09B204AB21412C3100063632 /* KarhooSDKIntegrationTests */,
-				09A9B28A2405901900823FB0 /* Client */,
+				09A9B28A2405901900823FB0 /* NSDKClient */,
 			);
 		};
 /* End PBXProject section */
@@ -3431,10 +3449,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				09A9B2922405901900823FB0 /* ViewController.swift in Sources */,
-				7B28E00A2886891300F6FDAE /* Keys.swift in Sources */,
 				40FBF609240FBB2E007F6A54 /* AuthRequestsTesterViewController.swift in Sources */,
 				09A9B28E2405901900823FB0 /* AppDelegate.swift in Sources */,
 				09A9B2902405901900823FB0 /* SceneDelegate.swift in Sources */,
+				84EBE5F32BC96F1F00EFA08A /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3928,13 +3946,18 @@
 		};
 		5124B86628D351F600031CF5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 09A9B28A2405901900823FB0 /* Client */;
+			target = 09A9B28A2405901900823FB0 /* NSDKClient */;
 			targetProxy = 5124B86528D351F600031CF5 /* PBXContainerItemProxy */;
 		};
 		5CDD26D224BE560C00436F01 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 09A9B28A2405901900823FB0 /* Client */;
+			target = 09A9B28A2405901900823FB0 /* NSDKClient */;
 			targetProxy = 5CDD26D124BE560C00436F01 /* PBXContainerItemProxy */;
+		};
+		84B57F712BC9606600EB7BDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4387A6401E3BAF6D0024FD55 /* KarhooSDK */;
+			targetProxy = 84B57F702BC9606600EB7BDB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3961,12 +3984,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Client/Info.plist;
+				INFOPLIST_FILE = NSDKClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.Client;
@@ -3987,12 +4011,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U7U4Q7YGDH;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = Client/Info.plist;
+				INFOPLIST_FILE = NSDKClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.karhoo.Client;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4030,7 +4055,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Client.app/Client";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NSDKClient.app/NSDKClient";
 			};
 			name = Debug;
 		};
@@ -4063,7 +4088,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Client.app/Client";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NSDKClient.app/NSDKClient";
 			};
 			name = Release;
 		};
@@ -4318,7 +4343,7 @@
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/KarhooSDK/Api/Networking/GRPC/";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Client.app/Client";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NSDKClient.app/NSDKClient";
 			};
 			name = Debug;
 		};
@@ -4351,14 +4376,14 @@
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/KarhooSDK/Api/Networking/GRPC/";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Client.app/Client";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NSDKClient.app/NSDKClient";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		09A9B29C2405901B00823FB0 /* Build configuration list for PBXNativeTarget "Client" */ = {
+		09A9B29C2405901B00823FB0 /* Build configuration list for PBXNativeTarget "NSDKClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09A9B29D2405901B00823FB0 /* Debug */,
