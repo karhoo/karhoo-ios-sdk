@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name                  = "KarhooSDK"
-  s.version               = "1.8.4"
+  s.version               = "1.8.5"
   s.summary               = "Karhoo Network SDK"
   s.homepage              = "https://developer.karhoo.com/docs/build-apps-using-sdks"
   s.license               = 'BSD 2-Clause'
